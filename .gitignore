@@ -1,0 +1,5 @@
+# ignore DB file in git pushes/pulls
+db.sqlite3
+
+# ignore all Virtual Environment files
+venv/
