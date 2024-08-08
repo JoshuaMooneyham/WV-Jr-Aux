@@ -5,4 +5,4 @@ db.sqlite3
 venv/
 
 # ignore environment variables
-config/.env
+config/*.env
