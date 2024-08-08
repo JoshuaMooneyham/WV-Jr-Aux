@@ -18,7 +18,7 @@ class AuctionItem(models.Model):
     highest_bidder = models.ForeignKey(Bidder, on_delete=models.CASCADE)
     start_time = models.DateTimeField(null=True, blank=True)
     end_time = models.DateTimeField(null=True, blank=True)
-    images = models.ForeignKey(ItemImages, on_delete=models.SET_NULL)
+    images = models.ForeignKey(ItemImages, null=True, blank=True, on_delete=models.SET_NULL)
 
     
 class Bid(models.Model):
