@@ -3,3 +3,6 @@ db.sqlite3
 
 # ignore all Virtual Environment files
 venv/
+
+# ignore environment variables
+config/*.env
