@@ -6,6 +6,10 @@ import random
 class Bidder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="bidder_info")
     bidder_id = models.IntegerField(unique=True)
+    stripe_id = models.TextField()
+
+    def __str__(self) -> str:
+        return f'Bidder: {self.bidder_id}'
 
 class AuctionItem(models.Model):
     name = models.TextField()
@@ -17,12 +21,21 @@ class AuctionItem(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
 
+    def __str__(self) -> str:
+        return f'Product: {self.name}'
+
 class ItemImage(models.Model):
     file = models.ImageField(upload_to="")
     item = models.ForeignKey(AuctionItem, on_delete=models.CASCADE, related_name='images')
+
+    def __str__(self) -> str:
+        return f'{self.item.name} Image: {self.file.name}'
 
 
 class Bid(models.Model):
     bidder = models.ForeignKey(Bidder, on_delete=models.CASCADE)
     amount = models.IntegerField() #Cents, base 1000
     item = models.ForeignKey(AuctionItem, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f'Bid from {self.bidder.bidder_id} on {self.item.name}'
