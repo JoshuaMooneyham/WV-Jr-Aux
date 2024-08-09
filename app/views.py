@@ -15,3 +15,20 @@ def testingView(req: HttpRequest) -> HttpResponse:
 # # customer = stripe.Customer.retrieve("cus_Qayy8h85WAtWRo")
 # # customer.delete()
 # print(customers)
+def home(request):
+    return render(request, 'home.html')
+
+def aboutUs(request):
+    return render(request, 'about.html')
+
+def projectsPage(request):
+    return render(request, 'projects.html')
+
+def contactUs(request):
+    return render(request, 'contactus.html')
+
+def loginPage(request):
+    return render(request, 'login.html')
+
+def logoutUser(request):
+    return render(request, 'logout.html')

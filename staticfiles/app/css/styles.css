@@ -1,7 +1,61 @@
-body {
-    background-color: gray;
+@font-face {
+    font-family: 'Futura';
+    src: url("{% static 'fonts/Futura Thin.ttf' %}") format('truetype');
 }
 
-h1 {
-    color: brown;
+
+
+.myNav{
+    background: rgb(0, 48, 135);
+    font-family: 'Futura', sans-serif;
+    padding: 10px;
+    border-bottom: 10px solid white;
+    align-items: end;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+}
+.myNav > a {
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px; /* Adjust padding as needed */
+}
+
+.left-image {
+    width: 20%;
+    height: 20%;
+    /* Adjust the width of the image as needed */
+}
+
+.right-button {
+    border-radius: 10%;
+    margin-right: 2%;
+    background: rgb(246, 236, 97) !important;
+    color: rgb(0, 48, 135) !important;
+    align-items: center;; /* Pushes the button to the far right */
+}
+
+.placeholder {
+    color: rgb(0, 48, 135) !important;
+    font-family: 'Futura';
+    font-size: 5rem;
+    text-align: center;
+}
+
+.home_text{
+    color: rgb(0, 48, 135) !important;
+    font-family: 'Futura';
+    font-size: 1.2rem;
+    text-align: center;
+
 }
