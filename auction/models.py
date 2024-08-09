@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Bidder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = "bidder_info")
     bidder_id = models.IntegerField(null=True, blank=True)
+    stripe_id = models.CharField(max_length=50, null=True, blank=True)
 
 class ItemImages(models.Model):
     file = models.ImageField(upload_to="", blank=True, null=True)
