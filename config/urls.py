@@ -17,8 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app.views import *
+from auction.views import *
 
 urlpatterns = [
     path('', testingView, name='home'),
     path('admin/', admin.site.urls),
+    
+    # AUCTION URLS 
+    path('registration/', registration_view, name='registration')
 ]
