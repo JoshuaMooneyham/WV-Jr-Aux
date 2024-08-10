@@ -9,26 +9,26 @@ from auction.models import *
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY
     customers = stripe.Customer.list()
-    image = ItemImages.objects.get()
+    image = ItemImage.objects.get()
     
     return render(req, 'test.html', {'test': customers, 'image': image})
 # # customer = stripe.Customer.retrieve("cus_Qayy8h85WAtWRo")
 # # customer.delete()
 # print(customers)
-def home(request):
+def home(request: HttpRequest) -> HttpResponse:
     return render(request, 'home.html')
 
-def aboutUs(request):
+def aboutUs(request: HttpRequest) -> HttpResponse:
     return render(request, 'about.html')
 
-def projectsPage(request):
+def projectsPage(request: HttpRequest) -> HttpResponse:
     return render(request, 'projects.html')
 
-def contactUs(request):
+def contactUs(request: HttpRequest) -> HttpResponse:
     return render(request, 'contactus.html')
 
-def loginPage(request):
+def loginPage(request: HttpRequest) -> HttpResponse:
     return render(request, 'login.html')
 
-def logoutUser(request):
+def logoutUser(request: HttpRequest) -> HttpResponse:
     return render(request, 'logout.html')
