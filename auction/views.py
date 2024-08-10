@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from auction.models import *
 from auction.forms import *
 from django.conf import settings
@@ -33,6 +34,17 @@ def registration_view(request: HttpRequest):
     else:
         form = Create_User_Form()
     return render(request, "registration.html", {"form": form})
+
+def login_view(request: HttpRequest):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+        else:
+            messages.error(request, "Incorrect username and password combination")
+    return render(request, "auction_login.html")
 
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY

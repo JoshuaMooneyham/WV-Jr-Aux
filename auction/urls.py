@@ -23,6 +23,7 @@ from auction.views import *
 urlpatterns = [
     path('testing/', testingView, name='testing'),
     path('registration/', registration_view, name='registration'),
+    path('login/', login_view, name='login'),
     path('products/create', productsTest, name='createProduct'),
     path('products/images', imageTest, name='createImage'),
     path('products/<int:id>', displayItem, name='displayProduct'),
