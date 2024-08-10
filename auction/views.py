@@ -19,6 +19,7 @@ def registration_view(request: HttpRequest):
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password1")
             user = authenticate(request, username=username, password=password)
+            
             try:
                 stripe.api_key = settings.STRIPE_KEY
                 customer = stripe.Customer.create(
@@ -29,6 +30,9 @@ def registration_view(request: HttpRequest):
                     user=user,
                     stripe_id=customer.id
                 )
+
+                if user.is_authenticated:
+                    return redirect("/auction/login")
             except:
                 print("Can't create customer")
     else:
@@ -42,7 +46,7 @@ def login_view(request: HttpRequest):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("add_payment")
+            return redirect("add_payment_method")
         else:
             messages.error(request, "Incorrect username and password combination")
     return render(request, "auction_login.html")
