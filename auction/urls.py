@@ -19,8 +19,11 @@ from django.urls import path, re_path
 from django.views.static import serve
 from app.views import *
 from auction.views import *
-from app.views import *
 
 urlpatterns = [
-    path('testing/', testingView),
+    path('testing/', testingView, name='testing'),
+    path('registration/', registration_view, name='registration'),
+    path('products/create', productsTest, name='createProduct'),
+    path('products/images', imageTest, name='createImage'),
+    path('products/<int:id>', displayItem, name='displayProduct'),
 ]

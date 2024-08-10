@@ -3,9 +3,15 @@ from django.contrib.auth.models import User
 import random
 
 # Create your models here.
+class Auction(models.Model):
+    name = models.TextField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    description = models.TextField(null=True, blank=True)
+
 class Bidder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="bidder_info")
-    bidder_id = models.IntegerField(unique=True)
+    bidder_id = models.IntegerField(unique=True, null=True, blank=True)
     stripe_id = models.TextField()
 
     def __str__(self) -> str:
@@ -13,13 +19,14 @@ class Bidder(models.Model):
 
 class AuctionItem(models.Model):
     name = models.TextField()
-    description = models.TextField(null=True, blank=True)
+    active = models.BooleanField()
+    stripe_id = models.TextField()
+    description = models.TextField()
     starting_bid = models.IntegerField(default=100) #Cents, base 1000
     current_bid = models.IntegerField() #Cents, base 1000
     autobuy_price = models.IntegerField(null=True, blank=True) #Cents, base 1000
     highest_bidder = models.ForeignKey(Bidder, null=True, on_delete=models.SET_NULL, related_name='highest_bids')
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    auction = models.ForeignKey(Auction, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return f'Product: {self.name}'
