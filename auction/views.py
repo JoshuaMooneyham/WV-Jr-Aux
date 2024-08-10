@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
+from django.contrib.auth import authenticate
 from auction.models import *
 from auction.forms import *
 from django.conf import settings
@@ -13,13 +14,22 @@ def registration_view(request: HttpRequest):
             form.save()
             firstname = form.cleaned_data.get("first_name")
             lastname = form.cleaned_data.get("last_name")
+            username = form.cleaned_data.get("username")
             email = form.cleaned_data.get("email")
-            name = f"{firstname} {lastname}"
-            stripe.api_key = settings.STRIPE_KEY
-            customer = stripe.Customer.create(
-                name=name,
-                email=email,
-            )
+            password = form.cleaned_data.get("password1")
+            user = authenticate(request, username=username, password=password)
+            try:
+                stripe.api_key = settings.STRIPE_KEY
+                customer = stripe.Customer.create(
+                    name=f"{firstname} {lastname}",
+                    email=email,
+                )
+                bidder = Bidder.objects.create(
+                    user=user,
+                    stripe_id=customer.id
+                )
+            except:
+                print("Can't create customer")
     else:
         form = Create_User_Form()
     return render(request, "registration.html", {"form": form})
