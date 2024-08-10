@@ -5,7 +5,7 @@ import random
 # Create your models here.
 class Bidder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="bidder_info")
-    bidder_id = models.IntegerField(unique=True)
+    bidder_id = models.IntegerField(unique=True, null=True, blank=True)
     stripe_id = models.TextField()
 
     def __str__(self) -> str:
