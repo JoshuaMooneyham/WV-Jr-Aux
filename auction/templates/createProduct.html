@@ -14,8 +14,9 @@
             <h1>Auction</h1>
         </div>
         <div class='signup-template'>
-            <form method='POST'>
+            <form method='POST' enctype="multipart/form-data">
                 {% csrf_token %}
+                <input type="file" name="images" id="imageInput" multiple="" accept='image/*'/>
                 {{form.as_p}}
                 <div>
                     <input type='submit' value='Register'>

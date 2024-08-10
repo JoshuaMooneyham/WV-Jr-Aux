@@ -9,6 +9,9 @@ class Auction(models.Model):
     end_date = models.DateTimeField()
     description = models.TextField(null=True, blank=True)
 
+    def __str__(self) -> str:
+        return f'Auction: {self.name}'
+
 class Bidder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="bidder_info")
     bidder_id = models.IntegerField(unique=True, null=True, blank=True)

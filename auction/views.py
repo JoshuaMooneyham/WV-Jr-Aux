@@ -38,38 +38,42 @@ def productsTest(req: HttpRequest) -> HttpResponse:
     form = CreateAuctionItemForm()
     if req.method == 'POST':
         form = CreateAuctionItemForm(req.POST)
+        print(req.POST)
         if form.is_valid():
-            newProduct = AuctionItem.objects.create(
-                name=form.cleaned_data.get('name'),
-                description=form.cleaned_data.get('description'),
-                starting_bid=form.cleaned_data.get('starting_bid'),
-                current_bid=form.cleaned_data.get('starting_bid'),
-                autobuy_price=form.cleaned_data.get('autobuy_price'),
-                start_time=form.cleaned_data.get('start_time'),
-                end_time=form.cleaned_data.get('end_time'),
-            )
-            print(newProduct)
+            print(req.POST)
+            print(req.FILES)
             try:
                 stripe.api_key = settings.STRIPE_KEY
                 product = stripe.Product.create(
-                    name=newProduct.name,
+                    name=form.cleaned_data.get('name'),
                     active=True,
-                    description=newProduct.description,
-                    metadata={}
+                    description=form.cleaned_data.get('description'),
+                    metadata={},
+                    default_price_data={
+                        "currency": "usd",
+                        "unit_amount": form.cleaned_data.get('starting_bid'),
+                        }
                 )
+                newProduct = AuctionItem.objects.create(
+                    name=form.cleaned_data.get('name'),
+                    active=True,
+                    stripe_id=product.id,
+                    description=form.cleaned_data.get('description'),
+                    starting_bid=form.cleaned_data.get('starting_bid'),
+                    current_bid=form.cleaned_data.get('starting_bid'),
+                    autobuy_price=form.cleaned_data.get('autobuy_price'),
+                    auction=Auction.objects.get(id=1)
+                )
+                for file in req.FILES.getlist('images'):
+                    ItemImage.objects.create(file=file, item=newProduct)
+                print(newProduct)
                 print(product)
             except:
                 print('something went wrong')
     return render(req, 'createProduct.html', {'form': form})
 
-def imageTest(req: HttpRequest) -> HttpResponse:
-
-    if req.method == 'POST':
-        print(req.FILES)
-        for file in req.FILES.getlist('images'):
-            test = ItemImage.objects.create(file=file, item=AuctionItem.objects.get(id=1))
-            print(test)
-    return render(req, 'imgTest.html')
+def auctionFront(req: HttpRequest) -> HttpResponse:
+    return render(req, 'auctionFront.html', {"items": AuctionItem.objects.all()})
 
 def displayItem(req: HttpRequest, id: int) -> HttpResponse:
     item = AuctionItem.objects.get(id=id)

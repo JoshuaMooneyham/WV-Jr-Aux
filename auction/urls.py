@@ -24,6 +24,6 @@ urlpatterns = [
     path('testing/', testingView, name='testing'),
     path('registration/', registration_view, name='registration'),
     path('products/create', productsTest, name='createProduct'),
-    path('products/images', imageTest, name='createImage'),
+    path('', auctionFront, name="auctionFront"),
     path('products/<int:id>', displayItem, name='displayProduct'),
 ]
