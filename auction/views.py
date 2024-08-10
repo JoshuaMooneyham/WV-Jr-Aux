@@ -1,11 +1,11 @@
-from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from auction.models import *
 from auction.forms import *
 from django.conf import settings
-import stripe
+import stripe, json, logging
 
 # Create your views here.
 def registration_view(request: HttpRequest):
@@ -42,9 +42,43 @@ def login_view(request: HttpRequest):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            return redirect("add_payment")
         else:
             messages.error(request, "Incorrect username and password combination")
     return render(request, "auction_login.html")
+
+def add_payment_view(request: HttpRequest):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        payment_method_id = data.get('payment_method_id')
+        
+        logging.info(f'Received payment_method_id: {payment_method_id}')
+
+        if not payment_method_id:
+            return JsonResponse({'error': 'Payment Method ID is required'}, status=400)
+
+        try:
+            stripe.api_key = settings.STRIPE_KEY
+            bidder = Bidder.objects.get(user=request.user)
+
+            logging.info(bidder.stripe_id)
+
+            stripe.PaymentMethod.attach(
+                payment_method_id,
+                customer=bidder.stripe_id
+            )
+
+            stripe.Customer.modify(
+                bidder.stripe_id,
+                invoice_settings={
+                    'default_payment_method': payment_method_id,
+                }
+            )
+
+            return JsonResponse({'success': True, 'customer_id': bidder.stripe_id})
+        except:
+            print("Invalid card")
+    return render(request, "add_payment.html", {'STRIPE_TEST_PUBLIC_KEY': settings.STRIPE_TEST_PUBLIC_KEY})
 
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY

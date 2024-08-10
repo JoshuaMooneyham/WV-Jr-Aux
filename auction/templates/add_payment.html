@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Form</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+    <body>
+        <h1>Payment Form</h1>
+        <p>{{request.user}}</p>
+        <form id="payment-form" method="post">
+            {% csrf_token %}
+            <div id="card-element"></div>  <!-- Stripe Elements will be injected here -->
+            <button type="submit" id="submit">Submit Payment</button>
+        </form>
+
+        <script>
+            // Initialize Stripe.js with your publishable key
+            var stripe = Stripe('{{ STRIPE_TEST_PUBLIC_KEY }}');
+            var elements = stripe.elements();
+            var cardElement = elements.create('card');
+            cardElement.mount('#card-element');
+
+            var form = document.getElementById('payment-form');
+            document.getElementById('payment-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+            
+                stripe.createPaymentMethod({
+                    type: 'card',
+                    card: cardElement,
+                    billing_details: {
+                        name: 'Customer Name', // Optionally include customer details
+                    }
+                }).then(function(result) {
+                    if (result.error) {
+                        // Display error.message in your UI
+                        console.error(result.error.message);
+                    } else {
+                        // Send the PaymentMethod ID to your server
+                        handlePaymentMethod(result.paymentMethod.id);
+                    }
+                });
+            });
+            
+            // Function to handle payment method ID
+            function handlePaymentMethod(paymentMethodId) {
+                fetch('/auction/add-payment-method/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}' // Django CSRF token
+                    },
+                    body: JSON.stringify({
+                        payment_method_id: paymentMethodId
+                    })
+                }).then(response => response.json())
+                  .then(data => {
+                      if (data.error) {
+                          console.error('Error:', data.error);
+                      } else {
+                          console.log('Payment method added successfully.');
+                      }
+                  }).catch(error => console.error('Error:', error));
+                  console.log(paymentMethodId);
+            }
+        </script>
+    </body>
+</html>

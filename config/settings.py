@@ -20,6 +20,7 @@ environ.Env.read_env()
 ENVIRONMENT = env('ENVIRONMENT', default='production')
 
 STRIPE_KEY = env('STRIPE_KEY')
+STRIPE_TEST_PUBLIC_KEY = env('STRIPE_TEST_PUBLIC_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

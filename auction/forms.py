@@ -8,6 +8,9 @@ class Create_User_Form(UserCreationForm):
         model = User
         fields = ["first_name", "last_name", "username", "email", "password1", "password2"]
 
+class CardForm(forms.Form):
+    pass
+
 class CreateAuctionItemForm(forms.ModelForm):
     class Meta:
         model = AuctionItem
