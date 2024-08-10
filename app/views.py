@@ -5,16 +5,6 @@ import stripe
 from auction.models import *
 
 # Create your views here.
-# print(settings.STRIPE_KEY)
-def testingView(req: HttpRequest) -> HttpResponse:
-    stripe.api_key = settings.STRIPE_KEY
-    customers = stripe.Customer.list()
-    image = ItemImage.objects.get()
-    
-    return render(req, 'test.html', {'test': customers, 'image': image})
-# # customer = stripe.Customer.retrieve("cus_Qayy8h85WAtWRo")
-# # customer.delete()
-# print(customers)
 def home(request: HttpRequest) -> HttpResponse:
     return render(request, 'home.html')
 
