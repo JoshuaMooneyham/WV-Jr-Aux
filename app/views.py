@@ -32,3 +32,6 @@ def loginPage(request):
 
 def logoutUser(request):
     return render(request, 'logout.html')
+
+def scholarShip(request):
+    return render(request, 'scholarship.html')

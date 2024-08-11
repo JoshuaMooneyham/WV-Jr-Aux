@@ -28,6 +28,7 @@ urlpatterns = [
     path('about/', aboutUs, name="about"),
     path('projects/', projectsPage, name="projects"),
     path('contact/', contactUs, name="contact"),
+    path('scholarship/', scholarShip, name="scholarship"),
 
     # ==={ File Serving }=== #
     re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
