@@ -6,9 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    {% for img in item.images.all %}
-        <img src="{{img.file.url}}" alt="shit">
-    {% endfor %}
+    <div class='image-container'>
+        {% for img in images %}
+            
+            <img src="{{img.file.url}}" alt="shit">
+        {% endfor %}
+    </div>
     {{item.name}}
     {{item.description}}
 </body>

@@ -137,6 +137,6 @@ def auctionFront(req: HttpRequest) -> HttpResponse:
 
 def displayItem(req: HttpRequest, id: int) -> HttpResponse:
     item = AuctionItem.objects.get(id=id)
-    stripe.api_key = settings.STRIPE_KEY
-    print(stripe.Product.list())
-    return render(req, 'displayTest.html', {"item": item})
+    images = item.images.all()
+
+    return render(req, 'displayTest.html', {"item": item, "images": images})

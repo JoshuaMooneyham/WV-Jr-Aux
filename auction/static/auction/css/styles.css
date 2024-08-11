@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
