@@ -137,6 +137,20 @@ def auctionFront(req: HttpRequest) -> HttpResponse:
 
 def displayItem(req: HttpRequest, id: int) -> HttpResponse:
     item = AuctionItem.objects.get(id=id)
-    images = item.images.all()
+    images = [img for img in item.images.all()]
+    if req.method == "POST":
+        amount = req.POST.get('amount')
+        stripe.api_key = settings.STRIPE_KEY
+        stripePrice = stripe.Price.retrieve(stripe.Product.retrieve(item.stripe_id)["default_price"])
+        if amount != None and (int(amount) >= item.current_bid + 500 and int(amount) >= int(stripePrice["unit_amount"]) + 500):
+            bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")))
+            print(bid)
+            bid.save()
+            # stripe.Product.modify(stripePrice["id"], ) ## update stripe items default price to reflect new bid
+            item.current_bid = int(amount)
+            item.save()
+    lowestAllowedBid = item.current_bid + 500
 
-    return render(req, 'displayTest.html', {"item": item, "images": images})
+
+            
+    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid})
