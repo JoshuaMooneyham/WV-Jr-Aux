@@ -22,3 +22,6 @@ def loginPage(request: HttpRequest) -> HttpResponse:
 
 def logoutUser(request: HttpRequest) -> HttpResponse:
     return render(request, 'logout.html')
+
+def scholarShip(request):
+    return render(request, 'scholarship.html')

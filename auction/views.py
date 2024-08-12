@@ -84,6 +84,27 @@ def add_payment_view(request: HttpRequest):
             print("Invalid card")
     return render(request, "add_payment.html", {'STRIPE_TEST_PUBLIC_KEY': settings.STRIPE_TEST_PUBLIC_KEY})
 
+def create_payment_intent(request: HttpRequest, payment_method_id, product_id):
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        bidder = Bidder.objects.get(user=request.user)
+        customer = stripe.Customer.retrieve(id=bidder.stripe_id)
+        item = AuctionItem.objects.get(stripe_id=product_id)
+
+        payment_intent = stripe.PaymentIntent.create(
+            amount = item.current_bid,
+            currency="usd",
+            payment_method=payment_method_id,
+            customer=customer.id,
+            confirmation_method="manual",
+            capture_method="manual",
+            metadata={
+                "product_id": product_id,
+            }
+        )
+    except:
+        pass
+
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY
     customers = stripe.Customer.list()
@@ -137,6 +158,20 @@ def auctionFront(req: HttpRequest) -> HttpResponse:
 
 def displayItem(req: HttpRequest, id: int) -> HttpResponse:
     item = AuctionItem.objects.get(id=id)
-    stripe.api_key = settings.STRIPE_KEY
-    print(stripe.Product.list())
-    return render(req, 'displayTest.html', {"item": item})
+    images = [img for img in item.images.all()]
+    if req.method == "POST":
+        amount = req.POST.get('amount')
+        stripe.api_key = settings.STRIPE_KEY
+        stripePrice = stripe.Price.retrieve(stripe.Product.retrieve(item.stripe_id)["default_price"])
+        if amount != None and (int(amount) >= item.current_bid + 500 and int(amount) >= int(stripePrice["unit_amount"]) + 500):
+            bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")))
+            print(bid)
+            bid.save()
+            # stripe.Product.modify(stripePrice["id"], ) ## update stripe items default price to reflect new bid
+            item.current_bid = int(amount)
+            item.save()
+    lowestAllowedBid = item.current_bid + 500
+
+
+            
+    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid})
