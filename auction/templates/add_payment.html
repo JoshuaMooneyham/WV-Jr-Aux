@@ -28,9 +28,6 @@
                 stripe.createPaymentMethod({
                     type: 'card',
                     card: cardElement,
-                    billing_details: {
-                        name: 'Customer Name', // Optionally include customer details
-                    }
                 }).then(function(result) {
                     if (result.error) {
                         // Display error.message in your UI

@@ -2,10 +2,12 @@ from django import template
 
 register = template.Library()
 
+@register.filter(safe=True)
 def moneyify(amt: int|float) -> str:
     amt /= 100
     return f'${amt:,.2f}'
 
+@register.filter(safe=True)
 def firstImg(images) -> str:
     try:
         for img in images:
@@ -14,5 +16,14 @@ def firstImg(images) -> str:
         pass
     return ""
 
-register.filter('moneyify', moneyify)
-register.filter('firstImg', firstImg)
+@register.filter(safe=True)
+def indexify(image, images) -> str:
+    return f'{images.index(image) + 1}/{len(images)}'
+
+@register.filter(safe=True)
+def getIndex(img, images) -> str:
+    return f'{images.index(img) + 1}'
+
+# register.filter('moneyify', moneyify)
+# register.filter('firstImg', firstImg)
+# register.filter('indexify', indexify)

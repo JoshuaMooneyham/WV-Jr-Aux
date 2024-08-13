@@ -11,10 +11,12 @@
 </head>
 <body>
     {% for item in items %}
+    <a class='item' href="{% url 'displayProduct' item.pk %}">
         <h3>{{item.name}}</h3>
 
         <img src="{{item.images.all | firstImg}}" alt="">
         <p>Current Bid: {{item.current_bid | moneyify}}</p>
+    </a>
     {% endfor %}
 </body>
 </html>

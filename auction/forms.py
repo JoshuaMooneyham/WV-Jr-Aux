@@ -16,7 +16,7 @@ class CreateAuctionItemForm(forms.ModelForm):
         model = AuctionItem
         fields = ['name', 'description', 'starting_bid', 'autobuy_price']
 
-# class CreateItemImageForm(forms.ModelForm):
+# class PlaceBidForm(forms.ModelForm):
 #     class Meta:
-#         model = ItemImage
-#         fields = ['file']
+#         model = Bid
+#         fields = ['bidder', 'amount', 'item']

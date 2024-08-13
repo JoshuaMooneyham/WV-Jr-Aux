@@ -1,0 +1,43 @@
+{% load my_filters %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "auction/css/styles.css" %}">
+    <script src="{% static "auction/js/scripts.js" %}" defer="defer"></script>
+</head>
+<body>
+    <div class='image-container'>
+        {% for img in images %}
+        <div class="slideshow_image">
+            <img src="{{img.file.url}}" alt="Auction Item Image">
+            <p class='pageNum'>{{img | indexify:images}}</p>
+        </div>
+        {% endfor %}
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+    <div class='slide_dots'>
+        {% for img in images %}
+        <span class='dot' onclick="currentSlide({{img | getIndex:images}})"></span>
+        {% endfor %}
+    </div>
+    <h3>{{item.name}}</h3>
+    <p>{{item.description}}</p>
+    <p>Current Bid: {{item.current_bid | moneyify}}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {% comment %} <span>$</span> {% endcomment %}
+        {% comment %} <input id='bidPriceInput' type="text" name="amount" min={{lab}} max="99999999" value={{lab}} step='0.01'> {% endcomment %}
+        <input type="hidden" name='amount' value={{lab}}>
+        <input type="hidden" name='item' value={{item.pk}}>
+        <input type="hidden" name='bidder' value={{1}}> {% comment "replace with user.bidder_info.pk" %}{% endcomment %}
+        <input type="submit" name='submit' value="Place Bid for {{lab|moneyify}}">
+    </form>
+</body>
+</html>
