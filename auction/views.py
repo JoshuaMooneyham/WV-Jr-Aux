@@ -6,7 +6,14 @@ from auction.models import *
 from auction.forms import *
 from django.conf import settings
 import stripe, json, logging
+import random
 
+def generateBidderId() -> int:
+    while True:
+        num: int = random.randint(100000000, 999999999)
+        if len(Bidder.objects.filter(bidder_id=num)) == 0:
+            return num
+        
 # Create your views here.
 def registration_view(request: HttpRequest):
     if request.method == "POST":
@@ -26,13 +33,17 @@ def registration_view(request: HttpRequest):
                     name=f"{firstname} {lastname}",
                     email=email,
                 )
+                print(f'customer: {customer}')
                 bidder = Bidder.objects.create(
                     user=user,
-                    stripe_id=customer.id
+                    stripe_id=customer.id,
+                    bidder_id=generateBidderId()
                 )
+                print(f'bidder: {bidder}')
 
                 if user.is_authenticated:
-                    return redirect("/auction/login")
+                    login(request, user)
+                    return redirect("auctionFront")
             except:
                 print("Can't create customer")
     else:
@@ -64,7 +75,7 @@ def add_payment_view(request: HttpRequest):
         try:
             stripe.api_key = settings.STRIPE_KEY
             bidder = Bidder.objects.get(user=request.user)
-
+            # ^ You can just call user.bidder_info for this I believe ^
             logging.info(bidder.stripe_id)
 
             stripe.PaymentMethod.attach(

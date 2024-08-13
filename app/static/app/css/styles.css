@@ -69,14 +69,9 @@ body {
     background: rgb(246, 236, 97) !important;
     color: rgb(0, 48, 135) !important;
     font-size: 1.2rem;
-<<<<<<< HEAD:app/static/css/styles.css
     padding: 0.5%;
     align-items: center; /* Pushes the button to the far right */
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
-=======
-    padding: .5%;;
-    align-items: center; /* Pushes the button to the far right */
->>>>>>> f952d14acfb919628560c41d9269c6eb6d4cfd3f:app/static/app/css/styles.css
 }
 
 .right-button:hover {
