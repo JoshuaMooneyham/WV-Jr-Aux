@@ -11,6 +11,7 @@
     <script src="{% static "auction/js/scripts.js" %}" defer="defer"></script>
 </head>
 <body>
+    {% comment %} VVV DO NOT CHANGE BELOW VVV {% endcomment %}
     <div class='image-container'>
         {% for img in images %}
         <div class="slideshow_image">
@@ -26,6 +27,7 @@
         <span class='dot' onclick="currentSlide({{img | getIndex:images}})"></span>
         {% endfor %}
     </div>
+    {% comment %} ^^^ DO NOT CHANGE ABOVE ^^^ {% endcomment %}
     <h3>{{item.name}}</h3>
     <p>{{item.description}}</p>
     <p>Current Bid: {{item.current_bid | moneyify}}</p>
@@ -37,7 +39,7 @@
         <input type="hidden" name='amount' value={{lab}}>
         <input type="hidden" name='item' value={{item.pk}}>
         <input type="hidden" name='bidder' value={{1}}> {% comment "replace with user.bidder_info.pk" %}{% endcomment %}
-        <input type="submit" name='submit' value="Place Bid for {{lab|moneyify}}">
+        <input type="submit" name='submit' value="Place Bid for {{lab | moneyify}}">
     </form>
 </body>
 </html>

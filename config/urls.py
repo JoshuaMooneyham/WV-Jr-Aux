@@ -17,18 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.static import serve
+from django.conf import settings
 from app.views import *
 
 urlpatterns = [
     path("", home, name = "home"),
     path('admin/', admin.site.urls),
-    # path('login/', loginPage, name="login"),
-    path('logout/', logoutUser, name="logout"),
+    path('logout/', logout_view, name='logout'),
+    path('login/', login_view, name='login'),
     path('about/', aboutUs, name="about"),
     path('projects/', projectsPage, name="projects"),
     path('contact/', contactUs, name="contact"),
-    path('auction/', include('auction.urls')),
     path('scholarship/', scholarShip, name="scholarship"),
+    path('auction/', include('auction.urls')),
 
     # ==={ File Serving }=== #
     re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
