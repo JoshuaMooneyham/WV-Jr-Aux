@@ -16,12 +16,11 @@ body {
     font-family: 'Futura-Bold', sans-serif;
 }
 
+/* <!-- <------------NAVBAR------------> --> */
 
 .myNav{
     background: rgb(0, 48, 135);
     /* font-family: 'Futura', sans-serif; */
-    
-    padding: 10px;
     border-bottom: 10px solid white;
     align-items: end;
     display: flex;
@@ -39,8 +38,9 @@ body {
 .myNav > a {
     color: white;
     text-decoration: none;
-    padding: 1rem;
+    padding: .5rem;
 }
+/* <------------HEADER------------> */
 .container {
     display: flex;
     justify-content: space-between;
@@ -69,11 +69,23 @@ body {
     background: rgb(246, 236, 97) !important;
     color: rgb(0, 48, 135) !important;
     font-size: 1.2rem;
+<<<<<<< HEAD:app/static/css/styles.css
+    padding: 0.5%;
+    align-items: center; /* Pushes the button to the far right */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+=======
     padding: .5%;;
     align-items: center; /* Pushes the button to the far right */
+>>>>>>> f952d14acfb919628560c41d9269c6eb6d4cfd3f:app/static/app/css/styles.css
 }
 
-.home_text{
+.right-button:hover {
+    background: rgb(0, 48, 135); /* Change background color on hover */
+    color: white !important; /* Change text color to white on hover */
+    cursor: pointer; /* Change cursor to a pointer on hover */
+}
+
+.body_text{
     margin: 3%;
     color: rgb(0, 48, 135) !important;
     font-family: 'Futura';
@@ -81,6 +93,7 @@ body {
     text-align: center;
 
 }
+/* <------------HOME------------> */
 .img_container{
     /* margin-top: 15; */
     /* text-align: center; */
@@ -99,6 +112,8 @@ body {
 
 /*Area of images*/
 .wrapper{
+    margin: 0 auto;
+    padding:0;
     width: 100%;
     display: flex;
     animation: slide 16s infinite;
@@ -134,7 +149,7 @@ body {
     }
 }
 
-
+/* <------------FOOTER------------> */
 .footer{
     background: rgb(0, 48, 135);
     color: white;
@@ -178,6 +193,7 @@ body {
     color: rgb(246, 236, 97) !important;
     text-align: center;
 }
+/* <------------CONTACT US------------> */
 .contact_us{
     color: rgb(0, 48, 135) !important;
     font-family: 'Futura';
@@ -192,7 +208,7 @@ body {
     font-size: 1.2rem;
     text-align: center;
 }
-
+/* <------------ABOUT US------------> */
 .about_us{
     background-color:rgba(167, 172, 162, 0.57) !important; ;
     color: rgb(0, 48, 135) !important;
@@ -218,6 +234,7 @@ body {
     width: 20%;
     height: 20%;
     padding:1%;
+    border-radius: 10%;
     margin-left: 3%;
     /* Adjust the width of the image as needed */
 }
@@ -228,4 +245,39 @@ body {
     margin-right: 3%;
     font-size: 1.5rem;
     text-align: left;
+}
+/* <------------PROJECTS------------> */
+.project-list {
+    display: flex;
+    justify-content: center;
+    gap: 2%;; /* Adjust gap as needed */
+}
+
+.project-list .column {
+    margin: 8%;
+    padding: 2%;
+    background-color: rgba(167, 172, 162, 0.57);
+    justify-content: center;
+    flex: 1; 
+}
+.hide {
+    display: none;
+    position: absolute;
+    background-color: rgb(0, 48, 135) !important; /* Background color of the popup */
+    color: rgb(246, 236, 97); /* Text color */
+    padding: 1%;
+    border-radius: 2%;
+    white-space: nowrap; /* Prevents text from wrapping */
+    z-index: 1000; /* Ensures the popup appears above other elements */
+    top: 80%; /* Positions the popup below the hovered element */
+    left: 30%;
+    transform: translateX(-50%); /* Centers the popup horizontally */
+}
+
+.myDIV {
+    position:sticky
+}
+
+.myDIV:hover + .hide {
+    display: block;
 }

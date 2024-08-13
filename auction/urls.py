@@ -27,4 +27,5 @@ urlpatterns = [
     path('products/create', productsTest, name='createProduct'),
     path('', auctionFront, name="auctionFront"),
     path('products/<int:id>', displayItem, name='displayProduct'),
+    path('products/place_bid/<str:product_id>', create_payment_intent, name='create_payment_intent'),
 ]
