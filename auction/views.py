@@ -84,7 +84,7 @@ def add_payment_view(request: HttpRequest):
             print("Invalid card")
     return render(request, "add_payment.html", {'STRIPE_TEST_PUBLIC_KEY': settings.STRIPE_TEST_PUBLIC_KEY})
 
-def create_payment_intent(request: HttpRequest, payment_method_id, product_id):
+def create_payment_intent(request: HttpRequest, product_id):
     try:
         stripe.api_key = settings.STRIPE_KEY
         bidder = Bidder.objects.get(user=request.user)
@@ -94,7 +94,6 @@ def create_payment_intent(request: HttpRequest, payment_method_id, product_id):
         payment_intent = stripe.PaymentIntent.create(
             amount = item.current_bid,
             currency="usd",
-            payment_method=payment_method_id,
             customer=customer.id,
             confirmation_method="manual",
             capture_method="manual",
@@ -104,6 +103,7 @@ def create_payment_intent(request: HttpRequest, payment_method_id, product_id):
         )
     except:
         pass
+    return payment_intent.client_secret
 
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY

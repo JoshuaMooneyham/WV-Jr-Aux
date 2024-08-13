@@ -10,11 +10,12 @@
         <p>{{request.user}}</p>
         <form id="payment-form" method="post">
             {% csrf_token %}
-            <div id="card-element"></div>
+            <div id="card-element"></div>  <!-- Stripe Elements will be injected here -->
             <button type="submit" id="submit">Submit Payment</button>
         </form>
 
         <script>
+            // Initialize Stripe.js with your publishable key
             var stripe = Stripe('{{ STRIPE_TEST_PUBLIC_KEY }}');
             var elements = stripe.elements();
             var cardElement = elements.create('card');
@@ -29,19 +30,22 @@
                     card: cardElement,
                 }).then(function(result) {
                     if (result.error) {
+                        // Display error.message in your UI
                         console.error(result.error.message);
                     } else {
+                        // Send the PaymentMethod ID to your server
                         handlePaymentMethod(result.paymentMethod.id);
                     }
                 });
             });
-
+            
+            // Function to handle payment method ID
             function handlePaymentMethod(paymentMethodId) {
                 fetch('/auction/add-payment-method/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRFToken': '{{ csrf_token }}'
+                        'X-CSRFToken': '{{ csrf_token }}' // Django CSRF token
                     },
                     body: JSON.stringify({
                         payment_method_id: paymentMethodId
