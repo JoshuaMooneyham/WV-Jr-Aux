@@ -1,6 +1,7 @@
+{% extends "header.html" %}
 {% load static %}
 {% load my_filters %}
-
+{% comment %} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static "auction/css/styles.css" %}">
-</head>
-<body>
+</head> {% endcomment %}
+{% comment %} <body> {% endcomment %}
+{% block content %}
     <div class="auctionFront">
         <div class='login'>
             {% if user.is_authenticated %}
@@ -38,5 +40,6 @@
             </a>
         </div>
     </div>
-</body>
-</html>
+{% endblock content %}
+{% comment %} </body> {% endcomment %}
+{% comment %} </html> {% endcomment %}
