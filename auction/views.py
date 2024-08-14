@@ -6,14 +6,10 @@ from auction.models import *
 from auction.forms import *
 from django.conf import settings
 import stripe, json, logging
-import random
+import logging
 
-def generateBidderId() -> int:
-    while True:
-        num: int = random.randint(100000000, 999999999)
-        if len(Bidder.objects.filter(bidder_id=num)) == 0:
-            return num
-        
+logger = logging.getLogger(__name__)
+
 # Create your views here.
 def registration_view(request: HttpRequest):
     if request.method == "POST":
@@ -33,17 +29,13 @@ def registration_view(request: HttpRequest):
                     name=f"{firstname} {lastname}",
                     email=email,
                 )
-                print(f'customer: {customer}')
                 bidder = Bidder.objects.create(
                     user=user,
-                    stripe_id=customer.id,
-                    bidder_id=generateBidderId()
+                    stripe_id=customer.id
                 )
-                print(f'bidder: {bidder}')
 
                 if user.is_authenticated:
-                    login(request, user)
-                    return redirect("auctionFront")
+                    return redirect("/auction/login")
             except:
                 print("Can't create customer")
     else:
@@ -75,7 +67,7 @@ def add_payment_view(request: HttpRequest):
         try:
             stripe.api_key = settings.STRIPE_KEY
             bidder = Bidder.objects.get(user=request.user)
-            # ^ You can just call user.bidder_info for this I believe ^
+
             logging.info(bidder.stripe_id)
 
             stripe.PaymentMethod.attach(
@@ -102,19 +94,31 @@ def create_payment_intent(request: HttpRequest, product_id):
         customer = stripe.Customer.retrieve(id=bidder.stripe_id)
         item = AuctionItem.objects.get(stripe_id=product_id)
 
+        logger.debug(f"Customer: {customer}")
+
         payment_intent = stripe.PaymentIntent.create(
             amount = item.current_bid,
             currency="usd",
-            customer=customer.id,
+            customer=customer['id'],
             confirmation_method="manual",
             capture_method="manual",
             metadata={
                 "product_id": product_id,
             }
         )
-    except:
-        pass
-    return payment_intent.client_secret
+        logger.debug(f"PaymentIntent: {payment_intent}")
+
+    except stripe.error.StripeError as e:
+        # Handle Stripe errors
+        return JsonResponse({'error': str(e)}, status=400)
+    except Bidder.DoesNotExist:
+        return JsonResponse({'error': 'Bidder not found'}, status=404)
+    except AuctionItem.DoesNotExist:
+        return JsonResponse({'error': 'Item not found'}, status=404)
+    except Exception as e:
+        # Handle other possible errors
+        return JsonResponse({'error': 'An error occurred: ' + str(e)}, status=500)
+    return HttpResponse()
 
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY
@@ -179,6 +183,7 @@ def displayItem(req: HttpRequest, id: int) -> HttpResponse:
             print(bid)
             bid.save()
             # stripe.Product.modify(stripePrice["id"], ) ## update stripe items default price to reflect new bid
+            create_payment_intent(req, item.stripe_id)
             item.current_bid = int(amount)
             item.save()
     lowestAllowedBid = item.current_bid + 500
