@@ -38,7 +38,7 @@
         {% comment %} <input id='bidPriceInput' type="text" name="amount" min={{lab}} max="99999999" value={{lab}} step='0.01'> {% endcomment %}
         <input type="hidden" name='amount' value={{lab}}>
         <input type="hidden" name='item' value={{item.pk}}>
-        <input type="hidden" name='bidder' value=1> {% comment "replace with user.bidder_info.pk" %}{% endcomment %}
+        <input type="hidden" name='bidder' value={{user.bidder_info.pk}}> {% comment "replace with user.bidder_info.pk" %}{% endcomment %}
         <input type="submit" name='submit' value="Place Bid for {{lab | moneyify}}">
     </form>
     <p>Bid History v</p>

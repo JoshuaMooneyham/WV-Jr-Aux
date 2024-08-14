@@ -100,8 +100,8 @@ def create_payment_intent(request: HttpRequest, product_id):
             amount = item.current_bid,
             currency="usd",
             customer=customer['id'],
-            confirmation_method="manual",
-            capture_method="manual",
+            confirmation_method="automatic",
+            confirm=True,
             metadata={
                 "product_id": product_id,
             }
@@ -183,9 +183,9 @@ def displayItem(req: HttpRequest, id: int) -> HttpResponse:
             print(bid)
             bid.save()
             # stripe.Product.modify(stripePrice["id"], ) ## update stripe items default price to reflect new bid
-            create_payment_intent(req, item.stripe_id)
             item.current_bid = int(amount)
             item.save()
+            create_payment_intent(req, item.stripe_id)
     lowestAllowedBid = item.current_bid + 500
 
 
