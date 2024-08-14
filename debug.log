@@ -365,3 +365,369 @@ message='Stripe API response' path=https://api.stripe.com/v1/payment_intents res
 body='{\n  "error": {\n    "message": "A `return_url` must be specified because this Payment Intent is configured to automatically accept the payment methods enabled in the Dashboard, some of which may require a full page redirect to succeed. If you do not want to accept redirect-based payment methods, set `automatic_payment_methods[enabled]` to `true` and `automatic_payment_methods[allow_redirects]` to `never` when creating Setup Intents and Payment Intents.",\n    "request_log_url": "https://dashboard.stripe.com/test/logs/req_L5gLY2utdVGbwD?t=1723600780",\n    "type": "invalid_request_error"\n  }\n}\n' message='API response body'
 link=https://dashboard.stripe.com/test/logs/req_L5gLY2utdVGbwD message='Dashboard link for request'
 error_code=None error_message='A `return_url` must be specified because this Payment Intent is configured to automatically accept the payment methods enabled in the Dashboard, some of which may require a full page redirect to succeed. If you do not want to accept redirect-based payment methods, set `automatic_payment_methods[enabled]` to `true` and `automatic_payment_methods[allow_redirects]` to `never` when creating Setup Intents and Payment Intents.' error_param=None error_type=invalid_request_error message='Stripe API error received'
+Watching for file changes with StatReloader
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /media/slippin_jimmy.jpg
+Not Found: /media/background.png
+Not Found: /media/image.png
+Not Found: /media/slippin_jimmy.jpg
+Not Found: /media/fox_mccloud_fanart__by_tokugawo_df3miup-pre.jpg
+Not Found: /media/my-image_2.png
+Not Found: /media/FotispyLogoText.png
+Not Found: /media/FotiSpy_Tilt_Gradient.png
+Not Found: /media/slippin_jimmy.jpg
+Forbidden (CSRF token from POST incorrect.): /login/
+Not Found: /media/slippin_jimmy.jpg
+Not Found: /auction/login/
+Not Found: /media/slippin_jimmy.jpg
+Not Found: /static/app/js/scripts.js
+Not Found: /media/slippin_jimmy.jpg
+Not Found: /media/background.png
+Not Found: /media/slippin_jimmy.jpg
+Not Found: /media/my-image_2.png
+Not Found: /media/image.png
+Not Found: /media/fox_mccloud_fanart__by_tokugawo_df3miup-pre.jpg
+Not Found: /media/FotispyLogoText.png
+Not Found: /media/FotiSpy_Tilt_Gradient.png
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/products/prod_QeyGaiXwafOKKO
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/products/prod_QeyGaiXwafOKKO HTTP/11" 200 475
+message='Stripe API response' path=https://api.stripe.com/v1/products/prod_QeyGaiXwafOKKO response_code=200
+body='{\n  "id": "prod_QeyGaiXwafOKKO",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723630829,\n  "default_price": null,\n  "description": "sndewnvnweivnewo",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "jnaskjnsada",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723630829,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_2R6v07fG4QZRnT message='Dashboard link for request'
+Internal Server Error: /auction/products/16
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 180, in displayItem
+    stripePrice = stripe.Price.retrieve(stripe.Product.retrieve(item.stripe_id)["default_price"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_price.py", line 853, in retrieve
+    instance.refresh()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+                                            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 61, in instance_url
+    raise InvalidRequestError(
+stripe._error.InvalidRequestError: Could not determine which URL to request: Price instance has invalid ID: None, <class 'NoneType'>. ID should be of type `str` (or `unicode`)
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/products/16
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 174, in displayItem
+    client_secret = create_payment_intent(req, item.stripe_id)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 92, in create_payment_intent
+    bidder = Bidder.objects.get(user=request.user)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 649, in get
+    raise self.model.DoesNotExist(
+auction.models.Bidder.DoesNotExist: Bidder matching query does not exist.
+Not Found: /media/slippin_jimmy.jpg
+Internal Server Error: /auction/products/16
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 174, in displayItem
+    client_secret = create_payment_intent(req, item.stripe_id)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 92, in create_payment_intent
+    bidder = Bidder.objects.get(user=request.user)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 649, in get
+    raise self.model.DoesNotExist(
+auction.models.Bidder.DoesNotExist: Bidder matching query does not exist.
+Not Found: /static/app/js/scripts.js
+Not Found: /acution
+Not Found: /media/slippin_jimmy.jpg
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QenByWo9fdFylK HTTP/11" 200 661
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK response_code=200
+body='{\n  "id": "cus_QenByWo9fdFylK",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723589653,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "johnny@gmail.com",\n  "invoice_prefix": "B104871A",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Johnny Doe",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_WDNEW4uWfsvufg message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_intents
+api_version=2024-06-20 message='Post details' post_data=amount=100&currency=usd&customer=cus_QenByWo9fdFylK&confirmation_method=manual&confirm=False&metadata[product_id]=prod_QeyGaiXwafOKKO
+https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1599
+message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
+body='{\n  "id": "pi_3PnnnYHJI2ETfc7U0LsrDZR3",\n  "object": "payment_intent",\n  "amount": 100,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 0,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "always",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3PnnnYHJI2ETfc7U0LsrDZR3_secret_XQAh6rG1dVLkKZy2sjD20LBVg",\n  "confirmation_method": "manual",\n  "created": 1723667280,\n  "currency": "usd",\n  "customer": "cus_QenByWo9fdFylK",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": null,\n  "livemode": false,\n  "metadata": {\n    "product_id": "prod_QeyGaiXwafOKKO"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "cashapp": {},\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link",\n    "cashapp"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "requires_payment_method",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_nE15PWNbNO6fxM message='Dashboard link for request'
+Not Found: /media/slippin_jimmy.jpg
+Not Found: /media/image.png
+Not Found: /media/fox_mccloud_fanart__by_tokugawo_df3miup-pre.jpg
+Not Found: /media/background.png
+Not Found: /media/my-image_2.png
+Not Found: /media/FotispyLogoText.png
+Not Found: /media/FotiSpy_Tilt_Gradient.png
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/products/prod_QeyGaiXwafOKKO
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/products/prod_QeyGaiXwafOKKO HTTP/11" 200 475
+message='Stripe API response' path=https://api.stripe.com/v1/products/prod_QeyGaiXwafOKKO response_code=200
+body='{\n  "id": "prod_QeyGaiXwafOKKO",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723630829,\n  "default_price": null,\n  "description": "sndewnvnweivnewo",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "jnaskjnsada",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723630829,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_WgwUMP4dqfeYBw message='Dashboard link for request'
+Internal Server Error: /auction/products/16
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 165, in displayItem
+    stripePrice = stripe.Price.retrieve(stripe.Product.retrieve(item.stripe_id)["default_price"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_price.py", line 853, in retrieve
+    instance.refresh()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+                                            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 61, in instance_url
+    raise InvalidRequestError(
+stripe._error.InvalidRequestError: Could not determine which URL to request: Price instance has invalid ID: None, <class 'NoneType'>. ID should be of type `str` (or `unicode`)
+Internal Server Error: /auction/products/16
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 174, in displayItem
+    client_secret = create_payment_intent(req, item.stripe_id)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 92, in create_payment_intent
+    bidder = Bidder.objects.get(user=request.user)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 649, in get
+    raise self.model.DoesNotExist(
+auction.models.Bidder.DoesNotExist: Bidder matching query does not exist.
+Not Found: /static/app/js/scripts.js
+Not Found: /media/slippin_jimmy.jpg
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QenByWo9fdFylK HTTP/11" 200 661
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK response_code=200
+body='{\n  "id": "cus_QenByWo9fdFylK",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723589653,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "johnny@gmail.com",\n  "invoice_prefix": "B104871A",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Johnny Doe",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_XBzQIHYu8EqwJS message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_intents
+api_version=2024-06-20 message='Post details' post_data=amount=100&currency=usd&customer=cus_QenByWo9fdFylK&confirmation_method=manual&confirm=False&metadata[product_id]=prod_QeyGaiXwafOKKO
+https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1599
+message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
+body='{\n  "id": "pi_3Pno8cHJI2ETfc7U07BKpDXM",\n  "object": "payment_intent",\n  "amount": 100,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 0,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "always",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3Pno8cHJI2ETfc7U07BKpDXM_secret_tNbS6FOjGhGMTsETxeUf9pbKG",\n  "confirmation_method": "manual",\n  "created": 1723668586,\n  "currency": "usd",\n  "customer": "cus_QenByWo9fdFylK",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": null,\n  "livemode": false,\n  "metadata": {\n    "product_id": "prod_QeyGaiXwafOKKO"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "cashapp": {},\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link",\n    "cashapp"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "requires_payment_method",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_Zfw4c9YA99vFZn message='Dashboard link for request'
+Not Found: /media/slippin_jimmy.jpg
+Not Found: /media/image.png
+Not Found: /media/background.png
+Not Found: /media/fox_mccloud_fanart__by_tokugawo_df3miup-pre.jpg
+Not Found: /media/my-image_2.png
+Not Found: /media/FotispyLogoText.png
+Not Found: /media/FotiSpy_Tilt_Gradient.png
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/products/prod_QeyGaiXwafOKKO
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/products/prod_QeyGaiXwafOKKO HTTP/11" 200 475
+message='Stripe API response' path=https://api.stripe.com/v1/products/prod_QeyGaiXwafOKKO response_code=200
+body='{\n  "id": "prod_QeyGaiXwafOKKO",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723630829,\n  "default_price": null,\n  "description": "sndewnvnweivnewo",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "jnaskjnsada",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723630829,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_TXrnSL0FXJgfKP message='Dashboard link for request'
+Internal Server Error: /auction/products/16
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 165, in displayItem
+    stripePrice = stripe.Price.retrieve(stripe.Product.retrieve(item.stripe_id)["default_price"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_price.py", line 853, in retrieve
+    instance.refresh()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+                                            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 61, in instance_url
+    raise InvalidRequestError(
+stripe._error.InvalidRequestError: Could not determine which URL to request: Price instance has invalid ID: None, <class 'NoneType'>. ID should be of type `str` (or `unicode`)
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/customers/cus_QenByWo9fdFylK HTTP/11" 200 661
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK response_code=200
+body='{\n  "id": "cus_QenByWo9fdFylK",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723589653,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "johnny@gmail.com",\n  "invoice_prefix": "B104871A",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Johnny Doe",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_5i7PyHU5y7fwwO message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_intents
+api_version=2024-06-20 message='Post details' post_data=amount=100&currency=usd&customer=cus_QenByWo9fdFylK&confirmation_method=manual&confirm=False&metadata[product_id]=prod_QeyGaiXwafOKKO
+https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1599
+message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
+body='{\n  "id": "pi_3Pno8wHJI2ETfc7U18svVgLL",\n  "object": "payment_intent",\n  "amount": 100,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 0,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "always",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3Pno8wHJI2ETfc7U18svVgLL_secret_X7CeuN0gRIQkf4FsKCzKkYscg",\n  "confirmation_method": "manual",\n  "created": 1723668606,\n  "currency": "usd",\n  "customer": "cus_QenByWo9fdFylK",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": null,\n  "livemode": false,\n  "metadata": {\n    "product_id": "prod_QeyGaiXwafOKKO"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "cashapp": {},\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link",\n    "cashapp"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "requires_payment_method",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_AkzQmCzrSVNdno message='Dashboard link for request'
+Not Found: /media/image.png
+Not Found: /media/slippin_jimmy.jpg
+Not Found: /media/fox_mccloud_fanart__by_tokugawo_df3miup-pre.jpg
+Not Found: /media/background.png
+Not Found: /media/my-image_2.png
+Not Found: /media/FotispyLogoText.png
+Not Found: /media/FotiSpy_Tilt_Gradient.png
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/products/prod_QeyGaiXwafOKKO
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/products/prod_QeyGaiXwafOKKO HTTP/11" 200 475
+message='Stripe API response' path=https://api.stripe.com/v1/products/prod_QeyGaiXwafOKKO response_code=200
+body='{\n  "id": "prod_QeyGaiXwafOKKO",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723630829,\n  "default_price": null,\n  "description": "sndewnvnweivnewo",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "jnaskjnsada",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723630829,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_twD8YrTWJCOxOS message='Dashboard link for request'
+Internal Server Error: /auction/products/16
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 165, in displayItem
+    stripePrice = stripe.Price.retrieve(stripe.Product.retrieve(item.stripe_id)["default_price"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_price.py", line 853, in retrieve
+    instance.refresh()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+                                            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 61, in instance_url
+    raise InvalidRequestError(
+stripe._error.InvalidRequestError: Could not determine which URL to request: Price instance has invalid ID: None, <class 'NoneType'>. ID should be of type `str` (or `unicode`)
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QenByWo9fdFylK HTTP/11" 200 661
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK response_code=200
+body='{\n  "id": "cus_QenByWo9fdFylK",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723589653,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "johnny@gmail.com",\n  "invoice_prefix": "B104871A",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Johnny Doe",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_tdCW23FUv52Ltd message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_intents
+api_version=2024-06-20 message='Post details' post_data=amount=100&currency=usd&customer=cus_QenByWo9fdFylK&confirmation_method=manual&confirm=False&metadata[product_id]=prod_QeyGaiXwafOKKO
+https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1599
+message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
+body='{\n  "id": "pi_3PnoLSHJI2ETfc7U1MYylIKW",\n  "object": "payment_intent",\n  "amount": 100,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 0,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "always",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3PnoLSHJI2ETfc7U1MYylIKW_secret_aadfOuXl5EjgGkcZyEqjCtAjC",\n  "confirmation_method": "manual",\n  "created": 1723669382,\n  "currency": "usd",\n  "customer": "cus_QenByWo9fdFylK",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": null,\n  "livemode": false,\n  "metadata": {\n    "product_id": "prod_QeyGaiXwafOKKO"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "cashapp": {},\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link",\n    "cashapp"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "requires_payment_method",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_9iBaSPrV68eoVM message='Dashboard link for request'
+Not Found: /media/slippin_jimmy.jpg
+Not Found: /media/image.png
+Not Found: /media/fox_mccloud_fanart__by_tokugawo_df3miup-pre.jpg
+Not Found: /media/background.png
+Not Found: /media/my-image_2.png
+Not Found: /media/FotispyLogoText.png
+Not Found: /media/FotiSpy_Tilt_Gradient.png
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/products/prod_QeyGaiXwafOKKO
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/products/prod_QeyGaiXwafOKKO HTTP/11" 200 503
+message='Stripe API response' path=https://api.stripe.com/v1/products/prod_QeyGaiXwafOKKO response_code=200
+body='{\n  "id": "prod_QeyGaiXwafOKKO",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723630829,\n  "default_price": "price_1Pno7sHJI2ETfc7UPp5Yrr3H",\n  "description": "sndewnvnweivnewo",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "jnaskjnsada",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723669335,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_kpfzmYFN1EYiHO message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/prices/price_1Pno7sHJI2ETfc7UPp5Yrr3H
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/prices/price_1Pno7sHJI2ETfc7UPp5Yrr3H HTTP/11" 200 490
+message='Stripe API response' path=https://api.stripe.com/v1/prices/price_1Pno7sHJI2ETfc7UPp5Yrr3H response_code=200
+body='{\n  "id": "price_1Pno7sHJI2ETfc7UPp5Yrr3H",\n  "object": "price",\n  "active": true,\n  "billing_scheme": "per_unit",\n  "created": 1723668540,\n  "currency": "usd",\n  "custom_unit_amount": null,\n  "livemode": false,\n  "lookup_key": null,\n  "metadata": {},\n  "nickname": null,\n  "product": "prod_QeyGaiXwafOKKO",\n  "recurring": null,\n  "tax_behavior": "unspecified",\n  "tiers_mode": null,\n  "transform_quantity": null,\n  "type": "one_time",\n  "unit_amount": 100,\n  "unit_amount_decimal": "100"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_oMJLNDiv301wSX message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/customers/cus_QenByWo9fdFylK HTTP/11" 200 661
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK response_code=200
+body='{\n  "id": "cus_QenByWo9fdFylK",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723589653,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "johnny@gmail.com",\n  "invoice_prefix": "B104871A",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Johnny Doe",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_mfrYUAHGPRMoH6 message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_intents
+api_version=2024-06-20 message='Post details' post_data=amount=600&currency=usd&customer=cus_QenByWo9fdFylK&confirmation_method=manual&confirm=False&metadata[product_id]=prod_QeyGaiXwafOKKO
+https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1599
+message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
+body='{\n  "id": "pi_3PnoLaHJI2ETfc7U0RqdiI4Y",\n  "object": "payment_intent",\n  "amount": 600,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 0,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "always",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3PnoLaHJI2ETfc7U0RqdiI4Y_secret_tAJIIWy07LJCnkm6TZUFGKc8f",\n  "confirmation_method": "manual",\n  "created": 1723669390,\n  "currency": "usd",\n  "customer": "cus_QenByWo9fdFylK",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": null,\n  "livemode": false,\n  "metadata": {\n    "product_id": "prod_QeyGaiXwafOKKO"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "cashapp": {},\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link",\n    "cashapp"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "requires_payment_method",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_Wg3Km3cB85teBK message='Dashboard link for request'
+Not Found: /media/image.png
+Not Found: /media/slippin_jimmy.jpg
+Not Found: /media/background.png
+Not Found: /media/my-image_2.png
+Not Found: /media/FotispyLogoText.png
+Not Found: /media/fox_mccloud_fanart__by_tokugawo_df3miup-pre.jpg
+Not Found: /media/FotiSpy_Tilt_Gradient.png

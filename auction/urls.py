@@ -24,8 +24,8 @@ urlpatterns = [
     path('testing/', testingView, name='testing'),
     path('registration/', registration_view, name='registration'),
     path('add-payment-method/', add_payment_view, name='add_payment_method'),
+    path('create-payment-intent/<str:product_id>', create_payment_intent, name='create_payment_intent'),
     path('products/create', productsTest, name='createProduct'),
     path('', auctionFront, name="auctionFront"),
     path('products/<int:id>', displayItem, name='displayProduct'),
-    # path('products/place_bid/<str:product_id>', create_payment_intent, name='create_payment_intent'),
 ]

@@ -88,37 +88,22 @@ def add_payment_view(request: HttpRequest):
     return render(request, "add_payment.html", {'STRIPE_TEST_PUBLIC_KEY': settings.STRIPE_TEST_PUBLIC_KEY})
 
 def create_payment_intent(request: HttpRequest, product_id):
-    try:
-        stripe.api_key = settings.STRIPE_KEY
-        bidder = Bidder.objects.get(user=request.user)
-        customer = stripe.Customer.retrieve(id=bidder.stripe_id)
-        item = AuctionItem.objects.get(stripe_id=product_id)
+    stripe.api_key = settings.STRIPE_KEY
+    bidder = Bidder.objects.get(user=request.user)
+    customer = stripe.Customer.retrieve(id=bidder.stripe_id)
+    item = AuctionItem.objects.get(stripe_id=product_id)
 
-        logger.debug(f"Customer: {customer}")
-
-        payment_intent = stripe.PaymentIntent.create(
-            amount = item.current_bid,
-            currency="usd",
-            customer=customer['id'],
-            confirmation_method="automatic",
-            confirm=True,
-            metadata={
-                "product_id": product_id,
-            }
-        )
-        logger.debug(f"PaymentIntent: {payment_intent}")
-
-    except stripe.error.StripeError as e:
-        # Handle Stripe errors
-        return JsonResponse({'error': str(e)}, status=400)
-    except Bidder.DoesNotExist:
-        return JsonResponse({'error': 'Bidder not found'}, status=404)
-    except AuctionItem.DoesNotExist:
-        return JsonResponse({'error': 'Item not found'}, status=404)
-    except Exception as e:
-        # Handle other possible errors
-        return JsonResponse({'error': 'An error occurred: ' + str(e)}, status=500)
-    return HttpResponse()
+    payment_intent = stripe.PaymentIntent.create(
+        amount = item.current_bid,
+        currency="usd",
+        customer=customer['id'],
+        confirmation_method="manual",
+        confirm=False,
+        metadata={
+            "product_id": product_id,
+        }
+    )
+    return payment_intent.client_secret
 
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY
@@ -185,9 +170,8 @@ def displayItem(req: HttpRequest, id: int) -> HttpResponse:
             # stripe.Product.modify(stripePrice["id"], ) ## update stripe items default price to reflect new bid
             item.current_bid = int(amount)
             item.save()
-            create_payment_intent(req, item.stripe_id)
     lowestAllowedBid = item.current_bid + 500
-
+    client_secret = create_payment_intent(req, item.stripe_id)
 
             
-    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid})
+    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid, "client_secret": client_secret, "STRIPE_TEST_PUBLIC_KEY": settings.STRIPE_TEST_PUBLIC_KEY})
