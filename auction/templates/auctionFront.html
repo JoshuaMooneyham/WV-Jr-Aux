@@ -1,19 +1,10 @@
-{% extends "header.html" %}
+{% extends "sidenav.html" %}
 {% load static %}
 {% load my_filters %}
-{% comment %} 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static "auction/css/styles.css" %}">
-</head> {% endcomment %}
-{% comment %} <body> {% endcomment %}
+
 {% block content %}
     <div class="auctionFront">
-        <div class='login'>
+        {% comment %} <div class='login'>
             {% if user.is_authenticated %}
                 <a href="{% url "logout" %}">
                     <button>LogOut</button>
@@ -23,23 +14,54 @@
                     <button>LogIn</button>
                 </a>
             {% endif %}
+        </div> {% endcomment %}
+        <div class='time'>
+            {% if over %}
+                <h2 class='auctionHeader'>Closed</h2>
+            {% elif left %}
+                <h2 class='auctionHeader'>{{left}}</h2>
+            {% elif  notStarted %}
+                <h2 class='auctionHeader'>Starting Soon</h2>
+            {% endif %}
         </div>
-        <div class="auctionFront-items">
-            {% for item in items %}
-            <a class='item' href="{% url 'displayProduct' item.pk %}">
-                <h3>{{item.name}}</h3>
 
-                <img src="{{item.images.all | firstImg}}" alt="">
-                <p>Current Bid: {{item.current_bid | moneyify}}</p>
-            </a>
-            {% endfor %}
+        <div class="auctionFront-items">
+            {% if items|length == 0 %}
+                <div class='noItemDiv'>No Items</div>
+            {% else %}
+                {% for item in items %}
+                    <div class='item'>
+                        <a class='itemA' href="{% url 'displayProduct' item.pk %}">
+                            <img src="{{item.images.all | firstImg}}" alt="">
+                            <h3>{{item.name}}</h3>
+                            <p>Current Bid: <b>{{item.current_bid | moneyify}}</b></p>
+                        </a>
+                    
+                        <div class='likeOrX'>
+                            {% if user.groups.all|length == 0 %}
+                                {% if item in bidder.liked_items.all %}
+                                <i class="fa-solid fa-heart"></i>
+                                {% else %}
+                                <i class="fa-regular fa-heart"></i>
+                                {% endif %}
+                            {% else %}
+                                {% for group in user.groups.all %}
+                                    {% if 'Admin' == group.name %}
+                                        <a href="{% url "deleteItem" item.pk %}">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
-        <div class="addItem">
+        {% comment %} <div class="addItem">
             <a href="{% url "createProduct" %}">
                 <button class='newItemBtn'>+ Add a New Item</button>
             </a>
-        </div>
+        </div> {% endcomment %}
     </div>
 {% endblock content %}
-{% comment %} </body> {% endcomment %}
-{% comment %} </html> {% endcomment %}

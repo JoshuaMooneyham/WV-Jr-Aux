@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junior Auxiliary</title>
+    <link rel="stylesheet" href="{% static "auction/css/styles.css" %}">
+    {% comment %} <link rel="stylesheet" href="{% static "auction/css/header.css" %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static "auction/css/sidenav.css" %}">
+    <script src="{% static "auction/js/scripts.js" %}"></script>
+    <script src="https://kit.fontawesome.com/2734bda929.js" crossorigin="anonymous"></script>
+</head>
+
+<div class='sidenavContainer'>
+    <div class='sidenavImg'>
+        <img class='sidenavCrown' src="{% static "auction/NAJA Crown_White_Crop.png" %}" alt="">
+    </div>
+    <div class='sidenavOptions'>
+        {% if not user.is_authenticated %}
+            <button>Log In</button>
+            <button>Register</button>
+        {% elif user.groups.all|length == 0 %}
+            <button>My Bids</button>
+            <button>Liked Items</button>
+            <button>Invoices</button>
+            <button>Logout</button>
+        {% else %}
+        {% for group in user.groups.all  %}
+            {% if group.name == "Admin" %}
+                <button>Logout</button>
+                <p>Total Raised</p>
+                <button>Add Item</button>
+                <button>Auction Settings</button>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<body>
+    {% block content %}
+    
+    {% endblock content %}
+</body>
+
+{% comment %} <footer class="footer">
+    <p>© Junior Auxillary of Yalobusha County</p>
+</footer> {% endcomment %}
+    
+</html>

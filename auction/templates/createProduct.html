@@ -16,7 +16,7 @@
         <div class='signup-template'>
             <form method='POST' enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="file" name="images" id="imageInput" multiple="" accept='image/*'/>
+                <input type="file" name="images" id="imageInput" multiple="" accept='image/*' required />
                 {{form.as_p}}
                 <div>
                     <input type='submit' value='Register'>

@@ -7,6 +7,8 @@ from auction.forms import *
 from django.conf import settings
 import stripe, json, logging
 import random
+import datetime
+import re
 
 def generateBidderId() -> int:
     while True:
@@ -140,11 +142,7 @@ def productsTest(req: HttpRequest) -> HttpResponse:
                     name=form.cleaned_data.get('name'),
                     active=True,
                     description=form.cleaned_data.get('description'),
-                    metadata={},
-                    default_price_data={
-                        "currency": "usd",
-                        "unit_amount": form.cleaned_data.get('starting_bid'),
-                        }
+                    metadata={}
                 )
                 newProduct = AuctionItem.objects.create(
                     name=form.cleaned_data.get('name'),
@@ -158,14 +156,36 @@ def productsTest(req: HttpRequest) -> HttpResponse:
                 )
                 for file in req.FILES.getlist('images'):
                     ItemImage.objects.create(file=file, item=newProduct)
-                print(newProduct)
-                print(product)
+                return redirect("auctionFront")
             except:
                 print('something went wrong')
     return render(req, 'createProduct.html', {'form': form})
 
-def auctionFront(req: HttpRequest) -> HttpResponse:
-    return render(req, 'auctionFront.html', {"items": AuctionItem.objects.all()})
+def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
+    context = {}
+
+    auction = Auction.objects.get(id=id)
+    context["items"] = auction.auctionitem_set.all()
+    # time = f'{auction.start_date}'.replace(/[]/, )
+    end = re.sub('[-TZ:+]', " ", f'{auction.end_date}')
+    es = end.split(" ")
+    endTime = datetime.datetime(int(es[0]), int(es[1]), int(es[2]), int(es[3]), int(es[4]), int(es[5]))
+
+    start = re.sub('[-TZ:+]', " ", f'{auction.start_date}')
+    ss = start.split(" ")
+    startTime = datetime.datetime(int(ss[0]), int(ss[1]), int(ss[2]), int(ss[3]), int(ss[4]), int(ss[5]))
+    now = datetime.datetime.now()
+    
+    if now > endTime:
+        context["over"] = True
+    elif now > startTime:
+        context["left"] = endTime - now
+    else:
+        context["notStarted"] = True
+
+    print(context)
+
+    return render(req, 'auctionFront.html', context)
 
 def displayItem(req: HttpRequest, id: int) -> HttpResponse:
     item = AuctionItem.objects.get(id=id)
@@ -178,11 +198,35 @@ def displayItem(req: HttpRequest, id: int) -> HttpResponse:
             bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")))
             print(bid)
             bid.save()
-            # stripe.Product.modify(stripePrice["id"], ) ## update stripe items default price to reflect new bid
             item.current_bid = int(amount)
             item.save()
     lowestAllowedBid = item.current_bid + 500
 
-
-            
     return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid})
+
+def deleteItem(req: HttpRequest, id: int) -> HttpResponse:
+    item = AuctionItem.objects.get(id=id)
+    stripe.api_key = settings.STRIPE_KEY
+    try:
+        stripe.Product.delete(item.stripe_id)
+        item.delete()
+    except:
+        print("Something Happened while deleting")
+    
+    return redirect("auctionFront")
+
+def createAuction(req: HttpRequest) -> HttpResponse:
+    form = CreateAuctionForm()
+    if req.method == 'POST':
+        form = CreateAuctionForm(req.POST)
+        print(req.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('auctionFront')
+            except:
+                print('Error Creating Auction')
+                
+    return render(req, 'createAuction.html', {"form": form})
+
+
