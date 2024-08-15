@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+import stripe.error
 from auction.models import *
 from auction.forms import *
 from django.conf import settings
@@ -96,14 +97,31 @@ def create_payment_intent(request: HttpRequest, product_id):
     payment_intent = stripe.PaymentIntent.create(
         amount = item.current_bid,
         currency="usd",
-        customer=customer['id'],
+        customer=customer.id,
         confirmation_method="manual",
         confirm=False,
         metadata={
             "product_id": product_id,
         }
     )
-    return payment_intent.client_secret
+    return payment_intent
+
+def end_auction(request: HttpRequest, product_id):
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        # Add payment intent id to models
+        item = AuctionItem.objects.get(stripe_id=product_id)
+        highest_bid = Bid.objects.filter(item=item).order_by("-amount").first()
+        
+        if not highest_bid:
+            logger.debug("No bids found.")
+
+        stripe_customer = stripe.Customer.retrieve(highest_bid.bidder.stripe_id)
+        payment_intent = stripe.PaymentIntent.confirm(highest_bid.payment_intent_id)
+        return JsonResponse({"status": payment_intent.status})
+    except:
+        logger.debug("An error occurred.")
+        
 
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY
@@ -171,7 +189,7 @@ def displayItem(req: HttpRequest, id: int) -> HttpResponse:
             item.current_bid = int(amount)
             item.save()
     lowestAllowedBid = item.current_bid + 500
-    client_secret = create_payment_intent(req, item.stripe_id)
+    payment_intent = create_payment_intent(req, item.stripe_id)
 
             
-    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid, "client_secret": client_secret, "STRIPE_TEST_PUBLIC_KEY": settings.STRIPE_TEST_PUBLIC_KEY})
+    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid, "payment_intent": payment_intent, "STRIPE_TEST_KEY": settings.STRIPE_KEY})

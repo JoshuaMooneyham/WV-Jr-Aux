@@ -29,6 +29,7 @@
         {% endfor %}
     </div>
     {% comment %} ^^^ DO NOT CHANGE ABOVE ^^^ {% endcomment %}
+    <a href="{% url "end_auction" payment_intent.id %}"></a>
     <h3>{{item.name}}</h3>
     <p>{{item.description}}</p>
     <p>Current Bid: {{item.current_bid | moneyify}}</p>
@@ -51,19 +52,19 @@
     {% endfor %}
 
     <script>
-        const stripe = Stripe('{{STRIPE_TEST_PUBLIC_KEY}}');
+        const stripe = Stripe('{{STRIPE_TEST_KEY}}');
         
         document.getElementById('bid-form').addEventListener('submit', async (e) => {
-            e.prentDefault();
-            const clientSecret = '{{client_secret}}';
-            const {error} = await stripe.confirmCardPayment(clientSecret)
-        });
+            e.preventDefault();
+            const clientSecret = '{{payment_intent.client_secret}}';
+            const {error} = await stripe.confirmCardPayment(clientSecret);
 
-        if (error) {
-            console.error(error);
-        } else {
-            console.log('Success')
-        }
+            if (error) {
+                console.error("Bid Failed:", error);
+            } else {
+                console.log('Bid Successful!');
+            }
+        });
     </script>
 </body>
 </html>
