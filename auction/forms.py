@@ -20,3 +20,8 @@ class CreateAuctionItemForm(forms.ModelForm):
 #     class Meta:
 #         model = Bid
 #         fields = ['bidder', 'amount', 'item']
+
+class CreateAuctionForm(forms.ModelForm):
+    class Meta:
+        model = Auction
+        fields = ['name', 'start_date', 'end_date', 'description']

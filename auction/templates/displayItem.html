@@ -9,8 +9,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="{% static "auction/css/styles.css" %}">
     <script src="{% static "auction/js/scripts.js" %}" defer="defer"></script>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
+    {% comment %} VVV DO NOT CHANGE BELOW VVV {% endcomment %}
     <div class='image-container'>
         {% for img in images %}
         <div class="slideshow_image">
@@ -26,18 +28,43 @@
         <span class='dot' onclick="currentSlide({{img | getIndex:images}})"></span>
         {% endfor %}
     </div>
+    {% comment %} ^^^ DO NOT CHANGE ABOVE ^^^ {% endcomment %}
+    <a href="{% url "end_auction" payment_intent.id %}"></a>
     <h3>{{item.name}}</h3>
     <p>{{item.description}}</p>
     <p>Current Bid: {{item.current_bid | moneyify}}</p>
 
-    <form method="POST">
+    <form id="bid-form" method="POST">
         {% csrf_token %}
         {% comment %} <span>$</span> {% endcomment %}
         {% comment %} <input id='bidPriceInput' type="text" name="amount" min={{lab}} max="99999999" value={{lab}} step='0.01'> {% endcomment %}
         <input type="hidden" name='amount' value={{lab}}>
         <input type="hidden" name='item' value={{item.pk}}>
-        <input type="hidden" name='bidder' value={{1}}> {% comment "replace with user.bidder_info.pk" %}{% endcomment %}
-        <input type="submit" name='submit' value="Place Bid for {{lab|moneyify}}">
+        <input type="hidden" name='bidder' value={{user.bidder_info.pk}}> {% comment "replace with user.bidder_info.pk" %}{% endcomment %}
+        <input type="submit" name='submit' value="Place Bid for {{lab | moneyify}}" id="bid-button">
     </form>
+    <p>Bid History v</p>
+    {% if item.bid_set.all|length == 0 %}
+        <p>There are currently no bids. Place one now!</p>
+    {% endif %}
+    {% for bid in item.bid_set.all reversed %}
+        <p>{{bid.bidder.bidder_id}} | {{bid.amount|moneyify}}</p>
+    {% endfor %}
+
+    <script>
+        const stripe = Stripe('{{STRIPE_TEST_KEY}}');
+        
+        document.getElementById('bid-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const clientSecret = '{{payment_intent.client_secret}}';
+            const {error} = await stripe.confirmCardPayment(clientSecret);
+
+            if (error) {
+                console.error("Bid Failed:", error);
+            } else {
+                console.log('Bid Successful!');
+            }
+        });
+    </script>
 </body>
 </html>

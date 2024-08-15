@@ -2,11 +2,25 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+import stripe.error
 from auction.models import *
 from auction.forms import *
 from django.conf import settings
 import stripe, json, logging
+import logging
 
+logger = logging.getLogger(__name__)
+
+import random
+import datetime
+import re
+
+def generateBidderId() -> int:
+    while True:
+        num: int = random.randint(100000000, 999999999)
+        if len(Bidder.objects.filter(bidder_id=num)) == 0:
+            return num
+        
 # Create your views here.
 def registration_view(request: HttpRequest):
     if request.method == "POST":
@@ -85,25 +99,39 @@ def add_payment_view(request: HttpRequest):
     return render(request, "add_payment.html", {'STRIPE_TEST_PUBLIC_KEY': settings.STRIPE_TEST_PUBLIC_KEY})
 
 def create_payment_intent(request: HttpRequest, product_id):
+    stripe.api_key = settings.STRIPE_KEY
+    bidder = Bidder.objects.get(user=request.user)
+    customer = stripe.Customer.retrieve(id=bidder.stripe_id)
+    item = AuctionItem.objects.get(stripe_id=product_id)
+
+    payment_intent = stripe.PaymentIntent.create(
+        amount = item.current_bid,
+        currency="usd",
+        customer=customer.id,
+        confirmation_method="manual",
+        confirm=False,
+        metadata={
+            "product_id": product_id,
+        }
+    )
+    return payment_intent
+
+def end_auction(request: HttpRequest, product_id):
     try:
         stripe.api_key = settings.STRIPE_KEY
-        bidder = Bidder.objects.get(user=request.user)
-        customer = stripe.Customer.retrieve(id=bidder.stripe_id)
+        # Add payment intent id to models
         item = AuctionItem.objects.get(stripe_id=product_id)
+        highest_bid = Bid.objects.filter(item=item).order_by("-amount").first()
+        
+        if not highest_bid:
+            logger.debug("No bids found.")
 
-        payment_intent = stripe.PaymentIntent.create(
-            amount = item.current_bid,
-            currency="usd",
-            customer=customer.id,
-            confirmation_method="manual",
-            capture_method="manual",
-            metadata={
-                "product_id": product_id,
-            }
-        )
+        stripe_customer = stripe.Customer.retrieve(highest_bid.bidder.stripe_id)
+        payment_intent = stripe.PaymentIntent.confirm(highest_bid.payment_intent_id)
+        return JsonResponse({"status": payment_intent.status})
     except:
-        pass
-    return payment_intent.client_secret
+        logger.debug("An error occurred.")
+        
 
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY
@@ -129,11 +157,7 @@ def productsTest(req: HttpRequest) -> HttpResponse:
                     name=form.cleaned_data.get('name'),
                     active=True,
                     description=form.cleaned_data.get('description'),
-                    metadata={},
-                    default_price_data={
-                        "currency": "usd",
-                        "unit_amount": form.cleaned_data.get('starting_bid'),
-                        }
+                    metadata={}
                 )
                 newProduct = AuctionItem.objects.create(
                     name=form.cleaned_data.get('name'),
@@ -147,14 +171,36 @@ def productsTest(req: HttpRequest) -> HttpResponse:
                 )
                 for file in req.FILES.getlist('images'):
                     ItemImage.objects.create(file=file, item=newProduct)
-                print(newProduct)
-                print(product)
+                return redirect("auctionFront")
             except:
                 print('something went wrong')
     return render(req, 'createProduct.html', {'form': form})
 
-def auctionFront(req: HttpRequest) -> HttpResponse:
-    return render(req, 'auctionFront.html', {"items": AuctionItem.objects.all()})
+def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
+    context = {}
+
+    auction = Auction.objects.get(id=id)
+    context["items"] = auction.auctionitem_set.all()
+    # time = f'{auction.start_date}'.replace(/[]/, )
+    end = re.sub('[-TZ:+]', " ", f'{auction.end_date}')
+    es = end.split(" ")
+    endTime = datetime.datetime(int(es[0]), int(es[1]), int(es[2]), int(es[3]), int(es[4]), int(es[5]))
+
+    start = re.sub('[-TZ:+]', " ", f'{auction.start_date}')
+    ss = start.split(" ")
+    startTime = datetime.datetime(int(ss[0]), int(ss[1]), int(ss[2]), int(ss[3]), int(ss[4]), int(ss[5]))
+    now = datetime.datetime.now()
+    
+    if now > endTime:
+        context["over"] = True
+    elif now > startTime:
+        context["left"] = endTime - now
+    else:
+        context["notStarted"] = True
+
+    print(context)
+
+    return render(req, 'auctionFront.html', context)
 
 def displayItem(req: HttpRequest, id: int) -> HttpResponse:
     item = AuctionItem.objects.get(id=id)
@@ -167,11 +213,39 @@ def displayItem(req: HttpRequest, id: int) -> HttpResponse:
             bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")))
             print(bid)
             bid.save()
-            # stripe.Product.modify(stripePrice["id"], ) ## update stripe items default price to reflect new bid
             item.current_bid = int(amount)
             item.save()
     lowestAllowedBid = item.current_bid + 500
-
+    payment_intent = create_payment_intent(req, item.stripe_id)
 
             
-    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid})
+    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid, "payment_intent": payment_intent, "STRIPE_TEST_KEY": settings.STRIPE_KEY})
+
+    # return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid})
+
+def deleteItem(req: HttpRequest, id: int) -> HttpResponse:
+    item = AuctionItem.objects.get(id=id)
+    stripe.api_key = settings.STRIPE_KEY
+    try:
+        stripe.Product.delete(item.stripe_id)
+        item.delete()
+    except:
+        print("Something Happened while deleting")
+    
+    return redirect("auctionFront")
+
+def createAuction(req: HttpRequest) -> HttpResponse:
+    form = CreateAuctionForm()
+    if req.method == 'POST':
+        form = CreateAuctionForm(req.POST)
+        print(req.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('auctionFront')
+            except:
+                print('Error Creating Auction')
+                
+    return render(req, 'createAuction.html', {"form": form})
+
+

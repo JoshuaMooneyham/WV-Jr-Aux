@@ -23,10 +23,16 @@ from auction.views import *
 urlpatterns = [
     path('testing/', testingView, name='testing'),
     path('registration/', registration_view, name='registration'),
-    path('login/', login_view, name='login'),
     path('add-payment-method/', add_payment_view, name='add_payment_method'),
+    path('create-payment-intent/<str:product_id>', create_payment_intent, name='create_payment_intent'),
+    path('end-auction/<str:payment_intent_id>', end_auction, name='end_auction'),
     path('products/create', productsTest, name='createProduct'),
     path('', auctionFront, name="auctionFront"),
     path('products/<int:id>', displayItem, name='displayProduct'),
-    path('products/place_bid/<str:product_id>', create_payment_intent, name='create_payment_intent'),
+    path('create/', createAuction, name='createAuction'),
+    path('<int:id>/', auctionFront, name="auctionFront"),
+    path('products/<int:id>/', displayItem, name='displayProduct'),
+    path('products/create/', productsTest, name='createProduct'),
+    path('products/delete/<int:id>/', deleteItem, name="deleteItem"),
+    path('products/place_bid/<str:product_id>/', create_payment_intent, name='create_payment_intent'),
 ]
