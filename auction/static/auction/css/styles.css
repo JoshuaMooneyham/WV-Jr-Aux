@@ -165,10 +165,33 @@ right: 0;
     top: 10px;
 }
 
-.auctionHeader {
-    font-size: 2em;
+.time {
+    font-size: 1.5em;
     display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    margin: 20px;
+    width: calc(100% - 40px);
+    justify-content: space-between;
+    /* margin: 20px 0; */
+    padding: 20px;
+    font-family: 'Futura-Bold', sans-serif;
+    border-bottom: #dedede 1px solid;
+    margin-bottom: 10px;
+}
+
+.auctionHeader {
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closed {
+    color: red;
+}
+
+.notStarted {
+    color: rgb(0, 48, 135);
+}
+
+.remaining {
+    color: rgb(0, 48, 135);
 }

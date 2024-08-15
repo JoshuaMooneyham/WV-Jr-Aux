@@ -180,6 +180,7 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
     context = {}
 
     auction = Auction.objects.get(id=id)
+    context['auction'] = auction
     context["items"] = auction.auctionitem_set.all()
     # time = f'{auction.start_date}'.replace(/[]/, )
     end = re.sub('[-TZ:+]', " ", f'{auction.end_date}')
@@ -194,7 +195,19 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
     if now > endTime:
         context["over"] = True
     elif now > startTime:
-        context["left"] = endTime - now
+        left = endTime - now
+        print(left)
+        hours = (int(left.seconds) - int(left.seconds) % 3600) / 3600
+        minutes = ((int(left.seconds) - hours * 3600) - int(left.seconds) % 60) / 60
+        seconds = int(left.seconds) - (hours * 3600 + minutes * 60)
+        hours += (int(left.days) * 86400) / 3600
+        hourS = f'{hours:.0f}'
+        minuteS = f'{minutes:.0f}'
+        secondS = f'{seconds:.0f}'
+        print(f'{hourS}:{minuteS}:{secondS}')
+        # left = endTime - datetime.timedelta(days=now.day, hours=now.hour, minutes=now.minute, seconds=now.second, milliseconds=now.microsecond)
+        # context["left"] = datetime.datetime.strftime(left, "%H:%M:%S")
+        context['left'] = f'{hourS if len(hourS) > 1 else "0"+hourS}:{minuteS if len(minuteS) > 1 else "0"+minuteS}:{secondS if len(secondS) > 1 else "0"+secondS}'
     else:
         context["notStarted"] = True
 
