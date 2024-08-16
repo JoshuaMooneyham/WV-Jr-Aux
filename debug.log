@@ -1650,3 +1650,289 @@ stripe._error.InvalidRequestError: Could not determine which URL to request: Pri
 >>>>>>> 41e60f92dd8d753f8e0e91753f9ca5391ec207f8
 >>>>>>> a14e6594d981cda76370dd0c077f9f0d6c10b2bd
 Watching for file changes with StatReloader
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=testing+a+lot+of+items&active=True&description=hbeinoijfokewp
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 484
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_Qfr2b2a31SGVc9",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723834635,\n  "default_price": null,\n  "description": "hbeinoijfokewp",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "testing a lot of items",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723834635,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_vmD2QbevDokkNL message='Dashboard link for request'
+Internal Server Error: /auction/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: auctionFront() missing 1 required positional argument: 'id'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/sc-adlkjwu1987e93hlfdasd19731
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/sc-adlkjwu1987e93hlfdasd19731 HTTP/11" 404 344
+message='Stripe API response' path=https://api.stripe.com/v1/customers/sc-adlkjwu1987e93hlfdasd19731 response_code=404
+body='{\n  "error": {\n    "code": "resource_missing",\n    "doc_url": "https://stripe.com/docs/error-codes/resource-missing",\n    "message": "No such customer: \'sc-adlkjwu1987e93hlfdasd19731\'",\n    "param": "id",\n    "request_log_url": "https://dashboard.stripe.com/test/logs/req_HJYq9GoDLCXm9z?t=1723834673",\n    "type": "invalid_request_error"\n  }\n}\n' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_HJYq9GoDLCXm9z message='Dashboard link for request'
+error_code=resource_missing error_message="No such customer: 'sc-adlkjwu1987e93hlfdasd19731'" error_param=id error_type=invalid_request_error message='Stripe API error received'
+Internal Server Error: /auction/products/19/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 229, in displayItem
+    payment_intent = create_payment_intent(req, item.stripe_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 104, in create_payment_intent
+    customer = stripe.Customer.retrieve(id=bidder.stripe_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_customer.py", line 2012, in retrieve
+    instance.refresh()
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_resource.py", line 130, in _request_and_refresh
+    obj = StripeObject._request(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_stripe_object.py", line 411, in _request
+    return self._requestor.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_requestor.py", line 196, in request
+    resp = requestor._interpret_response(rbody, rcode, rheaders)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_requestor.py", line 732, in _interpret_response
+    self.handle_error_response(rbody, rcode, resp.data, rheaders)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_requestor.py", line 321, in handle_error_response
+    raise err
+stripe._error.InvalidRequestError: Request req_HJYq9GoDLCXm9z: No such customer: 'sc-adlkjwu1987e93hlfdasd19731'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=testing+a+lottt&active=True&description=hbiniop
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 470
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_Qfr4H00Nqg4EHd",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723834755,\n  "default_price": null,\n  "description": "hbiniop",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "testing a lottt",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723834755,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_bh0uU1PXfyd5Cn message='Dashboard link for request'
+Internal Server Error: /auction/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: auctionFront() missing 1 required positional argument: 'id'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=gcfhgvjbkn&active=True&description=bhjkjnk
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 465
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_Qfr6aZcmowuSD5",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723834823,\n  "default_price": null,\n  "description": "bhjkjnk",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "gcfhgvjbkn",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723834823,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_duXJE9gQA5KChr message='Dashboard link for request'
+Internal Server Error: /auction/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: auctionFront() missing 1 required positional argument: 'id'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=hotkey&active=True&description=gdsbk
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 459
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_Qfr6wFtG36NhHw",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723834857,\n  "default_price": null,\n  "description": "gdsbk",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "hotkey",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723834857,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_Y61efnKjVFTa2m message='Dashboard link for request'
+Internal Server Error: /auction/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: auctionFront() missing 1 required positional argument: 'id'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/sc-adlkjwu1987e93hlfdasd19731
+api_version=2024-06-20 message='Post details' post_data=
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "GET /v1/customers/sc-adlkjwu1987e93hlfdasd19731 HTTP/11" 404 344
+message='Stripe API response' path=https://api.stripe.com/v1/customers/sc-adlkjwu1987e93hlfdasd19731 response_code=404
+body='{\n  "error": {\n    "code": "resource_missing",\n    "doc_url": "https://stripe.com/docs/error-codes/resource-missing",\n    "message": "No such customer: \'sc-adlkjwu1987e93hlfdasd19731\'",\n    "param": "id",\n    "request_log_url": "https://dashboard.stripe.com/test/logs/req_75tmhxA0dDMpVG?t=1723834883",\n    "type": "invalid_request_error"\n  }\n}\n' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_75tmhxA0dDMpVG message='Dashboard link for request'
+error_code=resource_missing error_message="No such customer: 'sc-adlkjwu1987e93hlfdasd19731'" error_param=id error_type=invalid_request_error message='Stripe API error received'
+Internal Server Error: /auction/products/22/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 229, in displayItem
+    payment_intent = create_payment_intent(req, item.stripe_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 104, in create_payment_intent
+    customer = stripe.Customer.retrieve(id=bidder.stripe_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_customer.py", line 2012, in retrieve
+    instance.refresh()
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_resource.py", line 130, in _request_and_refresh
+    obj = StripeObject._request(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_stripe_object.py", line 411, in _request
+    return self._requestor.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_requestor.py", line 196, in request
+    resp = requestor._interpret_response(rbody, rcode, rheaders)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_requestor.py", line 732, in _interpret_response
+    self.handle_error_response(rbody, rcode, resp.data, rheaders)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_requestor.py", line 321, in handle_error_response
+    raise err
+stripe._error.InvalidRequestError: Request req_75tmhxA0dDMpVG: No such customer: 'sc-adlkjwu1987e93hlfdasd19731'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=Cat+Dance&active=True&description=look+at+him+go
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 471
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_Qfr8iarkjYtpgE",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723834991,\n  "default_price": null,\n  "description": "look at him go",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "Cat Dance",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723834991,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_5AtT5Vyu3NvWTx message='Dashboard link for request'
+Internal Server Error: /auction/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: auctionFront() missing 1 required positional argument: 'id'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=The+Bogie+Boogie&active=True&description=jhbkjnkl
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 472
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_Qfr9Quc4NF6kTd",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723835024,\n  "default_price": null,\n  "description": "jhbkjnkl",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "The Bogie Boogie",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723835024,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_k7oFmfk4H6YXBf message='Dashboard link for request'
+Internal Server Error: /auction/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: auctionFront() missing 1 required positional argument: 'id'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QfrWF0G7tRmM47 HTTP/11" 200 644
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47 response_code=200
+body='{\n  "id": "cus_QfrWF0G7tRmM47",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723836402,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "jmooneyham58@gmail.com",\n  "invoice_prefix": "3D5A644F",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": null,\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Alec account",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_yUi8wROiqAQpR4 message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_intents
+api_version=2024-06-20 message='Post details' post_data=amount=100&currency=usd&customer=cus_QfrWF0G7tRmM47&confirmation_method=manual&confirm=False&metadata[product_id]=prod_Qfr4H00Nqg4EHd
+https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1599
+message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
+body='{\n  "id": "pi_3PoVofHJI2ETfc7U1UAn5PgB",\n  "object": "payment_intent",\n  "amount": 100,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 0,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "always",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3PoVofHJI2ETfc7U1UAn5PgB_secret_wuflIyLtNMGiXslCob5NXXS7T",\n  "confirmation_method": "manual",\n  "created": 1723836485,\n  "currency": "usd",\n  "customer": "cus_QfrWF0G7tRmM47",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": null,\n  "livemode": false,\n  "metadata": {\n    "product_id": "prod_Qfr4H00Nqg4EHd"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "cashapp": {},\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link",\n    "cashapp"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "requires_payment_method",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_1AkxDf1dUdDzfc message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QfrWF0G7tRmM47 HTTP/11" 200 644
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47 response_code=200
+body='{\n  "id": "cus_QfrWF0G7tRmM47",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723836402,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "jmooneyham58@gmail.com",\n  "invoice_prefix": "3D5A644F",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": null,\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Alec account",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_4M8kD69O1oX0SQ message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_intents
+api_version=2024-06-20 message='Post details' post_data=amount=100&currency=usd&customer=cus_QfrWF0G7tRmM47&confirmation_method=manual&confirm=False&metadata[product_id]=prod_Qfr9Quc4NF6kTd
+https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1599
+message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
+body='{\n  "id": "pi_3PoVpZHJI2ETfc7U0N3anLp8",\n  "object": "payment_intent",\n  "amount": 100,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 0,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "always",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3PoVpZHJI2ETfc7U0N3anLp8_secret_nQP3xFFqUtwI9vqHQUH5ejGv4",\n  "confirmation_method": "manual",\n  "created": 1723836541,\n  "currency": "usd",\n  "customer": "cus_QfrWF0G7tRmM47",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": null,\n  "livemode": false,\n  "metadata": {\n    "product_id": "prod_Qfr9Quc4NF6kTd"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "cashapp": {},\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link",\n    "cashapp"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "requires_payment_method",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_KTVkIqsV93KnQ4 message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/products/prod_Qfr9Quc4NF6kTd
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/products/prod_Qfr9Quc4NF6kTd HTTP/11" 200 472
+message='Stripe API response' path=https://api.stripe.com/v1/products/prod_Qfr9Quc4NF6kTd response_code=200
+body='{\n  "id": "prod_Qfr9Quc4NF6kTd",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723835024,\n  "default_price": null,\n  "description": "jhbkjnkl",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "The Bogie Boogie",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723835024,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_fKi2CGi1g4jjLP message='Dashboard link for request'
+Internal Server Error: /auction/products/24/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 221, in displayItem
+    stripePrice = stripe.Price.retrieve(stripe.Product.retrieve(item.stripe_id)["default_price"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_price.py", line 853, in retrieve
+    instance.refresh()
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+                                            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_resource.py", line 61, in instance_url
+    raise InvalidRequestError(
+stripe._error.InvalidRequestError: Could not determine which URL to request: Price instance has invalid ID: None, <class 'NoneType'>. ID should be of type `str` (or `unicode`)
