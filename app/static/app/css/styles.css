@@ -5,6 +5,10 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Belinda-W00';
+    src: url("/static/app/fonts/Belinda-W00-Regular.ttf");
+}
 
 * {
     margin: 0;
@@ -13,7 +17,8 @@
 }
 
 body {
-   background-color:  rgb(0, 48, 135) !important;;
+   /* background-color:  rgb(0, 48, 135, 0.6) !important;; */
+   background-color: #DBE2E9;
 }
 
 /* <!-- <------------NAVBAR------------> --> */
@@ -25,6 +30,7 @@ body {
     background-size: 100% 130%;
     background-repeat: no-repeat; */
 /* } */
+
 .container {
     background-color: white;
     display: flex;
@@ -40,14 +46,15 @@ body {
 }
 
 .left-image {
-    width: 15%;
+    width: 70px;
+    padding: 10px;
     height: auto; /* Maintain aspect ratio */
     /* Adjust the width of the image as needed */
 }
 
 .header_text {
     color: rgb(0, 48, 135) !important;
-    font-family: 'Futura Bold', sans-serif;
+    font-family: 'Belinda-W00', sans-serif;
     font-size: 2rem;
     text-align: left;
     margin-left: 10px; /* Space between image and text */
@@ -55,9 +62,9 @@ body {
 
 .myNav {
     display: flex;
-    gap: 2rem; /* Space between the navigation links */
-    margin-left: 2%; 
-    margin-right: auto; /* Pushes the navbar to the left and away from the button */
+    gap: 2rem;
+    margin-right: 0px; 
+    margin-left: auto;
 }
 
 .myNav a {
@@ -72,25 +79,27 @@ body {
 }
 
 .right-button {
-    border-radius: 10%;
+    border-radius: 5px;
     margin-right: 2%;
-    background: rgb(246, 236, 97) !important;
-    color: rgb(0, 48, 135) !important;
+    background-color: rgb(246, 236, 97);
+    color: rgb(0, 48, 135);
     font-size: 1.2rem;
-    padding: 0.5%;
-    align-items: center; /* Pushes the button to the far right */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+    padding: 15px 20px;
+    align-items: center; 
+    margin-left: 2rem;
+    transition: 0.3s ease;
+    border: none;
 }
 
 .right-button:hover {
-    background: rgb(0, 48, 135); /* Change background color on hover */
-    color: white !important; /* Change text color to white on hover */
+    background-color: rgb(0, 48, 135); /* Change background color on hover */
+    color: white; /* Change text color to white on hover */
     cursor: pointer; /* Change cursor to a pointer on hover */
 }
 
 .body_text{
     margin: 3%;
-    color: rgb(246, 236, 97) !important;
+    color: rgb(246, 236, 97);
     font-family: 'Futura';
     font-size: 1.2rem;
     text-align: center;
@@ -194,10 +203,12 @@ body {
     align-items: center;
 }
 .name_headers{
-    text-decoration: underline overline;
-    color: rgb(246, 236, 97) !important;
+    /* text-decoration: underline overline; */
+    /* color: rgb(246, 236, 97) !important; */
+    color: rgb(0, 48, 135);
     text-align: center;
     padding:1%;
+    font-family: "Belinda-W00";
 }
 /* <------------CONTACT US------------> */
 .box{
@@ -223,7 +234,7 @@ body {
 }
 /* <------------ABOUT US------------> */
 .about_container {
-    border: 2px solid white;
+    /* border: 2px solid white; */
     margin: 0 auto; /* Centers the container on the page */
     display: flex;
     justify-content: space-between;
@@ -231,6 +242,8 @@ body {
     max-width: 80%; /* Adjust the width to fit the middle of the page */
     padding: 1%;
     box-sizing: border-box; /* Ensures padding doesn't increase container width */
+    /* background-color: rgb(0, 48, 135, 0.6); */
+    /* background-color: #DBE2E9; */
 }
 
 .left-side {
@@ -241,12 +254,12 @@ body {
 .about_image {
     width: 30%;
     height: auto; /* Maintain aspect ratio */
-    border-radius: 10%;
+    border-radius: 10px;
     margin-left: 3%;
 }
 
 .about_text {
-    color: white;
+    color: rgb(0, 48, 135);
     font-family: 'Futura';
     line-height: 200%;
     font-size: 1.3rem;

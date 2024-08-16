@@ -15,7 +15,7 @@
 
 <div class='sidenavContainer'>
     <div class='sidenavImg'>
-        <img class='sidenavCrown' src="{% static "auction/NAJA Crown_White_Crop.png" %}" alt="">
+        <img class='sidenavCrown' src="{% static "auction/NAJA Crown_Blue_Crop.png" %}" alt="">
     </div>
     <div class='sidenavOptions'>
         {% if not user.is_authenticated %}
@@ -41,7 +41,7 @@
                 <a href="{% url "createProduct" %}">
                     <button>Add Item</button>
                 </a>
-                <button>Auction Settings</button>
+                <button>Settings</button>
                 <p>Total Raised</p>
             {% endif %}
         {% endfor %}

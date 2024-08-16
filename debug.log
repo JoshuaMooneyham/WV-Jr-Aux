@@ -1036,6 +1036,40 @@ Watching for file changes with StatReloader
 C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\models.py changed, reloading.
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+<<<<<<< HEAD
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+=======
 Not Found: /favicon.ico
 Not Found: /favicon.ico
 Not Found: /favicon.ico
@@ -1395,6 +1429,7 @@ https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1600
 message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
 body='{\n  "id": "pi_3PoCZ1HJI2ETfc7U19sIFGdK",\n  "object": "payment_intent",\n  "amount": 2600,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 0,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "always",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3PoCZ1HJI2ETfc7U19sIFGdK_secret_IQaZJIePks8AiaopwcNTSOrZQ",\n  "confirmation_method": "manual",\n  "created": 1723762479,\n  "currency": "usd",\n  "customer": "cus_QfXdK7cWdMjqea",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": null,\n  "livemode": false,\n  "metadata": {\n    "product_id": "prod_QeyGaiXwafOKKO"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "cashapp": {},\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link",\n    "cashapp"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "requires_payment_method",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
 link=https://dashboard.stripe.com/test/logs/req_GghZnPR8Y1czLI message='Dashboard link for request'
+<<<<<<< HEAD
 message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfXdK7cWdMjqea
 api_version=2024-06-20 message='Post details' post_data=
 Starting new HTTPS connection (1): api.stripe.com:443
@@ -1611,3 +1646,7 @@ Traceback (most recent call last):
   File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_resource.py", line 61, in instance_url
     raise InvalidRequestError(
 stripe._error.InvalidRequestError: Could not determine which URL to request: Price instance has invalid ID: None, <class 'NoneType'>. ID should be of type `str` (or `unicode`)
+=======
+>>>>>>> 41e60f92dd8d753f8e0e91753f9ca5391ec207f8
+>>>>>>> a14e6594d981cda76370dd0c077f9f0d6c10b2bd
+Watching for file changes with StatReloader
