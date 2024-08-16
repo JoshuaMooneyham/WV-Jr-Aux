@@ -29,7 +29,7 @@
         {% endfor %}
     </div>
     {% comment %} ^^^ DO NOT CHANGE ABOVE ^^^ {% endcomment %}
-    <a href="{% url "end_auction" payment_intent.id %}"></a>
+    <a href="{% url "end_auction" setup_intent.id %}"><button>End Auction</button></a>
     <h3>{{item.name}}</h3>
     <p>{{item.description}}</p>
     <p>Current Bid: {{item.current_bid | moneyify}}</p>
@@ -51,14 +51,27 @@
         <p>{{bid.bidder.bidder_id}} | {{bid.amount|moneyify}}</p>
     {% endfor %}
 
+    <select id="saved-cards">
+        {% for card in saved_cards %}
+            <option value="{{ card.id }}">
+                {{ card.card.brand }} ending in {{ card.card.last4 }} (Exp: {{ card.card.exp_month }}/{{ card.card.exp_year }})
+            </option>
+        {% endfor %}
+    </select>
+
     <script>
-        const stripe = Stripe('{{STRIPE_TEST_KEY}}');
+        const stripe = Stripe('{{STRIPE_TEST_PUBLIC_KEY}}');
+
+        const selectedPaymentMethod = document.getElementById('saved-cards').value;
         
         document.getElementById('bid-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const clientSecret = '{{payment_intent.client_secret}}';
-            const {error} = await stripe.confirmCardPayment(clientSecret);
-
+            const clientSecret = '{{setup_intent.client_secret}}';
+            const {error} = await stripe.confirmCardSetup(clientSecret,
+            {
+                payment_method: selectedPaymentMethod
+            });
+            console.log(clientSecret)
             if (error) {
                 console.error("Bid Failed:", error);
             } else {

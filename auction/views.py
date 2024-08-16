@@ -98,23 +98,28 @@ def add_payment_view(request: HttpRequest):
             print("Invalid card")
     return render(request, "add_payment.html", {'STRIPE_TEST_PUBLIC_KEY': settings.STRIPE_TEST_PUBLIC_KEY})
 
-def create_payment_intent(request: HttpRequest, product_id):
+def list_payment_methods(request: HttpRequest):
+    bidder = Bidder.objects.get(user=request.user)
+    payment_methods = stripe.PaymentMethod.list(
+        customer=bidder.stripe_id,
+        type="card",
+    )
+    return payment_methods
+
+def create_setup_intent(request: HttpRequest, product_id):
     stripe.api_key = settings.STRIPE_KEY
     bidder = Bidder.objects.get(user=request.user)
     customer = stripe.Customer.retrieve(id=bidder.stripe_id)
     item = AuctionItem.objects.get(stripe_id=product_id)
 
-    payment_intent = stripe.PaymentIntent.create(
-        amount = item.current_bid,
-        currency="usd",
+    setup_intent = stripe.SetupIntent.create(
         customer=customer.id,
-        confirmation_method="manual",
-        confirm=False,
+        payment_method_types=['card'],
         metadata={
             "product_id": product_id,
         }
     )
-    return payment_intent
+    return setup_intent
 
 def end_auction(request: HttpRequest, product_id):
     try:
@@ -126,11 +131,16 @@ def end_auction(request: HttpRequest, product_id):
         if not highest_bid:
             logger.debug("No bids found.")
 
-        stripe_customer = stripe.Customer.retrieve(highest_bid.bidder.stripe_id)
-        payment_intent = stripe.PaymentIntent.confirm(highest_bid.payment_intent_id)
-        return JsonResponse({"status": payment_intent.status})
+        # stripe_customer = stripe.Customer.retrieve(highest_bid.bidder.stripe_id)
+        payment_intent = stripe.PaymentIntent.confirm("pi_3PoD28HJI2ETfc7U0B9VQGrS")
+        if highest_bid.payment_intent_id:
+            logger.debug(highest_bid.payment_intent_id)
+        else:
+            logger.debug("No payment intent id for highest bid")
+        return HttpResponse({"status": payment_intent.status})
     except:
         logger.debug("An error occurred.")
+    return HttpResponse()
         
 
 def testingView(req: HttpRequest) -> HttpResponse:
@@ -216,10 +226,11 @@ def displayItem(req: HttpRequest, id: int) -> HttpResponse:
             item.current_bid = int(amount)
             item.save()
     lowestAllowedBid = item.current_bid + 500
-    payment_intent = create_payment_intent(req, item.stripe_id)
+    setup_intent = create_setup_intent(req, item.stripe_id)
+    saved_cards = list_payment_methods(req)
 
             
-    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid, "payment_intent": payment_intent, "STRIPE_TEST_KEY": settings.STRIPE_KEY})
+    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid, "setup_intent": setup_intent, "saved_cards": saved_cards, "STRIPE_TEST_PUBLIC_KEY": settings.STRIPE_TEST_PUBLIC_KEY})
 
     # return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid})
 
