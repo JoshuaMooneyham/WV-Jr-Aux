@@ -1547,3 +1547,67 @@ Not Found: /favicon.ico
 Not Found: /static/app/js/scripts.js
 Not Found: /static/app/js/scripts.js
 Not Found: /static/app/js/scripts.js
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfXdK7cWdMjqea
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QfXdK7cWdMjqea HTTP/11" 200 642
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfXdK7cWdMjqea response_code=200
+body='{\n  "id": "cus_QfXdK7cWdMjqea",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723762436,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "testign1234@gmail.com",\n  "invoice_prefix": "F693F68E",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": null,\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Joshua Test",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_Dh4aH00F7rlzZj message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_intents
+api_version=2024-06-20 message='Post details' post_data=amount=100&currency=usd&customer=cus_QfXdK7cWdMjqea&confirmation_method=manual&confirm=False&metadata[product_id]=prod_QfaTNTmpJJHq9k
+https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1599
+message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
+body='{\n  "id": "pi_3PoGI3HJI2ETfc7U0x7EkG32",\n  "object": "payment_intent",\n  "amount": 100,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 0,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "always",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3PoGI3HJI2ETfc7U0x7EkG32_secret_nhyDOkoSy0jQjCFgMTpzXUsWB",\n  "confirmation_method": "manual",\n  "created": 1723776803,\n  "currency": "usd",\n  "customer": "cus_QfXdK7cWdMjqea",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": null,\n  "livemode": false,\n  "metadata": {\n    "product_id": "prod_QfaTNTmpJJHq9k"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "cashapp": {},\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link",\n    "cashapp"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "requires_payment_method",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_HyYSnFB65iSKYz message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfXdK7cWdMjqea
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QfXdK7cWdMjqea HTTP/11" 200 642
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfXdK7cWdMjqea response_code=200
+body='{\n  "id": "cus_QfXdK7cWdMjqea",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723762436,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "testign1234@gmail.com",\n  "invoice_prefix": "F693F68E",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": null,\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Joshua Test",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_C0EJWo2H2sxowh message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_intents
+api_version=2024-06-20 message='Post details' post_data=amount=100&currency=usd&customer=cus_QfXdK7cWdMjqea&confirmation_method=manual&confirm=False&metadata[product_id]=prod_QfaTNTmpJJHq9k
+https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1599
+message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
+body='{\n  "id": "pi_3PoGI5HJI2ETfc7U0C7Mkzwl",\n  "object": "payment_intent",\n  "amount": 100,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 0,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "always",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3PoGI5HJI2ETfc7U0C7Mkzwl_secret_4T10KTDnnFVW8uWiSNVle2jwH",\n  "confirmation_method": "manual",\n  "created": 1723776805,\n  "currency": "usd",\n  "customer": "cus_QfXdK7cWdMjqea",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": null,\n  "livemode": false,\n  "metadata": {\n    "product_id": "prod_QfaTNTmpJJHq9k"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "cashapp": {},\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link",\n    "cashapp"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "requires_payment_method",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_1tN7KZAHhQUCWj message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfXdK7cWdMjqea
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/customers/cus_QfXdK7cWdMjqea HTTP/11" 200 642
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfXdK7cWdMjqea response_code=200
+body='{\n  "id": "cus_QfXdK7cWdMjqea",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723762436,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "testign1234@gmail.com",\n  "invoice_prefix": "F693F68E",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": null,\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Joshua Test",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_Ja2wBH4AxZtX7l message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_intents
+api_version=2024-06-20 message='Post details' post_data=amount=100&currency=usd&customer=cus_QfXdK7cWdMjqea&confirmation_method=manual&confirm=False&metadata[product_id]=prod_QfaTNTmpJJHq9k
+https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1599
+message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
+body='{\n  "id": "pi_3PoGILHJI2ETfc7U0gLm9op7",\n  "object": "payment_intent",\n  "amount": 100,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 0,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "always",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3PoGILHJI2ETfc7U0gLm9op7_secret_3l0FEW8IEwtMWwzRRShAbRerV",\n  "confirmation_method": "manual",\n  "created": 1723776821,\n  "currency": "usd",\n  "customer": "cus_QfXdK7cWdMjqea",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": null,\n  "livemode": false,\n  "metadata": {\n    "product_id": "prod_QfaTNTmpJJHq9k"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "cashapp": {},\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link",\n    "cashapp"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "requires_payment_method",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_K8Vxm5dqk3pIGz message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/products/prod_QfaTNTmpJJHq9k
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/products/prod_QfaTNTmpJJHq9k HTTP/11" 200 465
+message='Stripe API response' path=https://api.stripe.com/v1/products/prod_QfaTNTmpJJHq9k response_code=200
+body='{\n  "id": "prod_QfaTNTmpJJHq9k",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723772977,\n  "default_price": null,\n  "description": "There Kariel",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "test3",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723772977,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_9Wt7z29560zWGs message='Dashboard link for request'
+Internal Server Error: /auction/products/18/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 221, in displayItem
+    stripePrice = stripe.Price.retrieve(stripe.Product.retrieve(item.stripe_id)["default_price"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_price.py", line 853, in retrieve
+    instance.refresh()
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+                                            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\stripe\_api_resource.py", line 61, in instance_url
+    raise InvalidRequestError(
+stripe._error.InvalidRequestError: Could not determine which URL to request: Price instance has invalid ID: None, <class 'NoneType'>. ID should be of type `str` (or `unicode`)
