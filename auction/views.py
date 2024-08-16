@@ -147,10 +147,7 @@ def productsTest(req: HttpRequest) -> HttpResponse:
     form = CreateAuctionItemForm()
     if req.method == 'POST':
         form = CreateAuctionItemForm(req.POST)
-        print(req.POST)
         if form.is_valid():
-            print(req.POST)
-            print(req.FILES)
             try:
                 stripe.api_key = settings.STRIPE_KEY
                 product = stripe.Product.create(
@@ -182,7 +179,6 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
     auction = Auction.objects.get(id=id)
     context['auction'] = auction
     context["items"] = auction.auctionitem_set.all()
-    # time = f'{auction.start_date}'.replace(/[]/, )
     end = re.sub('[-TZ:+]', " ", f'{auction.end_date}')
     es = end.split(" ")
     endTime = datetime.datetime(int(es[0]), int(es[1]), int(es[2]), int(es[3]), int(es[4]), int(es[5]))
@@ -194,6 +190,11 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
     
     if now > endTime:
         context["over"] = True
+        for item in auction.auctionitem_set.all():
+            print(item.active)
+            item.active = False
+            item.save()
+            print(item.active)
     elif now > startTime:
         left = endTime - now
         print(left)
@@ -205,13 +206,9 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
         minuteS = f'{minutes:.0f}'
         secondS = f'{seconds:.0f}'
         print(f'{hourS}:{minuteS}:{secondS}')
-        # left = endTime - datetime.timedelta(days=now.day, hours=now.hour, minutes=now.minute, seconds=now.second, milliseconds=now.microsecond)
-        # context["left"] = datetime.datetime.strftime(left, "%H:%M:%S")
         context['left'] = f'{hourS if len(hourS) > 1 else "0"+hourS}:{minuteS if len(minuteS) > 1 else "0"+minuteS}:{secondS if len(secondS) > 1 else "0"+secondS}'
     else:
         context["notStarted"] = True
-
-    print(context)
 
     return render(req, 'auctionFront.html', context)
 
