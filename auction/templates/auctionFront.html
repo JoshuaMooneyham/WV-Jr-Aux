@@ -16,12 +16,13 @@
             {% endif %}
         </div> {% endcomment %}
         <div class='time'>
+                <h2 class='auctionTitle'>{{auction.name}}</h2>
             {% if over %}
-                <h2 class='auctionHeader'>Closed</h2>
+                <h2 class='auctionHeader closed'>Closed</h2>
             {% elif left %}
-                <h2 class='auctionHeader'>{{left}}</h2>
+                <h2 class='auctionHeader remaining' id='remaining'>{{left}}</h2>
             {% elif  notStarted %}
-                <h2 class='auctionHeader'>Starting Soon</h2>
+                <h2 class='auctionHeader notStarted'>Starting Soon</h2>
             {% endif %}
         </div>
 
