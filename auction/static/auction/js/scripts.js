@@ -1,3 +1,4 @@
+try {
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -52,3 +53,4 @@ bpi.addEventListener("click", () => {
 addEventListener('change', (e) => {
     console.log(e.target)
 })
+} catch {}

@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="{% static "auction/css/styles.css" %}">
     {% comment %} <link rel="stylesheet" href="{% static "auction/css/header.css" %}"> {% endcomment %}
     <link rel="stylesheet" href="{% static "auction/css/sidenav.css" %}">
-    <script src="{% static "auction/js/scripts.js" %}"></script>
+    <script src="{% static "auction/js/scripts.js" %}" defer='defer'></script>
+    <script src="{% static "auction/js/timer.js" %}" defer='defer'></script>
     <script src="https://kit.fontawesome.com/2734bda929.js" crossorigin="anonymous"></script>
 </head>
 
@@ -18,20 +19,30 @@
     </div>
     <div class='sidenavOptions'>
         {% if not user.is_authenticated %}
-            <button>Log In</button>
-            <button>Register</button>
+            <a href="{% url "login" %}">
+                <button>Log In</button>
+            </a>
+            <a href="{% url "register" %}">
+                <button>Register</button>
+            </a>
         {% elif user.groups.all|length == 0 %}
             <button>My Bids</button>
             <button>Liked Items</button>
             <button>Invoices</button>
-            <button>Logout</button>
+            <a href="{% url "logout" %}">
+                <button>Logout</button>
+            </a>
         {% else %}
         {% for group in user.groups.all  %}
             {% if group.name == "Admin" %}
-                <button>Logout</button>
-                <p>Total Raised</p>
-                <button>Add Item</button>
+                <a href="{% url "logout" %}">
+                    <button>Logout</button>
+                </a>
+                <a href="{% url "createProduct" %}">
+                    <button>Add Item</button>
+                </a>
                 <button>Auction Settings</button>
+                <p>Total Raised</p>
             {% endif %}
         {% endfor %}
         {% endif %}
