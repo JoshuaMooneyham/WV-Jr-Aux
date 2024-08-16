@@ -226,11 +226,12 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
 def displayItem(req: HttpRequest, id: int) -> HttpResponse:
     item = AuctionItem.objects.get(id=id)
     images = [img for img in item.images.all()]
+
     if req.method == "POST":
         amount = req.POST.get('amount')
         stripe.api_key = settings.STRIPE_KEY
-        stripePrice = stripe.Price.retrieve(stripe.Product.retrieve(item.stripe_id)["default_price"])
-        if amount != None and (int(amount) >= item.current_bid + 500 and int(amount) >= int(stripePrice["unit_amount"]) + 500):
+        # stripePrice = stripe.Price.retrieve(stripe.Product.retrieve(item.stripe_id)["default_price"])
+        if amount != None and (int(amount) >= item.current_bid + 500):
             bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), payment_intent_id=req.POST.get("selected_payment_method"))
             print(bid)
             bid.save()
