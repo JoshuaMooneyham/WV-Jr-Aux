@@ -77,9 +77,10 @@ body {
     background: rgb(246, 236, 97) !important;
     color: rgb(0, 48, 135) !important;
     font-size: 1.2rem;
-    padding: 0.5%;
+    padding: 0.5%;;
     align-items: center; /* Pushes the button to the far right */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+    margin-left: 2rem; /* Space between the navbar and the button */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .right-button:hover {

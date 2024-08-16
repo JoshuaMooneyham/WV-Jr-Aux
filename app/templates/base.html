@@ -10,24 +10,16 @@
 </head>
 <div class="container">
     <div class="left-side">
-    <img src="{% static 'app/photos/NAJALOGOcrop.svg' %}" alt="Logo" class="left-image">
-    <p class="header_text">Junior Auxiliary 
-        <br>of Yalobusha
-        <br> County</p>
-      </div>
-    <button class="right-button">Donate</button>
-</div>
+        <img src="{% static 'app/photos/NAJALOGO.png' %}" alt="Logo" class="left-image">
+        <p class="header_text">Junior Auxiliary <br>of Water Valley</p>
+    </div>
 
-<body>
-    
     <nav class="myNav">
         <a href="{% url 'home' %}">Home</a>
-                {% comment %} <a href="{% url 'login' %}">Login</a> {% endcomment %}
-                {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
-                <a href="{% url 'scholarship' %}">Scholarship</a>
-                <a href="{% url 'about' %}">About Us</a>
-            <a href="{% url 'projects' %}">Projects</a>
-            <a href="{% url 'contact' %}">Contact</a>
+        <a href="{% url 'scholarship' %}">Scholarship</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'projects' %}">Projects</a>
+        <a href="{% url 'contact' %}">Contact</a>
     </nav>
 
     <button class="right-button">Donate</button>
