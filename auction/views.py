@@ -167,6 +167,11 @@ def productsTest(req: HttpRequest) -> HttpResponse:
                     description=form.cleaned_data.get('description'),
                     metadata={}
                 )
+                price = stripe.Price.create(
+                    currency="usd",
+                    product=product.id,
+                    unit_amount=form.cleaned_data.get('starting_bid'),
+                )
                 newProduct = AuctionItem.objects.create(
                     name=form.cleaned_data.get('name'),
                     active=True,
@@ -228,16 +233,17 @@ def displayItem(req: HttpRequest, id: int) -> HttpResponse:
     images = [img for img in item.images.all()]
     if req.method == "POST":
         amount = req.POST.get('amount')
-        stripe.api_key = settings.STRIPE_KEY
-        stripePrice = stripe.Price.retrieve(stripe.Product.retrieve(item.stripe_id)["default_price"])
-        if amount != None and (int(amount) >= item.current_bid + 500 and int(amount) >= int(stripePrice["unit_amount"]) + 500):
-            bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), payment_intent_id=req.POST.get("selected_payment_method"))
+        stripe.api_key = settings.STRIPE_KEY  
+        if amount != None and (int(amount) >= item.current_bid + 500):
+            logger.debug("WORKING!!!!")
+            bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), payment_intent_id=req.POST.get("setup_intent"))
             print(bid)
             bid.save()
             item.current_bid = int(amount)
             item.save()
     lowestAllowedBid = item.current_bid + 500
     payment_method_id = req.POST.get("selected_payment_method")
+    logger.debug(f"Python Payment Method: {payment_method_id}")
     setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
     saved_cards = list_payment_methods(req)
 
