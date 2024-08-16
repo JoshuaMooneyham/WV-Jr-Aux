@@ -29,7 +29,7 @@
         {% endfor %}
     </div>
     {% comment %} ^^^ DO NOT CHANGE ABOVE ^^^ {% endcomment %}
-    <a href="{% url "end_auction" setup_intent.id %}"><button>End Auction</button></a>
+    <a href="{% url "end_auction" item.stripe_id %}"><button>End Auction</button></a>
     <h3>{{item.name}}</h3>
     <p>{{item.description}}</p>
     <p>Current Bid: {{item.current_bid | moneyify}}</p>
@@ -41,6 +41,14 @@
         <input type="hidden" name='amount' value={{lab}}>
         <input type="hidden" name='item' value={{item.pk}}>
         <input type="hidden" name='bidder' value={{user.bidder_info.pk}}> {% comment "replace with user.bidder_info.pk" %}{% endcomment %}
+        <select id="saved-cards">
+            {% for card in saved_cards %}
+                <option value="{{ card.id }}">
+                    {{ card.card.brand }} ending in {{ card.card.last4 }} (Exp: {{ card.card.exp_month }}/{{ card.card.exp_year }})
+                </option>
+            {% endfor %}
+        </select>
+        <input type="hidden" id="selected-payment-method" name="selected_payment_method">
         <input type="submit" name='submit' value="Place Bid for {{lab | moneyify}}" id="bid-button">
     </form>
     <p>Bid History v</p>
@@ -51,21 +59,18 @@
         <p>{{bid.bidder.bidder_id}} | {{bid.amount|moneyify}}</p>
     {% endfor %}
 
-    <select id="saved-cards">
-        {% for card in saved_cards %}
-            <option value="{{ card.id }}">
-                {{ card.card.brand }} ending in {{ card.card.last4 }} (Exp: {{ card.card.exp_month }}/{{ card.card.exp_year }})
-            </option>
-        {% endfor %}
-    </select>
-
     <script>
         const stripe = Stripe('{{STRIPE_TEST_PUBLIC_KEY}}');
 
-        const selectedPaymentMethod = document.getElementById('saved-cards').value;
+        document.getElementById('saved-cards').addEventListener('change', function() {
+            const selectedPaymentMethod = document.getElementById('saved-cards').value;
+            document.getElementById('selected-payment-method').value = selectedPaymentMethod;
+        });
+
         
         document.getElementById('bid-form').addEventListener('submit', async (e) => {
             e.preventDefault();
+            const selectedPaymentMethod = document.getElementById('saved-cards').value;
             const clientSecret = '{{setup_intent.client_secret}}';
             const {error} = await stripe.confirmCardSetup(clientSecret,
             {
