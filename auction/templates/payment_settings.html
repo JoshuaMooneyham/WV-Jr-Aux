@@ -6,9 +6,11 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="{% url "add_payment_method" %}">Add new</a>
     {% for card in saved_cards %}
-    {{ card.card.brand }} ending in {{ card.card.last4 }} (Exp: {{ card.card.exp_month }}/{{ card.card.exp_year }}) 
+    <p>{{ card.card.brand }} ending in {{ card.card.last4 }} (Exp: {{ card.card.exp_month }}/{{ card.card.exp_year }})</p> 
     <a href="{% url "edit_payment_method" card.id %}"><button>Edit</button></a>
+    <a href="{% url "delete_payment_method" card.id %}"><button>Delete</button></a>
     {% endfor %}
 </body>
 </html>

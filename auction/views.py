@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpRequest, HttpResponse, JsonResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 import stripe.error
@@ -116,10 +116,24 @@ def edit_payment_method(request: HttpRequest, payment_method_id):
     current_year = datetime.datetime.today().year
     month_list = [f"{month:02}" for month in range(1, 13)]
     year_list = range(current_year, current_year + 20)
-    card = stripe.PaymentMethod.retrieve(payment_method_id)
+    payment_method = stripe.PaymentMethod.retrieve(payment_method_id)
     if request.method == "POST":
-        stripe.PaymentMethod.modify(card.id)
-    return render(request, "edit_payment_method.html", {"card": card, "month_list": month_list, "year_list": year_list})
+        stripe.PaymentMethod.modify(
+            payment_method_id,
+            card={
+                "exp_month":request.POST.get("exp_month"),
+                "exp_year":request.POST.get("exp_year"),
+                }
+            )
+    return render(request, "edit_payment_method.html", {"card": payment_method, "month_list": month_list, "year_list": year_list})
+
+def delete_payment_method(request: HttpRequest, payment_method_id):
+    stripe.api_key = settings.STRIPE_KEY
+    try:
+        stripe.PaymentMethod.detach(payment_method_id)
+    except:
+        logger.debug("Can't remove")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def create_setup_intent(request: HttpRequest, product_id, payment_method_id):
     stripe.api_key = settings.STRIPE_KEY
@@ -156,7 +170,7 @@ def end_auction(request: HttpRequest, product_id):
         },
         confirm=True
     )
-    return HttpResponse()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         
 
 def testingView(req: HttpRequest) -> HttpResponse:

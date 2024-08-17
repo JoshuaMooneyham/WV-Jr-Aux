@@ -4500,3 +4500,369 @@ https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc 
 message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
 body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
 link=https://dashboard.stripe.com/test/logs/req_hu0b1h92g1QkCf message='Dashboard link for request'
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_Cj6oHqPaggLpQu message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/POST
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/payment_methods/POST HTTP/11" 404 336
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/POST response_code=404
+body='{\n  "error": {\n    "code": "resource_missing",\n    "doc_url": "https://stripe.com/docs/error-codes/resource-missing",\n    "message": "No such PaymentMethod: \'POST\'",\n    "param": "payment_method",\n    "request_log_url": "https://dashboard.stripe.com/test/logs/req_3tRVxJnULOPrpN?t=1723857455",\n    "type": "invalid_request_error"\n  }\n}\n' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_3tRVxJnULOPrpN message='Dashboard link for request'
+error_code=resource_missing error_message="No such PaymentMethod: 'POST'" error_param=payment_method error_type=invalid_request_error message='Stripe API error received'
+Internal Server Error: /auction/edit-payment-method/POST
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 119, in edit_payment_method
+    card = stripe.PaymentMethod.retrieve(payment_method_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_payment_method.py", line 2601, in retrieve
+    instance.refresh()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 130, in _request_and_refresh
+    obj = StripeObject._request(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_stripe_object.py", line 411, in _request
+    return self._requestor.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 196, in request
+    resp = requestor._interpret_response(rbody, rcode, rheaders)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 732, in _interpret_response
+    self.handle_error_response(rbody, rcode, resp.data, rheaders)
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 321, in handle_error_response
+    raise err
+stripe._error.InvalidRequestError: Request req_3tRVxJnULOPrpN: No such PaymentMethod: 'POST'
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_3CNISexL1uFWc9 message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/POST
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/payment_methods/POST HTTP/11" 404 336
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/POST response_code=404
+body='{\n  "error": {\n    "code": "resource_missing",\n    "doc_url": "https://stripe.com/docs/error-codes/resource-missing",\n    "message": "No such PaymentMethod: \'POST\'",\n    "param": "payment_method",\n    "request_log_url": "https://dashboard.stripe.com/test/logs/req_j4XIu4ypWlYvou?t=1723857636",\n    "type": "invalid_request_error"\n  }\n}\n' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_j4XIu4ypWlYvou message='Dashboard link for request'
+error_code=resource_missing error_message="No such PaymentMethod: 'POST'" error_param=payment_method error_type=invalid_request_error message='Stripe API error received'
+Internal Server Error: /auction/edit-payment-method/POST
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 119, in edit_payment_method
+    payment_method = stripe.PaymentMethod.retrieve(payment_method_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_payment_method.py", line 2601, in retrieve
+    instance.refresh()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 130, in _request_and_refresh
+    obj = StripeObject._request(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_stripe_object.py", line 411, in _request
+    return self._requestor.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 196, in request
+    resp = requestor._interpret_response(rbody, rcode, rheaders)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 732, in _interpret_response
+    self.handle_error_response(rbody, rcode, resp.data, rheaders)
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 321, in handle_error_response
+    raise err
+stripe._error.InvalidRequestError: Request req_j4XIu4ypWlYvou: No such PaymentMethod: 'POST'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_WLEZne8SNTOCjv message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_s6VhR8F1ZNOT0b message='Dashboard link for request'
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_XnAzlKEpNeYwAc message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/POST
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/payment_methods/POST HTTP/11" 404 336
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/POST response_code=404
+body='{\n  "error": {\n    "code": "resource_missing",\n    "doc_url": "https://stripe.com/docs/error-codes/resource-missing",\n    "message": "No such PaymentMethod: \'POST\'",\n    "param": "payment_method",\n    "request_log_url": "https://dashboard.stripe.com/test/logs/req_wmmDmRdXWCbhP7?t=1723857788",\n    "type": "invalid_request_error"\n  }\n}\n' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_wmmDmRdXWCbhP7 message='Dashboard link for request'
+error_code=resource_missing error_message="No such PaymentMethod: 'POST'" error_param=payment_method error_type=invalid_request_error message='Stripe API error received'
+Internal Server Error: /auction/edit-payment-method/POST
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 119, in edit_payment_method
+    payment_method = stripe.PaymentMethod.retrieve(payment_method_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_payment_method.py", line 2601, in retrieve
+    instance.refresh()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 130, in _request_and_refresh
+    obj = StripeObject._request(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_stripe_object.py", line 411, in _request
+    return self._requestor.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 196, in request
+    resp = requestor._interpret_response(rbody, rcode, rheaders)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 732, in _interpret_response
+    self.handle_error_response(rbody, rcode, resp.data, rheaders)
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 321, in handle_error_response
+    raise err
+stripe._error.InvalidRequestError: Request req_wmmDmRdXWCbhP7: No such PaymentMethod: 'POST'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_EZtu557o3lLXIj message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_2xvgQhZVASUCRT message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=card[exp_month]=06&card[exp_year]=2040
+https://api.stripe.com:443 "POST /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1034
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 6,\n    "exp_year": 2040,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_3krII2ZdFk68IB message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1034
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 6,\n    "exp_year": 2040,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_CX6T1xWma4114S message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=card[exp_month]=06&card[exp_year]=2040
+https://api.stripe.com:443 "POST /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1034
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 6,\n    "exp_year": 2040,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_tJbWnOPnQ1wPIJ message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1034
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 6,\n    "exp_year": 2040,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_C28jRNFhN24Zen message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card HTTP/11" 200 1327
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 6,\n        "exp_year": 2040,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723595525,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_71Fe32h0d39Hyb message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card HTTP/11" 200 1327
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 6,\n        "exp_year": 2040,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723595525,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_RjuEOJiLDloJcd message='Dashboard link for request'
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK&type=card
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card HTTP/11" 200 1327
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 6,\n        "exp_year": 2040,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723595525,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_E3sLAMTeIQUMvr message='Dashboard link for request'
+Internal Server Error: /auction/payment-method-settings/
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 112, in payment_settings
+    return render(request, "payment_settings.html", {"saved_cards": saved_cards})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\defaulttags.py", line 242, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'delete_payment_method' not found. 'delete_payment_method' is not a valid view function or pattern name.
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /payment-method-settings
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK&type=card
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card HTTP/11" 200 1327
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 6,\n        "exp_year": 2040,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723595525,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_KhzJ39s7xhEO7t message='Dashboard link for request'
+Internal Server Error: /auction/payment-method-settings/
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 112, in payment_settings
+    return render(request, "payment_settings.html", {"saved_cards": saved_cards})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\defaulttags.py", line 242, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'delete_payment_method' not found. 'delete_payment_method' is not a valid view function or pattern name.
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK&type=card
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card HTTP/11" 200 1327
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 6,\n        "exp_year": 2040,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723595525,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_iJbiHZXTlNpvSX message='Dashboard link for request'
+Received payment_method_id: pm_1PobcBHJI2ETfc7UKgSuV7If
+cus_QenByWo9fdFylK
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_methods/pm_1PobcBHJI2ETfc7UKgSuV7If/attach
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK
+https://api.stripe.com:443 "POST /v1/payment_methods/pm_1PobcBHJI2ETfc7UKgSuV7If/attach HTTP/11" 200 1034
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PobcBHJI2ETfc7UKgSuV7If/attach response_code=200
+body='{\n  "id": "pm_1PobcBHJI2ETfc7UKgSuV7If",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "TGssX4XbzvZmL5nJ",\n    "funding": "debit",\n    "generated_from": null,\n    "last4": "5556",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723858776,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_W4YRwOuwBOwcu0 message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK
+api_version=2024-06-20 message='Post details' post_data=invoice_settings[default_payment_method]=pm_1PobcBHJI2ETfc7UKgSuV7If
+https://api.stripe.com:443 "POST /v1/customers/cus_QenByWo9fdFylK HTTP/11" 200 661
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QenByWo9fdFylK response_code=200
+body='{\n  "id": "cus_QenByWo9fdFylK",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723589653,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "johnny@gmail.com",\n  "invoice_prefix": "B104871A",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PobcBHJI2ETfc7UKgSuV7If",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Johnny Doe",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_eLozSif6dmTMHE message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card HTTP/11" 200 2563
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PobcBHJI2ETfc7UKgSuV7If",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 12,\n        "exp_year": 2034,\n        "fingerprint": "TGssX4XbzvZmL5nJ",\n        "funding": "debit",\n        "generated_from": null,\n        "last4": "5556",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723858776,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    },\n    {\n      "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 6,\n        "exp_year": 2040,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723595525,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_lk4xuFLqxtZ1yU message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_methods/pm_1PobcBHJI2ETfc7UKgSuV7If/detach
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "POST /v1/payment_methods/pm_1PobcBHJI2ETfc7UKgSuV7If/detach HTTP/11" 200 1018
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PobcBHJI2ETfc7UKgSuV7If/detach response_code=200
+body='{\n  "id": "pm_1PobcBHJI2ETfc7UKgSuV7If",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "TGssX4XbzvZmL5nJ",\n    "funding": "debit",\n    "generated_from": null,\n    "last4": "5556",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723858776,\n  "customer": null,\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_ydq6HLtNinSyW3 message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card HTTP/11" 200 1327
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 6,\n        "exp_year": 2040,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723595525,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_EyfEaf3XT8S7kS message='Dashboard link for request'
