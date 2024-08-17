@@ -4,17 +4,6 @@
 
 {% block content %}
     <div class="auctionFront">
-        {% comment %} <div class='login'>
-            {% if user.is_authenticated %}
-                <a href="{% url "logout" %}">
-                    <button>LogOut</button>
-                </a>
-            {% else %}
-                <a href="{% url "login" %}">
-                    <button>LogIn</button>
-                </a>
-            {% endif %}
-        </div> {% endcomment %}
         <div class='time'>
                 <h2 class='auctionTitle'>{{auction.name}}</h2>
             {% if over %}
@@ -32,7 +21,7 @@
             {% else %}
                 {% for item in items %}
                     <div class='item'>
-                        <a class='itemA' href="{% url 'displayProduct' item.pk %}">
+                        <a class='itemA' href="{% url 'displayProduct' auction.pk item.pk %}">
                             <img src="{{item.images.all | firstImg}}" alt="">
                             <h3>{{item.name}}</h3>
                             <p>Current Bid: <b>{{item.current_bid | moneyify}}</b></p>
@@ -48,7 +37,7 @@
                             {% else %}
                                 {% for group in user.groups.all %}
                                     {% if 'Admin' == group.name %}
-                                        <a href="{% url "deleteItem" item.pk %}">
+                                        <a href="{% url "deleteProduct" auction.pk item.pk %}">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </a>
                                     {% endif %}
