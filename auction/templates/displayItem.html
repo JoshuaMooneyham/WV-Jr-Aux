@@ -49,7 +49,8 @@
             {% endfor %}
         </select>
         <input type="hidden" id="selected-payment-method" name="selected_payment_method">
-        <input type="submit" name='submit' value="Place Bid for {{lab | moneyify}}" id="bid-button">
+        <input type="hidden" name="setup_intent" value={{setup_intent.id}}>
+        <input type="submit" name='btnSubmit' value="Place Bid for {{lab | moneyify}}" id="bid-button">
     </form>
     <p>Bid History v</p>
     {% if item.bid_set.all|length == 0 %}
@@ -81,7 +82,17 @@
                 console.error("Bid Failed:", error);
             } else {
                 console.log('Bid Successful!');
-                console.log(e);
+                console.log("Payment Method ID:", selectedPaymentMethod)
+
+                document.getElementById('selected-payment-method').value = selectedPaymentMethod
+                const form = document.getElementById('bid-form');
+
+                if (form) {
+                    console.log('Form submitted')
+                    form.submit();
+                } else {
+                    console.error("Form not found");
+                }
             }
         });
     </script>

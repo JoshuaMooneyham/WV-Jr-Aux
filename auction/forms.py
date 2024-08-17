@@ -14,7 +14,7 @@ class CardForm(forms.Form):
 class CreateAuctionItemForm(forms.ModelForm):
     class Meta:
         model = AuctionItem
-        fields = ['name', 'description', 'starting_bid', 'autobuy_price']
+        fields = ['name', 'description', 'starting_bid', 'autobuy_price', 'value']
 
 # class PlaceBidForm(forms.ModelForm):
 #     class Meta:
