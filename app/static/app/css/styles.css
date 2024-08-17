@@ -1,13 +1,11 @@
 @font-face {
-    font-family: 'Futura-Bold';
-    src: url("/static/app/fonts/Futura Bold.ttf") format('truetype');
-    font-weight: bold;
-    font-style: normal;
+    font-family: 'Belinda-W00';
+    src: url("/static/app/fonts/Belinda-W00-Regular.ttf");
 }
 
 @font-face {
-    font-family: 'Belinda-W00';
-    src: url("/static/app/fonts/Belinda-W00-Regular.ttf");
+    font-family: 'Futura-Book';
+    src: url("/static/app/fonts/Futura Book.ttf");
 }
 
 * {
@@ -54,7 +52,7 @@ body {
 
 .header_text {
     color: rgb(0, 48, 135) !important;
-    font-family: 'Belinda-W00', sans-serif;
+    font-family: 'Futura-Book', sans-serif;
     font-size: 2rem;
     text-align: left;
     margin-left: 10px; /* Space between image and text */
@@ -70,6 +68,7 @@ body {
 .myNav a {
     color: rgb(0, 48, 135) !important;
     text-decoration: none;
+    font-family: 'Futura Book', sans-serif;
     font-size: 1.2rem;
     transition: color 0.3s ease;
 }
@@ -99,7 +98,7 @@ body {
 
 .body_text{
     margin: 3%;
-    color: rgb(246, 236, 97);
+    color: rgb(0, 48, 135);
     font-family: 'Futura';
     font-size: 1.2rem;
     text-align: center;
@@ -190,7 +189,7 @@ body {
 .events_box p {
     text-align: center;
     font-size: 1.2rem; /* Adjust font size for event text */
-    color: rgb(246, 236, 97) !important;
+    color: rgb(0, 48, 135);
     margin: 5px 0; /* Space between event items */
 }
 
@@ -202,39 +201,62 @@ body {
     border-radius: 10%;
     align-items: center;
 }
-.name_headers{
-    /* text-decoration: underline overline; */
-    /* color: rgb(246, 236, 97) !important; */
+.name_headers {
+    font-family: 'Belinda-W00';
     color: rgb(0, 48, 135);
     text-align: center;
     padding:1%;
-    font-family: "Belinda-W00";
 }
 /* <------------CONTACT US------------> */
-.box{
-    border: 2px solid white;
-    border-width: 3%;
-    margin-left: 5%;
-    margin-right: 5%
-}
-.contact_us{
-    padding: 3%;
-    color: rgb(246, 236, 97) !important;
-    font-family: 'Futura';
-    font-size: 1.2rem;
-    text-align: center;
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5% 10%; /* Adjust padding for spacing */
 }
 
-.address{
-    color: white;
-    font-family: 'Futura';
-    padding: 2%;
+.contact-left {
+    flex: 1;
+    max-width: 50%;
+    padding-right: 5%; /* Space between the two sections */
+}
+
+.contact-right {
+    flex: 1;
+    max-width: 40%;
+    padding-left: 5%;
+    border-left: 2px solid #5B4333; /* Match border color from the image */
+}
+
+.name_headers {
+    font-size: 2rem;
+    /* font-family: 'Futura', sans-serif; */
+    color: rgb(0, 48, 135);
+    /* text-transform: uppercase; */
+    margin-bottom: 2rem;
+}
+
+.contact_us, .address {
+    color: rgb(0, 48, 135);
+    margin-bottom: 1rem;
     font-size: 1.2rem;
-    text-align: center;
+    line-height: 1.5;
+}
+
+
+.contact-link {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: #F6EC61;
+    cursor: pointer;
+    text-align: right;
+    text-decoration: underline;
+}
+.facebook {
+    width:10%;
+    justify-content: center;
 }
 /* <------------ABOUT US------------> */
 .about_container {
-    /* border: 2px solid white; */
     margin: 0 auto; /* Centers the container on the page */
     display: flex;
     justify-content: space-between;
@@ -242,20 +264,14 @@ body {
     max-width: 80%; /* Adjust the width to fit the middle of the page */
     padding: 1%;
     box-sizing: border-box; /* Ensures padding doesn't increase container width */
-    /* background-color: rgb(0, 48, 135, 0.6); */
-    /* background-color: #DBE2E9; */
-}
-
-.left-side {
-    display: flex;
-    align-items: center; /* Aligns the image and text vertically */
 }
 
 .about_image {
-    width: 30%;
+    width: 25%; /* Adjust the size of the image */
     height: auto; /* Maintain aspect ratio */
     border-radius: 10px;
-    margin-left: 3%;
+    margin-right: 3%; /* Space between the image and the text */
+    box-shadow: 3px 3px 9px #fff;
 }
 
 .about_text {
@@ -264,7 +280,14 @@ body {
     line-height: 200%;
     font-size: 1.3rem;
     text-align: left;
-    max-width: 600px;
+    max-width: 70%; /* Decrease the width to allow space for the image */
+}
+
+.divider {
+    margin-top: 20px;
+    border: 0;
+    border-top: 1px solid #003087;
+    width: 100%;
 }
 /* <------------PROJECTS------------> */
 .project-list {
