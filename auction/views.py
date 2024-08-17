@@ -39,11 +39,6 @@ def createProduct(req: HttpRequest, auctionId: int) -> HttpResponse:
                     description=form.cleaned_data.get('description'),
                     metadata={}
                 )
-                price = stripe.Price.create(
-                    currency="usd",
-                    product=product.id,
-                    unit_amount=form.cleaned_data.get('starting_bid'),
-                )
                 newProduct = AuctionItem.objects.create(
                     name=form.cleaned_data.get('name'),
                     active=True,
@@ -151,6 +146,7 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
         for item in auction.auctionitem_set.all():
             print(item.active)
             item.active = False
+            end_auction(req, id)
             item.save()
             print(item.active)
     elif now > startTime:
@@ -316,7 +312,6 @@ def create_setup_intent(request: HttpRequest, product_id, payment_method_id):
     stripe.api_key = settings.STRIPE_KEY
     bidder = Bidder.objects.get(user=request.user)
     customer = stripe.Customer.retrieve(id=bidder.stripe_id)
-    item = AuctionItem.objects.get(stripe_id=product_id)
 
     setup_intent = stripe.SetupIntent.create(
         customer=customer.id,
@@ -328,27 +323,44 @@ def create_setup_intent(request: HttpRequest, product_id, payment_method_id):
     )
     return setup_intent
 
-def end_auction(request: HttpRequest, product_id):
-    stripe.api_key = settings.STRIPE_KEY
-    item = AuctionItem.objects.get(stripe_id=product_id)
-    highest_bid = Bid.objects.filter(item=item).order_by("-amount").first()
-    logger.debug(highest_bid)
-    setup_intent = stripe.SetupIntent.retrieve(highest_bid.payment_intent_id)
-    logger.debug(f"Setup Intent: {setup_intent}")
-    stripe.PaymentIntent.create(
-        amount=item.current_bid,
-        currency="usd",
-        customer=highest_bid.bidder.stripe_id,
-        payment_method=setup_intent.payment_method,
-        automatic_payment_methods=
-        {
-            "enabled": True,
-            "allow_redirects": "never",
-        },
-        confirm=True
-    )
+def end_auction(request: HttpRequest, id):
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        auction = Auction.objects.get(id=id)
+        items = auction.auctionitem_set.all()
+        logger.debug(f"Auction Items: {items}")
+        for item in items:
+            stripe_product = stripe.Product.retrieve(item.stripe_id)
+            if item.active:
+                stripe.Product.modify(
+                    stripe_product.id,
+                    active=False,
+                )
+            try:
+                highest_bid = Bid.objects.filter(item=item).order_by("-amount").first()
+                logger.debug(f"Item Highest Bid: {highest_bid}")
+                if highest_bid:
+                    
+                        setup_intent = stripe.SetupIntent.retrieve(highest_bid.payment_intent_id)
+                        if setup_intent and setup_intent.status == "succeeded":
+                            payment_intent = stripe.PaymentIntent.create(
+                                amount=item.current_bid,
+                                currency="usd",
+                                customer=highest_bid.bidder.stripe_id,
+                                payment_method=setup_intent.payment_method,
+                                automatic_payment_methods=
+                                {
+                                    "enabled": True,
+                                    "allow_redirects": "never",
+                                },
+                                confirm=True
+                            )
+                            logger.debug(f"Payment Intent Created: {payment_intent}")
+            except:
+                logger.debug("No highest bid.")
+    except:
+        logger.debug(f"Bidding doesn't exist")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-        
 
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY

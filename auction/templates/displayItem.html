@@ -29,7 +29,6 @@
         {% endfor %}
     </div>
     {% comment %} ^^^ DO NOT CHANGE ABOVE ^^^ {% endcomment %}
-    <a href="{% url "end_auction" item.stripe_id %}"><button>End Auction</button></a>
     <h3>{{item.name}}</h3>
     <p>{{item.description}}</p>
     <p>Current Bid: {{item.current_bid | moneyify}}</p>

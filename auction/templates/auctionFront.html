@@ -6,6 +6,7 @@
     <div class="auctionFront">
         <div class='time'>
                 <h2 class='auctionTitle'>{{auction.name}}</h2>
+                <a href="{% url "end_auction" auction.pk %}"><button>End Auction</button></a>
             {% if over %}
                 <h2 class='auctionHeader closed'>Closed</h2>
             {% elif left %}
