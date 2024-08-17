@@ -56,6 +56,7 @@ class Bid(models.Model):
     amount = models.IntegerField() #Cents, base 100
     item = models.ForeignKey(AuctionItem, on_delete=models.CASCADE)
     payment_intent_id = models.TextField(null=True, blank=True)
+    setup_intent_id = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return f'Bid from {self.bidder.bidder_id} on {self.item.name}'

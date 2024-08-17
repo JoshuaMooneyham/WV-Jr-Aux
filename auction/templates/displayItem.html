@@ -55,7 +55,7 @@
     {% if item.bid_set.all|length == 0 %}
         <p>There are currently no bids. Place one now!</p>
     {% endif %}
-    {% for bid in item.bid_set.all reversed %}
+    {% for bid in item.bid_set.all %}
         <p>{{bid.bidder.bidder_id}} | {{bid.amount|moneyify}}</p>
     {% endfor %}
 

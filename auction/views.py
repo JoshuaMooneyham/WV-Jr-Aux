@@ -67,7 +67,7 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
         stripe.api_key = settings.STRIPE_KEY  
         if amount != None and (int(amount) >= item.current_bid + 500):
             logger.debug("WORKING!!!!")
-            bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), payment_intent_id=req.POST.get("setup_intent"))
+            bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
             print(bid)
             bid.save()
             item.current_bid = int(amount)
@@ -340,8 +340,8 @@ def end_auction(request: HttpRequest, id):
                 highest_bid = Bid.objects.filter(item=item).order_by("-amount").first()
                 logger.debug(f"Item Highest Bid: {highest_bid}")
                 if highest_bid:
-                    
-                        setup_intent = stripe.SetupIntent.retrieve(highest_bid.payment_intent_id)
+                    if not highest_bid.payment_intent_id:
+                        setup_intent = stripe.SetupIntent.retrieve(highest_bid.setup_intent_id)
                         if setup_intent and setup_intent.status == "succeeded":
                             payment_intent = stripe.PaymentIntent.create(
                                 amount=item.current_bid,
@@ -356,6 +356,8 @@ def end_auction(request: HttpRequest, id):
                                 confirm=True
                             )
                             logger.debug(f"Payment Intent Created: {payment_intent}")
+                            highest_bid.payment_intent_id = payment_intent.id
+                            highest_bid.save()
             except:
                 logger.debug("No highest bid.")
     except:
