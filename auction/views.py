@@ -188,13 +188,12 @@ def registration_view(request: HttpRequest):
     if request.method == "POST":
         form = Create_User_Form(request.POST)
         if form.is_valid():
-            form.save()
             firstname = form.cleaned_data.get("first_name")
             lastname = form.cleaned_data.get("last_name")
-            username = form.cleaned_data.get("username")
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password1")
-            user = authenticate(request, username=username, password=password)
+            form.save()
+            user = authenticate(request, email=email, password=password)
             
             try:
                 stripe.api_key = settings.STRIPE_KEY
@@ -215,24 +214,6 @@ def registration_view(request: HttpRequest):
     else:
         form = Create_User_Form()
     return render(request, "registration.html", {"form": form})
-
-# ==={ Login }=== #
-
-def login_view(request: HttpRequest):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect("add_payment_method")
-        else:
-            messages.error(request, "Incorrect username and password combination")
-    return render(request, "auction_login.html")
-
-
-
-
 
 
 

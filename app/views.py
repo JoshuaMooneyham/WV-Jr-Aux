@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from app.decorators import *
+from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request: HttpRequest) -> HttpResponse:
@@ -34,13 +35,13 @@ def login_view(req: HttpRequest) -> HttpResponse:
     print('HI')
     if req.user.is_authenticated:
         print("Testing1")
-        return redirect('auctionFront')
+        return redirect('auctionFront', 1)
 
     if req.method == 'POST':
-        username = req.POST.get('username')
+        email = req.POST.get('email')
         password = req.POST.get('password')
-
-        user = authenticate(req, username=username, password=password)
+        
+        user = authenticate(req, username=User.objects.get(email=email).username, password=password)
 
         if user is not None:
             login(req, user)
