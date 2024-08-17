@@ -106,6 +106,21 @@ def list_payment_methods(request: HttpRequest):
     )
     return payment_methods
 
+def payment_settings(request: HttpRequest):
+    stripe.api_key = settings.STRIPE_KEY
+    saved_cards = list_payment_methods(request)
+    return render(request, "payment_settings.html", {"saved_cards": saved_cards})
+
+def edit_payment_method(request: HttpRequest, payment_method_id):
+    stripe.api_key = settings.STRIPE_KEY
+    current_year = datetime.datetime.today().year
+    month_list = [f"{month:02}" for month in range(1, 13)]
+    year_list = range(current_year, current_year + 20)
+    card = stripe.PaymentMethod.retrieve(payment_method_id)
+    if request.method == "POST":
+        stripe.PaymentMethod.modify(card.id)
+    return render(request, "edit_payment_method.html", {"card": card, "month_list": month_list, "year_list": year_list})
+
 def create_setup_intent(request: HttpRequest, product_id, payment_method_id):
     stripe.api_key = settings.STRIPE_KEY
     bidder = Bidder.objects.get(user=request.user)
@@ -166,11 +181,6 @@ def productsTest(req: HttpRequest) -> HttpResponse:
                     active=True,
                     description=form.cleaned_data.get('description'),
                     metadata={}
-                )
-                price = stripe.Price.create(
-                    currency="usd",
-                    product=product.id,
-                    unit_amount=form.cleaned_data.get('starting_bid'),
                 )
                 newProduct = AuctionItem.objects.create(
                     name=form.cleaned_data.get('name'),

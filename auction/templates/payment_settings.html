@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for card in saved_cards %}
+    {{ card.card.brand }} ending in {{ card.card.last4 }} (Exp: {{ card.card.exp_month }}/{{ card.card.exp_year }}) 
+    <a href="{% url "edit_payment_method" card.id %}"><button>Edit</button></a>
+    {% endfor %}
+</body>
+</html>

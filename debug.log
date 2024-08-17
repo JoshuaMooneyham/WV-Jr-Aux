@@ -3607,3 +3607,896 @@ body='{\n  "id": "pi_3PoYyQHJI2ETfc7U1MriufHs",\n  "object": "payment_intent",\n
 link=https://dashboard.stripe.com/test/logs/req_wdGSiqE5MHl0UT message='Dashboard link for request'
 C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Python Payment Method: None
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfufTuZjg1J3Bs
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QfufTuZjg1J3Bs HTTP/11" 200 666
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfufTuZjg1J3Bs response_code=200
+body='{\n  "id": "cus_QfufTuZjg1J3Bs",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723848084,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "curious@gmail.com",\n  "invoice_prefix": "BCFEAA41",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PoYqrHJI2ETfc7UEa7Ilv9j",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Curious George",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_MZj8MwJyUsNllE message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/setup_intents
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfufTuZjg1J3Bs&payment_method_types[0]=card&metadata[product_id]=prod_QftdFfddDQiiGq
+https://api.stripe.com:443 "POST /v1/setup_intents HTTP/11" 200 932
+message='Stripe API response' path=https://api.stripe.com/v1/setup_intents response_code=200
+body='{\n  "id": "seti_1PoZJ5HJI2ETfc7UJ4hIqsfF",\n  "object": "setup_intent",\n  "application": null,\n  "automatic_payment_methods": null,\n  "cancellation_reason": null,\n  "client_secret": "seti_1PoZJ5HJI2ETfc7UJ4hIqsfF_secret_Qfv9ZGv40yHN2hA4Vr43Zu4OLOLZO2e",\n  "created": 1723849903,\n  "customer": "cus_QfufTuZjg1J3Bs",\n  "description": null,\n  "flow_directions": null,\n  "last_setup_error": null,\n  "latest_attempt": null,\n  "livemode": false,\n  "mandate": null,\n  "metadata": {\n    "product_id": "prod_QftdFfddDQiiGq"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": null,\n  "payment_method_options": {\n    "card": {\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    }\n  },\n  "payment_method_types": [\n    "card"\n  ],\n  "single_use_mandate": null,\n  "status": "requires_payment_method",\n  "usage": "off_session"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_ZaBHXOLjCMv79M message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QfufTuZjg1J3Bs&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfufTuZjg1J3Bs&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QfufTuZjg1J3Bs&type=card HTTP/11" 200 1328
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QfufTuZjg1J3Bs&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PoYqrHJI2ETfc7UEa7Ilv9j",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 12,\n        "exp_year": 2034,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723848153,\n      "customer": "cus_QfufTuZjg1J3Bs",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_8qQqYqVPpcDfBD message='Dashboard link for request'
+Python Payment Method: None
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfufTuZjg1J3Bs
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QfufTuZjg1J3Bs HTTP/11" 200 666
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfufTuZjg1J3Bs response_code=200
+body='{\n  "id": "cus_QfufTuZjg1J3Bs",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723848084,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "curious@gmail.com",\n  "invoice_prefix": "BCFEAA41",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PoYqrHJI2ETfc7UEa7Ilv9j",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Curious George",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_sJYHVVlSh3BTXD message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/setup_intents
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfufTuZjg1J3Bs&payment_method_types[0]=card&metadata[product_id]=prod_Qfr9Quc4NF6kTd
+https://api.stripe.com:443 "POST /v1/setup_intents HTTP/11" 200 932
+message='Stripe API response' path=https://api.stripe.com/v1/setup_intents response_code=200
+body='{\n  "id": "seti_1PoZXCHJI2ETfc7UQn8NsYo2",\n  "object": "setup_intent",\n  "application": null,\n  "automatic_payment_methods": null,\n  "cancellation_reason": null,\n  "client_secret": "seti_1PoZXCHJI2ETfc7UQn8NsYo2_secret_QfvNxQ2o4gbnnQXtO1sdHPGtWvXsBNn",\n  "created": 1723850778,\n  "customer": "cus_QfufTuZjg1J3Bs",\n  "description": null,\n  "flow_directions": null,\n  "last_setup_error": null,\n  "latest_attempt": null,\n  "livemode": false,\n  "mandate": null,\n  "metadata": {\n    "product_id": "prod_Qfr9Quc4NF6kTd"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": null,\n  "payment_method_options": {\n    "card": {\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    }\n  },\n  "payment_method_types": [\n    "card"\n  ],\n  "single_use_mandate": null,\n  "status": "requires_payment_method",\n  "usage": "off_session"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_hpqr54azw94DPD message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QfufTuZjg1J3Bs&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfufTuZjg1J3Bs&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QfufTuZjg1J3Bs&type=card HTTP/11" 200 1328
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QfufTuZjg1J3Bs&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PoYqrHJI2ETfc7UEa7Ilv9j",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 12,\n        "exp_year": 2034,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723848153,\n      "customer": "cus_QfufTuZjg1J3Bs",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_0jk37Xzzq50Fr6 message='Dashboard link for request'
+WORKING!!!!
+Python Payment Method: pm_1PoYqrHJI2ETfc7UEa7Ilv9j
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfufTuZjg1J3Bs
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QfufTuZjg1J3Bs HTTP/11" 200 666
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfufTuZjg1J3Bs response_code=200
+body='{\n  "id": "cus_QfufTuZjg1J3Bs",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723848084,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "curious@gmail.com",\n  "invoice_prefix": "BCFEAA41",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PoYqrHJI2ETfc7UEa7Ilv9j",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Curious George",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_8UXnybWIZYe1ht message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/setup_intents
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfufTuZjg1J3Bs&payment_method=pm_1PoYqrHJI2ETfc7UEa7Ilv9j&payment_method_types[0]=card&metadata[product_id]=prod_Qfr9Quc4NF6kTd
+https://api.stripe.com:443 "POST /v1/setup_intents HTTP/11" 200 955
+message='Stripe API response' path=https://api.stripe.com/v1/setup_intents response_code=200
+body='{\n  "id": "seti_1PoZXKHJI2ETfc7UJigbKx91",\n  "object": "setup_intent",\n  "application": null,\n  "automatic_payment_methods": null,\n  "cancellation_reason": null,\n  "client_secret": "seti_1PoZXKHJI2ETfc7UJigbKx91_secret_QfvObwdeNlIDJaqU2sZKRRpt27trkJM",\n  "created": 1723850786,\n  "customer": "cus_QfufTuZjg1J3Bs",\n  "description": null,\n  "flow_directions": null,\n  "last_setup_error": null,\n  "latest_attempt": null,\n  "livemode": false,\n  "mandate": null,\n  "metadata": {\n    "product_id": "prod_Qfr9Quc4NF6kTd"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": "pm_1PoYqrHJI2ETfc7UEa7Ilv9j",\n  "payment_method_configuration_details": null,\n  "payment_method_options": {\n    "card": {\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    }\n  },\n  "payment_method_types": [\n    "card"\n  ],\n  "single_use_mandate": null,\n  "status": "requires_confirmation",\n  "usage": "off_session"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_RB0kom2qhtIHUw message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QfufTuZjg1J3Bs&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfufTuZjg1J3Bs&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QfufTuZjg1J3Bs&type=card HTTP/11" 200 1328
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QfufTuZjg1J3Bs&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PoYqrHJI2ETfc7UEa7Ilv9j",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 12,\n        "exp_year": 2034,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723848153,\n      "customer": "cus_QfufTuZjg1J3Bs",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_030ryFnnVadajR message='Dashboard link for request'
+Bid from None on The Bogie Boogie
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/setup_intents/seti_1PoZXCHJI2ETfc7UQn8NsYo2
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/setup_intents/seti_1PoZXCHJI2ETfc7UQn8NsYo2 HTTP/11" 200 972
+message='Stripe API response' path=https://api.stripe.com/v1/setup_intents/seti_1PoZXCHJI2ETfc7UQn8NsYo2 response_code=200
+body='{\n  "id": "seti_1PoZXCHJI2ETfc7UQn8NsYo2",\n  "object": "setup_intent",\n  "application": null,\n  "automatic_payment_methods": null,\n  "cancellation_reason": null,\n  "client_secret": "seti_1PoZXCHJI2ETfc7UQn8NsYo2_secret_QfvNxQ2o4gbnnQXtO1sdHPGtWvXsBNn",\n  "created": 1723850778,\n  "customer": "cus_QfufTuZjg1J3Bs",\n  "description": null,\n  "flow_directions": null,\n  "last_setup_error": null,\n  "latest_attempt": "setatt_1PoZXGHJI2ETfc7Uvsfuuy9s",\n  "livemode": false,\n  "mandate": null,\n  "metadata": {\n    "product_id": "prod_Qfr9Quc4NF6kTd"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": "pm_1PoYqrHJI2ETfc7UEa7Ilv9j",\n  "payment_method_configuration_details": null,\n  "payment_method_options": {\n    "card": {\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    }\n  },\n  "payment_method_types": [\n    "card"\n  ],\n  "single_use_mandate": null,\n  "status": "succeeded",\n  "usage": "off_session"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_tnkXkTOP4Ss0ip message='Dashboard link for request'
+Setup Intent: {
+  "application": null,
+  "automatic_payment_methods": null,
+  "cancellation_reason": null,
+  "client_secret": "seti_1PoZXCHJI2ETfc7UQn8NsYo2_secret_QfvNxQ2o4gbnnQXtO1sdHPGtWvXsBNn",
+  "created": 1723850778,
+  "customer": "cus_QfufTuZjg1J3Bs",
+  "description": null,
+  "flow_directions": null,
+  "id": "seti_1PoZXCHJI2ETfc7UQn8NsYo2",
+  "last_setup_error": null,
+  "latest_attempt": "setatt_1PoZXGHJI2ETfc7Uvsfuuy9s",
+  "livemode": false,
+  "mandate": null,
+  "metadata": {
+    "product_id": "prod_Qfr9Quc4NF6kTd"
+  },
+  "next_action": null,
+  "object": "setup_intent",
+  "on_behalf_of": null,
+  "payment_method": "pm_1PoYqrHJI2ETfc7UEa7Ilv9j",
+  "payment_method_configuration_details": null,
+  "payment_method_options": {
+    "card": {
+      "mandate_options": null,
+      "network": null,
+      "request_three_d_secure": "automatic"
+    }
+  },
+  "payment_method_types": [
+    "card"
+  ],
+  "single_use_mandate": null,
+  "status": "succeeded",
+  "usage": "off_session"
+}
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/payment_intents
+api_version=2024-06-20 message='Post details' post_data=amount=600&currency=usd&customer=cus_QfufTuZjg1J3Bs&payment_method=pm_1PoYqrHJI2ETfc7UEa7Ilv9j&automatic_payment_methods[enabled]=True&automatic_payment_methods[allow_redirects]=never&confirm=True
+https://api.stripe.com:443 "POST /v1/payment_intents HTTP/11" 200 1562
+message='Stripe API response' path=https://api.stripe.com/v1/payment_intents response_code=200
+body='{\n  "id": "pi_3PoZXxHJI2ETfc7U0nRDWtDA",\n  "object": "payment_intent",\n  "amount": 600,\n  "amount_capturable": 0,\n  "amount_details": {\n    "tip": {}\n  },\n  "amount_received": 600,\n  "application": null,\n  "application_fee_amount": null,\n  "automatic_payment_methods": {\n    "allow_redirects": "never",\n    "enabled": true\n  },\n  "canceled_at": null,\n  "cancellation_reason": null,\n  "capture_method": "automatic_async",\n  "client_secret": "pi_3PoZXxHJI2ETfc7U0nRDWtDA_secret_W5MWo1GkVWpeEbLpP1tDBzEpf",\n  "confirmation_method": "automatic",\n  "created": 1723850825,\n  "currency": "usd",\n  "customer": "cus_QfufTuZjg1J3Bs",\n  "description": null,\n  "invoice": null,\n  "last_payment_error": null,\n  "latest_charge": "ch_3PoZXxHJI2ETfc7U04CAes2e",\n  "livemode": false,\n  "metadata": {},\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": "pm_1PoYqrHJI2ETfc7UEa7Ilv9j",\n  "payment_method_configuration_details": {\n    "id": "pmc_1PkwGRHJI2ETfc7Uuse2O11o",\n    "parent": null\n  },\n  "payment_method_options": {\n    "card": {\n      "installments": null,\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    },\n    "link": {\n      "persistent_token": null\n    }\n  },\n  "payment_method_types": [\n    "card",\n    "link"\n  ],\n  "processing": null,\n  "receipt_email": null,\n  "review": null,\n  "setup_future_usage": null,\n  "shipping": null,\n  "source": null,\n  "statement_descriptor": null,\n  "statement_descriptor_suffix": null,\n  "status": "succeeded",\n  "transfer_data": null,\n  "transfer_group": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_jlNFpYas90Fgrv message='Dashboard link for request'
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Python Payment Method: None
+Internal Server Error: /auction/products/24/
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 242, in displayItem
+    setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 111, in create_setup_intent
+    bidder = Bidder.objects.get(user=request.user)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+Python Payment Method: None
+Internal Server Error: /auction/products/23/
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 242, in displayItem
+    setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 111, in create_setup_intent
+    bidder = Bidder.objects.get(user=request.user)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+Python Payment Method: None
+Internal Server Error: /auction/products/23/
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 242, in displayItem
+    setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 111, in create_setup_intent
+    bidder = Bidder.objects.get(user=request.user)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+Internal Server Error: /admin/auction/bid/
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\options.py", line 681, in get_field
+    return self.fields_map[field_name]
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'action_checkbox'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\utils.py", line 289, in lookup_field
+    f = _get_non_gfk_field(opts, name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\utils.py", line 322, in _get_non_gfk_field
+    field = opts.get_field(name)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\options.py", line 683, in get_field
+    raise FieldDoesNotExist(
+django.core.exceptions.FieldDoesNotExist: Bid has no field named 'action_checkbox'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 236, in __get__
+    rel_obj = self.field.get_cached_value(instance)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\mixins.py", line 15, in get_cached_value
+    return instance._state.fields_cache[cache_name]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'bidder'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\templatetags\base.py", line 45, in render
+    return super().render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\library.py", line 258, in render
+    _dict = self.func(*resolved_args, **resolved_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 345, in result_list
+    "results": list(results(cl)),
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 321, in results
+    yield ResultList(None, items_for_result(cl, res, None))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 312, in __init__
+    super().__init__(*items)
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\templatetags\admin_list.py", line 217, in items_for_result
+    f, attr, value = lookup_field(field_name, result, cl.model_admin)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\utils.py", line 298, in lookup_field
+    value = attr(obj)
+            ^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\contrib\admin\options.py", line 999, in action_checkbox
+    "aria-label": format_html(_("Select this object for an action - {}"), obj),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\html.py", line 135, in format_html
+    return mark_safe(format_string.format(*args_safe, **kwargs_safe))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\html.py", line 117, in conditional_escape
+    return escape(text)
+           ^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\functional.py", line 231, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\utils\html.py", line 50, in escape
+    return SafeString(html.escape(str(text)))
+                                  ^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\models.py", line 52, in __str__
+    return f'Bid from {self.bidder.bidder_id} on {self.item.name}'
+                       ^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 254, in __get__
+    rel_obj = self.get_object(instance)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 217, in get_object
+    return qs.get(self.field.get_reverse_related_filter(instance))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+Python Payment Method: None
+Internal Server Error: /auction/products/25/
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 242, in displayItem
+    setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 111, in create_setup_intent
+    bidder = Bidder.objects.get(user=request.user)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Python Payment Method: None
+Internal Server Error: /auction/products/25/
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 242, in displayItem
+    setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 111, in create_setup_intent
+    bidder = Bidder.objects.get(user=request.user)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+Python Payment Method: None
+Internal Server Error: /auction/products/25/
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 242, in displayItem
+    setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 111, in create_setup_intent
+    bidder = Bidder.objects.get(user=request.user)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column auction_bidder.bidder_id does not exist
+LINE 1: ...auction_bidder"."id", "auction_bidder"."user_id", "auction_b...
+                                                             ^
+
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/payment-method-settings/
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 110, in payment_settings
+    saved_cards = list_payment_methods(request)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 103, in list_payment_methods
+    payment_methods = stripe.PaymentMethod.list(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_payment_method.py", line 2526, in list
+    result = cls._static_request(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 177, in _static_request
+    return _APIRequestor._global_instance().request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 186, in request
+    rbody, rcode, rheaders = requestor.request_raw(
+                             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 566, in request_raw
+    ) = self._args_for_request_with_retries(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 468, in _args_for_request_with_retries
+    raise error.AuthenticationError(
+stripe._error.AuthenticationError: No API key provided. (HINT: set your API key using "stripe.api_key = <API-KEY>"). You can generate API keys from the Stripe web interface.  See https://stripe.com/api for details, or email support@stripe.com if you have any questions.
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK&type=card
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card HTTP/11" 200 1328
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 12,\n        "exp_year": 2034,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723595525,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_2nhzxIjYdrQBuy message='Dashboard link for request'
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK&type=card
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card HTTP/11" 200 1328
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 12,\n        "exp_year": 2034,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723595525,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_ZGFKkJYXd6vmzN message='Dashboard link for request'
+Internal Server Error: /auction/payment-method-settings/
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 112, in payment_settings
+    return render(request, "payment_settings.html", {"saved_cards": saved_cards})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\defaulttags.py", line 242, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'edit_payment_method' with arguments '('pm_1PnV8DHJI2ETfc7UBMtjWeSc',)' not found. 1 pattern(s) tried: ['auction/edit\\-payment\\-method/\\Z']
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK&type=card
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card HTTP/11" 200 1328
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 12,\n        "exp_year": 2034,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723595525,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_v3bR0MUXfnJZ8n message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QenByWo9fdFylK&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card HTTP/11" 200 1328
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QenByWo9fdFylK&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n      "object": "payment_method",\n      "allow_redisplay": "unspecified",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": "12345",\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": "pass",\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 12,\n        "exp_year": 2034,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723595525,\n      "customer": "cus_QenByWo9fdFylK",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_U6OlW5IZ5RL2bZ message='Dashboard link for request'
+Internal Server Error: /auction/edit-payment-method/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 122, in edit_payment_method
+    return render(request, "edit_payment_method.html", {"card": card, "month_list": month_list, "year_list": year_list})
+                                                                ^^^^
+UnboundLocalError: cannot access local variable 'card' where it is not associated with a value
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/edit-payment-method/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+Traceback (most recent call last):
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py", line 118, in edit_payment_method
+    card = stripe.PaymentMethod.retrieve(payment_method_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_payment_method.py", line 2601, in retrieve
+    instance.refresh()
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 38, in refresh
+    return self._request_and_refresh("get", self.instance_url())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_resource.py", line 130, in _request_and_refresh
+    obj = StripeObject._request(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_stripe_object.py", line 411, in _request
+    return self._requestor.request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 186, in request
+    rbody, rcode, rheaders = requestor.request_raw(
+                             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 566, in request_raw
+    ) = self._args_for_request_with_retries(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\BCCA GI Student\AppData\Local\Programs\Python\Python312\Lib\site-packages\stripe\_api_requestor.py", line 468, in _args_for_request_with_retries
+    raise error.AuthenticationError(
+stripe._error.AuthenticationError: No API key provided. (HINT: set your API key using "stripe.api_key = <API-KEY>"). You can generate API keys from the Stripe web interface.  See https://stripe.com/api for details, or email support@stripe.com if you have any questions.
+C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_09WA1XKCKt75rx message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_WKvBPJmBW7aFFu message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_02OpHfRbj0yvHP message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_q7o3AP6Gudwb9M message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_OJoCSzHjQDVJon message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc
+api_version=2024-06-20 message='Post details' post_data=
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "GET /v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc HTTP/11" 200 1035
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods/pm_1PnV8DHJI2ETfc7UBMtjWeSc response_code=200
+body='{\n  "id": "pm_1PnV8DHJI2ETfc7UBMtjWeSc",\n  "object": "payment_method",\n  "allow_redisplay": "unspecified",\n  "billing_details": {\n    "address": {\n      "city": null,\n      "country": null,\n      "line1": null,\n      "line2": null,\n      "postal_code": "12345",\n      "state": null\n    },\n    "email": null,\n    "name": null,\n    "phone": null\n  },\n  "card": {\n    "brand": "visa",\n    "checks": {\n      "address_line1_check": null,\n      "address_postal_code_check": "pass",\n      "cvc_check": "pass"\n    },\n    "country": "US",\n    "display_brand": "visa",\n    "exp_month": 12,\n    "exp_year": 2034,\n    "fingerprint": "ambADWqmJTmxpeUT",\n    "funding": "credit",\n    "generated_from": null,\n    "last4": "4242",\n    "networks": {\n      "available": [\n        "visa"\n      ],\n      "preferred": null\n    },\n    "three_d_secure_usage": {\n      "supported": true\n    },\n    "wallet": null\n  },\n  "created": 1723595525,\n  "customer": "cus_QenByWo9fdFylK",\n  "livemode": false,\n  "metadata": {},\n  "radar_options": {},\n  "type": "card"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_hu0b1h92g1QkCf message='Dashboard link for request'
