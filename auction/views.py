@@ -297,6 +297,7 @@ def update_name(request: HttpRequest):
                 name= f"{first_name} {last_name}",
             )
             messages.success(request, "Your name was successfully updated!")
+            return redirect("login_settings")
         else:
             messages.error(request, "Error")
     else:
@@ -316,6 +317,7 @@ def update_email(request: HttpRequest):
                 email=email,
             )
             messages.success(request, "Your email was successfully update!")
+            return redirect("login_settings")
         else:
             messages.error(request, "Error")
     else:
@@ -330,6 +332,7 @@ def update_password(request: HttpRequest):
             user = form.save()
             update_session_auth_hash(request, user)
             messages.success(request, "Your password was successfully updated!")
+            return redirect("login_settings")
         else:
             messages.error(request, "Error")
     else:
@@ -398,6 +401,7 @@ def edit_payment_method(request: HttpRequest, payment_method_id):
                 "exp_year":request.POST.get("exp_year"),
                 }
             )
+        return redirect("payment_settings")
     return render(request, "edit_payment_method.html", {"card": payment_method, "month_list": month_list, "year_list": year_list})
 
 def delete_payment_method(request: HttpRequest, payment_method_id):
