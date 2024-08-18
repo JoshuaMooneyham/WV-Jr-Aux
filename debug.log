@@ -1036,7 +1036,6 @@ Watching for file changes with StatReloader
 C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\models.py changed, reloading.
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
-<<<<<<< HEAD
 Not Found: /static/app/js/scripts.js
 Not Found: /favicon.ico
 Not Found: /static/app/js/scripts.js
@@ -3804,7 +3803,6 @@ body='{\n  "id": "pi_3PoYyQHJI2ETfc7U1MriufHs",\n  "object": "payment_intent",\n
 link=https://dashboard.stripe.com/test/logs/req_wdGSiqE5MHl0UT message='Dashboard link for request'
 C:\Users\BCCA GI Student\Documents\Projects\WV-Jr-Aux\auction\views.py changed, reloading.
 Watching for file changes with StatReloader
->>>>>>> 6c6bca234983d3c750e35f4b61deffc54d16df59
 Watching for file changes with StatReloader
 Python Payment Method: None
 message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47
@@ -5716,6 +5714,8 @@ Watching for file changes with StatReloader
 C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
 Watching for file changes with StatReloader
 C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
 Watching for file changes with StatReloader
 C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
 Watching for file changes with StatReloader
