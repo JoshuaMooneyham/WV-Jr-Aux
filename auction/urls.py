@@ -44,5 +44,8 @@ urlpatterns = [
     
     # ==={ Michaels URLs im not really sure }=== #
     path('add-payment-method/', add_payment_view, name='add_payment_method'),
+    path('edit-payment-method/<str:payment_method_id>', edit_payment_method, name='edit_payment_method'),
+    path('delete-payment-method/<str:payment_method_id>', delete_payment_method, name="delete_payment_method"),
+    path('payment-method-settings/', payment_settings, name='payment_settings'),
     path('end-auction/<str:product_id>', end_auction, name='end_auction'),
 ]
