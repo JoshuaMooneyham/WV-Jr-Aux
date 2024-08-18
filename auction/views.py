@@ -14,11 +14,11 @@ import random
 import datetime
 import re
 
-def generateBidderId() -> int:
-    while True:
-        num: int = random.randint(100000000, 999999999)
-        if len(Bidder.objects.filter(bidder_id=num)) == 0:
-            return num
+# def generateBidderId() -> int:
+#     while True:
+#         num: int = random.randint(100000000, 999999999)
+#         if len(Bidder.objects.filter(bidder_id=num)) == 0:
+#             return num
         
 # Create your views here.
 
@@ -144,11 +144,9 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
     if now > endTime:
         context["over"] = True
         for item in auction.auctionitem_set.all():
-            print(item.active)
             item.active = False
             end_auction(req, id)
             item.save()
-            print(item.active)
     elif now > startTime:
         left = endTime - now
         print(left)
@@ -193,7 +191,7 @@ def registration_view(request: HttpRequest):
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password1")
             form.save()
-            user = authenticate(request, email=email, password=password)
+            user = authenticate(request, username=User.objects.get(email=email).username, password=password)
             
             try:
                 stripe.api_key = settings.STRIPE_KEY
@@ -204,11 +202,12 @@ def registration_view(request: HttpRequest):
                 bidder = Bidder.objects.create(
                     user=user,
                     stripe_id=customer.id,
-                    bidder_id=generateBidderId()
+                    bidder_id=user.username
                 )
+                
 
                 if user.is_authenticated:
-                    return redirect("/auction/login")
+                    return redirect("login")
             except:
                 print("Can't create customer")
     else:
