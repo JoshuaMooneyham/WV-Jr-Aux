@@ -7175,3 +7175,582 @@ Not Found: /static/app/js/scripts.js
 Not Found: /static/app/js/scripts.js
 Not Found: /static/app/js/scripts.js
 >>>>>>> 00ef02ae9d98f72116a261c98d6c63f49b5f98fd
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\templatetags\my_filters.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\templatetags\my_filters.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/1/dashboard/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 216, in auctionDashboard
+    return render(req, 'auctionDashboard.html', {'auctions': auctions, 'items': items, 'auction': auction, 'auctionId': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 861, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 481, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 479, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 597, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 693, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 603, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'count_bids'
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/1/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 164, in auctionFront
+    if now > endTime:
+       ^^^^^^^^^^^^^
+TypeError: can't compare offset-naive and offset-aware datetimes
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/17/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 164, in auctionFront
+    if now > endTime:
+       ^^^^^^^^^^^^^
+TypeError: can't compare offset-naive and offset-aware datetimes
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/17/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 164, in auctionFront
+    now = make_aware(now)
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\utils\timezone.py", line 243, in make_aware
+    raise ValueError("make_aware expects a naive datetime, got %s" % value)
+ValueError: make_aware expects a naive datetime, got 2024-08-18 13:39:19.229701+00:00
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/17/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 163, in auctionFront
+    startTime = auction.start_date.tzinfo = zoneinfo.ZoneInfo('America/Chicago')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: attribute 'tzinfo' of 'datetime.datetime' objects is not writable
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/17/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 166, in auctionFront
+    now = make_aware(now)
+                     ^^^
+UnboundLocalError: cannot access local variable 'now' where it is not associated with a value
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/17/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 166, in auctionFront
+    now = make_aware(datetime.datetime.now)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\utils\timezone.py", line 242, in make_aware
+    if is_aware(value):
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\utils\timezone.py", line 221, in is_aware
+    return value.utcoffset() is not None
+           ^^^^^^^^^^^^^^^
+AttributeError: 'builtin_function_or_method' object has no attribute 'utcoffset'
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/18/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 189, in auctionFront
+    context['left'] = f'{hourS if len(hourS) > 1 else "0"+hourS}:{minuteS if len(minuteS) > 1 else "0"+minuteS}:{secondS if len(secondS) > 1 else "0"+secondS}'
+                                  ^^^^^^^^^^
+TypeError: object of type 'float' has no len()
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/1/dashboard/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 232, in auctionDashboard
+    stringStart = f'{start.month} {start.day}, {start.year} at {start.hour if start.hour < 13 else "12" if start.hour == 0 else start.hour - 12}:{start.minute if start.minute > 9 else "0" + start.minute} {"AM" if start.hour < 12 else "PM"}'
+                                                                                                                                                                                        ~~~~^~~~~~~~~~~~~~
+TypeError: can only concatenate str (not "int") to str
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/1/dashboard/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 236, in auctionDashboard
+    return render(req, 'auctionDashboard.html', {'auctions': auctions, 'start': stringStart, 'end': stringEnd, 'fees': f'{fees / 100:,.2f}', 'bidOnItems': itemsWBids, 'total':total, 'bids': bids, 'items': items, 'auction': auction, 'auctionId': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 481, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 479, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 597, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 670, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: total| - fees * 100||moneyify
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/1/dashboard/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 237, in auctionDashboard
+    return render(req, 'auctionDashboard.html', {'auctions': auctions, 'profit': f'{profit / 100:,.2f}', 'start': stringStart, 'end': stringEnd, 'fees': f'{fees / 100:,.2f}', 'bidOnItems': itemsWBids, 'total':total, 'bids': bids, 'items': items, 'auction': auction, 'auctionId': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 481, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 479, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 597, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 670, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: total| - fees * 100||moneyify
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\models.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /static/app/js/scripts.js
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /static/app/NAJA Crown_Blue.png
+Not Found: /static/app/js/scripts.js
+Not Found: /favicon.ico
+Internal Server Error: /auction/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 265, in auctionHome
+    return render()
+           ^^^^^^^^
+TypeError: render() missing 2 required positional arguments: 'request' and 'template_name'
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
