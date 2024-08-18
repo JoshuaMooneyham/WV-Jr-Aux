@@ -30,6 +30,9 @@
             <button>My Bids</button>
             <button>Liked Items</button>
             <button>Invoices</button>
+            <a href="{% url "account_settings" %}">
+                <button>Settings</button>
+            </a>
             <a href="{% url "logout" %}">
                 <button>Logout</button>
             </a>
@@ -57,11 +60,15 @@
                     {% comment %} <a href="{% url "createAuction" %}"> {% endcomment %}
                         <button onclick='showForm()'>+ New Event</button>
                     {% comment %} </a> {% endcomment %}
-                    <button>Dashboard</button>
-                    <button>Settings</button>
+                    <a href="{% url "auctionDashboard" auction.pk %}">
+                        <button>Dashboard</button>
+                    </a>
+                    <a href="{% url "auctionSettings" auction.pk %}">
+                        <button>Settings</button>
+                    </a>
                     <button>Invoices</button>
                     <a href="{% url "auctionFront" auctionId %}">
-                    <button>View Auction</button>
+                        <button>View Auction</button>
                     </a>
                 {% endif %}
             {% endif %}
@@ -75,9 +82,6 @@
         {% csrf_token %}
         <label class='inputLabel auctionNameLabel'>Name: 
             {{ auctionForm.name }}
-        </label>
-        <label class='inputLabel auctionDescLabel'>Description: 
-            {{ auctionForm.description }}
         </label>
         {{ auctionForm.start_date }}
         {{ auctionForm.end_date }}

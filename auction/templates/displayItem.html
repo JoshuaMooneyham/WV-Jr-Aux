@@ -29,7 +29,6 @@
         {% endfor %}
     </div>
     {% comment %} ^^^ DO NOT CHANGE ABOVE ^^^ {% endcomment %}
-    <a href="{% url "end_auction" item.stripe_id %}"><button>End Auction</button></a>
     <h3>{{item.name}}</h3>
     <p>{{item.description}}</p>
     <p>Current Bid: {{item.current_bid | moneyify}}</p>
@@ -56,7 +55,7 @@
     {% if item.bid_set.all|length == 0 %}
         <p>There are currently no bids. Place one now!</p>
     {% endif %}
-    {% for bid in item.bid_set.all reversed %}
+    {% for bid in item.bid_set.all %}
         <p>{{bid.bidder.bidder_id}} | {{bid.amount|moneyify}}</p>
     {% endfor %}
 

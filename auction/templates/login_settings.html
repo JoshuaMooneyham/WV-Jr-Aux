@@ -1,0 +1,12 @@
+{% extends "sidenav.html" %}
+{% block content %}
+    <div class="account-settings">
+        <h1>Login & Security</h1>
+        <p>Name:</p>
+        <p>{{user.first_name}} {{user.last_name}} <a href="{% url "update_name" %}"><button>Edit</button></a></p>
+        <p>Email:</p>
+        <p>{{user.email}} <a href="{% url "update_email" %}"><button>Edit</button></a></p>
+        <p>Password:</p>
+        <p>********** <a href="{% url "update_password" %}"><button>Edit</button></a></p>
+    </div>
+{% endblock content %}
