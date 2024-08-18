@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>{{ card.card.brand }} ending in {{ card.card.last4 }} (Exp: {{ card.card.exp_month }}/{{ card.card.exp_year }})</p>
+    <form id="edit-card-form" method="POST">
+        {% csrf_token %}
+        <select name="exp_month" id="exp-month">
+            {% for month in month_list %}
+                <option value={{month}}>
+                    {{month}}
+                </option>
+            {% endfor %}
+        </select>
+        <select name="exp_year" id="exp-year">
+            {% for year in year_list %}
+                <option value={{year}}>
+                    {{year}}
+                </option>
+            {% endfor %}
+        </select>
+        <input type="submit" name="submit" value="Save">
+    </form>
+</body>
+</html>
