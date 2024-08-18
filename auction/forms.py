@@ -24,4 +24,4 @@ class CreateAuctionItemForm(forms.ModelForm):
 class CreateAuctionForm(forms.ModelForm):
     class Meta:
         model = Auction
-        fields = ['name', 'start_date', 'end_date', 'description']
+        fields = ['name', 'start_date', 'end_date', 'description', "active"]

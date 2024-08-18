@@ -39,11 +39,6 @@ def createProduct(req: HttpRequest, auctionId: int) -> HttpResponse:
                     description=form.cleaned_data.get('description'),
                     metadata={}
                 )
-                price = stripe.Price.create(
-                    currency="usd",
-                    product=product.id,
-                    unit_amount=form.cleaned_data.get('starting_bid'),
-                )
                 newProduct = AuctionItem.objects.create(
                     name=form.cleaned_data.get('name'),
                     active=True,
@@ -51,14 +46,15 @@ def createProduct(req: HttpRequest, auctionId: int) -> HttpResponse:
                     description=form.cleaned_data.get('description'),
                     starting_bid=form.cleaned_data.get('starting_bid'),
                     current_bid=form.cleaned_data.get('starting_bid'),
+                    value=form.cleaned_data.get('value'),
                     autobuy_price=form.cleaned_data.get('autobuy_price'),
-                    auction=Auction.objects.get(id=auctionId)
+                    auction=Auction.objects.get(id=auctionId),
                 )
                 for file in req.FILES.getlist('images'):
                     ItemImage.objects.create(file=file, item=newProduct)
                 return redirect("auctionFront", 1)
             except:
-                print('something went wrong')
+                print('hi')
     return render(req, 'createProduct.html', {'form': form})
 
 # ==={ Read Item }=== #
@@ -116,23 +112,34 @@ def deleteItem(req: HttpRequest, auctionId: int, id: int) -> HttpResponse:
 # ==={ Create Auction }=== #
 
 def createAuction(req: HttpRequest) -> HttpResponse:
-    form = CreateAuctionForm()
+    # form = CreateAuctionForm()
     if req.method == 'POST':
         form = CreateAuctionForm(req.POST)
         print(req.POST)
         if form.is_valid():
             try:
-                form.save()
-                return redirect('auctionFront')
+                print("testing")
+                print(form.cleaned_data)
+                # auction = Auction.objects.create(
+                #     name=form.cleaned_data.get('name'),
+                #     start_date=form.cleaned_data.get('start_date'),
+                #     end_date=form.cleaned_data.get('end_date'),
+                #     description=form.cleaned_data.get('description'),
+                #     # active=True
+                # )
+                auction = form.save()
+
+                print('hi')
+                return redirect('auctionSettings', auction.id)
             except:
                 print('Error Creating Auction')
-                
-    return render(req, 'createAuction.html', {"form": form})
+    return redirect('auctionSettings')
+    # return render(req, 'createAuction.html', {"form": form})
 
 # ==={ Display Auction }=== #
 
 def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
-    context = {}
+    context = {'page': 'auction'}
 
     auction = Auction.objects.get(id=id)
     context['auction'] = auction
@@ -149,10 +156,8 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
     if now > endTime:
         context["over"] = True
         for item in auction.auctionitem_set.all():
-            print(item.active)
             item.active = False
             item.save()
-            print(item.active)
     elif now > startTime:
         left = endTime - now
         print(left)
@@ -170,17 +175,67 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
 
     return render(req, 'auctionFront.html', context)
 
+# ==={ Delete Auction }=== #
+
+def deleteAuction(req: HttpRequest, id: int) -> HttpResponse:
+
+    try:
+        auction = Auction.objects.get(id=id)
+        auction.delete()
+    except:
+        print('Error')
+    return redirect('auctionSettings')
+
 # ==={ Update Auction }=== #
 
-def viewAuctionsList(req: HttpRequest, id: int) -> HttpResponse:
+def viewAuctionsList(req: HttpRequest, id: int | None = None) -> HttpResponse:
     auctions = Auction.objects.all()
+    if id == None:
+        activeAuction = Auction.objects.first()
+        if activeAuction != None:
+            return redirect("auctionSettings", activeAuction.id)
+
+    return render(req, 'auctionList.html', {'auctions': auctions, 'auctionId': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
 
 
-    return render(req, 'auctionList.html', {'auctions': auctions, 'id': id})
+# ==={ Auction Settings }=== #
+
+def auctionSettings(req: HttpRequest, id: int) ->  HttpResponse:
+    auctions = Auction.objects.all()
+    auction = Auction.objects.get(id=id)
+
+    return render(req, 'auctionSettings.html', {'auctions': auctions, 'auction': auction, 'auctionId': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
+
+
+def auctionDashboard(req: HttpRequest, id: int) ->  HttpResponse:
+    auctions = Auction.objects.all()
+    auction = Auction.objects.get(id=id)
+
+    return render(req, 'auctionDashboard.html', {'auctions': auctions, 'auction': auction, 'auctionId': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
 
 
 
 
+# WORK IN PROGRESS #
+def auctionHome(req: HttpRequest) -> HttpResponse:
+    # if not req.user.is_authenticated or len(req.user.groups) == 0:
+    #     activeAuction = Auction.objects.get(active=True)
+    #     if activeAuction != None:
+    #         return redirect("auctionFront", activeAuction.id)
+    # else:
+    for group in req.user.groups.all():
+        if group.name == 'Admin':
+            activeAuction = Auction.objects.first()
+            if activeAuction != None:
+                return redirect("auctionSettings", activeAuction.id)
+    else:
+        try:
+            activeAuction = Auction.objects.get(active=True)
+            return redirect("auctionFront", activeAuction.id)
+        except:
+            pass
+        
+    return render()
 
 
 

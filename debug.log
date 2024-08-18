@@ -4741,3 +4741,983 @@ https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QfrWF0G7tRmM47&
 message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card response_code=200
 body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PoWG5HJI2ETfc7U4oSloeB0",\n      "object": "payment_method",\n      "allow_redisplay": "always",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": null,\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": null,\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 5,\n        "exp_year": 2029,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723838185,\n      "customer": "cus_QfrWF0G7tRmM47",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
 link=https://dashboard.stripe.com/test/logs/req_iToDQcyIAyI9pp message='Dashboard link for request'
+Watching for file changes with StatReloader
+Not Found: /auction/
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/config/1/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 179, in viewAuctionsList
+    return render(req, 'auctionList.html', {'auctions': auctions, 'id': id})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 861, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 515, in parse
+    self.unclosed_block_tag(parse_until)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 578, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 11: 'for'. Looking for one of: empty, endfor.
+Internal Server Error: /auction/config/1/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 179, in viewAuctionsList
+    return render(req, 'auctionList.html', {'auctions': auctions, 'id': id})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 861, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 481, in parse
+    raise self.error(token, e)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 479, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 597, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 698, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: ' == id' from 'auction.pk == id'
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Python Payment Method: None
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QfrWF0G7tRmM47 HTTP/11" 200 669
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47 response_code=200
+body='{\n  "id": "cus_QfrWF0G7tRmM47",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723836402,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "jmooneyham58@gmail.com",\n  "invoice_prefix": "3D5A644F",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PoWG5HJI2ETfc7U4oSloeB0",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Alec account",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_pK8PdcfM75zlD5 message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/setup_intents
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfrWF0G7tRmM47&payment_method_types[0]=card&metadata[product_id]=prod_Qfr8iarkjYtpgE
+https://api.stripe.com:443 "POST /v1/setup_intents HTTP/11" 200 932
+message='Stripe API response' path=https://api.stripe.com/v1/setup_intents response_code=200
+body='{\n  "id": "seti_1Pon0QHJI2ETfc7UvuS1Nr9V",\n  "object": "setup_intent",\n  "application": null,\n  "automatic_payment_methods": null,\n  "cancellation_reason": null,\n  "client_secret": "seti_1Pon0QHJI2ETfc7UvuS1Nr9V_secret_Qg9J8QYzTG5917CUV0qcq6htbLIvD83",\n  "created": 1723902562,\n  "customer": "cus_QfrWF0G7tRmM47",\n  "description": null,\n  "flow_directions": null,\n  "last_setup_error": null,\n  "latest_attempt": null,\n  "livemode": false,\n  "mandate": null,\n  "metadata": {\n    "product_id": "prod_Qfr8iarkjYtpgE"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": null,\n  "payment_method_options": {\n    "card": {\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    }\n  },\n  "payment_method_types": [\n    "card"\n  ],\n  "single_use_mandate": null,\n  "status": "requires_payment_method",\n  "usage": "off_session"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_5bsRFCPu6VACgR message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfrWF0G7tRmM47&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card HTTP/11" 200 1317
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PoWG5HJI2ETfc7U4oSloeB0",\n      "object": "payment_method",\n      "allow_redisplay": "always",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": null,\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": null,\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 5,\n        "exp_year": 2029,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723838185,\n      "customer": "cus_QfrWF0G7tRmM47",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_Hejlo5SoKBVZz8 message='Dashboard link for request'
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /auction/
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /auction/config/1/
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=jkjhkbdajs&active=True&description=jhkhjkf%3Bln
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 468
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_Qg9xxRsUEScBmU",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723904974,\n  "default_price": null,\n  "description": "jhkhjkf;ln",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "jkjhkbdajs",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723904974,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_busWCgjp4AyI3p message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/prices
+api_version=2024-06-20 message='Post details' post_data=currency=usd&product=prod_Qg9xxRsUEScBmU&unit_amount=100
+https://api.stripe.com:443 "POST /v1/prices HTTP/11" 200 490
+message='Stripe API response' path=https://api.stripe.com/v1/prices response_code=200
+body='{\n  "id": "price_1PondKHJI2ETfc7U7qWsCKUi",\n  "object": "price",\n  "active": true,\n  "billing_scheme": "per_unit",\n  "created": 1723904974,\n  "currency": "usd",\n  "custom_unit_amount": null,\n  "livemode": false,\n  "lookup_key": null,\n  "metadata": {},\n  "nickname": null,\n  "product": "prod_Qg9xxRsUEScBmU",\n  "recurring": null,\n  "tax_behavior": "unspecified",\n  "tiers_mode": null,\n  "transform_quantity": null,\n  "type": "one_time",\n  "unit_amount": 100,\n  "unit_amount_decimal": "100"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_zRTF4oO6ArwL2X message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=jkjhkbdajs&active=True&description=jhkhjkf%3Bln
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 468
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_Qg9xaTAExqnSzM",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723904984,\n  "default_price": null,\n  "description": "jhkhjkf;ln",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "jkjhkbdajs",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723904984,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_3pQ51hktKAUdXQ message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/prices
+api_version=2024-06-20 message='Post details' post_data=currency=usd&product=prod_Qg9xaTAExqnSzM&unit_amount=100
+https://api.stripe.com:443 "POST /v1/prices HTTP/11" 200 490
+message='Stripe API response' path=https://api.stripe.com/v1/prices response_code=200
+body='{\n  "id": "price_1PondUHJI2ETfc7Uo27GloZb",\n  "object": "price",\n  "active": true,\n  "billing_scheme": "per_unit",\n  "created": 1723904984,\n  "currency": "usd",\n  "custom_unit_amount": null,\n  "livemode": false,\n  "lookup_key": null,\n  "metadata": {},\n  "nickname": null,\n  "product": "prod_Qg9xaTAExqnSzM",\n  "recurring": null,\n  "tax_behavior": "unspecified",\n  "tiers_mode": null,\n  "transform_quantity": null,\n  "type": "one_time",\n  "unit_amount": 100,\n  "unit_amount_decimal": "100"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_NU9BX1oHDWMIl9 message='Dashboard link for request'
+Python Payment Method: None
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47
+api_version=2024-06-20 message='Post details' post_data=
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "GET /v1/customers/cus_QfrWF0G7tRmM47 HTTP/11" 200 669
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47 response_code=200
+body='{\n  "id": "cus_QfrWF0G7tRmM47",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723836402,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "jmooneyham58@gmail.com",\n  "invoice_prefix": "3D5A644F",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PoWG5HJI2ETfc7U4oSloeB0",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Alec account",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_mnGyY6Pw80LCsK message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/setup_intents
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfrWF0G7tRmM47&payment_method_types[0]=card&metadata[product_id]=prod_Qfr8iarkjYtpgE
+https://api.stripe.com:443 "POST /v1/setup_intents HTTP/11" 200 932
+message='Stripe API response' path=https://api.stripe.com/v1/setup_intents response_code=200
+body='{\n  "id": "seti_1PoneFHJI2ETfc7UvPegudlM",\n  "object": "setup_intent",\n  "application": null,\n  "automatic_payment_methods": null,\n  "cancellation_reason": null,\n  "client_secret": "seti_1PoneFHJI2ETfc7UvPegudlM_secret_Qg9yzO9weNNCmjWAjPX3CaPi8eGyH5s",\n  "created": 1723905031,\n  "customer": "cus_QfrWF0G7tRmM47",\n  "description": null,\n  "flow_directions": null,\n  "last_setup_error": null,\n  "latest_attempt": null,\n  "livemode": false,\n  "mandate": null,\n  "metadata": {\n    "product_id": "prod_Qfr8iarkjYtpgE"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": null,\n  "payment_method_options": {\n    "card": {\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    }\n  },\n  "payment_method_types": [\n    "card"\n  ],\n  "single_use_mandate": null,\n  "status": "requires_payment_method",\n  "usage": "off_session"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_nSubBdMEoq1NyJ message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfrWF0G7tRmM47&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card HTTP/11" 200 1317
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PoWG5HJI2ETfc7U4oSloeB0",\n      "object": "payment_method",\n      "allow_redisplay": "always",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": null,\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": null,\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 5,\n        "exp_year": 2029,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723838185,\n      "customer": "cus_QfrWF0G7tRmM47",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_OEJYrPuu7l8g6Q message='Dashboard link for request'
+Not Found: /auction/config/1/
+Python Payment Method: None
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47
+api_version=2024-06-20 message='Post details' post_data=
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "GET /v1/customers/cus_QfrWF0G7tRmM47 HTTP/11" 200 669
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47 response_code=200
+body='{\n  "id": "cus_QfrWF0G7tRmM47",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723836402,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "jmooneyham58@gmail.com",\n  "invoice_prefix": "3D5A644F",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PoWG5HJI2ETfc7U4oSloeB0",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Alec account",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_qLpL5M66uYjx5g message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/setup_intents
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfrWF0G7tRmM47&payment_method_types[0]=card&metadata[product_id]=prod_Qfr9Quc4NF6kTd
+https://api.stripe.com:443 "POST /v1/setup_intents HTTP/11" 200 932
+message='Stripe API response' path=https://api.stripe.com/v1/setup_intents response_code=200
+body='{\n  "id": "seti_1PonfgHJI2ETfc7UPdyjqdQN",\n  "object": "setup_intent",\n  "application": null,\n  "automatic_payment_methods": null,\n  "cancellation_reason": null,\n  "client_secret": "seti_1PonfgHJI2ETfc7UPdyjqdQN_secret_Qg9zfo9fRQJ0iXDzAwlFPFbqhuhYrqr",\n  "created": 1723905120,\n  "customer": "cus_QfrWF0G7tRmM47",\n  "description": null,\n  "flow_directions": null,\n  "last_setup_error": null,\n  "latest_attempt": null,\n  "livemode": false,\n  "mandate": null,\n  "metadata": {\n    "product_id": "prod_Qfr9Quc4NF6kTd"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": null,\n  "payment_method_options": {\n    "card": {\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    }\n  },\n  "payment_method_types": [\n    "card"\n  ],\n  "single_use_mandate": null,\n  "status": "requires_payment_method",\n  "usage": "off_session"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_TI77j09mSBVJjk message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfrWF0G7tRmM47&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card HTTP/11" 200 1317
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PoWG5HJI2ETfc7U4oSloeB0",\n      "object": "payment_method",\n      "allow_redisplay": "always",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": null,\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": null,\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 5,\n        "exp_year": 2029,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723838185,\n      "customer": "cus_QfrWF0G7tRmM47",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_9nTuniTUnTjDbM message='Dashboard link for request'
+Python Payment Method: None
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47
+api_version=2024-06-20 message='Post details' post_data=
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "GET /v1/customers/cus_QfrWF0G7tRmM47 HTTP/11" 200 669
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47 response_code=200
+body='{\n  "id": "cus_QfrWF0G7tRmM47",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723836402,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "jmooneyham58@gmail.com",\n  "invoice_prefix": "3D5A644F",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PoWG5HJI2ETfc7U4oSloeB0",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Alec account",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_RI4TcdhVG84lfF message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/setup_intents
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfrWF0G7tRmM47&payment_method_types[0]=card&metadata[product_id]=prod_QeyGaiXwafOKKO
+https://api.stripe.com:443 "POST /v1/setup_intents HTTP/11" 200 932
+message='Stripe API response' path=https://api.stripe.com/v1/setup_intents response_code=200
+body='{\n  "id": "seti_1PonmEHJI2ETfc7UuTt6qbSU",\n  "object": "setup_intent",\n  "application": null,\n  "automatic_payment_methods": null,\n  "cancellation_reason": null,\n  "client_secret": "seti_1PonmEHJI2ETfc7UuTt6qbSU_secret_QgA6Udr1OY9bamOa3urFeAv196Y1E4D",\n  "created": 1723905526,\n  "customer": "cus_QfrWF0G7tRmM47",\n  "description": null,\n  "flow_directions": null,\n  "last_setup_error": null,\n  "latest_attempt": null,\n  "livemode": false,\n  "mandate": null,\n  "metadata": {\n    "product_id": "prod_QeyGaiXwafOKKO"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": null,\n  "payment_method_options": {\n    "card": {\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    }\n  },\n  "payment_method_types": [\n    "card"\n  ],\n  "single_use_mandate": null,\n  "status": "requires_payment_method",\n  "usage": "off_session"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_L54C5RVMtZtgG3 message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfrWF0G7tRmM47&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card HTTP/11" 200 1317
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PoWG5HJI2ETfc7U4oSloeB0",\n      "object": "payment_method",\n      "allow_redisplay": "always",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": null,\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": null,\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 5,\n        "exp_year": 2029,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723838185,\n      "customer": "cus_QfrWF0G7tRmM47",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_lDIiKRFtz2Xq8T message='Dashboard link for request'
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Not Found: /static/app/js/scripts.js
+Python Payment Method: None
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47
+api_version=2024-06-20 message='Post details' post_data=
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "GET /v1/customers/cus_QfrWF0G7tRmM47 HTTP/11" 200 669
+message='Stripe API response' path=https://api.stripe.com/v1/customers/cus_QfrWF0G7tRmM47 response_code=200
+body='{\n  "id": "cus_QfrWF0G7tRmM47",\n  "object": "customer",\n  "address": null,\n  "balance": 0,\n  "created": 1723836402,\n  "currency": null,\n  "default_source": null,\n  "delinquent": false,\n  "description": null,\n  "discount": null,\n  "email": "jmooneyham58@gmail.com",\n  "invoice_prefix": "3D5A644F",\n  "invoice_settings": {\n    "custom_fields": null,\n    "default_payment_method": "pm_1PoWG5HJI2ETfc7U4oSloeB0",\n    "footer": null,\n    "rendering_options": null\n  },\n  "livemode": false,\n  "metadata": {},\n  "name": "Alec account",\n  "next_invoice_sequence": 1,\n  "phone": null,\n  "preferred_locales": [],\n  "shipping": null,\n  "tax_exempt": "none",\n  "test_clock": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_YDi3bHwZlfnlNE message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/setup_intents
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfrWF0G7tRmM47&payment_method_types[0]=card&metadata[product_id]=prod_QfArMAkKSKqrCV
+https://api.stripe.com:443 "POST /v1/setup_intents HTTP/11" 200 932
+message='Stripe API response' path=https://api.stripe.com/v1/setup_intents response_code=200
+body='{\n  "id": "seti_1PonyCHJI2ETfc7UBLVl70L0",\n  "object": "setup_intent",\n  "application": null,\n  "automatic_payment_methods": null,\n  "cancellation_reason": null,\n  "client_secret": "seti_1PonyCHJI2ETfc7UBLVl70L0_secret_QgAIw6DKxLMqUWeURBG23nHUTexngrw",\n  "created": 1723906268,\n  "customer": "cus_QfrWF0G7tRmM47",\n  "description": null,\n  "flow_directions": null,\n  "last_setup_error": null,\n  "latest_attempt": null,\n  "livemode": false,\n  "mandate": null,\n  "metadata": {\n    "product_id": "prod_QfArMAkKSKqrCV"\n  },\n  "next_action": null,\n  "on_behalf_of": null,\n  "payment_method": null,\n  "payment_method_configuration_details": null,\n  "payment_method_options": {\n    "card": {\n      "mandate_options": null,\n      "network": null,\n      "request_three_d_secure": "automatic"\n    }\n  },\n  "payment_method_types": [\n    "card"\n  ],\n  "single_use_mandate": null,\n  "status": "requires_payment_method",\n  "usage": "off_session"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_5j4Cn0qWpxWldl message='Dashboard link for request'
+message='Request to Stripe api' method=get url=https://api.stripe.com/v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card
+api_version=2024-06-20 message='Post details' post_data=customer=cus_QfrWF0G7tRmM47&type=card
+https://api.stripe.com:443 "GET /v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card HTTP/11" 200 1317
+message='Stripe API response' path=https://api.stripe.com/v1/payment_methods?customer=cus_QfrWF0G7tRmM47&type=card response_code=200
+body='{\n  "object": "list",\n  "data": [\n    {\n      "id": "pm_1PoWG5HJI2ETfc7U4oSloeB0",\n      "object": "payment_method",\n      "allow_redisplay": "always",\n      "billing_details": {\n        "address": {\n          "city": null,\n          "country": null,\n          "line1": null,\n          "line2": null,\n          "postal_code": null,\n          "state": null\n        },\n        "email": null,\n        "name": null,\n        "phone": null\n      },\n      "card": {\n        "brand": "visa",\n        "checks": {\n          "address_line1_check": null,\n          "address_postal_code_check": null,\n          "cvc_check": "pass"\n        },\n        "country": "US",\n        "display_brand": "visa",\n        "exp_month": 5,\n        "exp_year": 2029,\n        "fingerprint": "ambADWqmJTmxpeUT",\n        "funding": "credit",\n        "generated_from": null,\n        "last4": "4242",\n        "networks": {\n          "available": [\n            "visa"\n          ],\n          "preferred": null\n        },\n        "three_d_secure_usage": {\n          "supported": true\n        },\n        "wallet": null\n      },\n      "created": 1723838185,\n      "customer": "cus_QfrWF0G7tRmM47",\n      "livemode": false,\n      "metadata": {},\n      "radar_options": {},\n      "type": "card"\n    }\n  ],\n  "has_more": false,\n  "url": "/v1/payment_methods"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_dE1n6cTxJifz3W message='Dashboard link for request'
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\models.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=iuhoipoi[p&active=True&description=lfjlkjwef
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 467
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_QgB21kYIuf3NJw",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723909008,\n  "default_price": null,\n  "description": "lfjlkjwef",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "iuhoipoi[p",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723909008,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_9LcCbDOx5KPf7I message='Dashboard link for request'
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/prices
+api_version=2024-06-20 message='Post details' post_data=currency=usd&product=prod_QgB21kYIuf3NJw&unit_amount=100
+https://api.stripe.com:443 "POST /v1/prices HTTP/11" 200 490
+message='Stripe API response' path=https://api.stripe.com/v1/prices response_code=200
+body='{\n  "id": "price_1PoogOHJI2ETfc7UvWDDGQXE",\n  "object": "price",\n  "active": true,\n  "billing_scheme": "per_unit",\n  "created": 1723909008,\n  "currency": "usd",\n  "custom_unit_amount": null,\n  "livemode": false,\n  "lookup_key": null,\n  "metadata": {},\n  "nickname": null,\n  "product": "prod_QgB21kYIuf3NJw",\n  "recurring": null,\n  "tax_behavior": "unspecified",\n  "tiers_mode": null,\n  "transform_quantity": null,\n  "type": "one_time",\n  "unit_amount": 100,\n  "unit_amount_decimal": "100"\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_1am6oyuUcMqC43 message='Dashboard link for request'
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=iuhoipoi[p&active=True&description=lfjlkjwef
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 467
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_QgB3KiVgLJh3al",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723909080,\n  "default_price": null,\n  "description": "lfjlkjwef",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "iuhoipoi[p",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723909080,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_oaSPBhC8AWTDCU message='Dashboard link for request'
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=jkkj%3Bkfe&active=True&description=jknkm%3Bld%3Bsmm%2C
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 469
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_QgB4Vmroflifyl",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723909136,\n  "default_price": null,\n  "description": "jknkm;ld;smm,",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "jkkj;kfe",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723909136,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_UFKIskYTGqES9J message='Dashboard link for request'
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=uhijfo%3Bkklfkl%3Bfe&active=True&description=khuivsjkljv
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 475
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_QgB5PEqJl1v0fJ",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723909176,\n  "default_price": null,\n  "description": "khuivsjkljv",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "uhijfo;kklfkl;fe",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723909176,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_K1Iwzn9oQWJYx5 message='Dashboard link for request'
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=kajokjkaak&active=True&description=lkdsalkdsa
+Starting new HTTPS connection (1): api.stripe.com:443
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 468
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_QgB8Z6NbwrUSEn",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723909388,\n  "default_price": null,\n  "description": "lkdsalkdsa",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "kajokjkaak",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723909388,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_iMj91t6badBnx0 message='Dashboard link for request'
+Internal Server Error: /auction/1/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column auction_auction.active does not exist
+LINE 1: ...ion"."end_date", "auction_auction"."description", "auction_a...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 136, in auctionFront
+    auction = Auction.objects.get(id=id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column auction_auction.active does not exist
+LINE 1: ...ion"."end_date", "auction_auction"."description", "auction_a...
+                                                             ^
+
+Internal Server Error: /auction/1/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column auction_auction.active does not exist
+LINE 1: ...ion"."end_date", "auction_auction"."description", "auction_a...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 136, in auctionFront
+    auction = Auction.objects.get(id=id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column auction_auction.active does not exist
+LINE 1: ...ion"."end_date", "auction_auction"."description", "auction_a...
+                                                             ^
+
+message='Request to Stripe api' method=post url=https://api.stripe.com/v1/products
+api_version=2024-06-20 message='Post details' post_data=name=testing+Item+wooooooooo&active=True&description=screw+Bogie+bruh
+Resetting dropped connection: api.stripe.com
+https://api.stripe.com:443 "POST /v1/products HTTP/11" 200 487
+message='Stripe API response' path=https://api.stripe.com/v1/products response_code=200
+body='{\n  "id": "prod_QgBCl1u5bS2oUs",\n  "object": "product",\n  "active": true,\n  "attributes": [],\n  "created": 1723909637,\n  "default_price": null,\n  "description": "screw Bogie bruh",\n  "images": [],\n  "livemode": false,\n  "marketing_features": [],\n  "metadata": {},\n  "name": "testing Item wooooooooo",\n  "package_dimensions": null,\n  "shippable": null,\n  "statement_descriptor": null,\n  "tax_code": null,\n  "type": "service",\n  "unit_label": null,\n  "updated": 1723909638,\n  "url": null\n}' message='API response body'
+link=https://dashboard.stripe.com/test/logs/req_muHLS72ja1WDpK message='Dashboard link for request'
+Internal Server Error: /auction/3/config/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 190, in viewAuctionsList
+    return render(req, 'auctionList.html', {'auctions': auctions, 'id': id, "page": 'settings'})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\urls\resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'testView' not found. 'testView' is not a valid view function or pattern name.
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/3/config/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 196, in viewAuctionsList
+    return render(req, 'auctionList.html', {'auctions': auctions, 'id': id, "page": 'settings'})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\urls\resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'testView' not found. 'testView' is not a valid view function or pattern name.
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Forbidden (CSRF token missing.): /auction/testingView/
+Internal Server Error: /auction/testingView/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view auction.views.testingView didn't return an HttpResponse object. It returned None instead.
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/create/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 125, in createAuction
+    return render(req, 'createAuction.html', {"form": form})
+                                                      ^^^^
+UnboundLocalError: cannot access local variable 'form' where it is not associated with a value
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\forms.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/16/config/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 198, in viewAuctionsList
+    return render(req, 'auctionList.html', {'auctions': auctions, 'id': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 326, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 242, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 326, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 326, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\urls\resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'auctionFront' with arguments '('',)' not found. 1 pattern(s) tried: ['auction/(?P<id>[0-9]+)/\\Z']
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /static/app/js/scripts.js
+Internal Server Error: /auction/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 210, in auctionHome
+    if not req.user.is_authenticated or len(req.user.groups) == 0:
+                                        ^^^^^^^^^^^^^^^^^^^^
+TypeError: object of type 'ManyRelatedManager' has no len()
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 221, in auctionHome
+    activeAuction = Auction.objects.get(active=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\db\models\query.py", line 652, in get
+    raise self.model.MultipleObjectsReturned(
+auction.models.Auction.MultipleObjectsReturned: get() returned more than one Auction -- it returned 2!
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 227, in auctionHome
+    return render()
+           ^^^^^^^^
+TypeError: render() missing 2 required positional arguments: 'request' and 'template_name'
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /auction/1/config/
+Traceback (most recent call last):
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py", line 198, in viewAuctionsList
+    return render(req, 'auctionList.html', {'auctions': auctions, 'auctionId': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 326, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\template\defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\venv\Lib\site-packages\django\urls\resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'register' not found. 'register' is not a valid view function or pattern name.
+Not Found: /static/app/js/scripts.js
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\whatt\OneDrive\Documents\VSCode\Projects\Junior Auxiliary\auction\urls.py changed, reloading.
+Watching for file changes with StatReloader

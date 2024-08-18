@@ -22,7 +22,7 @@
             <a href="{% url "login" %}">
                 <button>Log In</button>
             </a>
-            <a href="{% url "registration" %}">
+            <a href="{% url "register" %}">
                 <button>Register</button>
             </a>
         {% elif user.groups.all|length == 0 %}
@@ -121,9 +121,5 @@
         window.location.href = new String(window.location.href).replace(/auction\/[0-9]+/, `auction/${select.value}`)
     })
 </script>
-
-{% comment %} <footer class="footer">
-    <p>© Junior Auxillary of Yalobusha County</p>
-</footer> {% endcomment %}
     
 </html>
