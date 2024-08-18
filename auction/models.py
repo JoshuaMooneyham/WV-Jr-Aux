@@ -7,6 +7,7 @@ class Auction(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     description = models.TextField(null=True, blank=True)
+    active = models.BooleanField()
 
     def __str__(self) -> str:
         return f'Auction: {self.name}'

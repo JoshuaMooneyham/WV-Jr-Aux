@@ -22,6 +22,8 @@ from auction.views import *
 
 urlpatterns = [
 
+    path("", auctionHome, name="auctionHome"),
+
     # ==={ Item CRUD }=== #
     path('<int:auctionId>/products/create', createProduct, name='createProduct'),
     path('<int:auctionId>/products/<int:id>', displayItem, name='displayProduct'),
@@ -31,7 +33,11 @@ urlpatterns = [
     # ==={ Auction CRUD }=== #
     path('create/', createAuction, name='createAuction'),
     path('<int:id>/', auctionFront, name="auctionFront"),
-    path('config/<int:id>', viewAuctionsList, name="auctionsList"),
+    path('<int:id>/delete/', deleteAuction, name='deleteAuction'),
+    path('<int:id>/config/', viewAuctionsList, name="auctionSettings"),
+    path('<int:id>/dashboard/', auctionDashboard, name="auctionDashboard"),
+    path('config/', viewAuctionsList, name="auctionSettings"),
+    # ^^^ NOT DUPLICATES dont delete
 
     # ==={ User Auth }=== #
     path('registration/', registration_view, name='registration'),
