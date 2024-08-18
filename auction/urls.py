@@ -41,9 +41,14 @@ urlpatterns = [
 
     # ==={ User Auth }=== #
     path('registration/', registration_view, name='registration'),
+    path('account-settings/', account_settings, name='account_settings'),
+    path('login-settings/', login_settings, name='login_settings'),
+    path('update-name/', update_name, name='update_name'),
+    path('update-email/', update_email, name='update_email'),
+    path('update-password/', update_password, name='update_password'),
     
     # ==={ Michaels URLs im not really sure }=== #
-    path('add-payment-method/', add_payment_view, name='add_payment_method'),
+    path('add-payment-method/', add_payment_method, name='add_payment_method'),
     path('edit-payment-method/<str:payment_method_id>', edit_payment_method, name='edit_payment_method'),
     path('delete-payment-method/<str:payment_method_id>', delete_payment_method, name="delete_payment_method"),
     path('payment-method-settings/', payment_settings, name='payment_settings'),

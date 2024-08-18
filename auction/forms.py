@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from auction.models import *
 from django.core.exceptions import ValidationError
@@ -23,9 +23,21 @@ class Create_User_Form(UserCreationForm):
             raise ValidationError(f"The email {email} is already in use.")
         else:
             return email
+        
+class UpdateNameForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["first_name", "last_name"]
 
-class CardForm(forms.Form):
-    pass
+class UpdateEmailForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["email"]
+
+class UpdatePasswordForm(PasswordChangeForm):
+    class Meta:
+        model = User
+        fields = ["old_password", "new_password1", "new_password2"]
 
 class CreateAuctionItemForm(forms.ModelForm):
     class Meta:

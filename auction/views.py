@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, JsonResponse, HttpResponseRedirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, update_session_auth_hash
 from django.contrib import messages
 import stripe.error
 from auction.models import *
@@ -67,7 +67,6 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
         amount = req.POST.get('amount')
         stripe.api_key = settings.STRIPE_KEY  
         if amount != None and (int(amount) >= item.current_bid + 500):
-            logger.debug("WORKING!!!!")
             bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
             print(bid)
             bid.save()
@@ -75,7 +74,6 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
             item.save()
     lowestAllowedBid = item.current_bid + 500
     payment_method_id = req.POST.get("selected_payment_method")
-    logger.debug(f"Python Payment Method: {payment_method_id}")
     setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
     saved_cards = list_payment_methods(req)
 
@@ -277,10 +275,70 @@ def registration_view(request: HttpRequest):
     return render(request, "registration.html", {"form": form})
 
 
+# ==={ User Settings }=== #
+
+def account_settings(request: HttpRequest):
+    return render(request, "account_settings.html")
+
+def login_settings(request: HttpRequest):
+    return render(request, "login_settings.html")
+
+def update_name(request: HttpRequest):
+    stripe.api_key = settings.STRIPE_KEY
+    bidder = Bidder.objects.get(user=request.user)
+    if request.method == "POST":
+        form = UpdateNameForm(request.POST, instance=request.user)
+        if form.is_valid():
+            first_name = form.cleaned_data.get("first_name")
+            last_name = form.cleaned_data.get("last_name")
+            form.save()
+            stripe.Customer.modify(
+                bidder.stripe_id,
+                name= f"{first_name} {last_name}",
+            )
+            messages.success(request, "Your name was successfully updated!")
+        else:
+            messages.error(request, "Error")
+    else:
+        form = UpdateNameForm(instance=request.user)
+    return render(request, "update_account.html", {"form": form})
+
+def update_email(request: HttpRequest):
+    stripe.api_key = settings.STRIPE_KEY
+    bidder = Bidder.objects.get(user=request.user)
+    if request.method == "POST":
+        form = UpdateEmailForm(request.POST, instance=request.user)
+        if form.is_valid():
+            email = form.cleaned_data.get("email")
+            form.save()
+            stripe.Customer.modify(
+                bidder.stripe_id,
+                email=email,
+            )
+            messages.success(request, "Your email was successfully update!")
+        else:
+            messages.error(request, "Error")
+    else:
+        form = UpdateEmailForm(instance=request.user)
+    return render(request, "update_account.html", {"form": form})
+
+def update_password(request: HttpRequest):
+    stripe.api_key = settings.STRIPE_KEY
+    if request.method == "POST":
+        form = UpdatePasswordForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, "Your password was successfully updated!")
+        else:
+            messages.error(request, "Error")
+    else:
+        form = UpdatePasswordForm(request.user)
+    return render(request, "update_account.html", {"form": form})
 
 # ============{ MICHAELS VIEWS }============ #
 
-def add_payment_view(request: HttpRequest):
+def add_payment_method(request: HttpRequest):
     if request.method == 'POST':
         data = json.loads(request.body)
         payment_method_id = data.get('payment_method_id')
@@ -347,7 +405,7 @@ def delete_payment_method(request: HttpRequest, payment_method_id):
     try:
         stripe.PaymentMethod.detach(payment_method_id)
     except:
-        logger.debug("Can't remove")
+        print("Can't remove payment method")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def create_setup_intent(request: HttpRequest, product_id, payment_method_id):
@@ -370,7 +428,6 @@ def end_auction(request: HttpRequest, id):
         stripe.api_key = settings.STRIPE_KEY
         auction = Auction.objects.get(id=id)
         items = auction.auctionitem_set.all()
-        logger.debug(f"Auction Items: {items}")
         for item in items:
             stripe_product = stripe.Product.retrieve(item.stripe_id)
             if item.active:
@@ -380,7 +437,6 @@ def end_auction(request: HttpRequest, id):
                 )
             try:
                 highest_bid = Bid.objects.filter(item=item).order_by("-amount").first()
-                logger.debug(f"Item Highest Bid: {highest_bid}")
                 if highest_bid:
                     if not highest_bid.payment_intent_id:
                         setup_intent = stripe.SetupIntent.retrieve(highest_bid.setup_intent_id)
@@ -397,13 +453,12 @@ def end_auction(request: HttpRequest, id):
                                 },
                                 confirm=True
                             )
-                            logger.debug(f"Payment Intent Created: {payment_intent}")
                             highest_bid.payment_intent_id = payment_intent.id
                             highest_bid.save()
             except:
-                logger.debug("No highest bid.")
+                print("No highest bid.")
     except:
-        logger.debug(f"Bidding doesn't exist")
+        print("Bidding doesn't exist")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def testingView(req: HttpRequest) -> HttpResponse:
