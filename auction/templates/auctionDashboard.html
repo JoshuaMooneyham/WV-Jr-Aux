@@ -2,17 +2,20 @@
 {% load my_filters %}
 
 {% block content %}
-    <div class='auctionConfig'>
+    <div class='auctionConfig dashConfig'>
         <div class="dashboardHeader">
             <h1 class='dashboardHeaderDash'>Dashboard</h1>
             <p class='dashboardHeaderAuction'>{{auction.name}}</p>
         </div>
         <div class='dashboardStats'>
-            <div class='auctionTime'>
+            <div class='auctionTime statPlate'>
                 {% comment %} <p>Start: {{start}}</p>
                 <p>End: {{end}}</p> {% endcomment %}
                 {% comment %} <p>Active: No</p> {% endcomment %}
-                <p>{{start}} - {{end}}</p>
+                <div class="statSlot  timeframeSlot">
+                    <p class='slotHead'>Timeframe</p>
+                    <p class='slotBody'>{{start}} <b class='hyphen'> -- </b> {{end}}</p>
+                </div>
             </div>
             <div class='itemStats statPlate'>
                 <div class="statSlot">
@@ -45,19 +48,25 @@
         </div>
         <div class="dashboardItems">
             <div class="dashItemHead">
-                <span class='itemNameSpan headSpan'>Item Name | </span>
-                <span class='highestBidderSpan headSpan'>Highest Bidder | </span>
-                <span class='currentBidSpan headSpan'>Current Bid | </span>
-                <span class='runnerUpSpan headSpan'>Runner Up</span>
+                <p class='itemNameSpan headSpan'>Item Name</p>
+                <p class='highestBidderSpan headSpan'>Highest Bidder</p>
+                <p class='currentBidSpan headSpan'>Current Bid</p>
+                <p class='runnerUpSpan headSpan'>Runner Up</p>
             </div>
-            {% for item in items %}
-                <div class="dashItem">
-                    <span class='itemNameSpan'>{{item.name}} | </span>
-                    <span class='highestBidderSpan'>{{item.highest_bidder.user.first_name}} {{item.highest_bidder.user.last_name}} | </span>
-                    <span class='currentBidSpan'>{{item.current_bid}} | </span>
-                    <span class='runnerUpSpan'>{{item.runner_up.user.first_name}} {{item.runner_up.user.last_name}}</span>
+            {% if items|length == 0 %}
+                <div class='dashNoItems'>
+                    <p>This auction currently has no items.</p>
                 </div>
-            {% endfor %}
+            {% else %}
+                {% for item in items %}
+                    <div class="dashItem">
+                        <p class='itemNameSpan itemSpan'>{{item.name}}</p>
+                        <p class='highestBidderSpan itemSpan'>{{item.highest_bidder.user.first_name}} {{item.highest_bidder.user.last_name}}</p>
+                        <p class='currentBidSpan itemSpan'>{{item.current_bid|moneyify}}</p>
+                        <p class='runnerUpSpan itemSpan'>{{item.runner_up.user.first_name}} {{item.runner_up.user.last_name}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock content %}

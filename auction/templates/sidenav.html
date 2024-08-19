@@ -51,7 +51,6 @@
                     <a href="{% url "auctionSettings" auction.pk %}">
                         <button>Settings</button>
                     </a>
-                    <p>Total Raised</p>
                 {% else %}
                     <select name="auctionList" id="auctionList">
                         {% for auction in auctions %}

@@ -70,7 +70,7 @@ def createProduct(req: HttpRequest, auctionId: int) -> HttpResponse:
                 )
                 for file in req.FILES.getlist('images'):
                     ItemImage.objects.create(file=file, item=newProduct)
-                return redirect("auctionFront", 1)
+                return redirect("auctionFront", auctionId)
             except:
                 print('hi')
     return render(req, 'createProduct.html', {'form': form})
