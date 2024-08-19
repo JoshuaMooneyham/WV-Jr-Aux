@@ -259,7 +259,8 @@ def auctionDashboard(req: HttpRequest, id: int) ->  HttpResponse:
     for item in items:
         bid = item.bid_set.all().count()
         bids += bid
-        total += item.current_bid
+        if item.highest_bidder is not None:
+            total += item.current_bid
         if bid == 0:
             unbid_items += 1
 
