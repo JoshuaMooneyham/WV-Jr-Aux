@@ -169,36 +169,61 @@ body {
     font-family: 'Futura', sans-serif;
 }
 .events_box {
-    padding:2%;
+    padding: 2%;
     display: flex;
     flex-direction: column;
-    align-items: center; }
+    align-items: flex-start; 
+    width: 100%; 
+    max-width: 600px; 
+    margin: 0 auto; 
+    font-family: 'Futura', sans-serif;
+}
+
 
 .events_box h2 {
-    text-align: center;
-    font-size: 2rem; 
-    color: rgb(246, 236, 97) !important;
-    font-family: 'Futura', sans-serif;
-    padding-bottom: 10px; 
-    color: rgb(246, 236, 97) !important;
+    text-align: left; 
+    font-size: 1.5rem; 
+    color: rgb(0, 48, 135) !important; 
     margin-bottom: 20px; 
 }
 
+
 .events_box p {
-    text-align: center;
-    font-size: 1.2rem; 
+    text-align: left; /
+    font-size: 1rem; 
     color: rgb(0, 48, 135);
     margin: 5px 0; 
+    padding-left: 10px; 
+    border-bottom: 1px solid rgb(0, 48, 135); 
+    padding-bottom: 10px; 
 }
 
-.events_box button{
-    background: rgb(0, 48, 135);
-    color:white;
+
+.events_box button {
+    background: rgb(255, 241, 141); 
+    color: rgb(0, 48, 135); 
     font-size: 1rem;
-    padding:.3%;
-    border-radius: 10%;
-    align-items: center;
+    padding: .5% 1%; 
+    border-radius: 5px; 
+    margin-top: 20px; 
+    border: none; 
+    align-self: center; 
+    cursor: pointer; 
+
 }
+
+#events_list {
+    width: 100%; 
+    border-left: 2px solid rgb(0, 48, 135); 
+    padding-left: 10px; 
+}
+
+
+#events_list p {
+    padding-left: 10px; 
+    margin: 15px 0; 
+    line-height: 1.5; }
+
 .name_headers {
     font-family: 'Belinda-W00';
     color: rgb(0, 48, 135);
@@ -330,36 +355,40 @@ body {
     position: relative;
 }
 
-/* Adjusting right column margin to move it more to the right */
+
 .right-column {
-    margin-left: 50px; /* Increase this value to move the right column further right */
+    margin-left: 50px; 
 }
 
 /* Hover Effect */
 .myDIV:hover + .hide {
     display: block;
-    z-index: 1001; /* Ensure it appears above other elements */
+    z-index: 1001; 
 }
 
-/* Popup Styling */
+
 .hide {
     display: none;
-    position: absolute;
+    position: relative; 
     background-color: rgb(0, 48, 135);
     color: rgb(246, 236, 97);
     border-radius: 5px;
     max-width: 250px;
     text-align: center;
     box-sizing: border-box;
-    left: 40%;
-    transform: translateX(-50%);
+    margin-left: 10px; 
     z-index: 1001;
 }
 
-/* Ensure that the popup appears above other elements */
+
 .myDIV {
     position: relative;
-    z-index: 1000; /* Layering to ensure the hover element appears properly */
+    z-index: 1000; 
+}
+
+
+.myDIV:hover + .hide {
+    display: block;
 }
 /* <------------SCHOLARSHIP------------> */
 .scholarship_container {
