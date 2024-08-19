@@ -260,20 +260,17 @@ body {
 
 .contact_us, .address {
     color: rgb(0, 48, 135);
+    font-family: 'Futura', sans-serif;
     margin-bottom: 1rem;
     font-size: 1.2rem;
     line-height: 1.5;
 }
 
-
-.contact-link {
-    margin-top: 2rem;
-    font-size: 1.2rem;
-    color: #F6EC61;
-    cursor: pointer;
-    text-align: right;
-    text-decoration: underline;
+.stay_connected{
+    font-family: 'Futura', sans-serif;
+    color: rgb(0, 48, 135);
 }
+
 .facebook {
     width:10%;
     justify-content: center;
@@ -320,47 +317,41 @@ body {
     width: 100%;
 }
 /* <------------PROJECTS------------> */
-.p_box {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-/* Project List Styling */
 .project-list {
+    padding: 3%;
     font-family: 'Futura', sans-serif;
     background-color: rgba(0, 47, 135, 0.558);
     border: 2px solid white;
     box-shadow: 8px 8px 8px #ffffffa1;
     border-radius: 2%;
     display: flex;
+    line-height: 140%;
+    font-size: 140%;
     width: 100%;
     max-width: 1200px;
-    justify-content: space-between;
+    justify-content: center; 
     align-items: flex-start;
     color: white;
+    margin: 0 auto; 
 }
 
-/* Column Styling */
 .column {
     flex: 1;
-    margin: 20px;
-}
+    margin: 0 10px; 
+    max-width: 50%; }
 
-.left-column p, .right-column p {
-    font-size: 1.5em;
-    margin: 30px 0;
-    position: relative;
+.left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
-
 
 .right-column {
-    margin-left: 50px; 
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-left: 0; }
 
-/* Hover Effect */
 .myDIV:hover + .hide {
     display: block;
     z-index: 1001; 
@@ -372,6 +363,7 @@ body {
     position: relative; 
     background-color: rgb(0, 48, 135);
     color: rgb(246, 236, 97);
+    padding:2%;
     border-radius: 5px;
     max-width: 250px;
     text-align: center;
@@ -390,21 +382,47 @@ body {
 .myDIV:hover + .hide {
     display: block;
 }
+
 /* <------------SCHOLARSHIP------------> */
 .scholarship_container {
+    margin: 0 auto; 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
-    padding: 5% 10%; 
-}
-.scholarship_text {
-    flex: 1;
-    max-width: 50%;
-    padding-right: 5%; 
-    font-family:'Futura-Book', sans-serif;
+    max-width: 80%; 
+    padding: 0; 
+    box-sizing: border-box; 
+    border: 2px solid white; 
+    box-shadow: 8px 8px 8px #ffffffa1;
+    border-radius: 3%; 
+    background-color: rgba(0, 47, 135, 0.51);
 }
 
 .scholarship_pic{
-    width:30%;
-    margin: 0 auto;
+    width: 40%; 
+    height: auto; 
+    border-radius: 10px 0 0 10px; 
+    margin-right: 0; 
+    box-shadow: none; }
+
+.scholarship_text  {
+    /* color: rgb(0, 48, 135); */
+    font-family: 'Futura';
+    line-height: 200%;
+    font-size: 1.3rem;
+    text-align: left;
+    max-width: 55%; 
+    padding: 20px; 
+    color: #fff; 
 }
+
+.divider {
+    margin-top: 20px;
+    border: 0;
+    border-top: 1px solid #003087;
+    width: 100%;
+}
+
+
+
+
