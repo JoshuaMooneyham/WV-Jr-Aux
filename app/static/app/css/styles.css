@@ -317,6 +317,14 @@ body {
     width: 100%;
 }
 /* <------------PROJECTS------------> */
+.projects_p{
+    margin: 3%;
+    color: rgb(0, 48, 135);
+    font-family: 'Futura-Book', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 2%
+}
 .project-list {
     padding: 3%;
     font-family: 'Futura', sans-serif;
