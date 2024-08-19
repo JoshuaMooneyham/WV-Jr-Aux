@@ -361,3 +361,21 @@ body {
     position: relative;
     z-index: 1000; /* Layering to ensure the hover element appears properly */
 }
+/* <------------SCHOLARSHIP------------> */
+.scholarship_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5% 10%; 
+}
+.scholarship_text {
+    flex: 1;
+    max-width: 50%;
+    padding-right: 5%; 
+    font-family:'Futura-Book', sans-serif;
+}
+
+.scholarship_pic{
+    width:30%;
+    margin: 0 auto;
+}
