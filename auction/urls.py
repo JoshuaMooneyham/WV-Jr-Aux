@@ -34,7 +34,7 @@ urlpatterns = [
     path('create/', createAuction, name='createAuction'),
     path('<int:id>/', auctionFront, name="auctionFront"),
     path('<int:id>/delete/', deleteAuction, name='deleteAuction'),
-    path('<int:id>/config/', viewAuctionsList, name="auctionSettings"),
+    path('<int:id>/config/', auctionSettings, name="auctionSettings"),
     path('<int:id>/dashboard/', auctionDashboard, name="auctionDashboard"),
     path('config/', viewAuctionsList, name="auctionSettings"),
     # ^^^ NOT DUPLICATES dont delete

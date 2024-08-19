@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static "auction/css/styles.css" %}">
     {% comment %} <link rel="stylesheet" href="{% static "auction/css/header.css" %}"> {% endcomment %}
     <link rel="stylesheet" href="{% static "auction/css/sidenav.css" %}">
+    <link rel="icon" href="{% static "app/photos/NAJA favicon white.png" %}">
     <script src="{% static "auction/js/scripts.js" %}" defer='defer'></script>
     <script src="{% static "auction/js/timer.js" %}" defer='defer'></script>
     <script src="https://kit.fontawesome.com/2734bda929.js" crossorigin="anonymous"></script>
@@ -59,11 +60,15 @@
                     {% comment %} <a href="{% url "createAuction" %}"> {% endcomment %}
                         <button onclick='showForm()'>+ New Event</button>
                     {% comment %} </a> {% endcomment %}
-                    <button>Dashboard</button>
-                    <button>Settings</button>
+                    <a href="{% url "auctionDashboard" auction.pk %}">
+                        <button>Dashboard</button>
+                    </a>
+                    <a href="{% url "auctionSettings" auction.pk %}">
+                        <button>Settings</button>
+                    </a>
                     <button>Invoices</button>
                     <a href="{% url "auctionFront" auctionId %}">
-                    <button>View Auction</button>
+                        <button>View Auction</button>
                     </a>
                 {% endif %}
             {% endif %}
@@ -77,9 +82,6 @@
         {% csrf_token %}
         <label class='inputLabel auctionNameLabel'>Name: 
             {{ auctionForm.name }}
-        </label>
-        <label class='inputLabel auctionDescLabel'>Description: 
-            {{ auctionForm.description }}
         </label>
         {{ auctionForm.start_date }}
         {{ auctionForm.end_date }}

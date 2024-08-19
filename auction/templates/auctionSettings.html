@@ -1,6 +1,28 @@
 {% extends "sidenav.html" %}
 {% block content %}
     <div class='auctionConfig'>
-        
+        <div class='updateAuctionForm'>
+            <form action="">
+                {% csrf_token %}
+        <label class='inputLabel auctionNameLabel'>Name: 
+            {{ auctionForm.name }}
+        </label>
+        {{ auctionForm.start_date }}
+        {{ auctionForm.end_date }}
+        <input type="date" id='updateStartDate'>
+        <input type="time" id='updateStartTime'>
+        <input type="date" id='updateEndDate'>
+        <input type="time" id='updateEndTime'>
+        <input type="hidden" name='active' value={{True}}>
+        {% comment %} {{ auctionForm.active }} {% endcomment %}
+        <input type="submit" value='Submit' id='submit'>
+            </form>
+        </div>
+        <div class="auctionSettingsButtons">
+            <button>DELETE</button>
+            <button>SET ACTIVE</button>
+            <button>START AUCTION</button>
+            <button>END AUCTION</button>
+        </div>
     </div>
 {% endblock content %}

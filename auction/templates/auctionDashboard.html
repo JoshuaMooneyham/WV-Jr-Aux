@@ -1,6 +1,43 @@
 {% extends "sidenav.html" %}
+{% load my_filters %}
+
 {% block content %}
     <div class='auctionConfig'>
-        
+        <div class="dashboardHeader">
+            <h1>Dashboard</h1>
+        </div>
+        <div class='dashboardStats'>
+            <div class='auctionTime'>
+                <p>Start: {{start}}</p>
+                <p>End: {{end}}</p>
+                <p>Active: No</p>
+            </div>
+            <div class='itemStats'>
+                <p>Items with Bids: {{bidOnItems}}</p>
+                <p>Total Items: {{items|length}}</p>
+                <p>Total Bids: {{ bids }}</p>
+            </div>
+            <div class="revenueStats">
+                <p>Total Value: {{total|moneyify}}</p>
+                <p>Stripe Fees: ${{fees}}</p>
+                <p>Profit: ${{profit}}</p>
+            </div>
+        </div>
+        <div class="dashboardItems">
+            <div class="dashItemHead">
+                <span class='itemNameSpan headSpan'>Item Name | </span>
+                <span class='highestBidderSpan headSpan'>Highest Bidder | </span>
+                <span class='currentBidSpan headSpan'>Current Bid | </span>
+                <span class='runnerUpSpan headSpan'>Runner Up</span>
+            </div>
+            {% for item in items %}
+                <div class="dashItem">
+                    <span class='itemNameSpan'>{{item.name}} | </span>
+                    <span class='highestBidderSpan'>{{item.highest_bidder.user.first_name}} {{item.highest_bidder.user.last_name}} | </span>
+                    <span class='currentBidSpan'>{{item.current_bid}} | </span>
+                    <span class='runnerUpSpan'>{{item.runner_up.user.first_name}} {{item.runner_up.user.last_name}}</span>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock content %}

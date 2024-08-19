@@ -24,6 +24,10 @@ def indexify(image, images) -> str:
 def getIndex(img, images) -> str:
     return f'{images.index(img) + 1}'
 
+@register.filter(safe=True)
+def countBids(bids):
+    print(bids)
+
 # register.filter('moneyify', moneyify)
 # register.filter('firstImg', firstImg)
 # register.filter('indexify', indexify)
