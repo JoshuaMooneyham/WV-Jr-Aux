@@ -153,9 +153,9 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
     
     if now > endTime:
         context["over"] = True
+        end_auction(req, id)
         for item in auction.auctionitem_set.all():
             item.active = False
-            end_auction(req, id)
             item.save()
     elif now > startTime:
         left = endTime - now
@@ -432,6 +432,9 @@ def end_auction(request: HttpRequest, id):
         stripe.api_key = settings.STRIPE_KEY
         auction = Auction.objects.get(id=id)
         items = auction.auctionitem_set.all()
+
+        bidders_invoices = {}
+
         for item in items:
             stripe_product = stripe.Product.retrieve(item.stripe_id)
             if item.active:
@@ -441,28 +444,47 @@ def end_auction(request: HttpRequest, id):
                 )
             try:
                 highest_bid = Bid.objects.filter(item=item).order_by("-amount").first()
-                if highest_bid:
-                    if not highest_bid.payment_intent_id:
-                        setup_intent = stripe.SetupIntent.retrieve(highest_bid.setup_intent_id)
-                        if setup_intent and setup_intent.status == "succeeded":
-                            payment_intent = stripe.PaymentIntent.create(
-                                amount=item.current_bid,
-                                currency="usd",
-                                customer=highest_bid.bidder.stripe_id,
-                                payment_method=setup_intent.payment_method,
-                                automatic_payment_methods=
-                                {
-                                    "enabled": True,
-                                    "allow_redirects": "never",
-                                },
-                                confirm=True
-                            )
-                            highest_bid.payment_intent_id = payment_intent.id
-                            highest_bid.save()
+                if highest_bid and highest_bid.setup_intent_id:
+                    setup_intent = stripe.SetupIntent.retrieve(highest_bid.setup_intent_id)
+                    if setup_intent and setup_intent.status == "succeeded":
+                        stripe_customer = highest_bid.bidder.stripe_id
+                        if stripe_customer not in bidders_invoices:
+                            bidders_invoices[stripe_customer] = {
+                                "items": [],
+                                "payment_method": setup_intent.payment_method,
+                            }
+                        bidders_invoices[stripe_customer]["items"].append({
+                            "amount": item.current_bid,
+                            "name": item.name,
+                        })
+                        highest_bid.payment_intent_id = "PENDING"
+                        highest_bid.save()
             except:
-                print("No highest bid.")
+                print(f"Error {item.id}")
+        
+        for stripe_customer, invoice_data, in bidders_invoices.items():
+            try:
+                for invoice_item in invoice_data["items"]:
+                    stripe_invoice_item = stripe.InvoiceItem.create(
+                            customer=stripe_customer,
+                            amount=invoice_item["amount"],
+                            currency="usd",
+                            description=invoice_item["name"],
+                        )
+                    logger.debug(f"Invoice Item: {stripe_invoice_item}")
+                invoice = stripe.Invoice.create(
+                    customer=stripe_customer,
+                    default_payment_method=invoice_data["payment_method"],
+                    auto_advance=True,
+                )
+                logger.debug(f"Invoice: {invoice}")
+                finalized_invoice = stripe.Invoice.finalize_invoice(invoice.id)
+                logger.debug(f"Finalized Invoice: {finalized_invoice}")
+                Bid.objects.filter(bidder__stripe_id=stripe_customer, payment_intent_id="PENDING").update(payment_intent_id=finalized_invoice.id)
+            except:
+                print(f"Error creating invoice for bidder {stripe_customer}")
     except:
-        print("Bidding doesn't exist")
+        print("Auction doesn't exist")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def testingView(req: HttpRequest) -> HttpResponse:
