@@ -35,19 +35,18 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0.5% 0; /* Adjust padding as needed */
+    padding: 0.5% 0; 
 }
 
 .left-side {
     display: flex;
-    align-items: center; /* Aligns the image and text vertically */
-}
+        align-items: center; }
 
 .left-image {
-    width: 70px;
+    width: 10%;
     padding: 10px;
-    height: auto; /* Maintain aspect ratio */
-    /* Adjust the width of the image as needed */
+    height: auto; 
+    
 }
 
 .header_text {
@@ -55,7 +54,7 @@ body {
     font-family: 'Futura-Book', sans-serif;
     font-size: 2rem;
     text-align: left;
-    margin-left: 10px; /* Space between image and text */
+    margin-left: 10px; 
 }
 
 .myNav {
@@ -68,7 +67,7 @@ body {
 .myNav a {
     color: rgb(0, 48, 135) !important;
     text-decoration: none;
-    font-family: 'Futura Book', sans-serif;
+    font-family: 'Futura-Book', sans-serif;
     font-size: 1.2rem;
     transition: color 0.3s ease;
 }
@@ -91,15 +90,15 @@ body {
 }
 
 .right-button:hover {
-    background-color: rgb(0, 48, 135); /* Change background color on hover */
-    color: white; /* Change text color to white on hover */
-    cursor: pointer; /* Change cursor to a pointer on hover */
+    background-color: rgb(0, 48, 135); 
+    color: white; 
+    cursor: pointer; 
 }
 
 .body_text{
     margin: 3%;
     color: rgb(0, 48, 135);
-    font-family: 'Futura';
+    font-family: 'Futura-Book', sans-serif;
     font-size: 1.2rem;
     text-align: center;
 
@@ -173,24 +172,23 @@ body {
     padding:2%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers child elements (like the button) horizontally */
-}
+    align-items: center; }
 
 .events_box h2 {
     text-align: center;
-    font-size: 2rem; /* Adjust font size as needed */
+    font-size: 2rem; 
     color: rgb(246, 236, 97) !important;
     font-family: 'Futura', sans-serif;
-    padding-bottom: 10px; /* Space between text and line */
+    padding-bottom: 10px; 
     color: rgb(246, 236, 97) !important;
-    margin-bottom: 20px; /* Space between the header and the first event */
+    margin-bottom: 20px; 
 }
 
 .events_box p {
     text-align: center;
-    font-size: 1.2rem; /* Adjust font size for event text */
+    font-size: 1.2rem; 
     color: rgb(0, 48, 135);
-    margin: 5px 0; /* Space between event items */
+    margin: 5px 0; 
 }
 
 .events_box button{
@@ -211,20 +209,20 @@ body {
 .contact-container {
     display: flex;
     justify-content: space-between;
-    padding: 5% 10%; /* Adjust padding for spacing */
+    padding: 5% 10%; 
 }
 
 .contact-left {
     flex: 1;
     max-width: 50%;
-    padding-right: 5%; /* Space between the two sections */
+    padding-right: 5%; 
 }
 
 .contact-right {
     flex: 1;
     max-width: 40%;
     padding-left: 5%;
-    border-left: 2px solid #5B4333; /* Match border color from the image */
+    border-left: 2px solid #5B4333; /
 }
 
 .name_headers {
@@ -257,30 +255,37 @@ body {
 }
 /* <------------ABOUT US------------> */
 .about_container {
-    margin: 0 auto; /* Centers the container on the page */
+    margin: 0 auto; 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
-    max-width: 80%; /* Adjust the width to fit the middle of the page */
-    padding: 1%;
-    box-sizing: border-box; /* Ensures padding doesn't increase container width */
+    max-width: 80%; 
+    padding: 0; 
+    box-sizing: border-box; 
+    border: 2px solid white; 
+    box-shadow: 8px 8px 8px #ffffffa1;
+    border-radius: 5%; 
+    background-color: rgba(0, 47, 135, 0.51);
+    /* background-color: #141414;  */
 }
 
 .about_image {
-    width: 25%; /* Adjust the size of the image */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 10px;
-    margin-right: 3%; /* Space between the image and the text */
-    box-shadow: 3px 3px 9px #fff;
+    width: 40%; 
+    height: auto; 
+    border-radius: 10px 0 0 10px; 
+    margin-right: 0; 
+    box-shadow: none; 
 }
 
 .about_text {
-    color: rgb(0, 48, 135);
+    /* color: rgb(0, 48, 135); */
     font-family: 'Futura';
     line-height: 200%;
     font-size: 1.3rem;
     text-align: left;
-    max-width: 70%; /* Decrease the width to allow space for the image */
+    max-width: 55%; 
+    padding: 20px; 
+    color: #fff; 
 }
 
 .divider {
@@ -290,45 +295,69 @@ body {
     width: 100%;
 }
 /* <------------PROJECTS------------> */
-.project-list {
+.p_box {
+    width: 100%;
     display: flex;
     justify-content: center;
-    gap: 2%; /* Adjust gap as needed */
+    align-items: center;
+    padding: 20px;
 }
 
-.project-list .column {
-    margin: 8%;
-    padding: 2%;
-    color:white;
-    line-height: 150%;
-    border-radius: 10%;
-    font-size: larger;
-    background-color: rgba(167, 172, 162, 0.57);
-    display: flex; /* This makes the column a flex container */
-    flex-direction: column; /* Ensures the items inside the column stack vertically */
-    align-items: center; /* Centers the content horizontally */
-    justify-content: center; /* Centers the content vertically */
-    flex: 1; 
+/* Project List Styling */
+.project-list {
+    font-family: 'Futura', sans-serif;
+    background-color: rgba(0, 47, 135, 0.558);
+    border: 2px solid white;
+    box-shadow: 8px 8px 8px #ffffffa1;
+    border-radius: 2%;
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: white;
 }
 
+/* Column Styling */
+.column {
+    flex: 1;
+    margin: 20px;
+}
+
+.left-column p, .right-column p {
+    font-size: 1.5em;
+    margin: 30px 0;
+    position: relative;
+}
+
+/* Adjusting right column margin to move it more to the right */
+.right-column {
+    margin-left: 50px; /* Increase this value to move the right column further right */
+}
+
+/* Hover Effect */
+.myDIV:hover + .hide {
+    display: block;
+    z-index: 1001; /* Ensure it appears above other elements */
+}
+
+/* Popup Styling */
 .hide {
     display: none;
     position: absolute;
-    background-color: rgb(0, 48, 135) !important; /* Background color of the popup */
-    color: rgb(246, 236, 97); /* Text color */
-    padding: 1%;
-    border-radius: 2%;
-    white-space: nowrap;
-    z-index: 1000; /* Ensures the popup appears above other elements */
-    top: 50%; /* Centers the popup vertically relative to the hovered element */
-    left: 105%; /* Positions the popup to the right of the hovered element */
-    transform: translateY(-50%); /* Adjusts vertical alignment */
+    background-color: rgb(0, 48, 135);
+    color: rgb(246, 236, 97);
+    border-radius: 5px;
+    max-width: 250px;
+    text-align: center;
+    box-sizing: border-box;
+    left: 40%;
+    transform: translateX(-50%);
+    z-index: 1001;
 }
 
+/* Ensure that the popup appears above other elements */
 .myDIV {
-    position: relative; /* Ensure the hovered element is the positioning reference */
-}
-
-.myDIV:hover + .hide {
-    display: block;
+    position: relative;
+    z-index: 1000; /* Layering to ensure the hover element appears properly */
 }
