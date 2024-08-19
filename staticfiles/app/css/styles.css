@@ -1,61 +1,381 @@
 @font-face {
-    font-family: 'Futura';
-    src: url("{% static 'fonts/Futura Thin.ttf' %}") format('truetype');
+    font-family: 'Belinda-W00';
+    src: url("/static/app/fonts/Belinda-W00-Regular.ttf");
 }
 
-
-
-.myNav{
-    background: rgb(0, 48, 135);
-    font-family: 'Futura', sans-serif;
-    padding: 10px;
-    border-bottom: 10px solid white;
-    align-items: end;
-    display: flex;
-    justify-content: flex-end;
-    padding: 1rem;
-    margin: 0 auto;
-    flex: 1;
-    display: flex;
+@font-face {
+    font-family: 'Futura-Book';
+    src: url("/static/app/fonts/Futura Book.ttf");
 }
-.myNav > a {
-    color: white;
-    text-decoration: none;
-    padding: 1rem;
+
+* {
+    margin: 0;
+    padding: 0;
+    
 }
+
+body {
+   /* background-color:  rgb(0, 48, 135, 0.6) !important;; */
+   background-color: #DBE2E9;
+}
+
+/* <!-- <------------NAVBAR------------> --> */
+
+/* <------------HEADER------------> */
+/* .header_background{
+    background-image: url("../photos/header.jpeg");
+    background-position: cover;
+    background-size: 100% 130%;
+    background-repeat: no-repeat; */
+/* } */
+
 .container {
+    background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 10px; /* Adjust padding as needed */
+    padding: 0.5% 0; 
 }
 
+.left-side {
+    display: flex;
+        align-items: center; }
+
 .left-image {
-    width: 20%;
-    height: 20%;
-    /* Adjust the width of the image as needed */
+    width: 10%;
+    padding: 10px;
+    height: auto; 
+    
+}
+
+.header_text {
+    color: rgb(0, 48, 135) !important;
+    font-family: 'Futura-Book', sans-serif;
+    font-size: 2rem;
+    text-align: left;
+    margin-left: 10px; 
+}
+
+.myNav {
+    display: flex;
+    gap: 2rem;
+    margin-right: 0px; 
+    margin-left: auto;
+}
+
+.myNav a {
+    color: rgb(0, 48, 135) !important;
+    text-decoration: none;
+    font-family: 'Futura-Book', sans-serif;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.myNav a:hover {
+    color: white;
 }
 
 .right-button {
-    border-radius: 10%;
+    border-radius: 5px;
     margin-right: 2%;
-    background: rgb(246, 236, 97) !important;
-    color: rgb(0, 48, 135) !important;
-    align-items: center;; /* Pushes the button to the far right */
+    background-color: rgb(246, 236, 97);
+    color: rgb(0, 48, 135);
+    font-size: 1.2rem;
+    padding: 15px 20px;
+    align-items: center; 
+    margin-left: 2rem;
+    transition: 0.3s ease;
+    border: none;
 }
 
-.placeholder {
-    color: rgb(0, 48, 135) !important;
-    font-family: 'Futura';
-    font-size: 5rem;
-    text-align: center;
+.right-button:hover {
+    background-color: rgb(0, 48, 135); 
+    color: white; 
+    cursor: pointer; 
 }
 
-.home_text{
-    color: rgb(0, 48, 135) !important;
-    font-family: 'Futura';
+.body_text{
+    margin: 3%;
+    color: rgb(0, 48, 135);
+    font-family: 'Futura-Book', sans-serif;
     font-size: 1.2rem;
     text-align: center;
 
+}
+/* <------------HOME------------> */
+.img_container{
+    /* margin-top: 15; */
+    /* text-align: center; */
+    width: 100%;
+    height: 500px;
+    image-orientation: center;
+    /* position: relative; */
+    /* transform: translate(-50%,-50%); */
+    /* top: 50%; */
+    /* left: 50%; */
+    overflow: hidden;
+    /* border: 10px solid #ffffff; */
+    /* border-radius: 8px; */
+    /* box-shadow: -1px 5px 15px black; */
+}
+
+/*Area of images*/
+.wrapper{
+    margin: 0 auto;
+    padding:0;
+    width: 95% 90%;
+    display: flex;
+    animation: slide 16s infinite;
+}
+
+.home_images{
+    width: 100%;
+}
+@keyframes slide{
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(0);
+    }
+    30%{
+        transform: translateX(-100%);
+    }
+    50%{
+        transform: translateX(-100%);
+    }
+    55%{
+        transform: translateX(-200%);
+    }
+    75%{
+        transform: translateX(-200%);
+    }
+    80%{
+        transform: translateX(-300%);
+    }
+    100%{
+        transform: translateX(-300%);
+    }
+}
+
+/* <------------FOOTER------------> */
+.footer{
+    background: rgb(0, 48, 135);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-top: 10px solid white;
+    font-family: 'Futura', sans-serif;
+}
+.events_box {
+    padding:2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+
+.events_box h2 {
+    text-align: center;
+    font-size: 2rem; 
+    color: rgb(246, 236, 97) !important;
+    font-family: 'Futura', sans-serif;
+    padding-bottom: 10px; 
+    color: rgb(246, 236, 97) !important;
+    margin-bottom: 20px; 
+}
+
+.events_box p {
+    text-align: center;
+    font-size: 1.2rem; 
+    color: rgb(0, 48, 135);
+    margin: 5px 0; 
+}
+
+.events_box button{
+    background: rgb(0, 48, 135);
+    color:white;
+    font-size: 1rem;
+    padding:.3%;
+    border-radius: 10%;
+    align-items: center;
+}
+.name_headers {
+    font-family: 'Belinda-W00';
+    color: rgb(0, 48, 135);
+    text-align: center;
+    padding:1%;
+}
+/* <------------CONTACT US------------> */
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5% 10%; 
+}
+
+.contact-left {
+    flex: 1;
+    max-width: 50%;
+    padding-right: 5%; 
+}
+
+.contact-right {
+    flex: 1;
+    max-width: 40%;
+    padding-left: 5%;
+    border-left: 2px solid #5B4333; /
+}
+
+.name_headers {
+    font-size: 2rem;
+    /* font-family: 'Futura', sans-serif; */
+    color: rgb(0, 48, 135);
+    /* text-transform: uppercase; */
+    margin-bottom: 2rem;
+}
+
+.contact_us, .address {
+    color: rgb(0, 48, 135);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+
+.contact-link {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: #F6EC61;
+    cursor: pointer;
+    text-align: right;
+    text-decoration: underline;
+}
+.facebook {
+    width:10%;
+    justify-content: center;
+}
+/* <------------ABOUT US------------> */
+.about_container {
+    margin: 0 auto; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 80%; 
+    padding: 0; 
+    box-sizing: border-box; 
+    border: 2px solid white; 
+    box-shadow: 8px 8px 8px #ffffffa1;
+    border-radius: 5%; 
+    background-color: rgba(0, 47, 135, 0.51);
+    /* background-color: #141414;  */
+}
+
+.about_image {
+    width: 40%; 
+    height: auto; 
+    border-radius: 10px 0 0 10px; 
+    margin-right: 0; 
+    box-shadow: none; 
+}
+
+.about_text {
+    /* color: rgb(0, 48, 135); */
+    font-family: 'Futura';
+    line-height: 200%;
+    font-size: 1.3rem;
+    text-align: left;
+    max-width: 55%; 
+    padding: 20px; 
+    color: #fff; 
+}
+
+.divider {
+    margin-top: 20px;
+    border: 0;
+    border-top: 1px solid #003087;
+    width: 100%;
+}
+/* <------------PROJECTS------------> */
+.p_box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Project List Styling */
+.project-list {
+    font-family: 'Futura', sans-serif;
+    background-color: rgba(0, 47, 135, 0.558);
+    border: 2px solid white;
+    box-shadow: 8px 8px 8px #ffffffa1;
+    border-radius: 2%;
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: white;
+}
+
+/* Column Styling */
+.column {
+    flex: 1;
+    margin: 20px;
+}
+
+.left-column p, .right-column p {
+    font-size: 1.5em;
+    margin: 30px 0;
+    position: relative;
+}
+
+/* Adjusting right column margin to move it more to the right */
+.right-column {
+    margin-left: 50px; /* Increase this value to move the right column further right */
+}
+
+/* Hover Effect */
+.myDIV:hover + .hide {
+    display: block;
+    z-index: 1001; /* Ensure it appears above other elements */
+}
+
+/* Popup Styling */
+.hide {
+    display: none;
+    position: absolute;
+    background-color: rgb(0, 48, 135);
+    color: rgb(246, 236, 97);
+    border-radius: 5px;
+    max-width: 250px;
+    text-align: center;
+    box-sizing: border-box;
+    left: 40%;
+    transform: translateX(-50%);
+    z-index: 1001;
+}
+
+/* Ensure that the popup appears above other elements */
+.myDIV {
+    position: relative;
+    z-index: 1000; /* Layering to ensure the hover element appears properly */
+}
+/* <------------SCHOLARSHIP------------> */
+.scholarship_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5% 10%; 
+}
+.scholarship_text {
+    flex: 1;
+    max-width: 50%;
+    padding-right: 5%; 
+    font-family:'Futura-Book', sans-serif;
+}
+
+.scholarship_pic{
+    width:30%;
+    margin: 0 auto;
 }
