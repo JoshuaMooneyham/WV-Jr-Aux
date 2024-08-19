@@ -7,6 +7,7 @@ from django.utils.timezone import make_aware
 from auction.models import *
 from auction.forms import *
 from django.conf import settings
+from typing import Dict, List
 import stripe, json, logging
 
 logger = logging.getLogger(__name__)
@@ -158,9 +159,11 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
     now = make_aware(datetime.datetime.now())
     print(now, startTime, endTime)
     print(now > endTime, now > startTime, startTime < endTime)
-    if now > endTime:
+    if now > endTime and auction.active:
         context["over"] = True
         end_auction(req, id)
+        auction.active = False
+        auction.save()
         for item in auction.auctionitem_set.all():
             item.active = False
             item.save()
@@ -466,7 +469,8 @@ def end_auction(request: HttpRequest, id):
         auction = Auction.objects.get(id=id)
         items = auction.auctionitem_set.all()
 
-        bidders_invoices = {}
+        InvoiceItem = Dict[str, int]
+        bidders_invoices: Dict[str, Dict[str, List[InvoiceItem]]] = {}  # type: ignore
 
         for item in items:
             stripe_product = stripe.Product.retrieve(item.stripe_id)
@@ -487,38 +491,116 @@ def end_auction(request: HttpRequest, id):
                                 "payment_method": setup_intent.payment_method,
                             }
                         bidders_invoices[stripe_customer]["items"].append({
-                            "amount": item.current_bid,
                             "name": item.name,
+                            "amount": item.current_bid,
                         })
                         highest_bid.payment_intent_id = "PENDING"
                         highest_bid.save()
-            except:
-                print(f"Error {item.id}")
-        
-        for stripe_customer, invoice_data, in bidders_invoices.items():
+            except Exception as e:
+                print(f"Error with item {item.id}: {e}")
+
+        for stripe_customer, invoice_data in bidders_invoices.items():
             try:
                 for invoice_item in invoice_data["items"]:
                     stripe_invoice_item = stripe.InvoiceItem.create(
-                            customer=stripe_customer,
-                            amount=invoice_item["amount"],
-                            currency="usd",
-                            description=invoice_item["name"],
-                        )
-                    logger.debug(f"Invoice Item: {stripe_invoice_item}")
+                        customer=stripe_customer,
+                        amount=invoice_item["amount"],
+                        currency="usd",
+                        description=invoice_item["name"],
+                    )
+                    logger.debug(f"Created Invoice Item: {stripe_invoice_item}")
+
                 invoice = stripe.Invoice.create(
                     customer=stripe_customer,
                     default_payment_method=invoice_data["payment_method"],
                     auto_advance=True,
+                    pending_invoice_items_behavior="include",
                 )
-                logger.debug(f"Invoice: {invoice}")
+                logger.debug(f"Created Invoice: {invoice}")
+
+                # Wait for invoice to be finalized
                 finalized_invoice = stripe.Invoice.finalize_invoice(invoice.id)
                 logger.debug(f"Finalized Invoice: {finalized_invoice}")
+
+                # Retrieve and log invoice lines
+                invoice_lines = stripe.Invoice.list_lines(invoice.id)
+                logger.debug(f"Invoice Lines: {invoice_lines}")
+
                 Bid.objects.filter(bidder__stripe_id=stripe_customer, payment_intent_id="PENDING").update(payment_intent_id=finalized_invoice.id)
-            except:
-                print(f"Error creating invoice for bidder {stripe_customer}")
-    except:
-        print("Auction doesn't exist")
+            except Exception as e:
+                print(f"Error creating invoice for bidder {stripe_customer}: {e}")
+
+    except Exception as e:
+        print(f"Error with auction {id}: {e}")
+
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+# def end_auction(request: HttpRequest, id):
+#     try:
+#         stripe.api_key = settings.STRIPE_KEY
+#         auction = Auction.objects.get(id=id)
+#         items = auction.auctionitem_set.all()
+
+#         InvoiceItem = Dict[str, int]
+#         bidders_invoices: Dict[str, Dict[str, List[InvoiceItem]]] = {} # type: ignore
+
+#         for item in items:
+#             stripe_product = stripe.Product.retrieve(item.stripe_id)
+#             if item.active:
+#                 stripe.Product.modify(
+#                     stripe_product.id,
+#                     active=False,
+#                 )
+#             try:
+#                 highest_bid = Bid.objects.filter(item=item).order_by("-amount").first()
+#                 if highest_bid and highest_bid.setup_intent_id:
+#                     setup_intent = stripe.SetupIntent.retrieve(highest_bid.setup_intent_id)
+#                     if setup_intent and setup_intent.status == "succeeded":
+#                         stripe_customer = highest_bid.bidder.stripe_id
+#                         if stripe_customer not in bidders_invoices:
+#                             bidders_invoices[stripe_customer] = {
+#                                 "items": [],
+#                                 "payment_method": setup_intent.payment_method,
+#                             }
+#                         bidders_invoices[stripe_customer]["items"].append({
+#                             "amount": item.current_bid,
+#                             "name": item.name,
+#                         })
+#                         highest_bid.payment_intent_id = "PENDING"
+#                         highest_bid.save()
+#             except:
+#                 print(f"Error {item.id}")
+        
+#         for stripe_customer, invoice_data, in bidders_invoices.items():
+#             try:
+#                 for invoice_item in invoice_data["items"]:
+#                     stripe_invoice_item = stripe.InvoiceItem.create(
+#                             customer=stripe_customer,
+#                             amount=invoice_item["amount"],
+#                             currency="usd",
+#                             description=invoice_item["name"],
+#                         )
+#                     logger.debug(f"Invoice Item: {stripe_invoice_item}")
+#                 invoice = stripe.Invoice.create(
+#                     customer=stripe_customer,
+#                     default_payment_method=invoice_data["payment_method"],
+#                     auto_advance=True,
+#                 )
+#                 logger.debug(f"Invoice: {invoice}")
+#                 logger.debug(f"Invoice ID: {invoice.id}")
+#                 finalized_invoice = stripe.Invoice.finalize_invoice(invoice.id)
+#                 logger.debug(f"Finalized Invoice: {finalized_invoice}")
+
+#                 finalized_invoice = stripe.Invoice.retrieve(finalized_invoice.id)
+#                 lines = finalized_invoice.lines
+#                 logger.debug(f"Invoice Lines: {lines}")
+
+#                 Bid.objects.filter(bidder__stripe_id=stripe_customer, payment_intent_id="PENDING").update(payment_intent_id=finalized_invoice.id)
+#             except:
+#                 print(f"Error creating invoice for bidder {stripe_customer}")
+#     except:
+#         print("Auction doesn't exist")
+#     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY
