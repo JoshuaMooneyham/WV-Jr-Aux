@@ -6,7 +6,7 @@
     <div class="auctionFront">
         <div class='time'>
                 <h2 class='auctionTitle'>{{auction.name}}</h2>
-                <a href="{% url "end_auction" auction.pk %}"><button>End Auction</button></a>
+                {% comment %} <a href="{% url "end_auction" auction.pk %}"><button>End Auction</button></a> {% endcomment %}
             {% if over %}
                 <h2 class='auctionHeader closed'>Closed</h2>
             {% elif left %}
@@ -22,37 +22,28 @@
             {% else %}
                 {% for item in items %}
                     <div class='item'>
-                        <a class='itemA' href="{% url 'displayProduct' auction.pk item.pk %}">
+                        <a class='itemA' {% if not user.is_authenticated or user.groups.all|length == 0 %} href="{% url 'displayProduct' auction.pk item.pk %}" {% else %} href="{% url "updateProduct" auction.pk item.pk %}" {% endif %} >
                             <img src="{{item.images.all | firstImg}}" alt="">
                             <h3>{{item.name}}</h3>
+                            {% if item.active %}
                             <p>Current Bid: <b>{{item.current_bid | moneyify}}</b></p>
+                            {% else %}
+                            <p><b>CLOSED</b></p>
+                            {% endif %}
                         </a>
                     
                         <div class='likeOrX'>
-                            {% if user.groups.all|length == 0 %}
-                                {% if item in bidder.liked_items.all %}
-                                <i class="fa-solid fa-heart"></i>
-                                {% else %}
-                                <i class="fa-regular fa-heart"></i>
+                            {% for group in user.groups.all %}
+                                {% if 'Admin' == group.name %}
+                                    <a href="{% url "deleteProduct" auction.pk item.pk %}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </a>
                                 {% endif %}
-                            {% else %}
-                                {% for group in user.groups.all %}
-                                    {% if 'Admin' == group.name %}
-                                        <a href="{% url "deleteProduct" auction.pk item.pk %}">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </a>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 {% endfor %}
             {% endif %}
         </div>
-        {% comment %} <div class="addItem">
-            <a href="{% url "createProduct" %}">
-                <button class='newItemBtn'>+ Add a New Item</button>
-            </a>
-        </div> {% endcomment %}
     </div>
 {% endblock content %}

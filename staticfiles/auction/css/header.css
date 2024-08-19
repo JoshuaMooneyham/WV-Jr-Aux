@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'Belinda-w00';
+    src: url("/static/app/fonts/Belinda-W00-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: red 1px dashed;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+}
+.left-side {
+    display: flex;
+}
+
+.left-image {
+    width: 125px;
+    height: 75px;
+    padding: 5px 20px;
+}
+.header_text {
+    color: rgb(0, 48, 135);
+    /* font-family: 'Futura Bold', sans-serif; */
+    font-family: 'Belinda-w00';
+    font-size: 3rem;
+    text-align: left;
+}
+.right-button {
+    border-radius: 5px;
+    margin-right: 2%;
+    background: rgb(246, 236, 97);
+    color: rgb(0, 48, 135);
+    font-size: 1.2rem;
+    /* font-family: 'Futura-Light'; */
+    padding: 10px 20px;
+    align-items: center; /* Pushes the button to the far right */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+    /* transition: 0.3s; */
+    border: none;
+}
+
+.right-button:hover {
+    background: rgb(0, 48, 135); /* Change background color on hover */
+    color: white; /* Change text color to white on hover */
+    cursor: pointer; /* Change cursor to a pointer on hover */
+}
+
+.body_text{
+    margin: 3%;
+    color: rgb(0, 48, 135) !important;
+    font-family: 'Futura';
+    font-size: 1.2rem;
+    text-align: center;
+
+}
+
+/* ==={ NAV }=== */
+
+.myNav{
+    background: rgb(0, 48, 135);
+    /* font-family: 'Futura', sans-serif; */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* padding: .5rem 0; */
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensures the navbar stays above other elements */
+    text-align: center;
+}
+
+.myNav > a {
+    color: white;
+    text-decoration: none;
+    /* padding: .5rem 0; */
+}
+
+/* ==={ FOOTER }=== */
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0, 48, 135);
+    color: white;
+    text-align: center;
+    height: 40px;
+    font-family: 'Futura', sans-serif;
+}

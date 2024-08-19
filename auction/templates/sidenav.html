@@ -29,7 +29,9 @@
         {% elif user.groups.all|length == 0 %}
             <button>My Bids</button>
             <button>Liked Items</button>
-            <button>Invoices</button>
+            <a href="{% url "get_invoices" 1 %}">
+                <button>Invoices</button>
+            </a>
             <a href="{% url "account_settings" %}">
                 <button>Settings</button>
             </a>
@@ -49,7 +51,6 @@
                     <a href="{% url "auctionSettings" auction.pk %}">
                         <button>Settings</button>
                     </a>
-                    <p>Total Raised</p>
                 {% else %}
                     <select name="auctionList" id="auctionList">
                         {% for auction in auctions %}

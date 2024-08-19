@@ -7,7 +7,9 @@ from django.utils.timezone import make_aware
 from auction.models import *
 from auction.forms import *
 from django.conf import settings
-import stripe, json, logging
+from django.core.files.base import ContentFile
+from typing import Dict, List
+import stripe, json, logging, os, requests
 
 logger = logging.getLogger(__name__)
 
@@ -15,6 +17,7 @@ import random
 import datetime
 import zoneinfo
 import re
+
 
 def generateBidderId() -> int:
     while True:
@@ -24,6 +27,10 @@ def generateBidderId() -> int:
 # TOPP
 def dateTimeConversion(date: datetime.datetime) -> datetime.datetime:          
     return datetime.datetime(date.year, date.month, date.day, date.hour, date.minute, date.second, date.microsecond, zoneinfo.ZoneInfo('America/Chicago'))
+
+def stringifyDate(date: datetime.datetime) -> str:
+    months = ['', 'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.']
+    return f'{months[date.month]} {date.day}, {date.year} at {date.hour if date.hour < 13 and date.hour > 0 else "12" if date.hour == 0 else date.hour - 12}:{date.minute if date.minute > 9 else "0"+str(date.minute)} {"AM" if date.hour < 12 else "PM"}'
 
 # def generateBidderId() -> int:
 #     while True:
@@ -63,7 +70,7 @@ def createProduct(req: HttpRequest, auctionId: int) -> HttpResponse:
                 )
                 for file in req.FILES.getlist('images'):
                     ItemImage.objects.create(file=file, item=newProduct)
-                return redirect("auctionFront", 1)
+                return redirect("auctionFront", auctionId)
             except:
                 print('hi')
     return render(req, 'createProduct.html', {'form': form})
@@ -76,12 +83,14 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
 
     if req.method == "POST":
         amount = req.POST.get('amount')
-        stripe.api_key = settings.STRIPE_KEY  
+        stripe.api_key = settings.STRIPE_KEY
         if amount != None and (int(amount) >= item.current_bid + 500):
-            bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
+            bidder = Bidder.objects.get(id=req.POST.get("bidder"))
+            bid = Bid(bidder=bidder, amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
             print(bid)
             bid.save()
             item.current_bid = int(amount)
+            item.highest_bidder = bidder
             item.save()
     lowestAllowedBid = item.current_bid + 500
     payment_method_id = req.POST.get("selected_payment_method")
@@ -95,7 +104,10 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
 
 def updateItem(req: HttpRequest, auctionId: int, id: int) -> HttpResponse:
 
-    return render(req, 'updateItem.html')
+    auction = Auction.objects.get(id=auctionId)
+    item = AuctionItem.objects.get(id=id)
+
+    return render(req, 'updateItem.html', {'auction': auction, 'item': item, 'auctionId': auctionId})
 
 # ==={ Delete Item }=== #
 
@@ -156,14 +168,14 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
     startTime = dateTimeConversion(auction.start_date)
     endTime = dateTimeConversion(auction.end_date)
     now = make_aware(datetime.datetime.now())
-    print(now, startTime, endTime)
-    print(now > endTime, now > startTime, startTime < endTime)
     if now > endTime:
         context["over"] = True
-        for item in auction.auctionitem_set.all():
-            item.active = False
+        if auction.active:
             end_auction(req, id)
-            item.save()
+            for item in auction.auctionitem_set.all():
+                item.active = False
+                item.save()
+            
     elif now > startTime:
         left = endTime - now
         hours, remainder = divmod(left.seconds, 3600)
@@ -183,7 +195,6 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
 # ==={ Delete Auction }=== #
 
 def deleteAuction(req: HttpRequest, id: int) -> HttpResponse:
-
     try:
         auction = Auction.objects.get(id=id)
         auction.delete()
@@ -206,10 +217,40 @@ def viewAuctionsList(req: HttpRequest, id: int | None = None) -> HttpResponse:
 # ==={ Auction Settings }=== #
 
 def auctionSettings(req: HttpRequest, id: int) ->  HttpResponse:
+    form = CreateAuctionForm()
     auctions = Auction.objects.all()
     auction = Auction.objects.get(id=id)
 
-    return render(req, 'auctionSettings.html', {'auctions': auctions, 'auction': auction, 'auctionId': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
+    start = dateTimeConversion(auction.start_date)
+    startDate:str = f'{start.date()}'
+    startTime:str = f'{start.time()}'
+    startDateTime:str= f'{startDate}T{startTime}Z'
+    stringStart:str = stringifyDate(start)
+
+
+    end = dateTimeConversion(auction.end_date)
+    endDate:str = f'{end.date()}'
+    endTime:str = f'{end.time()}'
+    endDateTime:str = f'{endDate}T{endTime}Z'
+    stringEnd:str = stringifyDate(end)
+
+    now = dateTimeConversion(datetime.datetime.now())
+
+    startable = now < start
+    endable = now > start and now < end
+    
+    if req.method == 'POST':
+        form = CreateAuctionForm(req.POST)
+        if form.is_valid():
+            try:
+                auction.name = form.cleaned_data.get('name')
+                auction.start_date = form.cleaned_data.get('start_date')
+                auction.end_date = form.cleaned_data.get('end_date')
+                auction.save()
+            except:
+                print('Error updating auction')
+
+    return render(req, 'auctionSettings.html', {'startable': startable, 'endable': endable, 'stringEnd': stringEnd, 'endDateTime': endDateTime, 'endTime': endTime, 'endDate': endDate, 'stringStart': stringStart, 'startDateTime': startDateTime, 'startTime': startTime, 'startDate': startDate, 'auctions': auctions, 'auction': auction, 'auctionId': id, "page": 'settings', 'auctionForm': form})
 
 
 def auctionDashboard(req: HttpRequest, id: int) ->  HttpResponse:
@@ -230,18 +271,13 @@ def auctionDashboard(req: HttpRequest, id: int) ->  HttpResponse:
     itemsWBids = len(items) - unbid_items
     fees = (total * .029) + (30 * itemsWBids)
     profit = total - fees
-    # print(f'{fees / 100:,.2f}')
-    # print(f'{total / 100:,.2f}')
-
-    months = ['', 'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.']
+    # months = ['', 'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.']
     end = dateTimeConversion(auction.end_date)
     start = dateTimeConversion(auction.start_date)
-    stringStart = f'{months[start.month]} {start.day}, {start.year} at {start.hour if start.hour < 13 and start.hour > 0 else "12" if start.hour == 0 else start.hour - 12}:{start.minute if start.minute > 9 else "0"+str(start.minute)} {"AM" if start.hour < 12 else "PM"}'
-    stringEnd = f'{months[end.month]} {end.day}, {end.year} at {end.hour if end.hour < 13 and end.hour > 0 else "12" if end.hour == 0 else end.hour - 12}:{end.minute if end.minute > 9 else "0"+str(end.minute)} {"AM" if end.hour < 12 else "PM"}'
-    
-    bidders = Bidder.objects.all()
-    for bidder in bidders:
-        print(bidder.id, bidder.bidder_id)
+    # stringStart = f'{months[start.month]} {start.day}, {start.year} at {start.hour if start.hour < 13 and start.hour > 0 else "12" if start.hour == 0 else start.hour - 12}:{start.minute if start.minute > 9 else "0"+str(start.minute)} {"AM" if start.hour < 12 else "PM"}'
+    # stringEnd = f'{months[end.month]} {end.day}, {end.year} at {end.hour if end.hour < 13 and end.hour > 0 else "12" if end.hour == 0 else end.hour - 12}:{end.minute if end.minute > 9 else "0"+str(end.minute)} {"AM" if end.hour < 12 else "PM"}'
+    stringStart = stringifyDate(start)
+    stringEnd = stringifyDate(end)
 
     return render(req, 'auctionDashboard.html', {'auctions': auctions, 'profit': f'{profit / 100:,.2f}', 'start': stringStart, 'end': stringEnd, 'fees': f'{fees / 100:,.2f}', 'bidOnItems': itemsWBids, 'total':total, 'bids': bids, 'items': items, 'auction': auction, 'auctionId': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
 
@@ -330,6 +366,7 @@ def update_name(request: HttpRequest):
                 name= f"{first_name} {last_name}",
             )
             messages.success(request, "Your name was successfully updated!")
+            return redirect("login_settings")
         else:
             messages.error(request, "Error")
     else:
@@ -349,6 +386,7 @@ def update_email(request: HttpRequest):
                 email=email,
             )
             messages.success(request, "Your email was successfully update!")
+            return redirect("login_settings")
         else:
             messages.error(request, "Error")
     else:
@@ -363,6 +401,7 @@ def update_password(request: HttpRequest):
             user = form.save()
             update_session_auth_hash(request, user)
             messages.success(request, "Your password was successfully updated!")
+            return redirect("login_settings")
         else:
             messages.error(request, "Error")
     else:
@@ -431,6 +470,7 @@ def edit_payment_method(request: HttpRequest, payment_method_id):
                 "exp_year":request.POST.get("exp_year"),
                 }
             )
+        return redirect("payment_settings")
     return render(request, "edit_payment_method.html", {"card": payment_method, "month_list": month_list, "year_list": year_list})
 
 def delete_payment_method(request: HttpRequest, payment_method_id):
@@ -461,6 +501,10 @@ def end_auction(request: HttpRequest, id):
         stripe.api_key = settings.STRIPE_KEY
         auction = Auction.objects.get(id=id)
         items = auction.auctionitem_set.all()
+
+        InvoiceItem = Dict[str, int]
+        bidders_invoices: Dict[str, Dict[str, List[InvoiceItem]]] = {}  # type: ignore
+
         for item in items:
             stripe_product = stripe.Product.retrieve(item.stripe_id)
             if item.active:
@@ -470,29 +514,106 @@ def end_auction(request: HttpRequest, id):
                 )
             try:
                 highest_bid = Bid.objects.filter(item=item).order_by("-amount").first()
-                if highest_bid:
-                    if not highest_bid.payment_intent_id:
-                        setup_intent = stripe.SetupIntent.retrieve(highest_bid.setup_intent_id)
-                        if setup_intent and setup_intent.status == "succeeded":
-                            payment_intent = stripe.PaymentIntent.create(
-                                amount=item.current_bid,
-                                currency="usd",
-                                customer=highest_bid.bidder.stripe_id,
-                                payment_method=setup_intent.payment_method,
-                                automatic_payment_methods=
-                                {
-                                    "enabled": True,
-                                    "allow_redirects": "never",
-                                },
-                                confirm=True
-                            )
-                            highest_bid.payment_intent_id = payment_intent.id
-                            highest_bid.save()
-            except:
-                print("No highest bid.")
-    except:
-        print("Bidding doesn't exist")
+                if highest_bid and highest_bid.setup_intent_id:
+                    setup_intent = stripe.SetupIntent.retrieve(highest_bid.setup_intent_id)
+                    if setup_intent and setup_intent.status == "succeeded":
+                        stripe_customer = highest_bid.bidder.stripe_id
+                        if stripe_customer not in bidders_invoices:
+                            bidders_invoices[stripe_customer] = {
+                                "items": [],
+                                "payment_method": setup_intent.payment_method,
+                            }
+                        bidders_invoices[stripe_customer]["items"].append({
+                            "name": item.name,
+                            "amount": item.current_bid,
+                        })
+                        highest_bid.payment_intent_id = "PENDING"
+                        highest_bid.save()
+            except Exception as e:
+                print(f"Error with item {item.id}: {e}")
+
+        for stripe_customer, invoice_data in bidders_invoices.items():
+            try:
+                for invoice_item in invoice_data["items"]:
+                    stripe.InvoiceItem.create(
+                        customer=stripe_customer,
+                        amount=invoice_item["amount"],
+                        currency="usd",
+                        description=invoice_item["name"],
+                    )
+                    
+                invoice = stripe.Invoice.create(
+                    customer=stripe_customer,
+                    default_payment_method=invoice_data["payment_method"],
+                    auto_advance=True,
+                    pending_invoice_items_behavior="include",
+                )
+                
+                # Wait for invoice to be finalized
+                finalized_invoice = stripe.Invoice.finalize_invoice(invoice.id)
+                
+                # Retrieve and log invoice lines
+                invoice_lines = stripe.Invoice.list_lines(invoice.id)
+                
+                Bid.objects.filter(bidder__stripe_id=stripe_customer, payment_intent_id="PENDING").update(payment_intent_id=finalized_invoice.id)
+            except Exception as e:
+                print(f"Error creating invoice for bidder {stripe_customer}: {e}")
+
+    except Exception as e:
+        print(f"Error with auction {id}: {e}")
+
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def get_invoices_for_auction(request:HttpRequest, id):
+    stripe.api_key = settings.STRIPE_KEY
+    bidders_invoices = {}
+    try:
+        auction = Auction.objects.get(id=id)
+        items = auction.auctionitem_set.all()
+        for item in items:
+            if item.highest_bidder:
+                bidder_id = item.highest_bidder.bidder_id
+                bidder = Bidder.objects.get(bidder_id=bidder_id)
+                bids = Bid.objects.filter(item=item, bidder=bidder)
+                for bid in bids:
+                    invoice_id = bid.payment_intent_id
+                    if invoice_id:
+                        invoice = stripe.Invoice.retrieve(invoice_id)
+
+                        # pdf_url = invoice.invoice_pdf
+                        # pdf_response = requests.get(pdf_url)
+                        # pdf_file = ContentFile(pdf_response.content, f"{invoice_id}.pdf")
+                        # pdf_path = os.path.join(settings.MEDIA_ROOT, f"{invoice_id}.pdf")
+
+                        # with open(pdf_path, "wb") as f:
+                        #     f.write(pdf_response.content)
+
+                        if bidder_id not in bidders_invoices:
+                            bidders_invoices[bidder_id] = {
+                                "bidder_name": invoice.customer_name,
+                                "amount_due": "{:.2f}".format(invoice.amount_due/100),
+                                "status": invoice.status,
+                                "invoice_id": invoice_id,
+                                }
+        logger.debug(f"bidders_invoices: {bidders_invoices}")
+    except:
+        print("Auction not found.")
+        auction = None
+    return render(request, "invoices.html", {"invoices": bidders_invoices})
+
+def view_invoice_pdf(request: HttpRequest, invoice_id):
+    stripe.api_key = settings.STRIPE_KEY
+    try:
+        invoice = stripe.Invoice.retrieve(invoice_id)
+        pdf_url = invoice.invoice_pdf
+        pdf_response = requests.get(pdf_url)
+        pdf_content = pdf_response.content
+        response = HttpResponse(pdf_content, content_type='application/pdf')
+        response['Content-Disposition'] = f'inline; filename="{invoice_id}.pdf"'
+        return response
+    except Exception as e:
+        print(f"Error retrieving PDF: {e}")
+        return HttpResponse("Error retrieving PDF.")
 
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY

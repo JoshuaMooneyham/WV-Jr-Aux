@@ -3,12 +3,17 @@
     margin: 0;
 }
 
+::-webkit-scrollbar {
+    /* display: none; */
+    width: 0;
+}
+
 .item {
     display: flex;
     flex-direction: column;
     width: 100%;
     /* margin: 20px; */
-    height: 200px;
+    height: 250px; /* 200 */
     justify-content: center;
     align-items: center;
     /* background-color: rgb(255, 255, 255); */
@@ -16,6 +21,7 @@
     outline: 1px solid rgb(220, 220, 220);
     border-radius: 15px;
     background-color: white;
+    font-family: sans-serif;
     /* background-color: #dedede; */
 }
 
@@ -44,8 +50,11 @@
 }
 
 .item img {
-    height: 100px;
+    height: 150px;
     max-width: 280px;
+    /* object-fit: cover; */
+    object-fit: contain;
+    border-radius: 5px;
 }
 
 .image-container {
@@ -137,7 +146,7 @@ right: 0;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 15px;
     column-gap: 20px;
-    padding: 0 20px;
+    padding: 20px;
     /* margin: 20px; */
 }
 
@@ -177,7 +186,7 @@ right: 0;
     padding: 20px;
     font-family: 'Futura-Bold', sans-serif;
     border-bottom: #dedede 1px solid;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     color: white;
     /* background-color: #DBE2E9; */
     background-color: rgb(0, 48, 135);
@@ -212,6 +221,11 @@ right: 0;
     background-color: #DBE2E9;
 }
 
+.dashConfig {
+    display: flex;
+    flex-direction: column;
+}
+
 .createAuctionForm {
     display: none;
     /* visibility: hidden; */
@@ -238,7 +252,115 @@ right: 0;
     visibility: hidden;
 }
 
+.dashboardHeader {
+    margin-left: 5%;
+    /* margin-top: 20px; */
+    padding-top: 20px;
+    font-family: sans-serif;
+}
 
+.dashboardHeaderDash {
+    color: rgb(0, 48, 135);
+    font-weight: 900;
+}
+
+.dashboardHeaderAuction {
+    color: #717171;
+    font-weight: bold;
+}
+
+.statPlate {
+    /* background-color: rgb(244, 244, 244); */
+    background-color: white;
+    width: 90%;
+    margin-left: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.statSlot {
+    height: 100px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* outline: red 1px dashed; */
+}
+
+.slotHead {
+    font-size: .9em;
+    font-family: 'Futura Book', sans-serif;
+    color: #7e7e7e;
+}
+
+.slotBody {
+    font-size: 1.7em;
+    font-family: 'Futura Book', sans-serif;
+}
+
+.timeframeSlot {
+    width: 100%;
+}
+
+
+.hyphen {
+    font-size: 1.7em;
+    margin: 0 10px;
+    color: #717171;
+}
+
+.dashboardItems {
+    /* background-color: rgb(244, 244, 244); */
+    background-color: white;
+    width: 90%;
+    align-self: center;
+    /* margin-left: 5%; */
+    display: grid;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: repeat(200px); */
+    grid-auto-rows: 60px;
+    margin: 20px;
+    border-radius: 20px;
+    column-gap: 100px;
+    /* outline: 1px red dashed; */
+}
+
+.dashItem, .dashItemHead {
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #e4e4e4;
+    width: calc(100% - 40px);
+    justify-self: center;
+}
+
+.headSpan, .itemSpan {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 200px;
+    font-size: 1.3em;
+    font-family: sans-serif;
+    /* outline: 1px solid red; */
+}
+
+.itemSpan {
+    color: #717171;
+    font-size: 1.1em;
+}
+
+.dashNoItems {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #717171;
+    font-size: 1.2em;
+    font-family: sans-serif;
+}
 
 
 /* --- MICHAEL WAS HERE---*/
