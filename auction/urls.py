@@ -22,12 +22,12 @@ from auction.views import *
 
 urlpatterns = [
 
-    path("", auctionHome, name="auctionHome"),
+    path("", auctionHome, name="auction"),
 
     # ==={ Item CRUD }=== #
     path('<int:auctionId>/products/create', createProduct, name='createProduct'),
     path('<int:auctionId>/products/<int:id>', displayItem, name='displayProduct'),
-    path('<int:auctionId>/products/update/<int:id>', updateItem, name='updateProduct'),
+    path('<int:auctionId>/products/update/<int:id>/', updateItem, name='updateProduct'),
     path('<int:auctionId>/products/delete/<int:id>/', deleteItem, name="deleteProduct"),
 
     # ==={ Auction CRUD }=== #

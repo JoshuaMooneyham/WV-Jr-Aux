@@ -4,23 +4,43 @@
 {% block content %}
     <div class='auctionConfig'>
         <div class="dashboardHeader">
-            <h1>Dashboard</h1>
+            <h1 class='dashboardHeaderDash'>Dashboard</h1>
+            <p class='dashboardHeaderAuction'>{{auction.name}}</p>
         </div>
         <div class='dashboardStats'>
             <div class='auctionTime'>
-                <p>Start: {{start}}</p>
-                <p>End: {{end}}</p>
-                <p>Active: No</p>
+                {% comment %} <p>Start: {{start}}</p>
+                <p>End: {{end}}</p> {% endcomment %}
+                {% comment %} <p>Active: No</p> {% endcomment %}
+                <p>{{start}} - {{end}}</p>
             </div>
-            <div class='itemStats'>
-                <p>Items with Bids: {{bidOnItems}}</p>
-                <p>Total Items: {{items|length}}</p>
-                <p>Total Bids: {{ bids }}</p>
+            <div class='itemStats statPlate'>
+                <div class="statSlot">
+                    <p class='slotHead'>Items with Bids</p>
+                    <p class="slotBody">{{bidOnItems}}</p>
+                </div>
+                <div class="statSlot">
+                    <p class='slotHead'>Total Items</p>
+                    <p class="slotBody">{{items|length}}</p>
+                </div>
+                <div class="statSlot">
+                    <p class='slotHead'>Total Bids</p>
+                    <p class="slotBody">{{ bids }}</p>
+                </div>
             </div>
-            <div class="revenueStats">
-                <p>Total Value: {{total|moneyify}}</p>
-                <p>Stripe Fees: ${{fees}}</p>
-                <p>Profit: ${{profit}}</p>
+            <div class="revenueStats statPlate">
+                <div class="statSlot">
+                    <p class='slotHead'>Total Value</p>
+                    <p class="slotBody">{{total|moneyify}}</p>
+                </div>
+                <div class="statSlot">
+                    <p class='slotHead'>Stripe Fees</p>
+                    <p class="slotBody">${{fees}}</p>
+                </div>
+                <div class="statSlot">
+                    <p class='slotHead'>Profit</p>
+                    <p class="slotBody">${{profit}}</p>
+                </div>
             </div>
         </div>
         <div class="dashboardItems">

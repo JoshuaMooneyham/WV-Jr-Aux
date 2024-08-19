@@ -26,6 +26,10 @@ def generateBidderId() -> int:
 def dateTimeConversion(date: datetime.datetime) -> datetime.datetime:          
     return datetime.datetime(date.year, date.month, date.day, date.hour, date.minute, date.second, date.microsecond, zoneinfo.ZoneInfo('America/Chicago'))
 
+def stringifyDate(date: datetime.datetime) -> str:
+    months = ['', 'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.']
+    return f'{months[date.month]} {date.day}, {date.year} at {date.hour if date.hour < 13 and date.hour > 0 else "12" if date.hour == 0 else date.hour - 12}:{date.minute if date.minute > 9 else "0"+str(date.minute)} {"AM" if date.hour < 12 else "PM"}'
+
 # def generateBidderId() -> int:
 #     while True:
 #         num: int = random.randint(100000000, 999999999)
@@ -96,7 +100,10 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
 
 def updateItem(req: HttpRequest, auctionId: int, id: int) -> HttpResponse:
 
-    return render(req, 'updateItem.html')
+    auction = Auction.objects.get(id=auctionId)
+    item = AuctionItem.objects.get(id=id)
+
+    return render(req, 'updateItem.html', {'auction': auction, 'item': item, 'auctionId': auctionId})
 
 # ==={ Delete Item }=== #
 
@@ -157,16 +164,14 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
     startTime = dateTimeConversion(auction.start_date)
     endTime = dateTimeConversion(auction.end_date)
     now = make_aware(datetime.datetime.now())
-    print(now, startTime, endTime)
-    print(now > endTime, now > startTime, startTime < endTime)
-    if now > endTime and auction.active:
+    if now > endTime:
         context["over"] = True
-        end_auction(req, id)
-        auction.active = False
-        auction.save()
-        for item in auction.auctionitem_set.all():
-            item.active = False
-            item.save()
+        if auction.active:
+            end_auction(req, id)
+            for item in auction.auctionitem_set.all():
+                item.active = False
+                item.save()
+            
     elif now > startTime:
         left = endTime - now
         hours, remainder = divmod(left.seconds, 3600)
@@ -186,7 +191,6 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
 # ==={ Delete Auction }=== #
 
 def deleteAuction(req: HttpRequest, id: int) -> HttpResponse:
-
     try:
         auction = Auction.objects.get(id=id)
         auction.delete()
@@ -209,10 +213,40 @@ def viewAuctionsList(req: HttpRequest, id: int | None = None) -> HttpResponse:
 # ==={ Auction Settings }=== #
 
 def auctionSettings(req: HttpRequest, id: int) ->  HttpResponse:
+    form = CreateAuctionForm()
     auctions = Auction.objects.all()
     auction = Auction.objects.get(id=id)
 
-    return render(req, 'auctionSettings.html', {'auctions': auctions, 'auction': auction, 'auctionId': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
+    start = dateTimeConversion(auction.start_date)
+    startDate:str = f'{start.date()}'
+    startTime:str = f'{start.time()}'
+    startDateTime:str= f'{startDate}T{startTime}Z'
+    stringStart:str = stringifyDate(start)
+
+
+    end = dateTimeConversion(auction.end_date)
+    endDate:str = f'{end.date()}'
+    endTime:str = f'{end.time()}'
+    endDateTime:str = f'{endDate}T{endTime}Z'
+    stringEnd:str = stringifyDate(end)
+
+    now = dateTimeConversion(datetime.datetime.now())
+
+    startable = now < start
+    endable = now > start and now < end
+    
+    if req.method == 'POST':
+        form = CreateAuctionForm(req.POST)
+        if form.is_valid():
+            try:
+                auction.name = form.cleaned_data.get('name')
+                auction.start_date = form.cleaned_data.get('start_date')
+                auction.end_date = form.cleaned_data.get('end_date')
+                auction.save()
+            except:
+                print('Error updating auction')
+
+    return render(req, 'auctionSettings.html', {'startable': startable, 'endable': endable, 'stringEnd': stringEnd, 'endDateTime': endDateTime, 'endTime': endTime, 'endDate': endDate, 'stringStart': stringStart, 'startDateTime': startDateTime, 'startTime': startTime, 'startDate': startDate, 'auctions': auctions, 'auction': auction, 'auctionId': id, "page": 'settings', 'auctionForm': form})
 
 
 def auctionDashboard(req: HttpRequest, id: int) ->  HttpResponse:
@@ -233,18 +267,13 @@ def auctionDashboard(req: HttpRequest, id: int) ->  HttpResponse:
     itemsWBids = len(items) - unbid_items
     fees = (total * .029) + (30 * itemsWBids)
     profit = total - fees
-    # print(f'{fees / 100:,.2f}')
-    # print(f'{total / 100:,.2f}')
-
-    months = ['', 'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.']
+    # months = ['', 'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.']
     end = dateTimeConversion(auction.end_date)
     start = dateTimeConversion(auction.start_date)
-    stringStart = f'{months[start.month]} {start.day}, {start.year} at {start.hour if start.hour < 13 and start.hour > 0 else "12" if start.hour == 0 else start.hour - 12}:{start.minute if start.minute > 9 else "0"+str(start.minute)} {"AM" if start.hour < 12 else "PM"}'
-    stringEnd = f'{months[end.month]} {end.day}, {end.year} at {end.hour if end.hour < 13 and end.hour > 0 else "12" if end.hour == 0 else end.hour - 12}:{end.minute if end.minute > 9 else "0"+str(end.minute)} {"AM" if end.hour < 12 else "PM"}'
-    
-    bidders = Bidder.objects.all()
-    for bidder in bidders:
-        print(bidder.id, bidder.bidder_id)
+    # stringStart = f'{months[start.month]} {start.day}, {start.year} at {start.hour if start.hour < 13 and start.hour > 0 else "12" if start.hour == 0 else start.hour - 12}:{start.minute if start.minute > 9 else "0"+str(start.minute)} {"AM" if start.hour < 12 else "PM"}'
+    # stringEnd = f'{months[end.month]} {end.day}, {end.year} at {end.hour if end.hour < 13 and end.hour > 0 else "12" if end.hour == 0 else end.hour - 12}:{end.minute if end.minute > 9 else "0"+str(end.minute)} {"AM" if end.hour < 12 else "PM"}'
+    stringStart = stringifyDate(start)
+    stringEnd = stringifyDate(end)
 
     return render(req, 'auctionDashboard.html', {'auctions': auctions, 'profit': f'{profit / 100:,.2f}', 'start': stringStart, 'end': stringEnd, 'fees': f'{fees / 100:,.2f}', 'bidOnItems': itemsWBids, 'total':total, 'bids': bids, 'items': items, 'auction': auction, 'auctionId': id, "page": 'settings', 'auctionForm': CreateAuctionForm()})
 

@@ -238,6 +238,61 @@ right: 0;
     visibility: hidden;
 }
 
+.dashboardHeader {
+    margin-left: 5%;
+    /* margin-top: 20px; */
+    padding-top: 20px;
+    font-family: sans-serif;
+}
+
+.dashboardHeaderDash {
+    color: rgb(0, 48, 135);
+    font-weight: 900;
+}
+
+.dashboardHeaderAuction {
+    color: #717171;
+    font-weight: bold;
+}
+
+.statPlate {
+    /* background-color: rgb(244, 244, 244); */
+    background-color: white;
+    width: 90%;
+    margin-left: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.statSlot {
+    height: 100px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* outline: red 1px dashed; */
+}
+
+.slotHead {
+    font-size: .9em;
+    font-family: 'Futura Book', sans-serif;
+    color: #7e7e7e;
+}
+
+.slotBody {
+    font-size: 1.7em;
+    font-family: 'Futura Book', sans-serif;
+}
+
+.dashboardItems {
+    display: grid;
+    
+}
 
 
 
