@@ -1,0 +1,12 @@
+{% extends "sidenav.html" %}
+{% block content %}
+    <div class="account-settings">
+        <h1>Account Settings</h1>
+        <a href="{% url "login_settings" %}">
+            <button>Login & Security</button>
+        </a>
+        <a href="{% url "payment_settings" %}">
+            <button>Payment Settings</button>
+        </a>
+    </div>
+{% endblock content %}

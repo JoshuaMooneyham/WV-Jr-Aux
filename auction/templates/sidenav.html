@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static "auction/css/styles.css" %}">
     {% comment %} <link rel="stylesheet" href="{% static "auction/css/header.css" %}"> {% endcomment %}
     <link rel="stylesheet" href="{% static "auction/css/sidenav.css" %}">
+    <link rel="icon" href="{% static "app/photos/NAJA favicon white.png" %}">
     <script src="{% static "auction/js/scripts.js" %}" defer='defer'></script>
     <script src="{% static "auction/js/timer.js" %}" defer='defer'></script>
     <script src="https://kit.fontawesome.com/2734bda929.js" crossorigin="anonymous"></script>
@@ -22,31 +23,76 @@
             <a href="{% url "login" %}">
                 <button>Log In</button>
             </a>
-            <a href="{% url "register" %}">
+            <a href="{% url "registration" %}">
                 <button>Register</button>
             </a>
         {% elif user.groups.all|length == 0 %}
             <button>My Bids</button>
             <button>Liked Items</button>
             <button>Invoices</button>
+            <a href="{% url "account_settings" %}">
+                <button>Settings</button>
+            </a>
             <a href="{% url "logout" %}">
                 <button>Logout</button>
             </a>
         {% else %}
         {% for group in user.groups.all  %}
             {% if group.name == "Admin" %}
-                <a href="{% url "logout" %}">
-                    <button>Logout</button>
-                </a>
-                <a href="{% url "createProduct" auction.pk %}">
-                    <button>Add Item</button>
-                </a>
-                <button>Settings</button>
-                <p>Total Raised</p>
+                {% if page == 'auction' %}
+                    <a href="{% url "logout" %}">
+                        <button>Logout</button>
+                    </a>
+                    <a href="{% url "createProduct" auction.pk %}">
+                        <button>Add Item</button>
+                    </a>
+                    <a href="{% url "auctionSettings" auction.pk %}">
+                        <button>Settings</button>
+                    </a>
+                    <p>Total Raised</p>
+                {% else %}
+                    <select name="auctionList" id="auctionList">
+                        {% for auction in auctions %}
+                            <option {% if auction.pk == auctionId %}selected{% endif %} value="{{auction.pk}}">{{auction.name}}</option>    
+                        {% endfor %}
+                    </select>
+            
+                    {% comment %} <a href="{% url "createAuction" %}"> {% endcomment %}
+                        <button onclick='showForm()'>+ New Event</button>
+                    {% comment %} </a> {% endcomment %}
+                    <a href="{% url "auctionDashboard" auction.pk %}">
+                        <button>Dashboard</button>
+                    </a>
+                    <a href="{% url "auctionSettings" auction.pk %}">
+                        <button>Settings</button>
+                    </a>
+                    <button>Invoices</button>
+                    <a href="{% url "auctionFront" auctionId %}">
+                        <button>View Auction</button>
+                    </a>
+                {% endif %}
             {% endif %}
         {% endfor %}
         {% endif %}
     </div>
+</div>
+
+<div class='createAuctionForm' id='createAuctionForm'>
+    <form action="{% url "createAuction" %}" method='POST' class='createAuctionFormPlate'>
+        {% csrf_token %}
+        <label class='inputLabel auctionNameLabel'>Name: 
+            {{ auctionForm.name }}
+        </label>
+        {{ auctionForm.start_date }}
+        {{ auctionForm.end_date }}
+        <input type="date" id='startDate'>
+        <input type="time" id='startTime'>
+        <input type="date" id='endDate'>
+        <input type="time" id='endTime'>
+        <input type="hidden" name='active' value={{True}}>
+        {% comment %} {{ auctionForm.active }} {% endcomment %}
+        <input type="submit" value='Submit' id='submit'>
+    </form>
 </div>
 
 <body>
@@ -54,6 +100,32 @@
     
     {% endblock content %}
 </body>
+
+
+<script>
+    let form = document.getElementById('createAuctionForm');
+    function showForm() {
+        console.log(form.style)
+        form.style.display = "flex";
+        }
+    let startDate = document.getElementById('startDate');
+    let startTime = document.getElementById('startTime');
+    let endDate = document.getElementById('endDate');
+    let endTime = document.getElementById('endTime');
+    let realStartDate = document.getElementById('id_start_date');
+    let realEndDate = document.getElementById('id_end_date');
+    let submit = document.getElementById('submit');
+
+    submit.onclick = () => {
+        realStartDate.value = `${startDate.value}T${startTime.value}:00Z`
+        realEndDate.value = `${endDate.value}T${endTime.value}:00Z`
+    }
+
+    let select = document.getElementById('auctionList');
+    select.addEventListener('change', () => {
+        window.location.href = new String(window.location.href).replace(/auction\/[0-9]+/, `auction/${select.value}`)
+    })
+</script>
 
 {% comment %} <footer class="footer">
     <p>© Junior Auxillary of Yalobusha County</p>

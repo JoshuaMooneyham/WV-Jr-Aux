@@ -6,7 +6,7 @@ class Auction(models.Model):
     name = models.TextField()
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    description = models.TextField(null=True, blank=True)
+    active = models.BooleanField()
 
     def __str__(self) -> str:
         return f'Auction: {self.name}'
@@ -32,6 +32,7 @@ class AuctionItem(models.Model):
     value = models.IntegerField() #Cents, base 100
     autobuy_price = models.IntegerField(null=True, blank=True) #Cents, base 100
     highest_bidder = models.ForeignKey(Bidder, null=True, on_delete=models.SET_NULL, related_name='highest_bids')
+    runner_up = models.ForeignKey(Bidder, null=True, on_delete=models.SET_NULL, related_name='runner_up')
     auction = models.ForeignKey(Auction, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
@@ -56,6 +57,7 @@ class Bid(models.Model):
     amount = models.IntegerField() #Cents, base 100
     item = models.ForeignKey(AuctionItem, on_delete=models.CASCADE)
     payment_intent_id = models.TextField(null=True, blank=True)
+    setup_intent_id = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return f'Bid from {self.bidder.bidder_id} on {self.item.name}'

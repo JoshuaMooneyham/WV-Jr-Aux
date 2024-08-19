@@ -22,6 +22,8 @@ from auction.views import *
 
 urlpatterns = [
 
+    path("", auctionHome, name="auctionHome"),
+
     # ==={ Item CRUD }=== #
     path('<int:auctionId>/products/create', createProduct, name='createProduct'),
     path('<int:auctionId>/products/<int:id>', displayItem, name='displayProduct'),
@@ -31,15 +33,24 @@ urlpatterns = [
     # ==={ Auction CRUD }=== #
     path('create/', createAuction, name='createAuction'),
     path('<int:id>/', auctionFront, name="auctionFront"),
-    path('config/<int:id>', viewAuctionsList, name="auctionsList"),
+    path('<int:id>/delete/', deleteAuction, name='deleteAuction'),
+    path('<int:id>/config/', auctionSettings, name="auctionSettings"),
+    path('<int:id>/dashboard/', auctionDashboard, name="auctionDashboard"),
+    path('config/', viewAuctionsList, name="auctionSettings"),
+    # ^^^ NOT DUPLICATES dont delete
 
     # ==={ User Auth }=== #
     path('registration/', registration_view, name='registration'),
+    path('account-settings/', account_settings, name='account_settings'),
+    path('login-settings/', login_settings, name='login_settings'),
+    path('update-name/', update_name, name='update_name'),
+    path('update-email/', update_email, name='update_email'),
+    path('update-password/', update_password, name='update_password'),
     
     # ==={ Michaels URLs im not really sure }=== #
-    path('add-payment-method/', add_payment_view, name='add_payment_method'),
+    path('add-payment-method/', add_payment_method, name='add_payment_method'),
     path('edit-payment-method/<str:payment_method_id>', edit_payment_method, name='edit_payment_method'),
     path('delete-payment-method/<str:payment_method_id>', delete_payment_method, name="delete_payment_method"),
     path('payment-method-settings/', payment_settings, name='payment_settings'),
-    path('end-auction/<str:product_id>', end_auction, name='end_auction'),
+    path('end-auction/<int:id>', end_auction, name='end_auction'),
 ]
