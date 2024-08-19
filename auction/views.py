@@ -7,8 +7,9 @@ from django.utils.timezone import make_aware
 from auction.models import *
 from auction.forms import *
 from django.conf import settings
+from django.core.files.base import ContentFile
 from typing import Dict, List
-import stripe, json, logging
+import stripe, json, logging, os, requests
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +17,7 @@ import random
 import datetime
 import zoneinfo
 import re
+
 
 def generateBidderId() -> int:
     while True:
@@ -81,12 +83,14 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
 
     if req.method == "POST":
         amount = req.POST.get('amount')
-        stripe.api_key = settings.STRIPE_KEY  
+        stripe.api_key = settings.STRIPE_KEY
         if amount != None and (int(amount) >= item.current_bid + 500):
-            bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
+            bidder = Bidder.objects.get(id=req.POST.get("bidder"))
+            bid = Bid(bidder=bidder, amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
             print(bid)
             bid.save()
             item.current_bid = int(amount)
+            item.highest_bidder = bidder
             item.save()
     lowestAllowedBid = item.current_bid + 500
     payment_method_id = req.POST.get("selected_payment_method")
@@ -531,30 +535,26 @@ def end_auction(request: HttpRequest, id):
         for stripe_customer, invoice_data in bidders_invoices.items():
             try:
                 for invoice_item in invoice_data["items"]:
-                    stripe_invoice_item = stripe.InvoiceItem.create(
+                    stripe.InvoiceItem.create(
                         customer=stripe_customer,
                         amount=invoice_item["amount"],
                         currency="usd",
                         description=invoice_item["name"],
                     )
-                    logger.debug(f"Created Invoice Item: {stripe_invoice_item}")
-
+                    
                 invoice = stripe.Invoice.create(
                     customer=stripe_customer,
                     default_payment_method=invoice_data["payment_method"],
                     auto_advance=True,
                     pending_invoice_items_behavior="include",
                 )
-                logger.debug(f"Created Invoice: {invoice}")
-
+                
                 # Wait for invoice to be finalized
                 finalized_invoice = stripe.Invoice.finalize_invoice(invoice.id)
-                logger.debug(f"Finalized Invoice: {finalized_invoice}")
-
+                
                 # Retrieve and log invoice lines
                 invoice_lines = stripe.Invoice.list_lines(invoice.id)
-                logger.debug(f"Invoice Lines: {invoice_lines}")
-
+                
                 Bid.objects.filter(bidder__stripe_id=stripe_customer, payment_intent_id="PENDING").update(payment_intent_id=finalized_invoice.id)
             except Exception as e:
                 print(f"Error creating invoice for bidder {stripe_customer}: {e}")
@@ -564,72 +564,56 @@ def end_auction(request: HttpRequest, id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-# def end_auction(request: HttpRequest, id):
-#     try:
-#         stripe.api_key = settings.STRIPE_KEY
-#         auction = Auction.objects.get(id=id)
-#         items = auction.auctionitem_set.all()
+def get_invoices_for_auction(request:HttpRequest, id):
+    stripe.api_key = settings.STRIPE_KEY
+    bidders_invoices = {}
+    try:
+        auction = Auction.objects.get(id=id)
+        items = auction.auctionitem_set.all()
+        for item in items:
+            if item.highest_bidder:
+                bidder_id = item.highest_bidder.bidder_id
+                bidder = Bidder.objects.get(bidder_id=bidder_id)
+                bids = Bid.objects.filter(item=item, bidder=bidder)
+                for bid in bids:
+                    invoice_id = bid.payment_intent_id
+                    if invoice_id:
+                        invoice = stripe.Invoice.retrieve(invoice_id)
 
-#         InvoiceItem = Dict[str, int]
-#         bidders_invoices: Dict[str, Dict[str, List[InvoiceItem]]] = {} # type: ignore
+                        # pdf_url = invoice.invoice_pdf
+                        # pdf_response = requests.get(pdf_url)
+                        # pdf_file = ContentFile(pdf_response.content, f"{invoice_id}.pdf")
+                        # pdf_path = os.path.join(settings.MEDIA_ROOT, f"{invoice_id}.pdf")
 
-#         for item in items:
-#             stripe_product = stripe.Product.retrieve(item.stripe_id)
-#             if item.active:
-#                 stripe.Product.modify(
-#                     stripe_product.id,
-#                     active=False,
-#                 )
-#             try:
-#                 highest_bid = Bid.objects.filter(item=item).order_by("-amount").first()
-#                 if highest_bid and highest_bid.setup_intent_id:
-#                     setup_intent = stripe.SetupIntent.retrieve(highest_bid.setup_intent_id)
-#                     if setup_intent and setup_intent.status == "succeeded":
-#                         stripe_customer = highest_bid.bidder.stripe_id
-#                         if stripe_customer not in bidders_invoices:
-#                             bidders_invoices[stripe_customer] = {
-#                                 "items": [],
-#                                 "payment_method": setup_intent.payment_method,
-#                             }
-#                         bidders_invoices[stripe_customer]["items"].append({
-#                             "amount": item.current_bid,
-#                             "name": item.name,
-#                         })
-#                         highest_bid.payment_intent_id = "PENDING"
-#                         highest_bid.save()
-#             except:
-#                 print(f"Error {item.id}")
-        
-#         for stripe_customer, invoice_data, in bidders_invoices.items():
-#             try:
-#                 for invoice_item in invoice_data["items"]:
-#                     stripe_invoice_item = stripe.InvoiceItem.create(
-#                             customer=stripe_customer,
-#                             amount=invoice_item["amount"],
-#                             currency="usd",
-#                             description=invoice_item["name"],
-#                         )
-#                     logger.debug(f"Invoice Item: {stripe_invoice_item}")
-#                 invoice = stripe.Invoice.create(
-#                     customer=stripe_customer,
-#                     default_payment_method=invoice_data["payment_method"],
-#                     auto_advance=True,
-#                 )
-#                 logger.debug(f"Invoice: {invoice}")
-#                 logger.debug(f"Invoice ID: {invoice.id}")
-#                 finalized_invoice = stripe.Invoice.finalize_invoice(invoice.id)
-#                 logger.debug(f"Finalized Invoice: {finalized_invoice}")
+                        # with open(pdf_path, "wb") as f:
+                        #     f.write(pdf_response.content)
 
-#                 finalized_invoice = stripe.Invoice.retrieve(finalized_invoice.id)
-#                 lines = finalized_invoice.lines
-#                 logger.debug(f"Invoice Lines: {lines}")
+                        if bidder_id not in bidders_invoices:
+                            bidders_invoices[bidder_id] = {
+                                "bidder_name": invoice.customer_name,
+                                "amount_due": "{:.2f}".format(invoice.amount_due/100),
+                                "status": invoice.status,
+                                "invoice_id": invoice_id,
+                                }
+        logger.debug(f"bidders_invoices: {bidders_invoices}")
+    except:
+        print("Auction not found.")
+        auction = None
+    return render(request, "invoices.html", {"invoices": bidders_invoices})
 
-#                 Bid.objects.filter(bidder__stripe_id=stripe_customer, payment_intent_id="PENDING").update(payment_intent_id=finalized_invoice.id)
-#             except:
-#                 print(f"Error creating invoice for bidder {stripe_customer}")
-#     except:
-#         print("Auction doesn't exist")
-#     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+def view_invoice_pdf(request: HttpRequest, invoice_id):
+    stripe.api_key = settings.STRIPE_KEY
+    try:
+        invoice = stripe.Invoice.retrieve(invoice_id)
+        pdf_url = invoice.invoice_pdf
+        pdf_response = requests.get(pdf_url)
+        pdf_content = pdf_response.content
+        response = HttpResponse(pdf_content, content_type='application/pdf')
+        response['Content-Disposition'] = f'inline; filename="{invoice_id}.pdf"'
+        return response
+    except Exception as e:
+        print(f"Error retrieving PDF: {e}")
+        return HttpResponse("Error retrieving PDF.")
 
 def testingView(req: HttpRequest) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY
