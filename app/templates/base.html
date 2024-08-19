@@ -4,28 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Junior Auxillary</title>
+    <title>Junior Auxiliary</title>
     <link rel="stylesheet" href="{% static "app/css/styles.css" %}">
-    <script src="{% static "app/js/scripts.js" %}"></script>   
+    <script src="{% static "app/js/scripts.js" %}"></script>
 </head>
 <div class="container">
-    <img src="{% static 'app/NAJALOGO.png' %}" alt="Logo" class="left-image">
+    <div class="left-side">
+        <img src="{% static 'app/photos/NAJALOGOcrop.svg' %}" alt="Logo" class="left-image">
+        <p class="header_text">Junior Auxiliary <br>of Water Valley</p>
+    </div>
+
+    <nav class="myNav">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'scholarship' %}">Scholarship</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'projects' %}">Projects</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+
     <button class="right-button">Donate</button>
 </div>
 
 <body>
-    
-    <nav class="myNav">
-        <a href="{% url 'home' %}">Home</a>
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'logout' %}">Logout</a>
-                <a href="{% url 'about' %}">About Us</a>
-            <a href="{% url 'projects' %}">Projects</a>
-            <a href="{% url 'contact' %}">Contact</a>
-    </nav>
+
 
 {% block content %}
 
 {% endblock content %}
+<div class="events_box">
+    <h2>Upcoming Events</h2>
+    <button class="eventButton">Add Event</button>
+    <div id="events_list">
+        <p>Event 1</p>
+        <p>Event 2</p>
+        <p>Event 3</p>
+    </div>
+    
+</div>
+
+<footer class="footer">
+    © Junior Auxillary of Water Valley</p>
+</footer>
     
 </html>

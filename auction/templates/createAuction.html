@@ -1,0 +1,24 @@
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="date" id='startDate'>
+    <input type="time" id='startTime'>
+    <input type="date" id='endDate'>
+    <input type="time" id='endTime'>
+    <input type="submit" value='Submit' id='submit'>
+</form>
+
+<script>
+    let startDate = document.getElementById('startDate');
+    let startTime = document.getElementById('startTime');
+    let endDate = document.getElementById('endDate');
+    let endTime = document.getElementById('endTime');
+    let realStartDate = document.getElementById('id_start_date');
+    let realEndDate = document.getElementById('id_end_date');
+    let submit = document.getElementById('submit');
+
+    submit.onclick = () => {
+        realStartDate.value = `${startDate.value}T${startTime.value}:00Z`
+        realEndDate.value = `${endDate.value}T${endTime.value}:00Z`
+    }
+</script>

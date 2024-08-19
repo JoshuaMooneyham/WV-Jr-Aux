@@ -1,0 +1,61 @@
+{% extends "sidenav.html" %}
+{% block content %}
+    <div class='auctionConfig'>
+        <div class='updateAuctionForm'>
+            <form method="POST">
+                {% csrf_token %}
+                <label class='inputLabel auctionNameLabel'>Name: 
+                    <input required type="text" name='name' id='updateName' value={{auction.name}}>
+                </label>
+                <input type="text" name='start_date' id='updateStartDatetime' value={{startDateTime}}>
+                <input type="text" name='end_date' id='updateEndDatetime' value={{endDateTime}}>
+                <input required type="date" id='updateStartDate' value={{startDate}}>
+                <input required type="time" id='updateStartTime' value={{startTime}}>
+                <input required type="date" id='updateEndDate' value={{endDate}}>
+                <input required type="time" id='updateEndTime' value={{endTime}}>
+                <input type="hidden" name='active' value={{auction.active}}>
+                <input type="submit" name='submitUpdate' value='Submit' id='updateSubmit'>
+            </form>
+        </div>
+        <div class="auctionSettingsButtons">
+            <form action={% url "deleteAuction" auction.pk %}>
+                <button type="submit">DELETE</button>
+            </form>
+            {% if auction.active %}
+            <form action="">
+                <button>SET INACTIVE</button>
+            </form>
+            {% else %}
+            <form action="">
+                <button>SET ACTIVE</button>
+            </form>
+            {% endif %}
+            {% comment %} {% if startable %}
+                <button>START AUCTION</button>
+            {% endif %}
+            {% if endable %}
+                <button>END AUCTION</button>
+            {% endif %} {% endcomment %}
+        </div>
+    </div>
+
+    <script>
+
+        let updateStartDate = document.getElementById('updateStartDate');
+        let updateStartTime = document.getElementById('updateStartTime');
+        let updateEndDate = document.getElementById('updateEndDate');
+        let updateEndTime = document.getElementById('updateEndTime');
+        let updateRealStartDate = document.getElementById('updateStartDatetime');
+        let updateRealEndDate = document.getElementById('updateEndDatetime');
+        let updateSubmit = document.getElementById('updateSubmit');
+    
+        function updateDates() {
+            updateRealStartDate.value = `${updateStartDate.value}T${updateStartTime.value}:00Z`
+            updateRealEndDate.value = `${updateEndDate.value}T${updateEndTime.value}:00Z`
+        }
+
+        addEventListener('change', updateDates)
+
+        submit.onclick = updateDates
+    </script>
+{% endblock content %}

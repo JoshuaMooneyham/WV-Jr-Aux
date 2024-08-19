@@ -1,4 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<h1 class="name_headers">Scholarship Application</h1>
+<div class="scholarship_container">
+        <p class="scholarship_text">The Junior Auxiliary
+     of Water Valley is pleased to offer four scholarships 
+     each spring, two $1,000 scholarships to be awarded to 
+     Water Valley Seniors and two $1,000 scholarships to 
+     Coffeeville High School Seniors based on scholastic 
+     merit, achievement in volunteering, future plans to
+     volunteer, and letters of recommendation. Please scan 
+    the barcode in the picture to fill out the application and 
+    email it to our us at juniorauxiliary.watervalley@gmail.com.</p>
+
+
+<img src="{% static 'app/photos/scholarship.jpg' %}" alt="members" class="scholarship_pic">
+        </div>
 {% endblock content %}

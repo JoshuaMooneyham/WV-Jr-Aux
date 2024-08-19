@@ -1,0 +1,34 @@
+{% extends "sidenav.html" %}
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> {% endcomment %}
+{% comment %} <body> {% endcomment %}
+    {% comment %} <div class='sidenav'>
+        <select name="auctionList" id="auctionList">
+            {% for auction in auctions %}
+                <option {% if auction.pk == id %}selected{% endif %} value="{{auction.pk}}">{{auction.name}}</option>    
+            {% endfor %}
+        </select>
+
+        <a href="{% url "createAuction" %}">
+            <button>+ New Event</button>
+        </a>
+        <button>Settings</button>
+        <button>Invoices</button>
+        <button>Dashboard</button>
+
+    </div> {% endcomment %}
+    {% block content %}
+        <div class='auctionConfig'>
+            wooo
+            {% for auction in auctions %}
+            {{auction}}
+            {% endfor %}
+    </div>
+    {% endblock content %}
+{% comment %} </body> {% endcomment %}
+{% comment %} </html> {% endcomment %}

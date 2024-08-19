@@ -20,6 +20,7 @@ environ.Env.read_env()
 ENVIRONMENT = env('ENVIRONMENT', default='production')
 
 STRIPE_KEY = env('STRIPE_KEY')
+STRIPE_TEST_PUBLIC_KEY = env('STRIPE_TEST_PUBLIC_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,22 @@ CSRF_TRUSTED_ORIGINS = [ 'https://wv-jr-aux-production.up.railway.app' ]
 
 
 # Application definition
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'DEBUG',
+    },
+}
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
@@ -80,6 +97,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':  {
+                'my_filters': 'auction.templatetags.my_filters',
+            }
         },
     },
 ]
@@ -125,7 +145,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
@@ -135,7 +155,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
