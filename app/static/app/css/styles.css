@@ -30,6 +30,9 @@ body {
 /* } */
 
 .container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background-color: white;
     display: flex;
     justify-content: space-between;
@@ -104,6 +107,25 @@ body {
 
 }
 /* <------------HOME------------> */
+ /* Add smooth scrolling */
+ html {
+    scroll-behavior: smooth;
+}
+
+/* Section styling */
+section {
+    padding: 50px;
+    min-height: 100vh; /* Full viewport height */
+    margin-bottom: 50px;
+    position: relative;
+}
+
+/* Optional: Adjust different background colors for sections */
+#home, #scholarship, #about, #projects, #contact {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
 .img_container{
     /* margin-top: 15; */
     /* text-align: center; */
@@ -200,16 +222,22 @@ body {
 
 
 .events_box button {
-    background: rgb(255, 241, 141); 
+    background-color: rgb(246, 236, 97);
     color: rgb(0, 48, 135); 
-    font-size: 1rem;
-    padding: .5% 1%; 
+    font-size: 1.2rem;
+    padding: 15px 20px;
     border-radius: 5px; 
     margin-top: 20px; 
     border: none; 
     align-self: center; 
     cursor: pointer; 
+    border: none;
 
+}
+.events_box button:hover {
+    background-color: rgb(0, 48, 135); 
+    color: white; 
+    cursor: pointer; 
 }
 
 #events_list {
