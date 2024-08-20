@@ -66,15 +66,23 @@
             </div>
         {% comment %} </div> {% endcomment %}
 
-            <div class="auctionItemBidHistory">
-                <p>Bid History v</p>
-                <div class='bidHistoryBids'>
+            <div id='bidDropDown' class="auctionItemBidHistory">
+                <p class='bidTitle'>Bid History <i id='dropdownIcon' class="fa-solid fa-chevron-down"></i></p>
+                <div class='bidHistoryBids' id='theBids'>
                 {% if item.bid_set.all|length == 0 %}
-                    <p>There are currently no bids. Place one now!</p>
+                    <p class='bid'>There are currently no bids. Place one now!</p>
+                {% else %}
+                    <div class="bid headingBid">
+                        <p class='bidId'>Bidder ID</p>
+                        <p class='bidAmt'>Amount</p>
+                    </div>
+                    {% for bid in item.bid_set.all %}
+                    <div class="bid">
+                        <p class='bidId'>{{bid.bidder.bidder_id}}</p>
+                        <p class='bidAmt'>{{bid.amount|moneyify}}</p>
+                    </div>
+                    {% endfor %}
                 {% endif %}
-                {% for bid in item.bid_set.all %}
-                    <p>{{bid.bidder.bidder_id}} | {{bid.amount|moneyify}}</p>
-                {% endfor %}
                 </div>
             </div>
         </div>
@@ -104,7 +112,6 @@
             } else {
                 console.log('Bid Successful!');
                 console.log("Payment Method ID:", selectedPaymentMethod)
-
                 document.getElementById('selected-payment-method').value = selectedPaymentMethod
                 const form = document.getElementById('bid-form');
 
@@ -116,6 +123,12 @@
                 }
             }
         });
+
+        let BidHistory = document.getElementById('bidDropDown');
+        let theBids =document.getElementById('theBids')
+        BidHistory.addEventListener('click', () => {
+            theBids.style.display = theBids.style.display == 'none' ? 'flex' : 'none';
+        }) 
     </script>
 {% endblock content %}
 {% comment %} </body>

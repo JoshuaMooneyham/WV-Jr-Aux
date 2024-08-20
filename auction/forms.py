@@ -44,6 +44,10 @@ class CreateAuctionItemForm(forms.ModelForm):
         model = AuctionItem
         fields = ['name', 'description', 'starting_bid', 'autobuy_price', 'value']
 
+    def clean(self):
+        cleaned_data = super().clean()
+        print(cleaned_data)
+
 # class PlaceBidForm(forms.ModelForm):
 #     class Meta:
 #         model = Bid

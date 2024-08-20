@@ -45,9 +45,12 @@ def stringifyDate(date: datetime.datetime) -> str:
 # ==={ Create Item }=== #
 
 def createProduct(req: HttpRequest, auctionId: int) -> HttpResponse:
+    auction = Auction.objects.get(id=auctionId)
+    
     form = CreateAuctionItemForm()
     if req.method == 'POST':
         form = CreateAuctionItemForm(req.POST)
+        # print(req.POST)
         if form.is_valid():
             try:
                 stripe.api_key = settings.STRIPE_KEY
@@ -73,7 +76,7 @@ def createProduct(req: HttpRequest, auctionId: int) -> HttpResponse:
                 return redirect("auctionFront", auctionId)
             except:
                 print('hi')
-    return render(req, 'createProduct.html', {'form': form})
+    return render(req, 'createProduct.html', {'form': form, 'auction': auction, 'auctionId': auctionId})
 
 # ==={ Read Item }=== #
 
@@ -94,7 +97,7 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
             item.current_bid = int(amount)
             item.highest_bidder = bidder
             item.save()
-    lowestAllowedBid = item.current_bid + 500
+    lowestAllowedBid = (item.current_bid + 500) if item.highest_bidder is not None else item.current_bid
     payment_method_id = req.POST.get("selected_payment_method")
     setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
     saved_cards = list_payment_methods(req)
@@ -629,6 +632,8 @@ def testingView(req: HttpRequest) -> HttpResponse:
     return render(req, 'test.html', {'test': customers, 'image': image})
 
 def productsTest(req: HttpRequest) -> HttpResponse:
+
+
     form = CreateAuctionItemForm()
     if req.method == 'POST':
         form = CreateAuctionItemForm(req.POST)
