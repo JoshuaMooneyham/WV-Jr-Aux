@@ -16,12 +16,12 @@
 
         <script>
             // Initialize Stripe.js with your publishable key
-            var stripe = Stripe('{{ STRIPE_TEST_PUBLIC_KEY }}');
-            var elements = stripe.elements();
-            var cardElement = elements.create('card');
+            const stripe = Stripe('{{ STRIPE_TEST_PUBLIC_KEY }}');
+            const elements = stripe.elements();
+            const cardElement = elements.create('card');
             cardElement.mount('#card-element');
 
-            var form = document.getElementById('payment-form');
+            const form = document.getElementById('payment-form');
             document.getElementById('payment-form').addEventListener('submit', function(event) {
                 event.preventDefault();
             
@@ -52,13 +52,19 @@
                     })
                 }).then(response => response.json())
                   .then(data => {
-                      if (data.error) {
-                          console.error('Error:', data.error);
-                      } else {
-                          console.log('Payment method added successfully.');
-                      }
-                  }).catch(error => console.error('Error:', error));
-                  console.log(paymentMethodId);
+                        if (data.error) {
+                            console.error('Error:', data.error);
+                        } else {
+                            if (data.redirect_url) {
+                                console.log(data.redirect_url)
+                                window.location.href = data.redirect_url;
+                            } else {
+                                console.log('Payment method added successfully.');
+                            }
+                        }
+                    }).catch(error => {
+                        console.error('Error:', error.message);
+                    });
             }
         </script>
     </body>

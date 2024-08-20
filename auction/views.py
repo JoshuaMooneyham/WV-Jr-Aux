@@ -10,6 +10,7 @@ from django.conf import settings
 from django.core.files.base import ContentFile
 from typing import Dict, List
 import stripe, json, logging, os, requests
+from django.urls import reverse
 
 logger = logging.getLogger(__name__)
 
@@ -89,11 +90,16 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
         stripe.api_key = settings.STRIPE_KEY
         if amount != None and (int(amount) >= item.current_bid + 500):
             bidder = Bidder.objects.get(id=req.POST.get("bidder"))
-            bid = Bid(bidder=bidder, amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
-            bid.save()
-            item.current_bid = int(amount)
-            item.highest_bidder = bidder
-            item.save()
+            payment_methods = list_payment_methods(req)
+            if len(payment_methods) != 0:
+                bid = Bid(bidder=bidder, amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
+                bid.save()
+                item.current_bid = int(amount)
+                item.highest_bidder = bidder
+                item.save()
+            else:
+                req.session['return_url'] = req.build_absolute_uri()
+                return redirect("add_payment_method")
     lowestAllowedBid = item.current_bid + 500
     payment_method_id = req.POST.get("selected_payment_method")
     setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
@@ -415,19 +421,15 @@ def update_password(request: HttpRequest):
 
 def add_payment_method(request: HttpRequest):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        payment_method_id = data.get('payment_method_id')
-        
-        logging.info(f'Received payment_method_id: {payment_method_id}')
-
-        if not payment_method_id:
-            return JsonResponse({'error': 'Payment Method ID is required'}, status=400)
-
         try:
+            data = json.loads(request.body)
+            payment_method_id = data.get('payment_method_id')
+
+            if not payment_method_id:
+                return JsonResponse({'error': 'Payment Method ID is required'}, status=400)
+
             stripe.api_key = settings.STRIPE_KEY
             bidder = Bidder.objects.get(user=request.user)
-
-            logging.info(bidder.stripe_id)
 
             stripe.PaymentMethod.attach(
                 payment_method_id,
@@ -441,9 +443,31 @@ def add_payment_method(request: HttpRequest):
                 }
             )
 
-            return JsonResponse({'success': True, 'customer_id': bidder.stripe_id})
-        except:
-            print("Invalid card")
+            # Prepare success response with redirect URL if available
+            return_url = request.session.get('return_url')
+            if return_url:
+                del request.session['return_url']
+                return JsonResponse({'redirect_url': return_url})
+            else:
+                return JsonResponse({'redirect_url': reverse("payment_settings")})
+        
+        except stripe.error.CardError as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        except stripe.error.InvalidRequestError as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        except stripe.error.AuthenticationError as e:
+            return JsonResponse({'error': str(e)}, status=401)
+        except stripe.error.APIConnectionError as e:
+            return JsonResponse({'error': str(e)}, status=502)
+        except stripe.error.StripeError as e:
+            return JsonResponse({'error': str(e)}, status=500)
+        except Bidder.DoesNotExist:
+            return JsonResponse({'error': 'Bidder not found'}, status=404)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON in request body'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': 'An unexpected error occurred: ' + str(e)}, status=500)
+
     return render(request, "add_payment.html", {'STRIPE_TEST_PUBLIC_KEY': settings.STRIPE_TEST_PUBLIC_KEY})
 
 def list_payment_methods(request: HttpRequest):
