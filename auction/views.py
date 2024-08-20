@@ -622,7 +622,6 @@ def get_invoices_for_auction(request:HttpRequest, id:int) -> HttpResponse:
                                 "status": invoice.status,
                                 "invoice_id": invoice_id,
                                 }
-        logger.debug(f"bidders_invoices: {bidders_invoices}")
     except:
         print("Auction not found.")
         auction = None
