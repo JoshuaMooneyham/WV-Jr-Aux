@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from django.views.static import serve
+from django.conf.urls.static import static
 from app.views import *
 from auction.views import *
 
@@ -25,8 +26,8 @@ urlpatterns = [
     path("", auctionHome, name="auction"),
 
     # ==={ Item CRUD }=== #
-    path('<int:auctionId>/products/create', createProduct, name='createProduct'),
-    path('<int:auctionId>/products/<int:id>', displayItem, name='displayProduct'),
+    path('<int:auctionId>/products/create/', createProduct, name='createProduct'),
+    path('<int:auctionId>/products/<int:id>/', displayItem, name='displayProduct'),
     path('<int:auctionId>/products/update/<int:id>/', updateItem, name='updateProduct'),
     path('<int:auctionId>/products/delete/<int:id>/', deleteItem, name="deleteProduct"),
 
@@ -49,8 +50,12 @@ urlpatterns = [
     
     # ==={ Michaels URLs im not really sure }=== #
     path('add-payment-method/', add_payment_method, name='add_payment_method'),
-    path('edit-payment-method/<str:payment_method_id>', edit_payment_method, name='edit_payment_method'),
-    path('delete-payment-method/<str:payment_method_id>', delete_payment_method, name="delete_payment_method"),
+    path('edit-payment-method/<str:payment_method_id>/', edit_payment_method, name='edit_payment_method'),
+    path('delete-payment-method/<str:payment_method_id>/', delete_payment_method, name="delete_payment_method"),
     path('payment-method-settings/', payment_settings, name='payment_settings'),
-    path('end-auction/<int:id>', end_auction, name='end_auction'),
-]
+    path('end-auction/<int:id>/', end_auction, name='end_auction'),
+    path('get-invoices/<int:id>/', get_invoices_for_auction, name='get_invoices'),
+
+    # ==={ PDF Files }=== #
+    path('view-pdf/<str:invoice_id>/', view_invoice_pdf, name='view_pdf'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

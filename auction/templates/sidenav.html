@@ -29,7 +29,9 @@
         {% elif user.groups.all|length == 0 %}
             <button>My Bids</button>
             <button>Liked Items</button>
-            <button>Invoices</button>
+            <a href="{% url "get_invoices" 1 %}">
+                <button>Invoices</button>
+            </a>
             <a href="{% url "account_settings" %}">
                 <button>Settings</button>
             </a>
@@ -65,8 +67,10 @@
                     <a href="{% url "auctionSettings" auction.pk %}">
                         <button>Settings</button>
                     </a>
-                    <button>Invoices</button>
-                    <a href="{% url "auctionFront" auctionId %}">
+                    <a href="{% url "get_invoices" auction.pk %}">
+                        <button>Invoices</button>
+                    </a>
+                    <a href="{% url "auctionFront" auction.pk %}">
                         <button>View Auction</button>
                     </a>
                 {% endif %}
