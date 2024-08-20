@@ -81,13 +81,15 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
     item = AuctionItem.objects.get(id=id)
     images = [img for img in item.images.all()]
 
+    auctions = Auction.objects.all()
+    auction = Auction.objects.get(id=auctionId)
+
     if req.method == "POST":
         amount = req.POST.get('amount')
         stripe.api_key = settings.STRIPE_KEY
         if amount != None and (int(amount) >= item.current_bid + 500):
             bidder = Bidder.objects.get(id=req.POST.get("bidder"))
             bid = Bid(bidder=bidder, amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
-            print(bid)
             bid.save()
             item.current_bid = int(amount)
             item.highest_bidder = bidder
@@ -98,7 +100,7 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
     saved_cards = list_payment_methods(req)
 
             
-    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid, "setup_intent": setup_intent, "saved_cards": saved_cards, "STRIPE_TEST_PUBLIC_KEY": settings.STRIPE_TEST_PUBLIC_KEY, "auctionId": auctionId})
+    return render(req, 'displayItem.html', {'auctions': auctions, 'auction': auction, "item": item, "images": images, "lab": lowestAllowedBid, "setup_intent": setup_intent, "saved_cards": saved_cards, "STRIPE_TEST_PUBLIC_KEY": settings.STRIPE_TEST_PUBLIC_KEY, "auctionId": auctionId})
 
 # ==={ Update Item }=== #
 
@@ -264,7 +266,8 @@ def auctionDashboard(req: HttpRequest, id: int) ->  HttpResponse:
     for item in items:
         bid = item.bid_set.all().count()
         bids += bid
-        total += item.current_bid
+        if item.highest_bidder is not None:
+            total += item.current_bid
         if bid == 0:
             unbid_items += 1
 
@@ -564,7 +567,7 @@ def end_auction(request: HttpRequest, id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-def get_invoices_for_auction(request:HttpRequest, id):
+def get_invoices_for_auction(request:HttpRequest, id:int) -> HttpResponse:
     stripe.api_key = settings.STRIPE_KEY
     bidders_invoices = {}
     try:
@@ -599,7 +602,7 @@ def get_invoices_for_auction(request:HttpRequest, id):
     except:
         print("Auction not found.")
         auction = None
-    return render(request, "invoices.html", {"invoices": bidders_invoices})
+    return render(request, "invoices.html", {'auction':auction , 'auctionId': id, "invoices": bidders_invoices})
 
 def view_invoice_pdf(request: HttpRequest, invoice_id):
     stripe.api_key = settings.STRIPE_KEY
