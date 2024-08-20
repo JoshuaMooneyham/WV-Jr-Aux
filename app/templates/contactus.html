@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<h1 class="name_headers">Contact Us</h1>
 <div class="contact-container">
     <div class="contact-left">
-        <h1 class="name_headers">Junior Auxiliary of Yalobusha County</h1>
         <p class="contact_us">Feel free to reach out to us if you would like to help us with our mission or if you have any questions.</p>
         <h2 class="address">Email:
             <br>JuniorAuxiliary.WaterValley@gmail.com
@@ -15,10 +15,11 @@
         
     </div>
     <div class="contact-right">
-        <h2>Stay Connected with Us</h2>
+        <h2 class="stay_connected">Stay Connected with Us</h2>
         <h2 class="address">Feel free to reach out to our Facebook!</h2>
-        <a href="https://www.facebook.com/Junior-Auxiliary-of-Water-Valley-MS-105372394682/">
+        <a target="_blank" href="https://www.facebook.com/JuniorAuxiliary.WaterValley/">
             <img src="{% static 'app/photos/facebook.png' %}" alt="facebook" class="facebook">
+        </a>
     </div>
 </div>
 {% endblock content %}
