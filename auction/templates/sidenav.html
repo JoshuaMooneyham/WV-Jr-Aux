@@ -67,8 +67,10 @@
                     <a href="{% url "auctionSettings" auction.pk %}">
                         <button>Settings</button>
                     </a>
-                    <button>Invoices</button>
-                    <a href="{% url "auctionFront" auctionId %}">
+                    <a href="{% url "get_invoices" auction.pk %}">
+                        <button>Invoices</button>
+                    </a>
+                    <a href="{% url "auctionFront" auction.pk %}">
                         <button>View Auction</button>
                     </a>
                 {% endif %}
