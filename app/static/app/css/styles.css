@@ -37,16 +37,12 @@ body {
 
 .left-side {
     display: flex;
-<<<<<<< HEAD
-    align-items: center; }
-=======
     align-items: center; 
     width: 900px;
 }
->>>>>>> de8979328d843912c1b748f3b0a82863acdb0015
 
 .left-image {
-    width: 10%;
+    width: 13%;
     padding: 10px;
     height: auto; 
     
@@ -98,14 +94,7 @@ body {
     cursor: pointer; 
 }
 
-.body_text{
-    margin: 3%;
-    color: rgb(0, 48, 135);
-    font-family: 'Futura-Book', sans-serif;
-    font-size: 1.2rem;
-    text-align: center;
 
-}
 /* <------------HOME------------> */
  /* Add smooth scrolling */
  html {
@@ -119,7 +108,14 @@ section {
     margin-bottom: 50px;
     position: relative;
 }
+.body_text{
+    /* margin: 3%; */
+    color: rgb(0, 48, 135);
+   font-family: 'Belinda-W00';
+    font-size: 3rem;
+    text-align: center;
 
+}
 /* Optional: Adjust different background colors for sections */
 #home, #scholarship, #about, #projects, #contact {
     background-color: #f0f0f0;
