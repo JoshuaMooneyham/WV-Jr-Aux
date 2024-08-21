@@ -105,8 +105,12 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
                 return redirect("add_payment_method")
     lowestAllowedBid = (item.current_bid + 500) if item.highest_bidder is not None else item.current_bid
     payment_method_id = req.POST.get("selected_payment_method")
-    setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
-    saved_cards = list_payment_methods(req)
+    if req.user.is_authenticated:
+        setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
+        saved_cards = list_payment_methods(req)
+    else:
+        setup_intent = None
+        saved_cards = None
 
             
     return render(req, 'displayItem.html', {'auctions': auctions, 'auction': auction, "item": item, "images": images, "lab": lowestAllowedBid, "setup_intent": setup_intent, "saved_cards": saved_cards, "STRIPE_TEST_PUBLIC_KEY": settings.STRIPE_TEST_PUBLIC_KEY, "auctionId": auctionId})
@@ -171,7 +175,7 @@ def createAuction(req: HttpRequest) -> HttpResponse:
 # ==={ Display Auction }=== #
 
 def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
-    context = {'page': 'auction'}
+    context = {'page': 'auction', 'auctionId': id}
 
     auction = Auction.objects.get(id=id)
     context['auction'] = auction
@@ -298,24 +302,24 @@ def auctionDashboard(req: HttpRequest, id: int) ->  HttpResponse:
 
 # WORK IN PROGRESS #
 def auctionHome(req: HttpRequest) -> HttpResponse:
-    # if not req.user.is_authenticated or len(req.user.groups) == 0:
-    #     activeAuction = Auction.objects.get(active=True)
-    #     if activeAuction != None:
-    #         return redirect("auctionFront", activeAuction.id)
-    # else:
-    for group in req.user.groups.all():
-        if group.name == 'Admin':
-            activeAuction = Auction.objects.first()
-            if activeAuction != None:
-                return redirect("auctionSettings", activeAuction.id)
-    else:
-        try:
-            activeAuction = Auction.objects.get(active=True)
+    if not req.user.is_authenticated or len(req.user.groups.all()) == 0:
+        activeAuction = Auction.objects.get(active=True)
+        if activeAuction != None:
             return redirect("auctionFront", activeAuction.id)
-        except:
-            pass
+    else:
+        for group in req.user.groups.all():
+            if group.name == 'Admin':
+                activeAuction = Auction.objects.first()
+                if activeAuction != None:
+                    return redirect("auctionSettings", activeAuction.id)
+    # else:
+    #     try:
+    #         activeAuction = Auction.objects.get(active=True)
+    #         return redirect("auctionFront", activeAuction.id)
+    #     except:
+    #         pass
         
-    return render()
+    # return render()
 
 
 

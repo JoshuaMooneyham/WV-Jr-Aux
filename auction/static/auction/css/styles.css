@@ -78,6 +78,10 @@
     gap: 10px;
 }
 
+#whyArentYouWorking {
+    width: 100%;
+}
+
 .productBtn {
     height: 50px;
     border-radius: 5px;
@@ -85,6 +89,10 @@
     background-color: rgb(0, 48, 135);
     color: white;
     font-size: 1.2em;
+}
+
+.notLoggedInBtn {
+    width: 100%;
 }
 
 #saved-cards {
@@ -213,7 +221,7 @@
 }
 
 .bidHistoryBids {
-    display: none;
+    /* display: none; */
     background-color: white;
     border-radius: 0 0 20px 20px;
     flex-direction: column;
@@ -837,5 +845,9 @@ right: 0;
 }
 
 #id_autobuy_price, #id_starting_bid, #id_value {
+    display: none;
+}
+
+.hidden {
     display: none;
 }

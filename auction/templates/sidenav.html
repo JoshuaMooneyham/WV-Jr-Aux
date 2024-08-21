@@ -29,12 +29,15 @@
                 <button>Register</button>
             </a>
         {% elif user.groups.all|length == 0 %}
-            <button>My Bids</button>
-            <button>Liked Items</button>
-            <a href="{% url "get_invoices" 1 %}">
+            {% comment %} <button>My Bids</button> {% endcomment %}
+            {% comment %} <button>Liked Items</button> {% endcomment %}
+            {% comment %} <a href="{% url "get_invoices" 1 %}">
                 <button>Invoices</button>
+            </a> {% endcomment %}
+            <a href="{% url "auction" %}">
+                <button>View Auction</button>
             </a>
-            <a href="{% url "account_settings" %}">
+            <a href="{% url "account_settings" %}"> 
                 <button>Settings</button>
             </a>
             <a href="{% url "logout" %}">

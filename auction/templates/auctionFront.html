@@ -23,10 +23,11 @@
                 {% for item in items %}
                     <div class='item'>
                         <a class='itemA' {% if not user.is_authenticated or user.groups.all|length == 0 %} href="{% url 'displayProduct' auction.pk item.pk %}" {% else %} href="{% url "updateProduct" auction.pk item.pk %}" {% endif %} >
-                            <img src="{{item.images.all | firstImg}}" alt="">
+                            <img src="{{item.images.all|firstImg}}" alt="">
                             <h3>{{item.name}}</h3>
                             {% if item.active %}
                             <p>Current Bid: <b>{{item.current_bid | moneyify}}</b></p>
+                            {% comment %} <p>Current Bid: <b>{{item.current_bid}}</b></p> {% endcomment %}
                             {% else %}
                             <p><b>CLOSED</b></p>
                             {% endif %}
