@@ -42,7 +42,7 @@ body {
 }
 
 .left-image {
-    width: 13%;
+    width: 14%;
     padding: 10px;
     height: auto; 
     
@@ -105,7 +105,7 @@ body {
 section {
     padding: 50px;
     min-height: 100vh; 
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     position: relative;
 }
 .body_text{
@@ -411,6 +411,68 @@ section {
 
 .myDIV:hover + .hide {
     display: block;
+}
+
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Button styles */
+.read-more-btn {
+    background-color: #00408F;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.read-more-btn:hover {
+    background-color: #003375;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 60%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: rgba(0, 47, 135, 0.51);
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* <------------SCHOLARSHIP------------> */
