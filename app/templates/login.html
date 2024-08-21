@@ -1,4 +1,6 @@
+{%extends 'base.html'%}
 {% load static %}
+{%block content%}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,20 +10,28 @@
     <title>Login</title>
     <link rel="stylesheet" href="{% static 'auction/css/styles.css' %}">
 </head>
+    <h1 class="name_headers">Login</h1>
     <body>
-        <div class = 'form-container'>
-            <div class ='app-name'>
-                <h1>Auction</h1>
+        <div class="login_container">
+            <div class='form-container'>
+                <div class='login-template'>
+                    <form method='POST'>
+                        {% csrf_token %}
+                        <div class="login_txt">
+                            <input type="text" name="email" placeholder="Email...">
+                        </div>
+                        <div class="login_txt">
+                            <input type="password" name="password" placeholder="Password...">
+                        </div>
+                        <div>
+                            <input type='submit' value='Login'>
+                        </div>
+                    </form>
+                    <div class="login_txt">
+                        Don't have an account? <a href="{% url 'registration' %}">Sign Up</a>
+                    </div>
+                </div>
             </div>
-        <div class ='login-template'>
-            <form method='POST'>
-                {% csrf_token %}
-                <div><input type="text" name="email" placeholder="Email..."></div>
-                <div><input type="password" name="password" placeholder="Password..."></div>
-                <div><input type='submit' value='Login'></div>
-            </form>
-            <div>Don't have an account? <a href="{% url 'registration' %}">Sign Up</a></div>
         </div>
-    </div>
-    </body>
-</html>
+
+{%endblock%}

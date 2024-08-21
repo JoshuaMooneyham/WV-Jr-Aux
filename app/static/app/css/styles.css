@@ -22,12 +22,6 @@ body {
 /* <!-- <------------NAVBAR------------> --> */
 
 /* <------------HEADER------------> */
-/* .header_background{
-    background-image: url("../photos/header.jpeg");
-    background-position: cover;
-    background-size: 100% 130%;
-    background-repeat: no-repeat; */
-/* } */
 
 .container {
     position: sticky;
@@ -43,7 +37,7 @@ body {
 
 .left-side {
     display: flex;
-        align-items: center; }
+    align-items: center; }
 
 .left-image {
     width: 10%;
@@ -115,7 +109,7 @@ body {
 /* Section styling */
 section {
     padding: 50px;
-    min-height: 100vh; /* Full viewport height */
+    min-height: 100vh; 
     margin-bottom: 50px;
     position: relative;
 }
@@ -142,7 +136,6 @@ section {
     /* box-shadow: -1px 5px 15px black; */
 }
 
-/*Area of images*/
 .wrapper{
     margin: 0 auto;
     padding:0;
@@ -187,7 +180,6 @@ section {
     color: white;
     text-align: center;
     padding: 10px;
-    border-top: 10px solid white;
     font-family: 'Futura', sans-serif;
 }
 .events_box {
@@ -262,7 +254,7 @@ section {
 .contact-container {
     display: flex;
     justify-content: space-between;
-    padding: 5% 10%; 
+    padding: 10% 10%; 
 }
 
 .contact-left {
@@ -291,7 +283,7 @@ section {
     font-family: 'Futura', sans-serif;
     margin-bottom: 1rem;
     font-size: 1.2rem;
-    line-height: 1.5;
+    line-height: 250%;
 }
 
 .stay_connected{
@@ -460,5 +452,122 @@ section {
 }
 
 
+
+/* <-----------Login------------> */
+.login_container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(0, 47, 135, 0.558); 
+    border-radius: 10px; 
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); 
+    font-family: 'Futura-Book', sans-serif;
+    text-align: center; 
+}
+
+.login-template {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-template input[type="text"],
+.login-template input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.login-template input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(246, 236, 97);
+    color: rgb(0, 48, 135); 
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-template input[type="submit"]:hover {
+    background-color: rgba(0, 47, 135, 0.8); /* Darker on hover */
+}
+
+.login_txt {
+    font-family: 'Futura-Book', sans-serif;
+    color: rgb(0, 48, 135);
+    font-size: 1rem;
+    margin-top: 15px;
+}
+
+.login_txt a {
+    color:white; 
+    text-decoration: none;
+}
+
+.login_txt a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* <-----------registration------------> */
+.reg_container {
+    color: white;
+    max-width: 400px;
+    margin: 50px auto; /* Center horizontally */
+    padding: 20px;
+    line-height: 180%;
+    background-color: rgba(0, 47, 135, 0.558);
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    font-family: 'Futura-Book', sans-serif;
+    text-align: center;
+}
+
+.signup-template {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-template input[type="text"],
+.signup-template input[type="password"],
+.signup-template input[type="email"],
+.signup-template input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.signup-template input[type="submit"] {
+    background-color: rgb(246, 236, 97);
+    color: rgb(0, 48, 135);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    max-width: 100%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.signup-template input[type="submit"]:hover {
+    background-color: rgba(0, 47, 135, 0.8);
+    color: white;
+}
+
+.signup-template .form-group {
+    margin-bottom: 15px;
+}
 
 
