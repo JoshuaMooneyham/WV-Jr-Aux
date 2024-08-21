@@ -186,6 +186,7 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
             for item in auction.auctionitem_set.all():
                 item.active = False
                 item.save()
+            auction.active = False
             
     elif now > startTime:
         left = endTime - now
@@ -365,59 +366,68 @@ def login_settings(request: HttpRequest):
     return render(request, "login_settings.html")
 
 def update_name(request: HttpRequest):
-    stripe.api_key = settings.STRIPE_KEY
-    bidder = Bidder.objects.get(user=request.user)
-    if request.method == "POST":
-        form = UpdateNameForm(request.POST, instance=request.user)
-        if form.is_valid():
-            first_name = form.cleaned_data.get("first_name")
-            last_name = form.cleaned_data.get("last_name")
-            form.save()
-            stripe.Customer.modify(
-                bidder.stripe_id,
-                name= f"{first_name} {last_name}",
-            )
-            messages.success(request, "Your name was successfully updated!")
-            return redirect("login_settings")
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        bidder = Bidder.objects.get(user=request.user)
+        if request.method == "POST":
+            form = UpdateNameForm(request.POST, instance=request.user)
+            if form.is_valid():
+                first_name = form.cleaned_data.get("first_name")
+                last_name = form.cleaned_data.get("last_name")
+                form.save()
+                stripe.Customer.modify(
+                    bidder.stripe_id,
+                    name= f"{first_name} {last_name}",
+                )
+                messages.success(request, "Your name was successfully updated!")
+                return redirect("login_settings")
+            else:
+                messages.error(request, "Error")
         else:
-            messages.error(request, "Error")
-    else:
-        form = UpdateNameForm(instance=request.user)
+            form = UpdateNameForm(instance=request.user)
+    except:
+        print("Can't update name")
     return render(request, "update_account.html", {"form": form})
 
 def update_email(request: HttpRequest):
-    stripe.api_key = settings.STRIPE_KEY
-    bidder = Bidder.objects.get(user=request.user)
-    if request.method == "POST":
-        form = UpdateEmailForm(request.POST, instance=request.user)
-        if form.is_valid():
-            email = form.cleaned_data.get("email")
-            form.save()
-            stripe.Customer.modify(
-                bidder.stripe_id,
-                email=email,
-            )
-            messages.success(request, "Your email was successfully update!")
-            return redirect("login_settings")
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        bidder = Bidder.objects.get(user=request.user)
+        if request.method == "POST":
+            form = UpdateEmailForm(request.POST, instance=request.user)
+            if form.is_valid():
+                email = form.cleaned_data.get("email")
+                form.save()
+                stripe.Customer.modify(
+                    bidder.stripe_id,
+                    email=email,
+                )
+                messages.success(request, "Your email was successfully update!")
+                return redirect("login_settings")
+            else:
+                messages.error(request, "Error")
         else:
-            messages.error(request, "Error")
-    else:
-        form = UpdateEmailForm(instance=request.user)
+            form = UpdateEmailForm(instance=request.user)
+    except:
+        print("Can't update email")
     return render(request, "update_account.html", {"form": form})
 
 def update_password(request: HttpRequest):
-    stripe.api_key = settings.STRIPE_KEY
-    if request.method == "POST":
-        form = UpdatePasswordForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)
-            messages.success(request, "Your password was successfully updated!")
-            return redirect("login_settings")
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        if request.method == "POST":
+            form = UpdatePasswordForm(request.user, request.POST)
+            if form.is_valid():
+                user = form.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, "Your password was successfully updated!")
+                return redirect("login_settings")
+            else:
+                messages.error(request, "Error")
         else:
-            messages.error(request, "Error")
-    else:
-        form = UpdatePasswordForm(request.user)
+            form = UpdatePasswordForm(request.user)
+    except:
+        print("Can't update password")
     return render(request, "update_account.html", {"form": form})
 
 # ============{ MICHAELS VIEWS }============ #
@@ -474,56 +484,68 @@ def add_payment_method(request: HttpRequest):
     return render(request, "add_payment.html", {'STRIPE_TEST_PUBLIC_KEY': settings.STRIPE_TEST_PUBLIC_KEY})
 
 def list_payment_methods(request: HttpRequest):
-    bidder = Bidder.objects.get(user=request.user)
-    payment_methods = stripe.PaymentMethod.list(
-        customer=bidder.stripe_id,
-        type="card",
-    )
+    try:
+        bidder = Bidder.objects.get(user=request.user)
+        payment_methods = stripe.PaymentMethod.list(
+            customer=bidder.stripe_id,
+            type="card",
+        )
+    except:
+        print("Can't list payments")
     return payment_methods
 
 def payment_settings(request: HttpRequest):
-    stripe.api_key = settings.STRIPE_KEY
-    saved_cards = list_payment_methods(request)
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        saved_cards = list_payment_methods(request)
+    except:
+        print("Can't get payment methods")
     return render(request, "payment_settings.html", {"saved_cards": saved_cards})
 
 def edit_payment_method(request: HttpRequest, payment_method_id):
-    stripe.api_key = settings.STRIPE_KEY
-    current_year = datetime.datetime.today().year
-    month_list = [f"{month:02}" for month in range(1, 13)]
-    year_list = range(current_year, current_year + 20)
-    payment_method = stripe.PaymentMethod.retrieve(payment_method_id)
-    if request.method == "POST":
-        stripe.PaymentMethod.modify(
-            payment_method_id,
-            card={
-                "exp_month":request.POST.get("exp_month"),
-                "exp_year":request.POST.get("exp_year"),
-                }
-            )
-        return redirect("payment_settings")
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        current_year = datetime.datetime.today().year
+        month_list = [f"{month:02}" for month in range(1, 13)]
+        year_list = range(current_year, current_year + 20)
+        payment_method = stripe.PaymentMethod.retrieve(payment_method_id)
+        if request.method == "POST":
+            stripe.PaymentMethod.modify(
+                payment_method_id,
+                card={
+                    "exp_month":request.POST.get("exp_month"),
+                    "exp_year":request.POST.get("exp_year"),
+                    }
+                )
+            return redirect("payment_settings")
+    except:
+        print("Can't edit payment method.")
     return render(request, "edit_payment_method.html", {"card": payment_method, "month_list": month_list, "year_list": year_list})
 
 def delete_payment_method(request: HttpRequest, payment_method_id):
-    stripe.api_key = settings.STRIPE_KEY
     try:
+        stripe.api_key = settings.STRIPE_KEY
         stripe.PaymentMethod.detach(payment_method_id)
     except:
         print("Can't remove payment method")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def create_setup_intent(request: HttpRequest, product_id, payment_method_id):
-    stripe.api_key = settings.STRIPE_KEY
-    bidder = Bidder.objects.get(user=request.user)
-    customer = stripe.Customer.retrieve(id=bidder.stripe_id)
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        bidder = Bidder.objects.get(user=request.user)
+        customer = stripe.Customer.retrieve(id=bidder.stripe_id)
 
-    setup_intent = stripe.SetupIntent.create(
-        customer=customer.id,
-        payment_method=payment_method_id,
-        payment_method_types=['card'],
-        metadata={
-            "product_id": product_id,
-        }
-    )
+        setup_intent = stripe.SetupIntent.create(
+            customer=customer.id,
+            payment_method=payment_method_id,
+            payment_method_types=['card'],
+            metadata={
+                "product_id": product_id,
+            }
+        )
+    except:
+        print("Error creating setup intent.")
     return setup_intent
 
 def end_auction(request: HttpRequest, id):
@@ -595,9 +617,9 @@ def end_auction(request: HttpRequest, id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def get_invoices_for_auction(request:HttpRequest, id:int) -> HttpResponse:
-    stripe.api_key = settings.STRIPE_KEY
-    bidders_invoices = {}
     try:
+        stripe.api_key = settings.STRIPE_KEY
+        bidders_invoices = {}
         auction = Auction.objects.get(id=id)
         items = auction.auctionitem_set.all()
         for item in items:
@@ -622,17 +644,18 @@ def get_invoices_for_auction(request:HttpRequest, id:int) -> HttpResponse:
                             bidders_invoices[bidder_id] = {
                                 "bidder_name": invoice.customer_name,
                                 "amount_due": "{:.2f}".format(invoice.amount_due/100),
-                                "status": invoice.status,
+                                "status": invoice.status.upper(),
                                 "invoice_id": invoice_id,
                                 }
+        logger.debug(f"bidders_invoices: {bidders_invoices}")
     except:
         print("Auction not found.")
         auction = None
     return render(request, "invoices.html", {'auction':auction , 'auctionId': id, "invoices": bidders_invoices})
 
 def view_invoice_pdf(request: HttpRequest, invoice_id):
-    stripe.api_key = settings.STRIPE_KEY
     try:
+        stripe.api_key = settings.STRIPE_KEY
         invoice = stripe.Invoice.retrieve(invoice_id)
         pdf_url = invoice.invoice_pdf
         pdf_response = requests.get(pdf_url)
@@ -645,9 +668,9 @@ def view_invoice_pdf(request: HttpRequest, invoice_id):
         return HttpResponse("Error retrieving PDF.")
 
 def testingView(req: HttpRequest) -> HttpResponse:
-    stripe.api_key = settings.STRIPE_KEY
-    customers = stripe.Customer.list()
     try:
+        stripe.api_key = settings.STRIPE_KEY
+        customers = stripe.Customer.list()
         image = ItemImage.objects.get(id=1)
     except: 
         image = None
