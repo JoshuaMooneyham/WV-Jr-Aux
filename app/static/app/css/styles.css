@@ -29,7 +29,7 @@ body {
     z-index: 1000;
     background-color: white;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     width: 100%;
     padding: 0.5% 0; 
@@ -37,7 +37,13 @@ body {
 
 .left-side {
     display: flex;
+<<<<<<< HEAD
     align-items: center; }
+=======
+    align-items: center; 
+    width: 900px;
+}
+>>>>>>> de8979328d843912c1b748f3b0a82863acdb0015
 
 .left-image {
     width: 10%;
@@ -58,7 +64,7 @@ body {
     display: flex;
     gap: 2rem;
     margin-right: 0px; 
-    margin-left: auto;
+    /* margin-left: ; */
 }
 
 .myNav a {

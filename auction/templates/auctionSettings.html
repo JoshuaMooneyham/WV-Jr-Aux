@@ -9,28 +9,32 @@
                 {% csrf_token %}
                 <div class="updateInputWrap">
                     <p class='inputLabel auctionNameLabel'>Name</p>
-                    <input required type="text" name='name' id='updateName' value={{auction.name}}>
+                    <input class='updateInput nameInput' required type="text" name='name' id='updateName' value="{{auction.name}}">
                 </div>
 
                 {% comment %} Hidden Inputs {% endcomment %}
-                <input type="text" name='start_date' id='updateStartDatetime' value={{startDateTime}}>
-                <input type="text" name='end_date' id='updateEndDatetime' value={{endDateTime}}>
+                <input type="text" name='start_date' id='updateStartDatetime' value="{{startDateTime}}">
+                <input type="text" name='end_date' id='updateEndDatetime' value="{{endDateTime}}">
 
                 {% comment %} More User Friendly DateTime Inputs {% endcomment %}
                 <div class="updateInputWrap">
                     <p class='inputLabel startDateLabel'>Start Date</p>
-                    <input required type="date" id='updateStartDate' value={{startDate}}>
-                    <input required type="time" id='updateStartTime' value={{startTime}}>
+                    <div class="dates">
+                        <input class='updateInput dateInput' required type="date" id='updateStartDate' value="{{startDate}}">
+                        <input class='updateInput dateInput' required type="time" id='updateStartTime' value="{{startTime}}">
+                    </div>
                 </div>
 
                 <div class="updateInputWrap">
                     <p class='inputLabel endDateLabel'>End Date</p>
-                    <input required type="date" id='updateEndDate' value={{endDate}}>
-                    <input required type="time" id='updateEndTime' value={{endTime}}>
+                    <div class="dates">
+                        <input class='updateInput dateInput' required type="date" id='updateEndDate' value={{endDate}}>
+                        <input class='updateInput dateInput' required type="time" id='updateEndTime' value={{endTime}}>
+                    </div>
                 </div>
 
                 <input type="hidden" name='active' value={{auction.active}}>
-                <input type="submit" name='submitUpdate' value='Submit' id='updateSubmit'>
+                <input class='updateAuctionBtn' type="submit" name='submitUpdate' value='Submit' id='updateSubmit'>
             </form>
         </div>
         <div class="auctionSettingsButtons">

@@ -12,6 +12,8 @@
     <script src="{% static "auction/js/scripts.js" %}" defer='defer'></script>
     <script src="{% static "auction/js/timer.js" %}" defer='defer'></script>
     <script src="https://kit.fontawesome.com/2734bda929.js" crossorigin="anonymous"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static "auction/js/jquery-3.7.1.min.js" %}"></script>
 </head>
 
 <div class='sidenavContainer'>
@@ -27,55 +29,58 @@
                 <button>Register</button>
             </a>
         {% elif user.groups.all|length == 0 %}
-            <button>My Bids</button>
-            <button>Liked Items</button>
-            <a href="{% url "get_invoices" 1 %}">
+            {% comment %} <button>My Bids</button> {% endcomment %}
+            {% comment %} <button>Liked Items</button> {% endcomment %}
+            {% comment %} <a href="{% url "get_invoices" 1 %}">
                 <button>Invoices</button>
+            </a> {% endcomment %}
+            <a href="{% url "auction" %}">
+                <button>View Auction</button>
             </a>
-            <a href="{% url "account_settings" %}">
+            <a href="{% url "account_settings" %}"> 
                 <button>Settings</button>
             </a>
             <a href="{% url "logout" %}">
                 <button>Logout</button>
             </a>
         {% else %}
-        {% for group in user.groups.all  %}
-            {% if group.name == "Admin" %}
-                {% if page == 'auction' %}
-                    <a href="{% url "logout" %}">
-                        <button>Logout</button>
-                    </a>
-                    <a href="{% url "createProduct" auction.pk %}">
-                        <button>Add Item</button>
-                    </a>
-                    <a href="{% url "auctionSettings" auction.pk %}">
-                        <button>Settings</button>
-                    </a>
-                {% else %}
-                    <select name="auctionList" id="auctionList">
-                        {% for auction in auctions %}
-                            <option {% if auction.pk == auctionId %}selected{% endif %} value="{{auction.pk}}">{{auction.name}}</option>    
-                        {% endfor %}
-                    </select>
-            
-                    {% comment %} <a href="{% url "createAuction" %}"> {% endcomment %}
-                        <button onclick='showForm()'>+ New Event</button>
-                    {% comment %} </a> {% endcomment %}
-                    <a href="{% url "auctionDashboard" auction.pk %}">
-                        <button>Dashboard</button>
-                    </a>
-                    <a href="{% url "auctionSettings" auction.pk %}">
-                        <button>Settings</button>
-                    </a>
-                    <a href="{% url "get_invoices" auction.pk %}">
-                        <button>Invoices</button>
-                    </a>
-                    <a href="{% url "auctionFront" auction.pk %}">
-                        <button>View Auction</button>
-                    </a>
+            {% for group in user.groups.all  %}
+                {% if group.name == "Admin" %}
+                    {% if page == 'auction' %}
+                        <a href="{% url "logout" %}">
+                            <button>Logout</button>
+                        </a>
+                        <a href="{% url "createProduct" auction.pk %}">
+                            <button>Add Item</button>
+                        </a>
+                        <a href="{% url "auctionSettings" auction.pk %}">
+                            <button>Settings</button>
+                        </a>
+                    {% else %}
+                        <select name="auctionList" id="auctionList">
+                            {% for auction in auctions %}
+                                <option {% if auction.pk == auctionId %}selected{% endif %} value="{{auction.pk}}">{{auction.name}}</option>    
+                            {% endfor %}
+                        </select>
+                
+                        {% comment %} <a href="{% url "createAuction" %}"> {% endcomment %}
+                            <button id='createAucBtn' onclick='showForm()'>+ New Event</button>
+                        {% comment %} </a> {% endcomment %}
+                        <a href="{% url "auctionDashboard" auction.pk %}">
+                            <button>Dashboard</button>
+                        </a>
+                        <a href="{% url "auctionSettings" auction.pk %}">
+                            <button>Settings</button>
+                        </a>
+                        <a href="{% url "get_invoices" auction.pk %}">
+                            <button>Invoices</button>
+                        </a>
+                        <a href="{% url "auctionFront" auction.pk %}">
+                            <button>View Auction</button>
+                        </a>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        {% endfor %}
+            {% endfor %}
         {% endif %}
     </div>
 </div>
@@ -83,18 +88,32 @@
 <div class='createAuctionForm' id='createAuctionForm'>
     <form action="{% url "createAuction" %}" method='POST' class='createAuctionFormPlate'>
         {% csrf_token %}
-        <label class='inputLabel auctionNameLabel'>Name: 
-            {{ auctionForm.name }}
-        </label>
+        <div class="createAuctionInputWrap">
+            <p class='createAuctionLabel createNameLabel'>Name</p>
+            {% comment %} {{ auctionForm.name }} {% endcomment %}
+            <input class='createAuctionInput createNameInput' placeholder='Name..' required type="text" name='name' id='createName'>
+        </div>
+        {% comment %} Hidden Inputs {% endcomment %}
         {{ auctionForm.start_date }}
         {{ auctionForm.end_date }}
-        <input type="date" id='startDate'>
-        <input type="time" id='startTime'>
-        <input type="date" id='endDate'>
-        <input type="time" id='endTime'>
+
+        <div class="createAuctionInputWrap">
+            <p class='createAuctionLabel createDateLabel'>Start Date</p>
+            <div class="createDates">
+                <input class='createAuctionInput createDateInput' type="date" id='startDate'>
+                <input class='createAuctionInput createDateInput' type="time" id='startTime'>
+            </div>
+        </div>
+        <div class="createAuctionInputWrap">
+            <p class='createAuctionLabel createDateLabel'>End Date</p>
+            <div class="createDates">
+                <input class='createAuctionInput createDateInput' type="date" id='endDate'>
+                <input class='createAuctionInput createDateInput' type="time" id='endTime'>
+            </div>
+        </div>
         <input type="hidden" name='active' value={{True}}>
         {% comment %} {{ auctionForm.active }} {% endcomment %}
-        <input type="submit" value='Submit' id='submit'>
+        <input class='updateAuctionBtn' id='createAuctionBtn' type="submit" value='Submit'>
     </form>
 </div>
 
@@ -105,23 +124,42 @@
 </body>
 
 
-<script>
+<script defer>
     let form = document.getElementById('createAuctionForm');
+    {% comment %} let newAucBtn = document.getElementById('createAucBtn'); {% endcomment %}
+    
     function showForm() {
-        console.log(form.style)
         form.style.display = "flex";
-        }
-    let startDate = document.getElementById('startDate');
-    let startTime = document.getElementById('startTime');
-    let endDate = document.getElementById('endDate');
-    let endTime = document.getElementById('endTime');
-    let realStartDate = document.getElementById('id_start_date');
-    let realEndDate = document.getElementById('id_end_date');
-    let submit = document.getElementById('submit');
+    }
+    {% comment %} newAucBtn.addEventListener('click', () => {
 
-    submit.onclick = () => {
-        realStartDate.value = `${startDate.value}T${startTime.value}:00Z`
-        realEndDate.value = `${endDate.value}T${endTime.value}:00Z`
+    }); {% endcomment %}
+
+    form.addEventListener('click', (e) => {
+        console.log(e.target.childNodes)
+        if (e.target == form) {
+            form.style.display = 'none';
+        }
+    });
+
+    try {
+        let startDate = document.getElementById('startDate');
+        let startTime = document.getElementById('startTime');
+        let endDate = document.getElementById('endDate');
+        let endTime = document.getElementById('endTime');
+        console.log('hello');
+        let realStartDate = document.getElementById('id_start_date');
+        console.log('test');
+        let realEndDate = document.getElementById('id_end_date');
+        console.log('hi');
+        let submit = document.getElementById('createAuctionBtn');
+
+        submit.onclick = () => {
+            realStartDate.value = `${startDate.value}T${startTime.value}:00Z`
+            realEndDate.value = `${endDate.value}T${endTime.value}:00Z`
+        }
+    } catch {
+        console.log('fuck')
     }
 
     let select = document.getElementById('auctionList');
