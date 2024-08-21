@@ -8,23 +8,26 @@
     <link rel="stylesheet" href="{% static "app/css/styles.css" %}">
     <script src="{% static "app/js/scripts.js" %}"></script>
 </head>
-<div class="container">
+<div class="headerContainer">
     <div class="left-side">
         <img src="{% static 'app/photos/NAJALOGOcrop.svg' %}" alt="Logo" class="left-image">
-        <p class="header_text">Junior Auxiliary <br>of Water Valley</p>
+        <p class="header_text">Junior Auxiliary of Water Valley</p>
     </div>
 
-    <nav class="myNav">
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'scholarship' %}">Scholarship</a>
-        <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'projects' %}">Projects</a>
-        <a href="{% url 'contact' %}">Contact</a>
-    </nav>
-    
-    <a target="_blank" href="https://www.paypal.com/ncp/payment/FARHUZLY87Z6A">
-    <button class="right-button">Donate</button>
-    </a>
+    <div class="rightSide">
+        <nav class="myNav">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'scholarship' %}">Scholarship</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'projects' %}">Projects</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url "auction" %}">Auction</a>
+        </nav>
+        
+        <a target="_blank" href="https://www.paypal.com/ncp/payment/FARHUZLY87Z6A">
+            <button class="right-button">Donate</button>
+        </a>
+    </div>
 </div>
 
 <body>
