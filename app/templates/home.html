@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<div id='homeJump'></div>
 <div class="img_container">
     <!--Area of the images-->
     <div class="wrapper">
@@ -9,8 +10,9 @@
         <img src="{% static 'app/photos/members3.jpg' %}" alt="members" class="home_images">
         <img src="{% static 'app/photos/members4.jpg' %}" alt="members" class="home_images">
     </div>
+    <div class='filter body_text'>{% comment "might be too derivative" %}{% endcomment %}<p class='testBodyTxt'>Empowering women, inspiring children, and building a brighter future together.</p></div>
 </div>
-   <p class="body_text"> Empowering women, inspiring children, and building a brighter future together.</p>
+   {% comment %} <p class="body_text">Empowering women, inspiring children, and building a brighter future together.</p> {% endcomment %}
 
    <!-- About Section -->
 <section id="about">

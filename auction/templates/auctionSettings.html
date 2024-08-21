@@ -32,6 +32,7 @@
                         <input class='updateInput dateInput' required type="time" id='updateEndTime' value={{endTime}}>
                     </div>
                 </div>
+                {% csrf_token %}
 
                 <input type="hidden" name='active' value={{auction.active}}>
                 <input class='updateAuctionBtn' type="submit" name='submitUpdate' value='Submit' id='updateSubmit'>
@@ -39,19 +40,23 @@
         </div>
         <div class="auctionSettingsButtons">
             <form action={% url "deleteAuction" auction.pk %}>
+                {% csrf_token %}
                 <button class='updateAuctionBtn deleteAuctionBtn' type="submit">DELETE</button>
             </form>
             {% if auction.active %}
             <form method='POST'>
+                {% csrf_token %}
                 <button class='updateAuctionBtn' type='submit' name='deactivate'>SET INACTIVE</button>
             </form>
             {% else %}
             <form method='POST'>
+                {% csrf_token %}
                 <button class='updateAuctionBtn' type='submit' name='activate'>SET ACTIVE</button>
             </form>
             {% endif %}
             {% if startable %}
             <form method='POST'>
+                {% csrf_token %}
                 <button class='updateAuctionBtn' type='submit' name='startAuction'>START AUCTION</button>
             </form>
             {% else %}
@@ -61,6 +66,7 @@
             {% endif %}
             {% if endable %}
             <form method="POST">
+                {% csrf_token %}
                 <button class='updateAuctionBtn' type='submit' name='endAuction'>END AUCTION</button>
             </form>
             {% else %}

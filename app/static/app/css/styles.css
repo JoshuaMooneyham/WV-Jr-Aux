@@ -46,11 +46,19 @@ body {
 } */
 
 .headerContainer {
+    /* position: sticky; */
+    position: fixed;
+    top: 0;
     display: flex;
     width: calc(100vw - 40px);
     background-color: white;
     padding: 20px;
     justify-content: space-between;
+    z-index: 10000000;
+}
+
+#homeJump {
+    height: 147.66px;
 }
 
 .left-side {
@@ -91,15 +99,15 @@ body {
 }
 
 .myNav a {
-    color: rgb(0, 48, 135) !important;
+    color: rgb(0, 48, 135);
     text-decoration: none;
     font-family: 'Futura-Book', sans-serif;
     font-size: 1.2rem;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 .myNav a:hover {
-    color: white;
+    color: rgba(0, 47, 135, 0.30);
 }
 
 .right-button {
@@ -138,10 +146,9 @@ section {
 .body_text{
     /* margin: 3%; */
     color: rgb(0, 48, 135);
-   font-family: 'Belinda-W00';
+    font-family: 'Belinda-W00';
     font-size: 3rem;
     text-align: center;
-
 }
 /* Optional: Adjust different background colors for sections */
 #home, #scholarship, #about, #projects, #contact {
@@ -153,8 +160,10 @@ section {
     /* margin-top: 15; */
     /* text-align: center; */
     width: 100%;
-    height: 500px;
+    /* height: 500px; */
+    height: calc(100vh - 147.66px);
     image-orientation: center;
+    object-fit: cover;
     /* position: relative; */
     /* transform: translate(-50%,-50%); */
     /* top: 50%; */
@@ -163,6 +172,27 @@ section {
     /* border: 10px solid #ffffff; */
     /* border-radius: 8px; */
     /* box-shadow: -1px 5px 15px black; */
+    position: relative;
+}
+
+.filter {
+    /* background-color: #002f8770; */
+    background-color: #002f878f;
+    position: absolute;
+    width: 100vw;
+    /* height: 500px; */
+    height: calc(100vh - 147.66px);
+    /* z-index: 1000000; */
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.testBodyTxt {
+    width: 80%;
+    color: #f6eb61;
+    font-size: 1.3em;
 }
 
 .wrapper{
