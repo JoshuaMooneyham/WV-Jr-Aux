@@ -41,12 +41,12 @@
             <div class='auctionItemBidInfo'>
                 <p>Item Value: <b>{{item.value|moneyify}}</b></p>
                 <p>Current Bid: <b>{{item.current_bid | moneyify}}</b></p>
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and item.active %}
                     <form id="bid-form" method="POST">
                         {% csrf_token %}
                         {% comment %} <span>$</span> {% endcomment %}
                         {% comment %} <input id='bidPriceInput' type="text" name="amount" min={{lab}} max="99999999" value={{lab}} step='0.01'> {% endcomment %}
-                        <input type="hidden" name='amount' value={{lab}}>
+                        <input type="hidden" id='amountInput' name='amount' value={{lab}}>
                         <input type="hidden" name='item' value={{item.pk}}>
                         <input type="hidden" name='bidder' value={{user.bidder_info.pk}}> {% comment "replace with user.bidder_info.pk" %}{% endcomment %}
                         <select id="saved-cards">
@@ -60,15 +60,19 @@
                         <input type="hidden" name="setup_intent" value={{setup_intent.id}}>
                         <input class='productBtn bidBtn' type="submit" name='btnSubmit' value="Place Bid for {{lab | moneyify}}" id="bid-button">
                         {% if item.autobuy_price is not None %}
-                            <button class='productBtn buyNowBtn'>Buy Now for {{item.autobuy_price|moneyify}}</button>
+                            <button id='BuyNowBtn' class='productBtn buyNowBtn' type='submit' value='buyNow'>Buy Now for {{item.autobuy_price|moneyify}}</button>
                         {% endif %}
                         {% comment %} <button class='productBtn buyNowBtn'>Buy Now for Placeholder</button> {% endcomment %}
                     </form>
-                {% else %}
+                {% elif item.active and not user.is_authenticated%}
                 <div id="bid-form">
                     <a id='whyArentYouWorking' href="{% url "login" %}">
                         <button class='productBtn notLoggedInBtn'>Log in or Register to bid!</button>
                     </a>
+                </div>
+                {% else %}
+                <div id="bid-form">
+                        <button class='productBtn itemInactiveBtn'>Item is Closed</button>
                 </div>
                 {% endif %}
             </div>
@@ -109,6 +113,9 @@
         document.getElementById('bid-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const selectedPaymentMethod = document.getElementById('saved-cards').value;
+            if (selectedPaymentMethod == '') {
+                alert('Please add a payment method to place a bid!')
+            }
             const clientSecret = '{{setup_intent.client_secret}}';
             const {error} = await stripe.confirmCardSetup(clientSecret,
             {
@@ -145,6 +152,13 @@
             {% comment %} theBids.style.display = theBids.style.display == 'none' ? 'flex' : 'none'; {% endcomment %}
             theBids.classList.toggle('hidden');
         }) 
+    </script>
+    <script>
+        const buyNowBtn = document.getElementById('BuyNowBtn');
+        const amount = document.getElementById('amountInput');
+        buyNowBtn.addEventListener('click', (e) => {
+            amount.value = {{item.autobuy_price}};
+        });
     </script>
 {% endblock content %}
 {% comment %} </body>

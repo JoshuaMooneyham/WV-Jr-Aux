@@ -91,14 +91,18 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
     if req.method == "POST":
         amount = req.POST.get('amount')
         stripe.api_key = settings.STRIPE_KEY
-        if amount != None and (int(amount) >= item.current_bid + 500):
+        if amount != None and (int(amount) >= item.current_bid + 500 or int(amount) == item.starting_bid and item.highest_bidder is None):
             bidder = Bidder.objects.get(id=req.POST.get("bidder"))
             payment_methods = list_payment_methods(req)
             if len(payment_methods) != 0:
                 bid = Bid(bidder=bidder, amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
                 bid.save()
                 item.current_bid = int(amount)
+                if item.highest_bidder is not None:
+                    item.runner_up = item.highest_bidder
                 item.highest_bidder = bidder
+                if item.current_bid == item.autobuy_price:
+                    item.active = False
                 item.save()
             else:
                 req.session['return_url'] = req.build_absolute_uri()
