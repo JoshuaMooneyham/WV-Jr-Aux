@@ -8,26 +8,29 @@
     <link rel="stylesheet" href="{% static "app/css/styles.css" %}">
     <script src="{% static "app/js/scripts.js" %}"></script>
 </head>
-<div class="container">
+<div class="headerContainer">
     <div class="left-side">
         <img src="{% static 'app/photos/NAJALOGOcrop.svg' %}" alt="Logo" class="left-image">
-        <p class="header_text">Junior Auxiliary <br>of Water Valley</p>
+        <p class="header_text">Junior Auxiliary of Water Valley</p>
     </div>
     {% comment %} <img src="{% static 'app/photos/children.png' %}" alt="Logo" class="kids_pic"> {% endcomment %}
 
-    <nav class="myNav">
-        <a href="{% url 'home' %}">Home</a>
-        <a href="#aboutHeader">About</a>
+    <div class="rightSide">
+        <nav class="myNav">
+            <a href="#homeJump">Home</a>
+            <a href="#aboutHeader">About</a>
         <a href="#scholarshipHeader">Scholarship</a>
-        <a href="#projectHeader">Projects</a>
+            <a href="#projectHeader">Projects</a>
         <a href="#contactHeader">Contact</a>
-        <a href="{% url 'auction' %}">Auction</a>
-        {% comment %} <a href="{% url 'login' %}">Login</a> {% endcomment %}
-    </nav>
-    
-    <a target="_blank" href="https://www.paypal.com/ncp/payment/FARHUZLY87Z6A">
-    <button class="right-button">Donate</button>
-    </a>
+            <a href="{% url 'auction' %}">Auction</a>
+            {% comment %} <a href="{% url 'login' %}">Login</a> {% endcomment %}
+            {% comment %} <a href="{% url "auction" %}">Auction</a> {% endcomment %}
+        </nav>
+        
+        <a target="_blank" href="https://www.paypal.com/ncp/payment/FARHUZLY87Z6A">
+            <button class="right-button">Donate</button>
+        </a>
+    </div>
 </div>
 
 <body>
@@ -38,7 +41,9 @@
 {% endblock content %}
 <div class="events_box">
     <h2>Upcoming Events</h2>
-    <button class="eventButton">Add Event</button>
+    {% for g in user.groups.all %}
+        <button class="eventButton">Add Event</button>
+    {% endfor %}
     <div id="events_list">
         <p>Event 1: Placeholder</p>
         <p>Event 2: Placeholder</p>
