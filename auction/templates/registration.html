@@ -1,4 +1,6 @@
+{%extends 'base.html'%}
 {% load static %}
+{%block content%}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,24 +10,21 @@
     <title>Sign Up</title>
     <link rel="stylesheet" href="{% static 'auction/css/styles.css' %}">
 </head>
+<h1 class="name_headers">Register</h1>
 <body>
-    <div class = 'form-container'>
-    <div class='app-name'>
-        <h1>Auction</h1>
+    <div class="form-container">
+        <div class='app-name'>
+            <!-- App name or logo can go here -->
+        </div>
+        <div class="reg_container">
+            <div class="signup-template">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+        </div>
     </div>
-    <div class='signup-template'>
-        <form method='POST'>
-            {% csrf_token %}
-            {{form.as_p}}
-            {% comment %} <div>{{form.email}}</div>
-            <div>{{form.first_name}}</div>
-            <div>{{form.last_name}}</div>
-            <div>{{form.username}}</div>
-            <div>{{form.password1}}</div>
-            <div>{{form.password2}}</div> {% endcomment %}
-            <div><input type='submit' value='Register'></div>
-        </form>
-    </div>
-</div>
-</body>
+{%endblock%}
 </html>
