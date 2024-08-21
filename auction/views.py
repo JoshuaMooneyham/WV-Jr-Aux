@@ -7,7 +7,10 @@ from django.utils.timezone import make_aware
 from auction.models import *
 from auction.forms import *
 from django.conf import settings
-import stripe, json, logging
+from django.core.files.base import ContentFile
+from typing import Dict, List
+import stripe, json, logging, os, requests
+from django.urls import reverse
 
 logger = logging.getLogger(__name__)
 
@@ -15,6 +18,7 @@ import random
 import datetime
 import zoneinfo
 import re
+
 
 def generateBidderId() -> int:
     while True:
@@ -42,9 +46,12 @@ def stringifyDate(date: datetime.datetime) -> str:
 # ==={ Create Item }=== #
 
 def createProduct(req: HttpRequest, auctionId: int) -> HttpResponse:
+    auction = Auction.objects.get(id=auctionId)
+    
     form = CreateAuctionItemForm()
     if req.method == 'POST':
         form = CreateAuctionItemForm(req.POST)
+        # print(req.POST)
         if form.is_valid():
             try:
                 stripe.api_key = settings.STRIPE_KEY
@@ -70,7 +77,7 @@ def createProduct(req: HttpRequest, auctionId: int) -> HttpResponse:
                 return redirect("auctionFront", auctionId)
             except:
                 print('hi')
-    return render(req, 'createProduct.html', {'form': form})
+    return render(req, 'createProduct.html', {'form': form, 'auction': auction, 'auctionId': auctionId})
 
 # ==={ Read Item }=== #
 
@@ -78,22 +85,39 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
     item = AuctionItem.objects.get(id=id)
     images = [img for img in item.images.all()]
 
+    auctions = Auction.objects.all()
+    auction = Auction.objects.get(id=auctionId)
+
     if req.method == "POST":
         amount = req.POST.get('amount')
-        stripe.api_key = settings.STRIPE_KEY  
-        if amount != None and (int(amount) >= item.current_bid + 500):
-            bid = Bid(bidder=Bidder.objects.get(id=req.POST.get("bidder")), amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
-            print(bid)
-            bid.save()
-            item.current_bid = int(amount)
-            item.save()
-    lowestAllowedBid = item.current_bid + 500
+        stripe.api_key = settings.STRIPE_KEY
+        if amount != None and (int(amount) >= item.current_bid + 500 or int(amount) == item.starting_bid and item.highest_bidder is None):
+            bidder = Bidder.objects.get(id=req.POST.get("bidder"))
+            payment_methods = list_payment_methods(req)
+            if len(payment_methods) != 0:
+                bid = Bid(bidder=bidder, amount=int(amount), item=AuctionItem.objects.get(id=req.POST.get("item")), setup_intent_id=req.POST.get("setup_intent"))
+                bid.save()
+                item.current_bid = int(amount)
+                if item.highest_bidder is not None:
+                    item.runner_up = item.highest_bidder
+                item.highest_bidder = bidder
+                if item.current_bid == item.autobuy_price:
+                    item.active = False
+                item.save()
+            else:
+                req.session['return_url'] = req.build_absolute_uri()
+                return redirect("add_payment_method")
+    lowestAllowedBid = (item.current_bid + 500) if item.highest_bidder is not None else item.current_bid
     payment_method_id = req.POST.get("selected_payment_method")
-    setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
-    saved_cards = list_payment_methods(req)
+    if req.user.is_authenticated:
+        setup_intent = create_setup_intent(req, item.stripe_id, payment_method_id)
+        saved_cards = list_payment_methods(req)
+    else:
+        setup_intent = None
+        saved_cards = None
 
             
-    return render(req, 'displayItem.html', {"item": item, "images": images, "lab": lowestAllowedBid, "setup_intent": setup_intent, "saved_cards": saved_cards, "STRIPE_TEST_PUBLIC_KEY": settings.STRIPE_TEST_PUBLIC_KEY, "auctionId": auctionId})
+    return render(req, 'displayItem.html', {'auctions': auctions, 'auction': auction, "item": item, "images": images, "lab": lowestAllowedBid, "setup_intent": setup_intent, "saved_cards": saved_cards, "STRIPE_TEST_PUBLIC_KEY": settings.STRIPE_TEST_PUBLIC_KEY, "auctionId": auctionId})
 
 # ==={ Update Item }=== #
 
@@ -155,7 +179,7 @@ def createAuction(req: HttpRequest) -> HttpResponse:
 # ==={ Display Auction }=== #
 
 def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
-    context = {'page': 'auction'}
+    context = {'page': 'auction', 'auctionId': id}
 
     auction = Auction.objects.get(id=id)
     context['auction'] = auction
@@ -170,6 +194,7 @@ def auctionFront(req: HttpRequest, id: int) -> HttpResponse:
             for item in auction.auctionitem_set.all():
                 item.active = False
                 item.save()
+            auction.active = False
             
     elif now > startTime:
         left = endTime - now
@@ -259,7 +284,8 @@ def auctionDashboard(req: HttpRequest, id: int) ->  HttpResponse:
     for item in items:
         bid = item.bid_set.all().count()
         bids += bid
-        total += item.current_bid
+        if item.highest_bidder is not None:
+            total += item.current_bid
         if bid == 0:
             unbid_items += 1
 
@@ -281,24 +307,24 @@ def auctionDashboard(req: HttpRequest, id: int) ->  HttpResponse:
 
 # WORK IN PROGRESS #
 def auctionHome(req: HttpRequest) -> HttpResponse:
-    # if not req.user.is_authenticated or len(req.user.groups) == 0:
-    #     activeAuction = Auction.objects.get(active=True)
-    #     if activeAuction != None:
-    #         return redirect("auctionFront", activeAuction.id)
-    # else:
-    for group in req.user.groups.all():
-        if group.name == 'Admin':
-            activeAuction = Auction.objects.first()
-            if activeAuction != None:
-                return redirect("auctionSettings", activeAuction.id)
-    else:
-        try:
-            activeAuction = Auction.objects.get(active=True)
+    if not req.user.is_authenticated or len(req.user.groups.all()) == 0:
+        activeAuction = Auction.objects.get(active=True)
+        if activeAuction != None:
             return redirect("auctionFront", activeAuction.id)
-        except:
-            pass
+    else:
+        for group in req.user.groups.all():
+            if group.name == 'Admin':
+                activeAuction = Auction.objects.first()
+                if activeAuction != None:
+                    return redirect("auctionSettings", activeAuction.id)
+    # else:
+    #     try:
+    #         activeAuction = Auction.objects.get(active=True)
+    #         return redirect("auctionFront", activeAuction.id)
+    #     except:
+    #         pass
         
-    return render()
+    # return render()
 
 
 
@@ -348,75 +374,83 @@ def login_settings(request: HttpRequest):
     return render(request, "login_settings.html")
 
 def update_name(request: HttpRequest):
-    stripe.api_key = settings.STRIPE_KEY
-    bidder = Bidder.objects.get(user=request.user)
-    if request.method == "POST":
-        form = UpdateNameForm(request.POST, instance=request.user)
-        if form.is_valid():
-            first_name = form.cleaned_data.get("first_name")
-            last_name = form.cleaned_data.get("last_name")
-            form.save()
-            stripe.Customer.modify(
-                bidder.stripe_id,
-                name= f"{first_name} {last_name}",
-            )
-            messages.success(request, "Your name was successfully updated!")
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        bidder = Bidder.objects.get(user=request.user)
+        if request.method == "POST":
+            form = UpdateNameForm(request.POST, instance=request.user)
+            if form.is_valid():
+                first_name = form.cleaned_data.get("first_name")
+                last_name = form.cleaned_data.get("last_name")
+                form.save()
+                stripe.Customer.modify(
+                    bidder.stripe_id,
+                    name= f"{first_name} {last_name}",
+                )
+                messages.success(request, "Your name was successfully updated!")
+                return redirect("login_settings")
+            else:
+                messages.error(request, "Error")
         else:
-            messages.error(request, "Error")
-    else:
-        form = UpdateNameForm(instance=request.user)
+            form = UpdateNameForm(instance=request.user)
+    except:
+        print("Can't update name")
     return render(request, "update_account.html", {"form": form})
 
 def update_email(request: HttpRequest):
-    stripe.api_key = settings.STRIPE_KEY
-    bidder = Bidder.objects.get(user=request.user)
-    if request.method == "POST":
-        form = UpdateEmailForm(request.POST, instance=request.user)
-        if form.is_valid():
-            email = form.cleaned_data.get("email")
-            form.save()
-            stripe.Customer.modify(
-                bidder.stripe_id,
-                email=email,
-            )
-            messages.success(request, "Your email was successfully update!")
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        bidder = Bidder.objects.get(user=request.user)
+        if request.method == "POST":
+            form = UpdateEmailForm(request.POST, instance=request.user)
+            if form.is_valid():
+                email = form.cleaned_data.get("email")
+                form.save()
+                stripe.Customer.modify(
+                    bidder.stripe_id,
+                    email=email,
+                )
+                messages.success(request, "Your email was successfully update!")
+                return redirect("login_settings")
+            else:
+                messages.error(request, "Error")
         else:
-            messages.error(request, "Error")
-    else:
-        form = UpdateEmailForm(instance=request.user)
+            form = UpdateEmailForm(instance=request.user)
+    except:
+        print("Can't update email")
     return render(request, "update_account.html", {"form": form})
 
 def update_password(request: HttpRequest):
-    stripe.api_key = settings.STRIPE_KEY
-    if request.method == "POST":
-        form = UpdatePasswordForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)
-            messages.success(request, "Your password was successfully updated!")
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        if request.method == "POST":
+            form = UpdatePasswordForm(request.user, request.POST)
+            if form.is_valid():
+                user = form.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, "Your password was successfully updated!")
+                return redirect("login_settings")
+            else:
+                messages.error(request, "Error")
         else:
-            messages.error(request, "Error")
-    else:
-        form = UpdatePasswordForm(request.user)
+            form = UpdatePasswordForm(request.user)
+    except:
+        print("Can't update password")
     return render(request, "update_account.html", {"form": form})
 
 # ============{ MICHAELS VIEWS }============ #
 
 def add_payment_method(request: HttpRequest):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        payment_method_id = data.get('payment_method_id')
-        
-        logging.info(f'Received payment_method_id: {payment_method_id}')
-
-        if not payment_method_id:
-            return JsonResponse({'error': 'Payment Method ID is required'}, status=400)
-
         try:
+            data = json.loads(request.body)
+            payment_method_id = data.get('payment_method_id')
+
+            if not payment_method_id:
+                return JsonResponse({'error': 'Payment Method ID is required'}, status=400)
+
             stripe.api_key = settings.STRIPE_KEY
             bidder = Bidder.objects.get(user=request.user)
-
-            logging.info(bidder.stripe_id)
 
             stripe.PaymentMethod.attach(
                 payment_method_id,
@@ -430,61 +464,96 @@ def add_payment_method(request: HttpRequest):
                 }
             )
 
-            return JsonResponse({'success': True, 'customer_id': bidder.stripe_id})
-        except:
-            print("Invalid card")
+            # Prepare success response with redirect URL if available
+            return_url = request.session.get('return_url')
+            if return_url:
+                del request.session['return_url']
+                return JsonResponse({'redirect_url': return_url})
+            else:
+                return JsonResponse({'redirect_url': reverse("payment_settings")})
+        
+        except stripe.error.CardError as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        except stripe.error.InvalidRequestError as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        except stripe.error.AuthenticationError as e:
+            return JsonResponse({'error': str(e)}, status=401)
+        except stripe.error.APIConnectionError as e:
+            return JsonResponse({'error': str(e)}, status=502)
+        except stripe.error.StripeError as e:
+            return JsonResponse({'error': str(e)}, status=500)
+        except Bidder.DoesNotExist:
+            return JsonResponse({'error': 'Bidder not found'}, status=404)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON in request body'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': 'An unexpected error occurred: ' + str(e)}, status=500)
+
     return render(request, "add_payment.html", {'STRIPE_TEST_PUBLIC_KEY': settings.STRIPE_TEST_PUBLIC_KEY})
 
 def list_payment_methods(request: HttpRequest):
-    bidder = Bidder.objects.get(user=request.user)
-    payment_methods = stripe.PaymentMethod.list(
-        customer=bidder.stripe_id,
-        type="card",
-    )
+    try:
+        bidder = Bidder.objects.get(user=request.user)
+        payment_methods = stripe.PaymentMethod.list(
+            customer=bidder.stripe_id,
+            type="card",
+        )
+    except:
+        print("Can't list payments")
     return payment_methods
 
 def payment_settings(request: HttpRequest):
-    stripe.api_key = settings.STRIPE_KEY
-    saved_cards = list_payment_methods(request)
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        saved_cards = list_payment_methods(request)
+    except:
+        print("Can't get payment methods")
     return render(request, "payment_settings.html", {"saved_cards": saved_cards})
 
 def edit_payment_method(request: HttpRequest, payment_method_id):
-    stripe.api_key = settings.STRIPE_KEY
-    current_year = datetime.datetime.today().year
-    month_list = [f"{month:02}" for month in range(1, 13)]
-    year_list = range(current_year, current_year + 20)
-    payment_method = stripe.PaymentMethod.retrieve(payment_method_id)
-    if request.method == "POST":
-        stripe.PaymentMethod.modify(
-            payment_method_id,
-            card={
-                "exp_month":request.POST.get("exp_month"),
-                "exp_year":request.POST.get("exp_year"),
-                }
-            )
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        current_year = datetime.datetime.today().year
+        month_list = [f"{month:02}" for month in range(1, 13)]
+        year_list = range(current_year, current_year + 20)
+        payment_method = stripe.PaymentMethod.retrieve(payment_method_id)
+        if request.method == "POST":
+            stripe.PaymentMethod.modify(
+                payment_method_id,
+                card={
+                    "exp_month":request.POST.get("exp_month"),
+                    "exp_year":request.POST.get("exp_year"),
+                    }
+                )
+            return redirect("payment_settings")
+    except:
+        print("Can't edit payment method.")
     return render(request, "edit_payment_method.html", {"card": payment_method, "month_list": month_list, "year_list": year_list})
 
 def delete_payment_method(request: HttpRequest, payment_method_id):
-    stripe.api_key = settings.STRIPE_KEY
     try:
+        stripe.api_key = settings.STRIPE_KEY
         stripe.PaymentMethod.detach(payment_method_id)
     except:
         print("Can't remove payment method")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def create_setup_intent(request: HttpRequest, product_id, payment_method_id):
-    stripe.api_key = settings.STRIPE_KEY
-    bidder = Bidder.objects.get(user=request.user)
-    customer = stripe.Customer.retrieve(id=bidder.stripe_id)
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        bidder = Bidder.objects.get(user=request.user)
+        customer = stripe.Customer.retrieve(id=bidder.stripe_id)
 
-    setup_intent = stripe.SetupIntent.create(
-        customer=customer.id,
-        payment_method=payment_method_id,
-        payment_method_types=['card'],
-        metadata={
-            "product_id": product_id,
-        }
-    )
+        setup_intent = stripe.SetupIntent.create(
+            customer=customer.id,
+            payment_method=payment_method_id,
+            payment_method_types=['card'],
+            metadata={
+                "product_id": product_id,
+            }
+        )
+    except:
+        print("Error creating setup intent.")
     return setup_intent
 
 def end_auction(request: HttpRequest, id):
@@ -492,6 +561,10 @@ def end_auction(request: HttpRequest, id):
         stripe.api_key = settings.STRIPE_KEY
         auction = Auction.objects.get(id=id)
         items = auction.auctionitem_set.all()
+
+        InvoiceItem = Dict[str, int]
+        bidders_invoices: Dict[str, Dict[str, List[InvoiceItem]]] = {}  # type: ignore
+
         for item in items:
             stripe_product = stripe.Product.retrieve(item.stripe_id)
             if item.active:
@@ -501,34 +574,111 @@ def end_auction(request: HttpRequest, id):
                 )
             try:
                 highest_bid = Bid.objects.filter(item=item).order_by("-amount").first()
-                if highest_bid:
-                    if not highest_bid.payment_intent_id:
-                        setup_intent = stripe.SetupIntent.retrieve(highest_bid.setup_intent_id)
-                        if setup_intent and setup_intent.status == "succeeded":
-                            payment_intent = stripe.PaymentIntent.create(
-                                amount=item.current_bid,
-                                currency="usd",
-                                customer=highest_bid.bidder.stripe_id,
-                                payment_method=setup_intent.payment_method,
-                                automatic_payment_methods=
-                                {
-                                    "enabled": True,
-                                    "allow_redirects": "never",
-                                },
-                                confirm=True
-                            )
-                            highest_bid.payment_intent_id = payment_intent.id
-                            highest_bid.save()
-            except:
-                print("No highest bid.")
-    except:
-        print("Bidding doesn't exist")
+                if highest_bid and highest_bid.setup_intent_id:
+                    setup_intent = stripe.SetupIntent.retrieve(highest_bid.setup_intent_id)
+                    if setup_intent and setup_intent.status == "succeeded":
+                        stripe_customer = highest_bid.bidder.stripe_id
+                        if stripe_customer not in bidders_invoices:
+                            bidders_invoices[stripe_customer] = {
+                                "items": [],
+                                "payment_method": setup_intent.payment_method,
+                            }
+                        bidders_invoices[stripe_customer]["items"].append({
+                            "name": item.name,
+                            "amount": item.current_bid,
+                        })
+                        highest_bid.payment_intent_id = "PENDING"
+                        highest_bid.save()
+            except Exception as e:
+                print(f"Error with item {item.id}: {e}")
+
+        for stripe_customer, invoice_data in bidders_invoices.items():
+            try:
+                for invoice_item in invoice_data["items"]:
+                    stripe.InvoiceItem.create(
+                        customer=stripe_customer,
+                        amount=invoice_item["amount"],
+                        currency="usd",
+                        description=invoice_item["name"],
+                    )
+                    
+                invoice = stripe.Invoice.create(
+                    customer=stripe_customer,
+                    default_payment_method=invoice_data["payment_method"],
+                    auto_advance=True,
+                    pending_invoice_items_behavior="include",
+                )
+                
+                # Wait for invoice to be finalized
+                finalized_invoice = stripe.Invoice.finalize_invoice(invoice.id)
+                
+                # Retrieve and log invoice lines
+                invoice_lines = stripe.Invoice.list_lines(invoice.id)
+                
+                Bid.objects.filter(bidder__stripe_id=stripe_customer, payment_intent_id="PENDING").update(payment_intent_id=finalized_invoice.id)
+            except Exception as e:
+                print(f"Error creating invoice for bidder {stripe_customer}: {e}")
+
+    except Exception as e:
+        print(f"Error with auction {id}: {e}")
+
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-def testingView(req: HttpRequest) -> HttpResponse:
-    stripe.api_key = settings.STRIPE_KEY
-    customers = stripe.Customer.list()
+def get_invoices_for_auction(request:HttpRequest, id:int) -> HttpResponse:
     try:
+        stripe.api_key = settings.STRIPE_KEY
+        bidders_invoices = {}
+        auction = Auction.objects.get(id=id)
+        items = auction.auctionitem_set.all()
+        for item in items:
+            if item.highest_bidder:
+                bidder_id = item.highest_bidder.bidder_id
+                bidder = Bidder.objects.get(bidder_id=bidder_id)
+                bids = Bid.objects.filter(item=item, bidder=bidder)
+                for bid in bids:
+                    invoice_id = bid.payment_intent_id
+                    if invoice_id:
+                        invoice = stripe.Invoice.retrieve(invoice_id)
+
+                        # pdf_url = invoice.invoice_pdf
+                        # pdf_response = requests.get(pdf_url)
+                        # pdf_file = ContentFile(pdf_response.content, f"{invoice_id}.pdf")
+                        # pdf_path = os.path.join(settings.MEDIA_ROOT, f"{invoice_id}.pdf")
+
+                        # with open(pdf_path, "wb") as f:
+                        #     f.write(pdf_response.content)
+
+                        if bidder_id not in bidders_invoices:
+                            bidders_invoices[bidder_id] = {
+                                "bidder_name": invoice.customer_name,
+                                "amount_due": "{:.2f}".format(invoice.amount_due/100),
+                                "status": invoice.status.upper(),
+                                "invoice_id": invoice_id,
+                                }
+        logger.debug(f"bidders_invoices: {bidders_invoices}")
+    except:
+        print("Auction not found.")
+        auction = None
+    return render(request, "invoices.html", {'auction':auction , 'auctionId': id, "invoices": bidders_invoices})
+
+def view_invoice_pdf(request: HttpRequest, invoice_id):
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        invoice = stripe.Invoice.retrieve(invoice_id)
+        pdf_url = invoice.invoice_pdf
+        pdf_response = requests.get(pdf_url)
+        pdf_content = pdf_response.content
+        response = HttpResponse(pdf_content, content_type='application/pdf')
+        response['Content-Disposition'] = f'inline; filename="{invoice_id}.pdf"'
+        return response
+    except Exception as e:
+        print(f"Error retrieving PDF: {e}")
+        return HttpResponse("Error retrieving PDF.")
+
+def testingView(req: HttpRequest) -> HttpResponse:
+    try:
+        stripe.api_key = settings.STRIPE_KEY
+        customers = stripe.Customer.list()
         image = ItemImage.objects.get(id=1)
     except: 
         image = None
@@ -536,6 +686,8 @@ def testingView(req: HttpRequest) -> HttpResponse:
     return render(req, 'test.html', {'test': customers, 'image': image})
 
 def productsTest(req: HttpRequest) -> HttpResponse:
+
+
     form = CreateAuctionItemForm()
     if req.method == 'POST':
         form = CreateAuctionItemForm(req.POST)

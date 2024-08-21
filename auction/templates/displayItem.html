@@ -1,3 +1,4 @@
+{% extends "sidenav.html" %}
 {% load my_filters %}
 {% load static %}
 
@@ -12,52 +13,93 @@
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-    {% comment %} VVV DO NOT CHANGE BELOW VVV {% endcomment %}
-    <div class='image-container'>
-        {% for img in images %}
-        <div class="slideshow_image">
-            <img src="{{img.file.url}}" alt="Auction Item Image">
-            <p class='pageNum'>{{img | indexify:images}}</p>
-        </div>
-        {% endfor %}
-        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-        <a class="next" onclick="changeSlide(1)">&#10095;</a>
-    </div>
-    <div class='slide_dots'>
-        {% for img in images %}
-        <span class='dot' onclick="currentSlide({{img | getIndex:images}})"></span>
-        {% endfor %}
-    </div>
-    {% comment %} ^^^ DO NOT CHANGE ABOVE ^^^ {% endcomment %}
-    <h3>{{item.name}}</h3>
-    <p>{{item.description}}</p>
-    <p>Current Bid: {{item.current_bid | moneyify}}</p>
+{% block content %}
+    <div class='viewProductBody'>
+        <div class="viewProductItemBidInfoGrid">
+            <div class='auctionItemImg'>
+                {% comment %} VVV DO NOT CHANGE BELOW VVV {% endcomment %}
+                <div class='image-container'>
+                    {% for img in images %}
+                    <div class="slideshow_image">
+                        <img src="{{img.file.url}}" alt="Auction Item Image">
+                        <p class='pageNum'>{{img | indexify:images}}</p>
+                    </div>
+                    {% endfor %}
+                    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+                </div>
+                <div class='slide_dots'>
+                    {% for img in images %}
+                    <span class='dot' onclick="currentSlide({{img | getIndex:images}})"></span>
+                    {% endfor %}
+                </div>
+                {% comment %} ^^^ DO NOT CHANGE ABOVE ^^^ {% endcomment %}        
+                <h3 class='viewProductName'>{{item.name}}</h3>
+                <p class='viewProductDesc'>{{item.description}}</p>
+            </div>
+    
+            <div class='auctionItemBidInfo'>
+                <p>Item Value: <b>{{item.value|moneyify}}</b></p>
+                <p>Current Bid: <b>{{item.current_bid | moneyify}}</b></p>
+                {% if user.is_authenticated and item.active %}
+                    <form id="bid-form" method="POST">
+                        {% csrf_token %}
+                        {% comment %} <span>$</span> {% endcomment %}
+                        {% comment %} <input id='bidPriceInput' type="text" name="amount" min={{lab}} max="99999999" value={{lab}} step='0.01'> {% endcomment %}
+                        <input type="hidden" id='amountInput' name='amount' value={{lab}}>
+                        <input type="hidden" name='item' value={{item.pk}}>
+                        <input type="hidden" name='bidder' value={{user.bidder_info.pk}}> {% comment "replace with user.bidder_info.pk" %}{% endcomment %}
+                        <select id="saved-cards">
+                            {% for card in saved_cards %}
+                                <option value="{{ card.id }}">
+                                    {{ card.card.brand }} ending in {{ card.card.last4 }} (Exp: {{ card.card.exp_month }}/{{ card.card.exp_year }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input type="hidden" id="selected-payment-method" name="selected_payment_method">
+                        <input type="hidden" name="setup_intent" value={{setup_intent.id}}>
+                        <input class='productBtn bidBtn' type="submit" name='btnSubmit' value="Place Bid for {{lab | moneyify}}" id="bid-button">
+                        {% if item.autobuy_price is not None %}
+                            <button id='BuyNowBtn' class='productBtn buyNowBtn' type='submit' value='buyNow'>Buy Now for {{item.autobuy_price|moneyify}}</button>
+                        {% endif %}
+                        {% comment %} <button class='productBtn buyNowBtn'>Buy Now for Placeholder</button> {% endcomment %}
+                    </form>
+                {% elif item.active and not user.is_authenticated%}
+                <div id="bid-form">
+                    <a id='whyArentYouWorking' href="{% url "login" %}">
+                        <button class='productBtn notLoggedInBtn'>Log in or Register to bid!</button>
+                    </a>
+                </div>
+                {% else %}
+                <div id="bid-form">
+                        <button class='productBtn itemInactiveBtn'>Item is Closed</button>
+                </div>
+                {% endif %}
+            </div>
+        {% comment %} </div> {% endcomment %}
 
-    <form id="bid-form" method="POST">
-        {% csrf_token %}
-        {% comment %} <span>$</span> {% endcomment %}
-        {% comment %} <input id='bidPriceInput' type="text" name="amount" min={{lab}} max="99999999" value={{lab}} step='0.01'> {% endcomment %}
-        <input type="hidden" name='amount' value={{lab}}>
-        <input type="hidden" name='item' value={{item.pk}}>
-        <input type="hidden" name='bidder' value={{user.bidder_info.pk}}> {% comment "replace with user.bidder_info.pk" %}{% endcomment %}
-        <select id="saved-cards">
-            {% for card in saved_cards %}
-                <option value="{{ card.id }}">
-                    {{ card.card.brand }} ending in {{ card.card.last4 }} (Exp: {{ card.card.exp_month }}/{{ card.card.exp_year }})
-                </option>
-            {% endfor %}
-        </select>
-        <input type="hidden" id="selected-payment-method" name="selected_payment_method">
-        <input type="hidden" name="setup_intent" value={{setup_intent.id}}>
-        <input type="submit" name='btnSubmit' value="Place Bid for {{lab | moneyify}}" id="bid-button">
-    </form>
-    <p>Bid History v</p>
-    {% if item.bid_set.all|length == 0 %}
-        <p>There are currently no bids. Place one now!</p>
-    {% endif %}
-    {% for bid in item.bid_set.all %}
-        <p>{{bid.bidder.bidder_id}} | {{bid.amount|moneyify}}</p>
-    {% endfor %}
+            <div id='bidDropDown' class="auctionItemBidHistory">
+                <p class='bidTitle'>Bid History <i id='dropdownIcon' class="fa-solid fa-chevron-down"></i></p>
+                <div class='bidHistoryBids hidden' id='theBids'>
+                {% if item.bid_set.all|length == 0 %}
+                    <p class='bid'>There are currently no bids. Place one now!</p>
+                {% else %}
+                    <div class="bid headingBid">
+                        <p class='bidId'>Bidder ID</p>
+                        <p class='bidAmt'>Amount</p>
+                    </div>
+                    {% for bid in item.bid_set.all %}
+                    <div class="bid">
+                        <p class='bidId'>{{bid.bidder.bidder_id}}</p>
+                        <p class='bidAmt'>{{bid.amount|moneyify}}</p>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script>
         const stripe = Stripe('{{STRIPE_TEST_PUBLIC_KEY}}');
@@ -71,6 +113,9 @@
         document.getElementById('bid-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const selectedPaymentMethod = document.getElementById('saved-cards').value;
+            if (selectedPaymentMethod == '') {
+                alert('Please add a payment method to place a bid!')
+            }
             const clientSecret = '{{setup_intent.client_secret}}';
             const {error} = await stripe.confirmCardSetup(clientSecret,
             {
@@ -82,7 +127,6 @@
             } else {
                 console.log('Bid Successful!');
                 console.log("Payment Method ID:", selectedPaymentMethod)
-
                 document.getElementById('selected-payment-method').value = selectedPaymentMethod
                 const form = document.getElementById('bid-form');
 
@@ -94,6 +138,28 @@
                 }
             }
         });
+
+        {% comment %} let BidHistory = document.getElementById('bidDropDown');
+        let theBids =document.getElementById('theBids')
+        BidHistory.addEventListener('click', () => {
+            theBids.style.display = theBids.style.display == 'none' ? 'flex' : 'none';
+        })  {% endcomment %}
     </script>
-</body>
-</html>
+    <script>
+        let BidHistory = document.getElementById('bidDropDown');
+        let theBids = document.getElementById('theBids')
+        BidHistory.addEventListener('click', () => {
+            {% comment %} theBids.style.display = theBids.style.display == 'none' ? 'flex' : 'none'; {% endcomment %}
+            theBids.classList.toggle('hidden');
+        }) 
+    </script>
+    <script>
+        const buyNowBtn = document.getElementById('BuyNowBtn');
+        const amount = document.getElementById('amountInput');
+        buyNowBtn.addEventListener('click', (e) => {
+            amount.value = {{item.autobuy_price}};
+        });
+    </script>
+{% endblock content %}
+{% comment %} </body>
+</html> {% endcomment %}

@@ -1,28 +1,59 @@
+{% extends "sidenav.html" %}
 {% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static "auction/css/styles.css" %}">
-</head>
-<body>
-    <div class = 'form-container'>
-        <div class='app-name'>
-            <h1>Auction</h1>
-        </div>
-        <div class='signup-template'>
-            <form method='POST' enctype="multipart/form-data">
+{% block content %}
+    <div class='createProductBody'>
+        <div class='createProduct'>
+            <form class='createProductForm' method='POST' enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="file" name="images" id="imageInput" multiple="" accept='image/*' required />
-                {{form.as_p}}
-                <div>
-                    <input type='submit' value='Register'>
+                <div class="imageInputWrap">
+                    <label id='clickTransfer'>
+                        <input type="file" name="images" id="imageInput" multiple="" accept='image/*' required />
+                    </label>
+                    <img id='image' src="{% static "auction/placeholder.png" %}" alt="selected image" />
                 </div>
+                {% comment %} <div class='image-container'>
+                    <a class="prev" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i></a>
+                    <a class="next" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right"></i></a>
+                    {% for img in images %}
+                    <div class="slideshow_image">
+                        <img src="{{img.file.url}}" alt="Auction Item Image">
+                    </div>
+                    {% endfor %}
+                </div> {% endcomment %}
+                {% comment %} {{form.as_p}} {% endcomment %}
+                <div class="productInputs">
+                    <div class="productInputWrap">
+                        <p class='productLabel productNameLabel'>Name</p>
+                        <input placeholder='Name..' class='productInput productNameInput' required type="text" name='name' id='productNameInput'>
+                    </div>
+                    <div class="productInputWrap">
+                        <p class='productLabel productDescLabel'>Description</p>
+                        <textarea placeholder='Description..' class='productInput productDescInput' required name="description" id=""></textarea>
+                    </div>
+                    <div class="productPrices">
+                        <div class="productInputWrap">
+                            <p class='productLabel productSBLabel'>Starting Bid</p>
+                            <input class='productInput productPriceInput' required type="text" id="currency-starting" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="$1.00">
+                            {{form.starting_bid}}
+                        </div>
+                        <div class="productInputWrap">
+                            <p class='productLabel productABLabel'>Buy Now</p>
+                            <input class='productInput productPriceInput' required type="text" id="currency-autobuy" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="$1.00">
+                            {{form.autobuy_price}}
+                        </div>
+                        <div class="productInputWrap">
+                            <p class='productLabel productValueLabel'>Value</p>
+                            <input class='productInput productPriceInput' required type="text" id="currency-value" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="$1.00">
+                            {{form.value}}
+                        </div>
+                    </div>
+                </div>
+                {% comment %} <div> {% endcomment %}
+                    <input id='submitProduct' type='submit' value='Confirm'>
+                {% comment %} </div> {% endcomment %}
             </form>
         </div>
     </div>
-</body>
-</html>
+
+    <script src="{% static "auction/js/createProduct.js" %}">
+{% endblock content %}

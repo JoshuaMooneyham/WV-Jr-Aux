@@ -1,0 +1,11 @@
+{% extends "sidenav.html" %}
+{% block content %}
+    <div class="account-settings">
+        {% for bidder, details in invoices.items %}
+            <p><a href="{% url 'view_pdf' details.invoice_id%}">View</a></p>
+            <p>Name: {{details.bidder_name}}</p>
+            <p>Total: {{details.amount_due}}</p>
+            <p>Status: {{details.status}}</p>
+        {% endfor %}
+    </div>
+{% endblock content %}

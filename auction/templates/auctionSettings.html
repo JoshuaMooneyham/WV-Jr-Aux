@@ -1,41 +1,73 @@
 {% extends "sidenav.html" %}
 {% block content %}
-    <div class='auctionConfig'>
+    <div class='auctionConfig auctionSettings'>
+        <div class="auctionSettingsHeader">
+            <h1>Settings</h1>
+        </div>
         <div class='updateAuctionForm'>
-            <form method="POST">
+            <form method="POST" class='updateAuctionInnerForm'>
                 {% csrf_token %}
-                <label class='inputLabel auctionNameLabel'>Name: 
-                    <input required type="text" name='name' id='updateName' value={{auction.name}}>
-                </label>
-                <input type="text" name='start_date' id='updateStartDatetime' value={{startDateTime}}>
-                <input type="text" name='end_date' id='updateEndDatetime' value={{endDateTime}}>
-                <input required type="date" id='updateStartDate' value={{startDate}}>
-                <input required type="time" id='updateStartTime' value={{startTime}}>
-                <input required type="date" id='updateEndDate' value={{endDate}}>
-                <input required type="time" id='updateEndTime' value={{endTime}}>
+                <div class="updateInputWrap">
+                    <p class='inputLabel auctionNameLabel'>Name</p>
+                    <input class='updateInput nameInput' required type="text" name='name' id='updateName' value="{{auction.name}}">
+                </div>
+
+                {% comment %} Hidden Inputs {% endcomment %}
+                <input type="text" name='start_date' id='updateStartDatetime' value="{{startDateTime}}">
+                <input type="text" name='end_date' id='updateEndDatetime' value="{{endDateTime}}">
+
+                {% comment %} More User Friendly DateTime Inputs {% endcomment %}
+                <div class="updateInputWrap">
+                    <p class='inputLabel startDateLabel'>Start Date</p>
+                    <div class="dates">
+                        <input class='updateInput dateInput' required type="date" id='updateStartDate' value="{{startDate}}">
+                        <input class='updateInput dateInput' required type="time" id='updateStartTime' value="{{startTime}}">
+                    </div>
+                </div>
+
+                <div class="updateInputWrap">
+                    <p class='inputLabel endDateLabel'>End Date</p>
+                    <div class="dates">
+                        <input class='updateInput dateInput' required type="date" id='updateEndDate' value={{endDate}}>
+                        <input class='updateInput dateInput' required type="time" id='updateEndTime' value={{endTime}}>
+                    </div>
+                </div>
+
                 <input type="hidden" name='active' value={{auction.active}}>
-                <input type="submit" name='submitUpdate' value='Submit' id='updateSubmit'>
+                <input class='updateAuctionBtn' type="submit" name='submitUpdate' value='Submit' id='updateSubmit'>
             </form>
         </div>
         <div class="auctionSettingsButtons">
             <form action={% url "deleteAuction" auction.pk %}>
-                <button type="submit">DELETE</button>
+                <button class='updateAuctionBtn deleteAuctionBtn' type="submit">DELETE</button>
             </form>
             {% if auction.active %}
-            <form action="">
-                <button>SET INACTIVE</button>
+            <form method='POST'>
+                <button class='updateAuctionBtn' type='submit' name='deactivate'>SET INACTIVE</button>
             </form>
             {% else %}
-            <form action="">
-                <button>SET ACTIVE</button>
+            <form method='POST'>
+                <button class='updateAuctionBtn' type='submit' name='activate'>SET ACTIVE</button>
             </form>
             {% endif %}
-            {% comment %} {% if startable %}
-                <button>START AUCTION</button>
+            {% if startable %}
+            <form method='POST'>
+                <button class='updateAuctionBtn' type='submit' name='startAuction'>START AUCTION</button>
+            </form>
+            {% else %}
+            <div class="dummyBtn">
+                <button class='updateAuctionBtn unavailable'>START AUCTION</button>
+            </div>
             {% endif %}
             {% if endable %}
-                <button>END AUCTION</button>
-            {% endif %} {% endcomment %}
+            <form method="POST">
+                <button class='updateAuctionBtn' type='submit' name='endAuction'>END AUCTION</button>
+            </form>
+            {% else %}
+            <div class="dummyBtn">
+                <button class='updateAuctionBtn unavailable'>END AUCTION</button>
+            </div>
+            {% endif %}
         </div>
     </div>
 
