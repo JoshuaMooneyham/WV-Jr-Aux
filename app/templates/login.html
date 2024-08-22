@@ -1,30 +1,22 @@
 {%extends 'base.html'%}
 {% load static %}
 {%block content%}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="{% static 'auction/css/styles.css' %}">
-</head>
-    <h1 class="name_headers">Login</h1>
-    <body>
+<section class="login-section">
+    {% comment %} <h1 class="name_headers">Login</h1> {% endcomment %}
         <div class="login_container">
-            <div class='form-container'>
+            <div>
                 <div class='login-template'>
+                    <h2>LOGIN</h2>
                     <form method='POST'>
                         {% csrf_token %}
                         <div class="login_txt">
-                            <input type="text" name="email" placeholder="Email...">
+                            <input type="text" name="email" placeholder="EMAIL...">
                         </div>
                         <div class="login_txt">
-                            <input type="password" name="password" placeholder="Password...">
+                            <input type="password" name="password" placeholder="PASSWORD...">
                         </div>
                         <div>
-                            <input type='submit' value='Login'>
+                            <input type='submit' value='LOGIN'>
                         </div>
                     </form>
                     <div class="login_txt">
@@ -33,5 +25,5 @@
                 </div>
             </div>
         </div>
-
-{%endblock%}
+    </section>
+{%endblock content%}

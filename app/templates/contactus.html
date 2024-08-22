@@ -2,20 +2,19 @@
 {% load static %}
 {% block content %}
 <h1 id='contactHeader' class="name_headers">Contact Us</h1>
+{% comment %} <p class="contact_us">Feel free to reach out to us if you would like to help us with our mission or if you have any questions.</p> {% endcomment %}
 <div class="contact-container">
     <div class="contact-left">
-        <p class="contact_us">Feel free to reach out to us if you would like to help us with our mission or if you have any questions.</p>
-        <h2 class="address">Email:
-            <br>JuniorAuxiliary.WaterValley@gmail.com
-        </h2>
-        <h2 class="address">Our Address:
-            <br>P.O. Box 92,
-            <br>Water Valley, MS 38965
-        </h2>
+        {% comment %} <p class="contact_us">Feel free to reach out to us if you would like to help us with our mission or if you have any questions.</p> {% endcomment %}
+        <h2 class="address">Email:</h2>
+            <p>JuniorAuxiliary.WaterValley@gmail.com</p>
+        <h2 class="address">Our Address:</h2>
+            <p>P.O. Box 92,</p>
+            <p>Water Valley, MS 38965</p>
         
     </div>
     <div class="contact-right">
-        <h2 class="stay_connected">Stay Connected with Us</h2>
+        <h2 class="stay_connected">Stay Connected with Us:</h2>
         <h2 class="address">Feel free to reach out to our Facebook!</h2>
         <a target="_blank" href="https://www.facebook.com/JuniorAuxiliary.WaterValley/">
             <img src="{% static 'app/photos/facebook.png' %}" alt="facebook" class="facebook">

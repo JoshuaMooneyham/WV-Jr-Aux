@@ -17,14 +17,13 @@
 
     <div class="rightSide">
         <nav class="myNav">
-            <a href="#homeJump">Home</a>
-            <a href="#aboutHeader">About</a>
-        <a href="#scholarshipHeader">Scholarship</a>
+            <a href="{% url 'home'%}#homeJump">Home</a>
+            <a href="#about">About</a>
+        <a href="#scholarship">Scholarship</a>
             <a href="#projectHeader">Projects</a>
         <a href="#contactHeader">Contact</a>
             <a href="{% url 'auction' %}">Auction</a>
-            {% comment %} <a href="{% url 'login' %}">Login</a> {% endcomment %}
-            {% comment %} <a href="{% url "auction" %}">Auction</a> {% endcomment %}
+
         </nav>
         
         <a target="_blank" href="https://www.paypal.com/ncp/payment/FARHUZLY87Z6A">
@@ -39,21 +38,10 @@
 {% block content %}
 
 {% endblock content %}
-<div class="events_box">
-    <h2>Upcoming Events</h2>
-    {% for g in user.groups.all %}
-        <button class="eventButton">Add Event</button>
-    {% endfor %}
-    <div id="events_list">
-        <p>Event 1: Placeholder</p>
-        <p>Event 2: Placeholder</p>
-        <p>Event 3: Placeholder</p>
-    </div>
-    
-</div>
+
 
 <footer class="footer">
     © Junior Auxillary of Water Valley 2024</p>
 </footer>
-    
+</body>
 </html>

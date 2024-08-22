@@ -19,6 +19,81 @@
     {% include 'about.html' %}
 </section> 
 
+<div class="events_box">
+    <h2 class ="name_headers">Upcoming Events</h2>
+    {% for g in user.groups.all %}
+        <button class="eventButton">Add Event</button>
+    {% endfor %}
+    <div class='events'>
+        <div class="eventRow">
+            <h3 class='eventDay'>Sat.</h3>
+            <div class='eventDate'>
+                <p>August 24</p>
+                <p>10:00am</p>
+            </div>
+            <h4 class='eventTitle'>Base Camp Coding Academy GI Graduation</h4>
+        </div>
+    {% comment %} </div> {% endcomment %}
+    {% comment %} <div class='events'> {% endcomment %}
+        <div class="eventRow">
+            <h3 class='eventDay'>Sat.</h3>
+            <div class='eventDate'>
+                <p>September 1</p>
+                <p>6:00pm</p>
+            </div>
+            <h4 class='eventTitle'>Silent Auction</h4>
+        </div>
+    {% comment %} </div> {% endcomment %}
+    {% comment %} <div class='events'> {% endcomment %}
+        <div class="eventRow" style="border-bottom: none;">
+            <h3 class='eventDay'>Fri.</h3>
+            <div class='eventDate'>
+                <p>September 7</p>
+                <p>6:00pm</p>
+            </div>
+            <h4 class='eventTitle'>Executive Committee Meeting</h4>
+        </div>
+    </div>
+    {% comment %} <div id="events_container">
+        <div id="events-days">
+            <div class= "flex-box">
+                <p id="event-day">Sat.</p>
+                <div id="1">
+                    <p>August 24</p>
+                    <p>10:00am</p>
+                </div>
+            </div> 
+            <div class="flex-box">
+                <p id="event-day">Wed.</p>
+                <div id="1">
+                    <p id="1">September 1</p>
+                    <p id="1">6:00pm</p>
+                </div>
+            </div>
+            <div class ="flex-box">
+                <p id="event-day">Wed.</p>
+                <div id="1">
+                    <p id="1">September 7</p>
+                    <p id="1">6:00pm</p>
+                </div>
+            </div>  
+        </div>
+        <div id ="events-list">
+            <div class='eventTitle'>
+                <p>Base Camp Coding Academy GI Graduation</p>
+            </div>
+            
+            <div class='eventTitle'>
+                <p>Silent Auction</p>
+            </div>
+            
+            <div class='eventTitle'>
+                <p>Executive Committee Meeting</p>
+            </div>
+        </div>
+    </div> {% endcomment %}
+</div>
+
 <!-- Scholarship Section -->
      
 <section id="scholarship">

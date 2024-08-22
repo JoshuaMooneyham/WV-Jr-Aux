@@ -77,7 +77,7 @@ def createProduct(req: HttpRequest, auctionId: int) -> HttpResponse:
                 return redirect("auctionFront", auctionId)
             except:
                 print('hi')
-    return render(req, 'createProduct.html', {'form': form, 'auction': auction, 'auctionId': auctionId})
+    return render(req, 'createProduct.html', {'page': 'auction', 'form': form, 'auction': auction, 'auctionId': auctionId})
 
 # ==={ Read Item }=== #
 
@@ -117,7 +117,7 @@ def displayItem(req: HttpRequest, auctionId:int, id: int) -> HttpResponse:
         saved_cards = None
 
             
-    return render(req, 'displayItem.html', {'auctions': auctions, 'auction': auction, "item": item, "images": images, "lab": lowestAllowedBid, "setup_intent": setup_intent, "saved_cards": saved_cards, "STRIPE_TEST_PUBLIC_KEY": settings.STRIPE_TEST_PUBLIC_KEY, "auctionId": auctionId})
+    return render(req, 'displayItem.html', {'page': 'auction', 'auctions': auctions, 'auction': auction, "item": item, "images": images, "lab": lowestAllowedBid, "setup_intent": setup_intent, "saved_cards": saved_cards, "STRIPE_TEST_PUBLIC_KEY": settings.STRIPE_TEST_PUBLIC_KEY, "auctionId": auctionId})
 
 # ==={ Update Item }=== #
 
@@ -681,7 +681,8 @@ def get_invoices_for_auction(request:HttpRequest, id:int) -> HttpResponse:
     except:
         print("Auction not found.")
         auction = None
-    return render(request, "invoices.html", {'auction':auction , 'auctionId': id, "invoices": bidders_invoices})
+    auctions = Auction.objects.all()
+    return render(request, "invoices.html", {'auctions': auctions, 'auction':auction , 'auctionId': id, "invoices": bidders_invoices})
 
 def view_invoice_pdf(request: HttpRequest, invoice_id):
     try:

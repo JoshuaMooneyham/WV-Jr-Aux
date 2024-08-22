@@ -35,7 +35,7 @@ def login_view(req: HttpRequest) -> HttpResponse:
     print('HI')
     if req.user.is_authenticated:
         print("Testing1")
-        return redirect('auctionFront', 1)
+        return redirect('auction')
 
     if req.method == 'POST':
         email = req.POST.get('email')
@@ -45,7 +45,7 @@ def login_view(req: HttpRequest) -> HttpResponse:
 
         if user is not None:
             login(req, user)
-            return redirect('home')
+            return redirect('auctionFront', 20)
         else:
             messages.info(req, 'Username or Password incorrect')
 
