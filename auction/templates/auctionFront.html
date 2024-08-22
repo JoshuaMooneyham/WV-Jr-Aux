@@ -22,7 +22,8 @@
             {% else %}
                 {% for item in items %}
                     <div class='item'>
-                        <a class='itemA' {% if not user.is_authenticated or user.groups.all|length == 0 %} href="{% url 'displayProduct' auction.pk item.pk %}" {% else %} href="{% url "updateProduct" auction.pk item.pk %}" {% endif %} >
+                        {% comment %} <a class='itemA' {% if not user.is_authenticated or user.groups.all|length == 0 %} href="{% url 'displayProduct' auction.pk item.pk %}" {% else %} href="{% url "updateProduct" auction.pk item.pk %}" {% endif %} > {% endcomment %}
+                        <a class='itemA' href="{% url 'displayProduct' auction.pk item.pk %}">
                             <img src="{{item.images.all|firstImg}}" alt="">
                             <h3>{{item.name}}</h3>
                             {% if item.active %}
