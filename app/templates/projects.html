@@ -1,49 +1,179 @@
 {% comment %} {% extends 'base.html' %} {% endcomment %}
 {% load static %}
 {% block content %}
-<h1 class="name_headers">Projects</h1>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+  
+    var buttons = document.querySelectorAll('.read-more-btn');
+
+    buttons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var modalId = this.getAttribute('data-modal');
+            var modal = document.getElementById(modalId);
+            modal.style.display = "block";
+
+            var closeBtn = modal.querySelector('.close-btn');
+
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    });
+    });
+</script>
+<h1 id='projectHeader' class="name_headers">Projects</h1>
 <div class="p_box">
     <p class="projects_p">Junior Auxiliary of Water Valley is proud to 
         serve the children of Yalobusha County through a variety of projects.
-         To learn more about our projects, you can read more by holding the mouse above them!<p>
+         To learn more about our projects, you can read more by clicking the event!<p>
+    
     <div class="project-list">
         <div class="column left-column">
-            <p class="myDIV">Watermelon Pageant</p>
-            <div class="hide">The Junior Auxiliary of Water Valley's annual Watermelon Pageant crowns queens of all ages. The winner of the Watermelon Queen is the recipient of a college scholarship and represents the Junior Auxiliary at the annual Watermelon Carnival, Christmas Parade, and more.</div>
-            <p class="myDIV">Silent Auction</p>
-            <div class="hide"> Ready, Set, Bid! Our annual Junior Auxiliary Silent Auction is one of the most special ways to see the outpouring of support from our community here in Yalobusha County. From the magnificent showing of donated items from our local shops, artists, and restaurants to the many bidders giving financial support, this auction is a wonderful way to give to the JA..</div>
-            <p class="myDIV">Charity Ball</p>
-            <div class="hide">The Charity Ball is the event of the season! Celebrations are best when they benefit a good cause, and this party is not to be missed. We hope you will join us to enjoy live music, food and drinks, and our live silent auction with all your friends. Buy tickets or a table, we will have a Ball!</div>
-            <p class="myDIV">Project Santa</p>
-            <div class="hide">Project Santa brings the joy of Christmas to children of homes that would not otherwise be able to provide gifts at Christmastime each year. The Junior Auxiliary coordinates with community members and local businesses to "adopt" children to purchase gifts for to ensure that every child has soemthing to open on Christmas Day.</div>
-            <p class="myDIV">Project Safe Kids</p>
-            <div class="hide">Project Safe Kids is our annual children's health and safety fair. With booths from our local health care providers, law enforcement, and activity centers like 4H, the children of Yalobusha County complete activities to earn a prize and learn about the world of public safety.</div>
-            <p class="myDIV">Youth Sports</p>
-            <div class="hide">The Junior Auxiliary of Water Valley coordinates with the Magnolia Youth Sports League in conjunction with their soccer, softball, baseball, and flag football seasons to provide volunteers as coaches, referees, and concession stand workers while sponsoring teams. </div>
-            <p class="myDIV">Bundles of Love</p>
-            <div class="hide">Bundles of Loves is a project geared towards children who live in food insecure homes. The Junior Auxiliary packs meals and snacks to send home with kids from school over the weekends each Friday from Davidson Elementary School and Water Valley High School to ensure they will get enough to eat when they are not provided with breakfast and lunch in the school cafeteria.</div>
-            <p class="myDIV">Watermelon Games</p>
-            <div class="hide">During the Watermelon Carnival each year, the Junior Auxiliary hosts the Watermelon Games for children attending the Carnival. There is a watermelon eating contest, a seed spitting contest, and a watermelon toss! Winners receive prizes and all participants enjoy watermelon slices.</div>
-        </div>
-        <div class="column right-column">
-            <p class="myDIV">Scholarship Opportunity</p>
-            <div class="hide">The Junior Auxiliary of Water Valley is pleased to offer four scholarships each spring, two $1,000 scholarships to be awarded to Water Valley Seniors and two $1,000 scholarships to Coffeeville High School Seniors based on scholastic merit, achievement in volunteering, future plans to volunteer, and letters of recommendation. For more information, please email juniorauxiliary.watervalley@gmail.com.</div>
-            <p class="myDIV">Nursing Hope Project</p>
-            <div class="hide">Once a month the Junior Auxiliary of Water Valley invites local children and their families to join us at the nursing home in Yalobusha General Hospital for afternoon Bingo and lots of visiting with residents. this project also includes the distribution of gifts and cards at the holidays by the children of Yalobusha County and JA members.</div>
-            <p class="myDIV">Imagination Library</p>
-            <div class="hide">The Imagination Library is a free book gifting program that mails high quality, age-appropriate books to children from birth until they start school. The Junior Auxiliary of Water Valley coordinates with the Dollywood foundations to administrate the distribution of these books to the children of Yalobusha County.</div>
-            <p class="myDIV">Book Drive</p>
-            <div class="hide">Our annual Read to Succeed Book Drive is a program to provide summer reading books for each second grader in Coffeeville and Water Valley to promote literacy and increase the passage rate for the Third Grade Reading Gate test of the children of Yalobusha County. The Book Drive culminates with an author event at the elementary school where the students enjoy a reading with a children's book author.</div>
-            <p class="myDIV">Family Field Day</p>
-            <div class="hide">This annual event promotes family togetherness with a focus on spending time outside and away from screen time. Old fashioned playground games with face-painting, snacks, and large scale inflatables make Family Field Day an unmissable event for kids and parents alike!</div>
-            <p class="myDIV">Confidence Kits</p>
-            <div class="hide">This project provides pre-packaged personal care items for students with a need. From toothpaste and deodorant to feminine products, Confidence Kits ensures that children without the budget at home for hygiene and beauty items will have everything they might need to care for themselves.
+            <button class="read-more-btn" data-modal="modal1">Watermelon Pageant</button>
+
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Watermelon Pageant</h2>
+                    <p>The Junior Auxiliary of Water Valley's annual Watermelon Pageant crowns queens of all ages. The winner of the Watermelon Queen is the recipient of a college scholarship and represents the Junior Auxiliary at the annual Watermelon Carnival, Christmas Parade, and more.</p>
+                </div>
             </div>
-            <p class="myDIV">Christmas in the Valley</p>
-            <div class="hide">During the City of Water Valley's annual Christmas in the Valley Celebration, the Junior Auxiliary provides an opportunity for photos with Santa and Mrs. Clause with games and refreshments.</div>
-            <p class="myDIV">Blood Drive</p>
-            <div class="hide">In Mississippi, hundreds of pints of blood are needed every day. Mississippi Blood Services comes to Water Valley in conjunction with the Junior Auxiliary each year to assist with fulfilling this need.</div>
+            <button class="read-more-btn" data-modal="modal2">Silent Auction</button>
+
+            <div id="modal2" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Silent Auction</h2>
+                    <p>Ready, Set, Bid! Our annual Junior Auxiliary Silent Auction is one of the most special ways to see the outpouring of support from our community here in Yalobusha County. From the magnificent showing of donated items from our local shops, artists, and restaurants to the many bidders giving financial support, this auction is a wonderful way to give to the JA..</p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal3">Charity Ball</button>
+
+            <div id="modal3" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Charity Ball</h2>
+                    <p>The Charity Ball is the event of the season! Celebrations are best when they benefit a good cause, and this party is not to be missed. We hope you will join us to enjoy live music, food and drinks, and our live silent auction with all your friends. Buy tickets or a table, we will have a Ball!</p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal4">Project Santa</button>
+            <div id="modal4" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Project Santa</h2>
+                    <p>Project Santa brings the joy of Christmas to children of homes that would not otherwise be able to provide gifts at Christmastime each year. The Junior Auxiliary coordinates with community members and local businesses to "adopt" children to purchase gifts for to ensure that every child has soemthing to open on Christmas Day.</p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal5">Project Safe Kids</button>
+            <div id="modal5" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Project Safe Kids</h2>
+                    <p>Project Safe Kids is our annual children's health and safety fair. With booths from our local health care providers, law enforcement, and activity centers like 4H, the children of Yalobusha County complete activities to earn a prize and learn about the world of public safety.</p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal6">Youth Sports</button>
+            <div id="modal6" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Youth Sports</h2>
+                    <p>The Junior Auxiliary of Water Valley coordinates with the Magnolia Youth Sports League in conjunction with their soccer, softball, baseball, and flag football seasons to provide volunteers as coaches, referees, and concession stand workers while sponsoring teams. </p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal7">Bundles of Love</button>
+            <div id="modal7" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Bundles of Love</h2>
+                    <p>Bundles of Loves is a project geared towards children who live in food insecure homes. The Junior Auxiliary packs meals and snacks to send home with kids from school over the weekends each Friday from Davidson Elementary School and Water Valley High School to ensure they will get enough to eat when they are not provided with breakfast and lunch in the school cafeteria.</p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal8">Watermelon Games</button>
+            <div id="modal8" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Watermelon Games</h2>
+                    <p>During the Watermelon Carnival each year, the Junior Auxiliary hosts the Watermelon Games for children attending the Carnival. There is a watermelon eating contest, a seed spitting contest, and a watermelon toss! Winners receive prizes and all participants enjoy watermelon slices.</p>
+                </div>
+            </div>  
         </div>
+
+
+          
+        <div class="column right-column">
+            <button class="read-more-btn" data-modal="modal9">Golf Tournament</button>
+            <div id="modal9" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Golf Tournament</h2>
+                    <p>The annual Junior auxiliary Golf Tournament is one of the most fun ways to enjoy your favorite leisure sport while supporting our organization. Held each year in the Spring at the Yalobusha Country Club, this finance project is a major fundraiser for our children's programs.</p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal10">Nursing Hope Project</button>
+            <div id="modal10" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Nursing Hope Project</h2>
+                    <p>Once a month the Junior Auxiliary of Water Valley invites local children and their families to join us at the nursing home in Yalobusha General Hospital for afternoon Bingo and lots of visiting with residents. this project also includes the distribution of gifts and cards at the holidays by the children of Yalobusha County and JA members.</p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal11">Imagination Library</button>
+            <div id="modal11" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Imagination Library</h2>
+                    <p>The Imagination Library is a free book gifting program that mails high quality, age-appropriate books to children from birth until they start school. The Junior Auxiliary of Water Valley coordinates with the Dollywood foundations to administrate the distribution of these books to the children of Yalobusha County.</p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal12">Book Drive</button>
+            <div id="modal12" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Book Drive</h2>
+                    <p>Our annual Read to Succeed Book Drive is a program to provide summer reading books for each second grader in Coffeeville and Water Valley to promote literacy and increase the passage rate for the Third Grade Reading Gate test of the children of Yalobusha County. The Book Drive culminates with an author event at the elementary school where the students enjoy a reading with a children's book author.</p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal13">Family Field Day</button>
+            <div id="modal13" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Family Field Day</h2>
+                    <p>This annual event promotes family togetherness with a focus on spending time outside and away from screen time. Old fashioned playground games with face-painting, snacks, and large scale inflatables make Family Field Day an unmissable event for kids and parents alike!</p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal14">Confidence Kits</button>
+            <div id="modal14" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Confidence Kits</h2>
+                    <p>This project provides pre-packaged personal care items for students with a need. From toothpaste and deodorant to feminine products, Confidence Kits ensures that children without the budget at home for hygiene and beauty items will have everything they might need to care for themselves.</p>
+                </div>
+            </div>  
+            <button class="read-more-btn" data-modal="modal15">Christmas in the Valley</button>
+            <div id="modal15" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Christmas in the Valley</h2>
+                    <p>During the City of Water Valley's annual Christmas in the Valley Celebration, the Junior Auxiliary provides an opportunity for photos with Santa and Mrs. Clause with games and refreshments.</p>
+                </div>
+            </div>
+            <button class="read-more-btn" data-modal="modal16">Blood Drive</button>
+            <div id="modal16" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Blood Drive</h2>
+                    <p>In Mississippi, hundreds of pints of blood are needed every day. Mississippi Blood Services comes to Water Valley in conjunction with the Junior Auxiliary each year to assist with fulfilling this need.</p>
+                </div>
+            </div>
+
+        </div>
+            
     </div>
 </div>
 </div>

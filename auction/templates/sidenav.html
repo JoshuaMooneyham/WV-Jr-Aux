@@ -21,6 +21,9 @@
         <img class='sidenavCrown' src="{% static "auction/NAJA Crown_Blue_Crop.png" %}" alt="">
     </div>
     <div class='sidenavOptions'>
+        <a href="{% url "home" %}">
+            <button>Home</button>
+        </a>
         {% if not user.is_authenticated %}
             <a href="{% url "login" %}">
                 <button>Log In</button>
@@ -55,6 +58,9 @@
                         </a>
                         <a href="{% url "auctionSettings" auction.pk %}">
                             <button>Settings</button>
+                        </a>
+                        <a href="{% url "auctionFront" auction.pk %}">
+                            <button>View Auction</button>
                         </a>
                     {% else %}
                         <select name="auctionList" id="auctionList">

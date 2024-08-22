@@ -1,29 +1,106 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<div id='homeJump'></div>
 <div class="img_container">
     <!--Area of the images-->
-       <div class="wrapper">
-<img src="{% static 'app/photos/members.jpg' %}" alt="members" class="home_images">
-<img src="{% static 'app/photos/members2.jpg' %}" alt="members" class="home_images">
-<img src="{% static 'app/photos/members3.jpg' %}" alt="members" class="home_images">
-<img src="{% static 'app/photos/members4.jpg' %}" alt="members" class="home_images">
+    <div class="wrapper">
+        <img src="{% static 'app/photos/members.jpg' %}" alt="members" class="home_images">
+        <img src="{% static 'app/photos/members2.jpg' %}" alt="members" class="home_images">
+        <img src="{% static 'app/photos/members3.jpg' %}" alt="members" class="home_images">
+        <img src="{% static 'app/photos/members4.jpg' %}" alt="members" class="home_images">
+    </div>
+    <div class='filter body_text'>{% comment "might be too derivative" %}{% endcomment %}<p class='testBodyTxt'>Empowering women, inspiring children, and building a brighter future together.</p></div>
 </div>
-</div>
-   <p class="body_text"> The Junior Auxiliary of Water Valley chapter, established locally more than 70 years ago, 
-    was founded on the principle of making a difference in the lives of children and has been 
-    comprised of women in Yalobusha County with strong character and leadership who are dedicated to serving their community.</p>
+   {% comment %} <p class="body_text">Empowering women, inspiring children, and building a brighter future together.</p> {% endcomment %}
 
-    <!-- Scholarship Section -->
+   <!-- About Section -->
+<section id="about">
+    {% include 'about.html' %}
+</section> 
+
+<div class="events_box">
+    <h2 class ="name_headers">Upcoming Events</h2>
+    {% for g in user.groups.all %}
+        <button class="eventButton">Add Event</button>
+    {% endfor %}
+    <div class='events'>
+        <div class="eventRow">
+            <h3 class='eventDay'>Sat.</h3>
+            <div class='eventDate'>
+                <p>August 24</p>
+                <p>10:00am</p>
+            </div>
+            <h4 class='eventTitle'>Base Camp Coding Academy GI Graduation</h4>
+        </div>
+    {% comment %} </div> {% endcomment %}
+    {% comment %} <div class='events'> {% endcomment %}
+        <div class="eventRow">
+            <h3 class='eventDay'>Sat.</h3>
+            <div class='eventDate'>
+                <p>September 1</p>
+                <p>6:00pm</p>
+            </div>
+            <h4 class='eventTitle'>Silent Auction</h4>
+        </div>
+    {% comment %} </div> {% endcomment %}
+    {% comment %} <div class='events'> {% endcomment %}
+        <div class="eventRow" style="border-bottom: none;">
+            <h3 class='eventDay'>Fri.</h3>
+            <div class='eventDate'>
+                <p>September 7</p>
+                <p>6:00pm</p>
+            </div>
+            <h4 class='eventTitle'>Executive Committee Meeting</h4>
+        </div>
+    </div>
+    {% comment %} <div id="events_container">
+        <div id="events-days">
+            <div class= "flex-box">
+                <p id="event-day">Sat.</p>
+                <div id="1">
+                    <p>August 24</p>
+                    <p>10:00am</p>
+                </div>
+            </div> 
+            <div class="flex-box">
+                <p id="event-day">Wed.</p>
+                <div id="1">
+                    <p id="1">September 1</p>
+                    <p id="1">6:00pm</p>
+                </div>
+            </div>
+            <div class ="flex-box">
+                <p id="event-day">Wed.</p>
+                <div id="1">
+                    <p id="1">September 7</p>
+                    <p id="1">6:00pm</p>
+                </div>
+            </div>  
+        </div>
+        <div id ="events-list">
+            <div class='eventTitle'>
+                <p>Base Camp Coding Academy GI Graduation</p>
+            </div>
+            
+            <div class='eventTitle'>
+                <p>Silent Auction</p>
+            </div>
+            
+            <div class='eventTitle'>
+                <p>Executive Committee Meeting</p>
+            </div>
+        </div>
+    </div> {% endcomment %}
+</div>
+
+<!-- Scholarship Section -->
      
 <section id="scholarship">
     {% include 'scholarship.html' %}
 </section>
 
-<!-- About Section -->
-<section id="about">
-    {% include 'about.html' %}
-</section>
+
 
 <!-- Projects Section -->
 <section id="projects">

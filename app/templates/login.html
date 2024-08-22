@@ -1,27 +1,29 @@
+{%extends 'base.html'%}
 {% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="{% static 'auction/css/styles.css' %}">
-</head>
-    <body>
-        <div class = 'form-container'>
-            <div class ='app-name'>
-                <h1>Auction</h1>
+{%block content%}
+<section class="login-section">
+    {% comment %} <h1 class="name_headers">Login</h1> {% endcomment %}
+        <div class="login_container">
+            <div>
+                <div class='login-template'>
+                    <h2>LOGIN</h2>
+                    <form method='POST'>
+                        {% csrf_token %}
+                        <div class="login_txt">
+                            <input type="text" name="email" placeholder="EMAIL...">
+                        </div>
+                        <div class="login_txt">
+                            <input type="password" name="password" placeholder="PASSWORD...">
+                        </div>
+                        <div>
+                            <input type='submit' value='LOGIN'>
+                        </div>
+                    </form>
+                    <div class="login_txt">
+                        Don't have an account? <a href="{% url 'registration' %}">Sign Up</a>
+                    </div>
+                </div>
             </div>
-        <div class ='login-template'>
-            <form method='POST'>
-                {% csrf_token %}
-                <div><input type="text" name="email" placeholder="Email..."></div>
-                <div><input type="password" name="password" placeholder="Password..."></div>
-                <div><input type='submit' value='Login'></div>
-            </form>
-            <div>Don't have an account? <a href="{% url 'registration' %}">Sign Up</a></div>
         </div>
-    </div>
-    </body>
-</html>
+    </section>
+{%endblock content%}
