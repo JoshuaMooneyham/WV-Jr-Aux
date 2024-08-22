@@ -3,7 +3,7 @@
 {% block content %}
 <h1 id='scholarshipHeader' class="name_headers">Scholarship Application</h1>
 <div class="scholarship_container">
-    <img src="{% static 'app/photos/scholarship.jpg' %}" alt="members" class="scholarship_pic">
+    {% comment %} <img src="{% static 'app/photos/scholarship.jpg' %}" alt="members" class="scholarship_pic"> {% endcomment %}
         <p class="scholarship_text">The Junior Auxiliary
      of Water Valley is pleased to offer four scholarships 
      each spring, two $1,000 scholarships to be awarded to 
@@ -13,7 +13,7 @@
      volunteer, and letters of recommendation. Please scan 
     the barcode in the picture to fill out the application and 
     email it to us at juniorauxiliary.watervalley@gmail.com.</p>
-
+    <img src="{% static 'app/photos/scholarship.jpg' %}" alt="members" class="scholarship_pic">
 
 
         </div>

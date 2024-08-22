@@ -19,6 +19,54 @@
     {% include 'about.html' %}
 </section> 
 
+<div class="events_box">
+    <h2 class ="name_headers">Upcoming Events</h2>
+    {% for g in user.groups.all %}
+        <button class="eventButton">Add Event</button>
+    {% endfor %}
+    <div id="events_container">
+        <div id="events-days">
+            <div class= "flex-box">
+                <p id="event-day">Sat.</p>
+                <div id="1">
+                <p>August 24</p>
+                <p>10:00am</p>
+                </div>
+            </div> 
+            <div class="flex-box">
+                <p id="event-day">Wed.</p>
+                <div id="1">
+                <p id="1">September 1</p>
+                <p id="1">6:00pm</p>
+                </div>
+            </div>
+            <div class ="flex-box">
+                <p id="event-day">Wed.</p>
+                <div id="1">
+                <p id="1">September 7</p>
+                <p id="1">6:00pm</p>
+                </div>
+            </div>  
+        </div>
+    <div id ="events-list">
+            <div>
+                <p>Base Camp Coding Academy GI Graduation</p>
+            </div>
+            
+            <div>
+                <p>Silent Auction</p>
+            </div>
+            
+            <div>
+                <p>Executive Committee Meeting</p>
+            </div>
+    </div>
+
+    </div>
+    
+
+</div>
+
 <!-- Scholarship Section -->
      
 <section id="scholarship">

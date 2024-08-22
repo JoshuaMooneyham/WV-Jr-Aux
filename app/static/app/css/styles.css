@@ -46,7 +46,6 @@ body {
 } */
 
 .headerContainer {
-    /* position: sticky; */
     position: fixed;
     top: 0;
     display: flex;
@@ -139,7 +138,7 @@ body {
 /* Section styling */
 section {
     padding: 50px;
-    min-height: 100vh; 
+    /* min-height: 100vh;  */
     margin-bottom: 20px;
     position: relative;
 }
@@ -177,7 +176,7 @@ section {
 
 .filter {
     /* background-color: #002f8770; */
-    background-color: #002f878f;
+    background-color: #002f876a;
     position: absolute;
     width: 100vw;
     /* height: 500px; */
@@ -235,118 +234,67 @@ section {
 
 /* <------------FOOTER------------> */
 .footer{
+    bottom: 0;
     background: rgb(0, 48, 135);
     color: white;
     text-align: center;
     padding: 10px;
-    font-family: 'Futura', sans-serif;
+    font-family: 'Futura-Book', sans-serif;
 }
-.events_box {
-    padding: 2%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
-    width: 100%; 
-    max-width: 600px; 
-    margin: 0 auto; 
-    font-family: 'Futura', sans-serif;
-}
-
-
-.events_box h2 {
-    text-align: left; 
-    font-size: 1.5rem; 
-    color: rgb(0, 48, 135) !important; 
-    margin-bottom: 20px; 
-}
-
-
-.events_box p {
-    text-align: left; /
-    font-size: 1rem; 
-    color: rgb(0, 48, 135);
-    margin: 5px 0; 
-    padding-left: 10px; 
-    border-bottom: 1px solid rgb(0, 48, 135); 
-    padding-bottom: 10px; 
-}
-
-
-.events_box button {
-    background-color: rgb(246, 236, 97);
-    color: rgb(0, 48, 135); 
-    font-size: 1.2rem;
-    padding: 15px 20px;
-    border-radius: 5px; 
-    margin-top: 20px; 
-    border: none; 
-    align-self: center; 
-    cursor: pointer; 
-    border: none;
-
-}
-.events_box button:hover {
-    background-color: rgb(0, 48, 135); 
-    color: white; 
-    cursor: pointer; 
-}
-
-#events_list {
-    width: 100%; 
-    border-left: 2px solid rgb(0, 48, 135); 
-    padding-left: 10px; 
-}
-
-
-#events_list p {
-    padding-left: 10px; 
-    margin: 15px 0; 
-    line-height: 1.5; }
 
 .name_headers {
     font-family: 'Belinda-W00';
     color: rgb(0, 48, 135);
     text-align: center;
     padding:1%;
+    font-size: 60px;
 }
 /* <------------CONTACT US------------> */
 .contact-container {
     display: flex;
-    justify-content: space-between;
-    padding: 10% 10%; 
+    justify-content: space-evenly;
+    padding: 3% 3%; 
+    margin-left: 8%;
 }
 
 .contact-left {
-    flex: 1;
-    max-width: 50%;
-    padding-right: 5%; 
+    flex: .3;
 }
 
 .contact-right {
-    flex: 1;
+    /* flex: 1; */
     max-width: 40%;
     padding-left: 5%;
-    border-left: 2px solid #5B4333; /
+    border-left: 4px solid  rgb(0, 48, 135);
 }
 
-.name_headers {
-    font-size: 2rem;
-    /* font-family: 'Futura', sans-serif; */
+.contact_us{
     color: rgb(0, 48, 135);
-    /* text-transform: uppercase; */
-    margin-bottom: 2rem;
+    font-family: 'Futura-Book', sans-serif;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
 }
 
-.contact_us, .address {
+.contact-left p{
     color: rgb(0, 48, 135);
-    font-family: 'Futura', sans-serif;
+    font-family: 'Futura-Book', sans-serif;
     margin-bottom: 1rem;
     font-size: 1.2rem;
-    line-height: 250%;
+    padding-left: 5%;
+}
+
+ .address {
+    color: rgb(0, 48, 135);
+    font-family: 'Futura-Book', sans-serif;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    line-height: 100%;
 }
 
 .stay_connected{
-    font-family: 'Futura', sans-serif;
+    font-family: 'Futura-Book', sans-serif;
     color: rgb(0, 48, 135);
 }
 
@@ -364,8 +312,8 @@ section {
     padding: 0; 
     box-sizing: border-box; 
     border: 2px solid white; 
-    box-shadow: 8px 8px 8px #ffffffa1;
-    border-radius: 5%; 
+    /* box-shadow: 8px 8px 8px #ffffffa1; */
+    border-radius: 10px; 
     background-color: rgba(0, 47, 135, 0.51);
     /* background-color: #141414;  */
 }
@@ -380,13 +328,15 @@ section {
 
 .about_text {
     /* color: rgb(0, 48, 135); */
-    font-family: 'Futura';
-    line-height: 200%;
-    font-size: 1.3rem;
+    font-family: 'Futura-Book', sans-serif;;
+    line-height: 300%;
+    font-size: 1.6rem;
     text-align: left;
     max-width: 55%; 
-    padding: 20px; 
+    /* padding: 30px;  */
     color: #fff; 
+    padding-right: 50px;
+    padding-left: 50px;
 }
 
 .divider {
@@ -402,15 +352,50 @@ section {
     font-family: 'Futura-Book', sans-serif;
     font-size: 1.2rem;
     text-align: center;
-    padding: 2%
+    font-weight: bold;
+    padding: 2%;
+
 }
-.project-list {
+    
+
+.column {
+    flex: 1;
+    margin: 0 10px; 
+    max-width: 50%; }
+
+.left-column {
+    display: flex;
+    flex-direction:  row;
+    align-items: center; 
     padding: 3%;
-    font-family: 'Futura', sans-serif;
+    font-family: 'Futura-Book', sans-serif;
     background-color: rgba(0, 47, 135, 0.558);
     border: 2px solid white;
-    box-shadow: 8px 8px 8px #ffffffa1;
-    border-radius: 2%;
+    /* box-shadow: 8px 8px 8px #ffffffa1; */
+    border-radius: 10px;;
+    display: flex;
+    line-height: 140%;
+    font-size: 140%;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center; 
+    align-items: flex-start;
+    color: white;
+    margin: 0 auto; 
+    
+}
+
+.right-column {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    margin-left: 0; 
+    padding: 3%;
+    font-family: 'Futura-Book', sans-serif;
+    background-color: rgba(0, 47, 135, 0.558);
+    border: 2px solid white;
+    /* box-shadow: 8px 8px 8px #ffffffa1; */
+    border-radius: 10px;;
     display: flex;
     line-height: 140%;
     font-size: 140%;
@@ -421,24 +406,6 @@ section {
     color: white;
     margin: 0 auto; 
 }
-
-.column {
-    flex: 1;
-    margin: 0 10px; 
-    max-width: 50%; }
-
-.left-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-}
-
-.right-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    margin-left: 0; }
-
 .myDIV:hover + .hide {
     display: block;
     z-index: 1001; 
@@ -470,17 +437,10 @@ section {
     display: block;
 }
 
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 /* Button styles */
 .read-more-btn {
-    background-color: #00408F;
+    background-color: #002f8700;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -488,23 +448,30 @@ body {
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
+    width: 200px;
+    height: 75px;
+    font-weight: bold;
+    font-family: "Futura-Book", sans-serif;
+   
 }
 
 .read-more-btn:hover {
     background-color: #003375;
+    /* width: 200px; */
 }
 
 /* Modal styles */
 .modal {
-    display: none; /* Hidden by default */
+    display: none; 
     position: fixed;
     z-index: 1000;
     left: 0;
-    top: 0;
+    top: 35px;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
+    
 }
 
 .modal-content {
@@ -513,9 +480,25 @@ body {
     padding: 20px;
     border-radius: 5px;
     width: 60%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: rgba(0, 47, 135, 0.51);
+    box-shadow: 0 4px 8px #333;
+    color: rgb(0, 47, 135);
+    font-family: 'Futura-Book', sans-serif;
+    
 }
+.modal-content h2{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    line-height: 150%;
+    margin-bottom: 15px;
+    display: flex;
+}
+
 
 .close-btn {
     color: #aaa;
@@ -541,27 +524,28 @@ body {
     max-width: 80%; 
     padding: 0; 
     box-sizing: border-box; 
-    border: 2px solid white; 
-    box-shadow: 8px 8px 8px #ffffffa1;
-    border-radius: 3%; 
+    /* border: 2px solid white;  */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px; 
     background-color: rgba(0, 47, 135, 0.51);
 }
 
 .scholarship_pic{
     width: 40%; 
     height: auto; 
-    border-radius: 10px 0 0 10px; 
+    border-radius: 10px; 
     margin-right: 0; 
     box-shadow: none; }
 
 .scholarship_text  {
     /* color: rgb(0, 48, 135); */
-    font-family: 'Futura';
-    line-height: 200%;
-    font-size: 1.3rem;
+    font-family: 'Futura-Book', sans-serif;;
+    line-height: 225%;
+    font-size: 1.6rem;
     text-align: left;
-    max-width: 55%; 
-    padding: 20px; 
+    max-width: 55%;
+    padding-right: 45px;
+    padding-left: 45px;
     color: #fff; 
 }
 
@@ -575,15 +559,20 @@ body {
 
 
 /* <-----------Login------------> */
+.login-section{
+    height: auto;
+}
 .login_container {
     max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
+    margin: auto;
+    margin-top: 170px;
     background-color: rgba(0, 47, 135, 0.558); 
     border-radius: 10px; 
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); 
     font-family: 'Futura-Book', sans-serif;
     text-align: center; 
+    height: 400px;
+
+  
 }
 
 .login-template {
@@ -591,6 +580,12 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
+.login-template h2{
+    margin-top: 90px;
+    margin-bottom: 20px;
+}
+
 
 .login-template input[type="text"],
 .login-template input[type="password"] {
@@ -602,6 +597,7 @@ body {
     box-sizing: border-box;
     font-size: 1rem;
 }
+
 
 .login-template input[type="submit"] {
     width: 100%;
@@ -616,26 +612,32 @@ body {
 }
 
 .login-template input[type="submit"]:hover {
-    background-color: rgba(0, 47, 135, 0.8); /* Darker on hover */
+    background-color: rgba(0, 47, 135, 0.8);
 }
+
 
 .login_txt {
     font-family: 'Futura-Book', sans-serif;
     color: rgb(0, 48, 135);
     font-size: 1rem;
-    margin-top: 15px;
 }
+
 
 .login_txt a {
     color:white; 
     text-decoration: none;
 }
 
+ 
 .login_txt a:hover {
     text-decoration: underline;
 }
 
+.form-container {
+    height: calc(100vh - 186px);
+    margin-top: 117px;
 
+}
 
 
 /* <-----------registration------------> */
@@ -692,3 +694,89 @@ body {
 }
 
 
+/* Events */
+.events_box {
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    max-width: 600px; 
+    margin: 0 auto; 
+    font-family: 'Futura-Book', sans-serif;
+}
+
+
+.events_box h2 {
+    text-align: center; 
+    font-size: 60px; 
+    color: rgb(0, 48, 135) !important; 
+    margin-bottom: 20px; 
+}
+
+
+.events_box p {
+    text-align: left;
+    font-size: 1rem; 
+    color: rgb(0, 48, 135);
+    padding-left: 10px; 
+    padding-bottom: 10px; 
+    border-bottom: 1px solid rgb(0, 48, 135); 
+    width: 300px;
+}
+
+
+.events_box button {
+    background-color: rgb(246, 236, 97);
+    color: rgb(0, 48, 135); 
+    font-size: 1.2rem;
+    padding: 15px 20px;
+    border-radius: 5px; 
+    margin-top: 20px; 
+    border: none; 
+    align-self: center; 
+    cursor: pointer; 
+    border: none;
+
+}
+.events_box button:hover {
+    background-color: rgb(0, 48, 135); 
+    color: white; 
+    cursor: pointer; 
+}
+
+#events-days {
+    width: 400px; 
+    border-right: 2px solid rgb(0, 48, 135); 
+    padding-left: 10px; 
+    display:flex;
+    flex-direction: column;
+    
+}
+#events_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.flex-box{
+    display:flex;
+}
+
+#event-day{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#events-list p {
+    margin-top: 20.5px;
+    margin-bottom: 18.5px;
+}
+
+#1{
+    display:flex;
+    flex-direction: column;
+}
+
+/* #events_list p {
+    padding-left: 10px; 
+    margin: 15px 0; 
+    line-height: 1.5; } */
