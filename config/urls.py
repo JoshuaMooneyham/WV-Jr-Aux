@@ -29,6 +29,7 @@ urlpatterns = [
     path('projects/', projectsPage, name="projects"),
     path('contact/', contactUs, name="contact"),
     path('scholarship/', scholarShip, name="scholarship"),
+    path('support/', supportUs, name="support"),
     path('auction/', include('auction.urls')),
 
     # ==={ File Serving }=== #
